@@ -403,45 +403,39 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
           {/* Sample progress bars of active chapters */}
           <div className="space-y-3">
-            <div>
-              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                <span>Bab 1: Struktur Atom & Tabel Periodik</span>
-                <span className="text-emerald-600">85% (Kuat)</span>
-              </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-emerald-500 h-full rounded-full" style={{ width: '85%' }} />
-              </div>
-            </div>
+            {displayChapters.map(chap => {
+              const chapterMasteries = masteries.filter(
+                m => m.chapterId === chap.id || (m.chapterId && m.chapterId.includes(`kim-${chap.babNumber}`))
+              );
+              let chapScore = 0;
+              let chapStatusText = '0% (Belum Dimulai)';
+              let chapBarColor = 'bg-slate-300';
+              let chapTextColor = 'text-slate-400';
 
-            <div>
-              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                <span>Bab 2: Ikatan Kimia & Bentuk Molekul</span>
-                <span className="text-amber-600">38% (Learning Gap)</span>
-              </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-amber-500 h-full rounded-full" style={{ width: '38%' }} />
-              </div>
-            </div>
+              if (chapterMasteries.length > 0) {
+                const sum = chapterMasteries.reduce((a, b) => a + b.score, 0);
+                chapScore = Math.round(sum / chapterMasteries.length);
+                const lvlInfo = IntelligenceService.getLevelFromScore(chapScore);
+                chapStatusText = `${chapScore}% (${lvlInfo.label})`;
+                chapTextColor = chapScore >= 75 ? 'text-emerald-600' : chapScore >= 60 ? 'text-blue-600' : 'text-amber-600';
+                chapBarColor = chapScore >= 75 ? 'bg-emerald-500' : chapScore >= 60 ? 'bg-blue-500' : 'bg-amber-500';
+              }
 
-            <div>
-              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                <span>Bab 4: Tata Nama & Persamaan Reaksi</span>
-                <span className="text-blue-600">82% (Kuat)</span>
-              </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full rounded-full" style={{ width: '82%' }} />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                <span>Bab 5: Stoikiometri & Konsep Mol</span>
-                <span className="text-blue-600">76% (Bisa Mengerjakan)</span>
-              </div>
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full rounded-full" style={{ width: '76%' }} />
-              </div>
-            </div>
+              return (
+                <div key={chap.id}>
+                  <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1">
+                    <span>{chap.name}</span>
+                    <span className={chapTextColor}>{chapStatusText}</span>
+                  </div>
+                  <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div
+                      className={`${chapBarColor} h-full rounded-full transition-all duration-500`}
+                      style={{ width: `${chapScore}%` }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -457,19 +451,25 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             <div className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2 flex items-center space-x-1.5">
               <span>⭐ Top Kekuatan Kamu</span>
             </div>
-            <div className="space-y-2">
-              {strengths.map(s => (
-                <div
-                  key={s.id}
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-200/70 text-xs gap-2"
-                >
-                  <span className="font-semibold text-emerald-900 break-words min-w-0 flex-1">{s.conceptName}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold flex-shrink-0">
-                    {s.score}% (Lvl {s.level})
-                  </span>
-                </div>
-              ))}
-            </div>
+            {strengths.length > 0 ? (
+              <div className="space-y-2">
+                {strengths.map(s => (
+                  <div
+                    key={s.id}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-200/70 text-xs gap-2"
+                  >
+                    <span className="font-semibold text-emerald-900 break-words min-w-0 flex-1">{s.conceptName}</span>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold flex-shrink-0">
+                      {s.score}% (Lvl {s.level})
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500 text-center">
+                Belum ada konsep teruji. Kerjakan kuis atau asesmen diagnostik untuk memetakan kekuatan belajarmu!
+              </div>
+            )}
           </div>
 
           {/* Learning Gaps & Root Prerequisite Diagnosis */}
@@ -523,27 +523,28 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               <h2 className="text-lg font-bold text-slate-800">Grafik Pertumbuhan Penguasaan</h2>
               <p className="text-xs text-slate-500">Kenaikan skor pemahaman 4 minggu terakhir</p>
             </div>
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
-              +8% Pekan Ini
-            </span>
+            {overall.overallScore === 0 ? (
+              <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                0% (Baru Memulai)
+              </span>
+            ) : (
+              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                +{overall.overallScore}% Pekan Ini
+              </span>
+            )}
           </div>
 
           {/* Clean Academic Bar Graph */}
           <div className="pt-4 pb-2">
             <div className="flex items-end justify-between h-40 gap-3 px-2 border-b border-slate-200">
-              {[
-                { week: 'Minggu 1', score: 54 },
-                { week: 'Minggu 2', score: 62 },
-                { week: 'Minggu 3', score: 68 },
-                { week: 'Minggu Ini', score: overall.overallScore }
-              ].map((item, idx) => (
+              {growthData.map((item, idx) => (
                 <div key={idx} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
                   <span className="text-xs font-bold text-slate-700">{item.score}%</span>
                   <div
                     className={`w-full max-w-[48px] rounded-t-xl transition-all duration-500 ${
-                      idx === 3 ? 'bg-blue-600 shadow-md shadow-blue-200' : 'bg-blue-300'
+                      item.score === 0 ? 'bg-slate-200' : idx === 3 ? 'bg-blue-600 shadow-md shadow-blue-200' : 'bg-blue-300'
                     }`}
-                    style={{ height: `${(item.score / 100) * 120}px` }}
+                    style={{ height: `${Math.max(4, (item.score / 100) * 120)}px` }}
                   />
                   <span className="text-[11px] text-slate-500 font-medium truncate w-full text-center">
                     {item.week}
@@ -591,7 +592,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             <div className="text-xs font-semibold text-slate-600 mb-2">Keaktifan 7 Hari Terakhir:</div>
             <div className="flex items-center justify-between gap-1.5">
               {['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map((day, idx) => {
-                const isActive = idx < streak.currentStreakDays + 1;
+                const isActive = streak.currentStreakDays > 0 && idx < streak.currentStreakDays;
                 return (
                   <div
                     key={day}
@@ -623,34 +624,42 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           </div>
 
           <div className="space-y-3">
-            {events.map(ev => {
-              const dateStr = new Date(ev.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-              return (
-                <div
-                  key={ev.id}
-                  className="flex items-start justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs"
-                >
-                  <div className="flex items-start space-x-3">
-                    <span className="text-base mt-0.5">
-                      {ev.eventType === 'QUIZ_COMPLETED' ? '📝' : ev.eventType === 'AUDIO_LISTENED' ? '🎧' : '📖'}
-                    </span>
-                    <div>
-                      <div className="font-semibold text-slate-800">
-                        {ev.eventType === 'QUIZ_COMPLETED'
-                          ? 'Menyelesaikan Kuis Evaluasi'
-                          : ev.eventType === 'AUDIO_LISTENED'
-                          ? 'Mendengarkan Narasi Audio Materi'
-                          : 'Asesmen Diagnostik Awal'}
-                      </div>
-                      <div className="text-slate-500 text-[11px] mt-0.5">
-                        {ev.chapterId ? `Bab ${ev.chapterId.replace('chap-kim-', '')} Kimia SMA` : 'Kimia SMA'}
+            {events.length > 0 ? (
+              events.map(ev => {
+                const dateStr = new Date(ev.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                return (
+                  <div
+                    key={ev.id}
+                    className="flex items-start justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <span className="text-base mt-0.5">
+                        {ev.eventType === 'QUIZ_COMPLETED' ? '📝' : ev.eventType === 'AUDIO_LISTENED' ? '🎧' : '📖'}
+                      </span>
+                      <div>
+                        <div className="font-semibold text-slate-800">
+                          {ev.eventType === 'QUIZ_COMPLETED'
+                            ? 'Menyelesaikan Kuis Evaluasi'
+                            : ev.eventType === 'AUDIO_LISTENED'
+                            ? 'Mendengarkan Narasi Audio Materi'
+                            : ev.eventType === 'DIAGNOSTIC_COMPLETED'
+                            ? 'Asesmen Diagnostik Awal'
+                            : 'Mempelajari Modul Materi'}
+                        </div>
+                        <div className="text-slate-500 text-[11px] mt-0.5">
+                          {ev.chapterId ? `Bab ${ev.chapterId.replace('chap-kim-', '')} Kimia SMA` : 'Kimia SMA'}
+                        </div>
                       </div>
                     </div>
+                    <span className="text-[11px] text-slate-400 font-mono">{dateStr}</span>
                   </div>
-                  <span className="text-[11px] text-slate-400 font-mono">{dateStr}</span>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
+                Belum ada aktivitas belajar. Buka materi atau mulai kuis untuk mencatat riwayat belajarmu secara real-time!
+              </div>
+            )}
           </div>
         </div>
 
