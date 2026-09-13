@@ -15,13 +15,7 @@ import {
 } from '../types/intelligence';
 import { MASTER_CURRICULUM } from '../data/curriculumMaster';
 import { AuthService } from './authService';
-
-const KEY_MASTERIES = 'sqolah_masteries_v4';
-const KEY_EVENTS = 'sqolah_events_v4';
-const KEY_STREAKS = 'sqolah_streaks_v4';
-const KEY_STUDY_STATS = 'sqolah_study_stats_v4';
-const KEY_GOALS = 'sqolah_goals_v4';
-const KEY_PREFERENCES = 'sqolah_preferences_v4';
+import { DatabaseService } from './databaseService';
 
 export class IntelligenceService {
   // -------------------------------------------------------------
@@ -60,290 +54,29 @@ export class IntelligenceService {
   }
 
   // -------------------------------------------------------------
-  // INITIAL DEMO DATA SEEDING
+  // DATABASE INITIALIZATION & RESET
   // -------------------------------------------------------------
   public static initSeedData(): void {
-    // Clear old versions if present
-    ['sqolah_masteries_v1', 'sqolah_masteries_v2', 'sqolah_masteries_v3',
-     'sqolah_events_v1', 'sqolah_events_v2', 'sqolah_events_v3',
-     'sqolah_streaks_v1', 'sqolah_streaks_v2', 'sqolah_streaks_v3',
-     'sqolah_study_stats_v1', 'sqolah_study_stats_v2', 'sqolah_study_stats_v3',
-     'sqolah_goals_v1', 'sqolah_goals_v2', 'sqolah_goals_v3',
-     'sqolah_preferences_v1', 'sqolah_preferences_v2', 'sqolah_preferences_v3'].forEach(k => {
-      try { localStorage.removeItem(k); } catch {}
-    });
+    DatabaseService.initDatabase();
+  }
 
-    if (localStorage.getItem(KEY_MASTERIES)) return;
+  public static resetStudentToEmpty(studentId: string = 'SQ-2026-0001'): void {
+    DatabaseService.initDatabase(true);
+  }
 
-    // Seed M Elang El Haqeem's Mastery (demonstrating realistic learning path with an Ikatan Kimia gap)
-    const elangMasteries: ConceptMastery[] = [
-      {
-        id: 'mas-1',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-1',
-        topicId: 'top-1-1',
-        conceptId: 'conc-partikel-atom',
-        conceptName: 'Proton, Neutron & Elektron',
-        score: 95,
-        level: 5,
-        lastStudiedAt: '2026-09-12T10:15:00Z',
-        reviewCount: 3,
-        questionsAttempted: 15,
-        questionsCorrect: 14,
-        averageTimeSeconds: 42,
-        masteredSkills: ['Identifikasi partikel subatom', 'Letak proton & neutron dalam inti'],
-        needsImprovementSkills: [],
-        status: 'Mastered'
-      },
-      {
-        id: 'mas-2',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-1',
-        topicId: 'top-1-1',
-        conceptId: 'conc-isotop-notasi',
-        conceptName: 'Nomor Atom, Nomor Massa & Isotop',
-        score: 88,
-        level: 4,
-        lastStudiedAt: '2026-09-11T16:00:00Z',
-        reviewCount: 2,
-        questionsAttempted: 12,
-        questionsCorrect: 11,
-        averageTimeSeconds: 50,
-        masteredSkills: ['Perhitungan neutron ion', 'Pengelompokan isotop, isobar, isoton'],
-        needsImprovementSkills: [],
-        status: 'Strong'
-      },
-      {
-        id: 'mas-3',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-1',
-        topicId: 'top-1-2',
-        conceptId: 'conc-konfig-elektron',
-        conceptName: 'Prinsip Aufbau & Konfigurasi spdf',
-        score: 52, // Gap!
-        level: 2,
-        lastStudiedAt: '2026-09-08T15:30:00Z',
-        reviewCount: 1,
-        questionsAttempted: 10,
-        questionsCorrect: 5,
-        averageTimeSeconds: 78,
-        masteredSkills: ['Urutan dasar tingkat energi s-p'],
-        needsImprovementSkills: ['Pengecualian kestabilan subkulit d setengah penuh', 'Konfigurasi ion transisi'],
-        status: 'Needs Review'
-      },
-      {
-        id: 'mas-4',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-1',
-        topicId: 'top-1-2',
-        conceptId: 'conc-bil-kuantum',
-        conceptName: 'Bilangan Kuantum n, l, m, s',
-        score: 48,
-        level: 2,
-        lastStudiedAt: '2026-09-08T16:00:00Z',
-        reviewCount: 1,
-        questionsAttempted: 8,
-        questionsCorrect: 4,
-        averageTimeSeconds: 85,
-        masteredSkills: ['Penentuan bilangan kuantum utama (n)'],
-        needsImprovementSkills: ['Penentuan nilai bilangan kuantum magnetik (m) dan spin (s)'],
-        status: 'Needs Review'
-      },
-      {
-        id: 'mas-5',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-2',
-        topicId: 'top-2-1',
-        conceptId: 'conc-ikatan-ion',
-        conceptName: 'Karakteristik & Pembentukan Senyawa Ion',
-        score: 42, // Gap! Prerequisite is Konfigurasi Elektron
-        level: 2,
-        lastStudiedAt: '2026-09-07T14:00:00Z',
-        reviewCount: 1,
-        questionsAttempted: 8,
-        questionsCorrect: 3,
-        averageTimeSeconds: 90,
-        masteredSkills: ['Ciri-ciri fisik senyawa ionik'],
-        needsImprovementSkills: ['Transfer elektron valensi atom logam-nonlogam'],
-        status: 'Learning Gap'
-      },
-      {
-        id: 'mas-6',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-2',
-        topicId: 'top-2-1',
-        conceptId: 'conc-ikatan-kovalen',
-        conceptName: 'Ikatan Kovalen Tunggal, Rangkap & Koordinasi',
-        score: 35, // Gap!
-        level: 1,
-        lastStudiedAt: '2026-09-08T11:00:00Z',
-        reviewCount: 1,
-        questionsAttempted: 10,
-        questionsCorrect: 3,
-        averageTimeSeconds: 110,
-        masteredSkills: ['Pengertian pemakaian bersama elektron'],
-        needsImprovementSkills: ['Identifikasi pasangan elektron bebas untuk ikatan koordinasi'],
-        status: 'Learning Gap'
-      },
-      {
-        id: 'mas-7',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-4',
-        topicId: 'top-4-2',
-        conceptId: 'conc-setara-reaksi',
-        conceptName: 'Penyetaraan Persamaan Reaksi Kimia',
-        score: 82,
-        level: 4,
-        lastStudiedAt: '2026-09-12T15:00:00Z',
-        reviewCount: 2,
-        questionsAttempted: 14,
-        questionsCorrect: 12,
-        averageTimeSeconds: 65,
-        masteredSkills: ['Metode aljabar sederhana', 'Penyetaraan reaksi hidrokarbon'],
-        needsImprovementSkills: [],
-        status: 'Strong'
-      },
-      {
-        id: 'mas-8',
-        studentId: 'SQ-2026-0001',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-5',
-        topicId: 'top-5-1',
-        conceptId: 'conc-konsep-mol',
-        conceptName: 'Mol, Massa Molar & Volume Molar STP',
-        score: 76,
-        level: 4,
-        lastStudiedAt: '2026-09-13T09:00:00Z',
-        reviewCount: 2,
-        questionsAttempted: 15,
-        questionsCorrect: 12,
-        averageTimeSeconds: 70,
-        masteredSkills: ['Konversi gram ke mol', 'Volume gas pada kondisi standar STP'],
-        needsImprovementSkills: ['Hubungan jumlah partikel dengan bilangan Avogadro'],
-        status: 'Strong'
-      }
-    ];
-
-    localStorage.setItem(KEY_MASTERIES, JSON.stringify(elangMasteries));
-
-    // Seed M Elang El Haqeem's Streaks & Stats
-    const elangStreak: LearningStreak = {
-      studentId: 'SQ-2026-0001',
-      currentStreakDays: 5,
-      bestStreakDays: 12,
-      lastActivityDate: new Date().toISOString().split('T')[0],
-      historyDates: [
-        '2026-09-08',
-        '2026-09-09',
-        '2026-09-10',
-        '2026-09-11',
-        '2026-09-12',
-        '2026-09-13'
-      ]
-    };
-    localStorage.setItem(KEY_STREAKS, JSON.stringify([elangStreak]));
-
-    const elangStats: StudyTimeStats = {
-      studentId: 'SQ-2026-0001',
-      todayMinutes: 48,
-      thisWeekMinutes: 340,
-      thisMonthMinutes: 870,
-      totalHours: 14.5,
-      consistencyScore: 85,
-      accuracyPercentage: 79,
-      averageQuizScore: 82,
-      totalQuestionsCompleted: 86,
-      totalTopicsMastered: 4
-    };
-    localStorage.setItem(KEY_STUDY_STATS, JSON.stringify([elangStats]));
-
-    // Seed M Elang El Haqeem's Learning Goals & Preferences
-    const elangGoals: StudentGoals = {
-      studentId: 'SQ-2026-0001',
-      primaryGoals: [
-        'Persiapan UTBK / SNBT 2027',
-        'Meningkatkan nilai rapor Kimia Kelas XI di atas 90',
-        'Lolos PTN Kedokteran / Teknik Kimia'
-      ],
-      targetGrades: {
-        'sma-kimia-10': { currentGrade: 80, targetGrade: 95 }
-      },
-      targetCampusOrSchool: 'Institut Teknologi Bandung (Teknik Kimia)',
-      updatedAt: '2026-08-01T00:00:00Z'
-    };
-    localStorage.setItem(KEY_GOALS, JSON.stringify([elangGoals]));
-
-    const elangPreferences: StudentPreferences = {
-      studentId: 'SQ-2026-0001',
-      selfAssessmentUnderstanding: {
-        'sma-kimia-10': 4
-      },
-      easiestSubjectId: 'Kimia - Struktur Atom',
-      hardestSubjectId: 'Kimia - Ikatan Kimia & Geometri',
-      challengingTopics: 'Menentukan hibridisasi dan bentuk molekul PEI PEB',
-      studyTimePreference: 'malam',
-      averageStudyDurationMinutes: 45,
-      learningStylePreference: 'auditory',
-      updatedAt: '2026-08-01T00:00:00Z'
-    };
-    localStorage.setItem(KEY_PREFERENCES, JSON.stringify([elangPreferences]));
-
-    // Seed Events
-    const elangEvents: LearningEvent[] = [
-      {
-        id: 'evt-1',
-        studentId: 'SQ-2026-0001',
-        eventType: 'QUIZ_COMPLETED',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-5',
-        topicId: 'top-5-1',
-        metadata: { score: 80, correctCount: 4, totalCount: 5, durationMinutes: 15 },
-        timestamp: '2026-09-13T09:15:00Z'
-      },
-      {
-        id: 'evt-2',
-        studentId: 'SQ-2026-0001',
-        eventType: 'AUDIO_LISTENED',
-        subjectId: 'sma-kimia-10',
-        chapterId: 'chap-kim-5',
-        topicId: 'top-5-1',
-        metadata: { babTitle: 'Bab 5 - Stoikiometri', ttsSpeed: 1.0, durationMinutes: 20 },
-        timestamp: '2026-09-13T08:45:00Z'
-      },
-      {
-        id: 'evt-3',
-        studentId: 'SQ-2026-0001',
-        eventType: 'DIAGNOSTIC_COMPLETED',
-        subjectId: 'sma-kimia-10',
-        metadata: { baselineScore: 74, level: 'Kompeten', durationMinutes: 30 },
-        timestamp: '2026-09-02T10:30:00Z'
-      }
-    ];
-    localStorage.setItem(KEY_EVENTS, JSON.stringify(elangEvents));
+  public static simulateLearning(studentId: string = 'SQ-2026-0001'): void {
+    DatabaseService.applySimulatedLearningProgress(studentId);
   }
 
   // -------------------------------------------------------------
-  // MASTERIES
+  // CONCEPT MASTERIES (CONNECTED TO DATABASE)
   // -------------------------------------------------------------
   public static getAllMasteries(): ConceptMastery[] {
-    this.initSeedData();
-    try {
-      return JSON.parse(localStorage.getItem(KEY_MASTERIES) || '[]');
-    } catch {
-      return [];
-    }
+    return DatabaseService.getMasteries();
   }
 
   public static getStudentMasteries(studentId: string): ConceptMastery[] {
-    const all = this.getAllMasteries();
-    return all.filter(m => m.studentId === studentId);
+    return DatabaseService.getMasteries(studentId);
   }
 
   public static getMasteryForConcept(studentId: string, conceptId: string): ConceptMastery | undefined {
@@ -352,14 +85,7 @@ export class IntelligenceService {
   }
 
   public static saveMastery(mastery: ConceptMastery): void {
-    const all = this.getAllMasteries();
-    const idx = all.findIndex(m => m.studentId === mastery.studentId && m.conceptId === mastery.conceptId);
-    if (idx >= 0) {
-      all[idx] = mastery;
-    } else {
-      all.push(mastery);
-    }
-    localStorage.setItem(KEY_MASTERIES, JSON.stringify(all));
+    DatabaseService.saveMastery(mastery);
   }
 
   public static calculateOverallMastery(studentId: string): {
@@ -375,7 +101,7 @@ export class IntelligenceService {
       return {
         overallScore: 0,
         level: 0,
-        label: 'Belum Ada Data (Mulai Asesmen)',
+        label: 'Belum Ada Data (Mulai Belajar)',
         color: 'slate',
         assessedConceptsCount: 0,
         masteredConceptsCount: 0
@@ -467,9 +193,9 @@ export class IntelligenceService {
   // NEXT BEST ACTION & TODAY'S PLAN ENGINE
   // -------------------------------------------------------------
   public static getNextBestActions(studentId: string): NextBestAction[] {
-    const studentProfile = AuthService.getStudentProfileByUserId(studentId) ||
-      AuthService.getStudentProfiles().find(p => p.studentId === studentId);
+    const studentProfile = DatabaseService.getStudentById(studentId);
 
+    // If student hasn't completed onboarding or diagnostic
     if (!studentProfile || !studentProfile.diagnosticCompleted) {
       return [
         {
@@ -560,179 +286,73 @@ export class IntelligenceService {
   }
 
   // -------------------------------------------------------------
-  // STREAKS & STUDY STATS
+  // STREAKS & STUDY STATS (CONNECTED TO DATABASE)
   // -------------------------------------------------------------
   public static getStreak(studentId: string): LearningStreak {
-    this.initSeedData();
-    try {
-      const list: LearningStreak[] = JSON.parse(localStorage.getItem(KEY_STREAKS) || '[]');
-      const found = list.find(s => s.studentId === studentId);
-      if (found) return found;
-    } catch {}
-    return {
-      studentId,
-      currentStreakDays: 1,
-      bestStreakDays: 1,
-      lastActivityDate: new Date().toISOString().split('T')[0],
-      historyDates: [new Date().toISOString().split('T')[0]]
-    };
+    return DatabaseService.getStreak(studentId);
   }
 
   public static getStudyStats(studentId: string): StudyTimeStats {
-    this.initSeedData();
-    try {
-      const list: StudyTimeStats[] = JSON.parse(localStorage.getItem(KEY_STUDY_STATS) || '[]');
-      const found = list.find(s => s.studentId === studentId);
-      if (found) return found;
-    } catch {}
-    return {
-      studentId,
-      todayMinutes: 0,
-      thisWeekMinutes: 0,
-      thisMonthMinutes: 0,
-      totalHours: 0,
-      consistencyScore: 70,
-      accuracyPercentage: 0,
-      averageQuizScore: 0,
-      totalQuestionsCompleted: 0,
-      totalTopicsMastered: 0
-    };
+    return DatabaseService.getStats(studentId);
   }
 
   // -------------------------------------------------------------
-  // LEARNING EVENTS & TRACKING
+  // LEARNING EVENTS & TRACKING (CONNECTED TO DATABASE)
   // -------------------------------------------------------------
   public static getEvents(studentId: string): LearningEvent[] {
-    this.initSeedData();
-    try {
-      const all: LearningEvent[] = JSON.parse(localStorage.getItem(KEY_EVENTS) || '[]');
-      return all.filter(e => e.studentId === studentId);
-    } catch {
-      return [];
-    }
+    return DatabaseService.getEvents(studentId);
   }
 
   public static trackEvent(
     event: Omit<LearningEvent, 'id' | 'timestamp'>,
     durationMinutes: number = 0
   ): LearningEvent {
-    const fullEvent: LearningEvent = {
-      ...event,
-      id: `evt-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
-      timestamp: new Date().toISOString()
-    };
+    // 1. Insert into events table
+    const fullEvent = DatabaseService.insertEvent(event);
 
-    // Save to events list
-    const all: LearningEvent[] = JSON.parse(localStorage.getItem(KEY_EVENTS) || '[]');
-    all.unshift(fullEvent);
-    localStorage.setItem(KEY_EVENTS, JSON.stringify(all));
-
-    // Update study time
+    // 2. Update study time stats in database
     if (durationMinutes > 0) {
-      const statsList: StudyTimeStats[] = JSON.parse(localStorage.getItem(KEY_STUDY_STATS) || '[]');
-      let stats = statsList.find(s => s.studentId === fullEvent.studentId);
-      if (!stats) {
-        stats = {
-          studentId: fullEvent.studentId,
-          todayMinutes: 0,
-          thisWeekMinutes: 0,
-          thisMonthMinutes: 0,
-          totalHours: 0,
-          consistencyScore: 80,
-          accuracyPercentage: 80,
-          averageQuizScore: 80,
-          totalQuestionsCompleted: 0,
-          totalTopicsMastered: 0
-        };
-        statsList.push(stats);
-      }
+      const stats = DatabaseService.getStats(fullEvent.studentId);
       stats.todayMinutes += durationMinutes;
       stats.thisWeekMinutes += durationMinutes;
       stats.thisMonthMinutes += durationMinutes;
       stats.totalHours = Math.round((stats.thisMonthMinutes / 60) * 10) / 10;
-      localStorage.setItem(KEY_STUDY_STATS, JSON.stringify(statsList));
+      DatabaseService.updateStats(stats);
     }
 
-    // Update streak if needed
+    // 3. Update streak in database
     const todayStr = new Date().toISOString().split('T')[0];
-    const streakList: LearningStreak[] = JSON.parse(localStorage.getItem(KEY_STREAKS) || '[]');
-    let streak = streakList.find(s => s.studentId === fullEvent.studentId);
-    if (!streak) {
-      streak = {
-        studentId: fullEvent.studentId,
-        currentStreakDays: 1,
-        bestStreakDays: 1,
-        lastActivityDate: todayStr,
-        historyDates: [todayStr]
-      };
-      streakList.push(streak);
-    } else {
-      if (!streak.historyDates.includes(todayStr)) {
-        streak.historyDates.push(todayStr);
-        streak.currentStreakDays += 1;
-        if (streak.currentStreakDays > streak.bestStreakDays) {
-          streak.bestStreakDays = streak.currentStreakDays;
-        }
+    const streak = DatabaseService.getStreak(fullEvent.studentId);
+    if (!streak.historyDates.includes(todayStr)) {
+      streak.historyDates.push(todayStr);
+      streak.currentStreakDays += 1;
+      if (streak.currentStreakDays > streak.bestStreakDays) {
+        streak.bestStreakDays = streak.currentStreakDays;
       }
-      streak.lastActivityDate = todayStr;
     }
-    localStorage.setItem(KEY_STREAKS, JSON.stringify(streakList));
+    streak.lastActivityDate = todayStr;
+    DatabaseService.updateStreak(streak);
 
     return fullEvent;
   }
 
   // -------------------------------------------------------------
-  // GOALS & PREFERENCES
+  // GOALS & PREFERENCES (CONNECTED TO DATABASE)
   // -------------------------------------------------------------
   public static getGoals(studentId: string): StudentGoals {
-    this.initSeedData();
-    try {
-      const list: StudentGoals[] = JSON.parse(localStorage.getItem(KEY_GOALS) || '[]');
-      const found = list.find(g => g.studentId === studentId);
-      if (found) return found;
-    } catch {}
-    return {
-      studentId,
-      primaryGoals: ['Meningkatkan Pemahaman Kimia'],
-      targetGrades: { 'sma-kimia-10': { currentGrade: 70, targetGrade: 85 } },
-      updatedAt: new Date().toISOString()
-    };
+    return DatabaseService.getGoals(studentId);
   }
 
   public static saveGoals(goals: StudentGoals): void {
-    const list: StudentGoals[] = JSON.parse(localStorage.getItem(KEY_GOALS) || '[]');
-    const idx = list.findIndex(g => g.studentId === goals.studentId);
-    if (idx >= 0) list[idx] = goals;
-    else list.push(goals);
-    localStorage.setItem(KEY_GOALS, JSON.stringify(list));
+    DatabaseService.updateGoals(goals);
   }
 
   public static getPreferences(studentId: string): StudentPreferences {
-    this.initSeedData();
-    try {
-      const list: StudentPreferences[] = JSON.parse(localStorage.getItem(KEY_PREFERENCES) || '[]');
-      const found = list.find(p => p.studentId === studentId);
-      if (found) return found;
-    } catch {}
-    return {
-      studentId,
-      selfAssessmentUnderstanding: {},
-      easiestSubjectId: '',
-      hardestSubjectId: '',
-      challengingTopics: '',
-      studyTimePreference: 'malam',
-      averageStudyDurationMinutes: 45,
-      learningStylePreference: 'auditory',
-      updatedAt: new Date().toISOString()
-    };
+    return DatabaseService.getPreferences(studentId);
   }
 
   public static savePreferences(prefs: StudentPreferences): void {
-    const list: StudentPreferences[] = JSON.parse(localStorage.getItem(KEY_PREFERENCES) || '[]');
-    const idx = list.findIndex(p => p.studentId === prefs.studentId);
-    if (idx >= 0) list[idx] = prefs;
-    else list.push(prefs);
-    localStorage.setItem(KEY_PREFERENCES, JSON.stringify(list));
+    DatabaseService.updatePreferences(prefs);
   }
 
   // -------------------------------------------------------------
@@ -740,6 +360,21 @@ export class IntelligenceService {
   // -------------------------------------------------------------
   public static getPersonalInsights(studentId: string): PersonalLearningInsight[] {
     const gaps = this.detectLearningGaps(studentId);
+    const stats = this.getStudyStats(studentId);
+
+    if (stats.thisMonthMinutes === 0 && gaps.length === 0) {
+      return [
+        {
+          id: 'ins-empty-1',
+          studentId,
+          title: 'Mulai Pembelajaran Pertama Kamu',
+          description: 'Sqolah akan menganalisis kecepatan belajar, tingkat akurasi soal, dan retensi memorimu setelah kamu menyelesaikan materi atau kuis pertama.',
+          type: 'time_pattern',
+          icon: 'sparkles',
+          createdAt: new Date().toISOString()
+        }
+      ];
+    }
 
     const insights: PersonalLearningInsight[] = [
       {
@@ -749,7 +384,7 @@ export class IntelligenceService {
         description: 'Tingkat akurasi soal meningkat 24% saat materi dibaca dengan fitur narasi suara (TTS) aktif.',
         type: 'accuracy_trend',
         icon: 'volume-high',
-        createdAt: '2026-09-12T10:00:00Z'
+        createdAt: new Date().toISOString()
       },
       {
         id: 'ins-2',
@@ -758,7 +393,7 @@ export class IntelligenceService {
         description: 'Kamu paling produktif menyelesaikan kuis dan modul materi di malam hari dengan fokus stabil.',
         type: 'time_pattern',
         icon: 'moon',
-        createdAt: '2026-09-11T18:00:00Z'
+        createdAt: new Date().toISOString()
       }
     ];
 
@@ -782,8 +417,8 @@ export class IntelligenceService {
     const streak = this.getStreak(studentId);
     const masteries = this.getStudentMasteries(studentId);
 
-    let strongest = 'Struktur Atom & Notasi Nuklida';
-    let weakest = 'Ikatan Kimia & Bentuk Molekul';
+    let strongest = 'Belum Ada Data';
+    let weakest = 'Belum Ada Data';
 
     if (masteries.length > 0) {
       const sorted = [...masteries].sort((a, b) => b.score - a.score);
@@ -797,19 +432,19 @@ export class IntelligenceService {
     return {
       id: `rep-${Date.now()}`,
       studentId,
-      weekRange: '8 - 14 September 2026',
+      weekRange: 'Pekan Ini (Aktif)',
       learningHoursMinutes: `${hours} jam ${mins} menit`,
-      lessonsCompleted: 6,
-      questionsAnswered: stats.totalQuestionsCompleted || 35,
-      accuracyPercentage: stats.accuracyPercentage || 79,
-      masteryGainPercentage: 8,
+      lessonsCompleted: stats.totalTopicsMastered,
+      questionsAnswered: stats.totalQuestionsCompleted,
+      accuracyPercentage: stats.accuracyPercentage,
+      masteryGainPercentage: stats.totalTopicsMastered > 0 ? 8 : 0,
       strongestTopic: strongest,
       weakestTopic: weakest,
       consistencyScore: Math.min(100, streak.currentStreakDays * 20),
       recommendationsNextWeek: [
-        'Selesaikan latihan remedial materi Konfigurasi Elektron sebelum ujian harian.',
-        'Lanjutkan membaca rangkuman Bab 6 Hidrokarbon.',
-        'Pertahankan streak belajar minimal 20 menit setiap hari.'
+        'Selesaikan asesmen diagnostik dan modul materi Bab 1 Struktur Atom.',
+        'Gunakan narasi suara TTS untuk meningkatkan retensi rumus.',
+        'Jaga streak belajar minimal 15 menit setiap hari.'
       ],
       generatedAt: new Date().toISOString()
     };
@@ -819,8 +454,7 @@ export class IntelligenceService {
   // STUDENT CONTEXT PAYLOAD EXPORT (For AI/Tutor Integration)
   // -------------------------------------------------------------
   public static exportStudentContext(studentId: string): StudentContextPayload {
-    const student = AuthService.getStudentProfiles().find(p => p.studentId === studentId) ||
-      AuthService.getStudentProfiles()[0];
+    const student = DatabaseService.getStudentById(studentId) || DatabaseService.getStudents()[0];
     const goals = this.getGoals(studentId);
     const prefs = this.getPreferences(studentId);
     const overall = this.calculateOverallMastery(studentId);

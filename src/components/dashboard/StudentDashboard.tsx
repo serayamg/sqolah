@@ -150,13 +150,13 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         </div>
 
         {/* ================= AREA 3: TODAY'S LEARNING PLAN ================= */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
-              <h2 className="text-lg font-bold text-slate-800">Rencana Belajar Hari Ini</h2>
+              <h2 className="text-base sm:text-lg font-bold text-slate-800">Rencana Belajar Hari Ini</h2>
               <p className="text-xs text-slate-500">3 Target harian terkalibrasi untuk mempertahankan retensi</p>
             </div>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 self-start sm:self-auto flex-shrink-0">
               Estimasi Total: 60 Menit
             </span>
           </div>
@@ -165,20 +165,20 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             {todayTasks.map((task, idx) => (
               <div
                 key={task.id}
-                className="flex items-start justify-between p-3.5 rounded-2xl border border-slate-200 hover:border-blue-300 transition bg-slate-50/50 hover:bg-white"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-2xl border border-slate-200 hover:border-blue-300 transition bg-slate-50/50 hover:bg-white"
               >
-                <div className="flex items-start space-x-3">
+                <div className="flex items-start space-x-3 min-w-0 flex-1">
                   <div className="w-7 h-7 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                     {idx + 1}
                   </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-800">{task.title}</h4>
-                    <div className="flex items-center space-x-3 mt-1 text-xs text-slate-500">
-                      <span className="flex items-center space-x-1">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-sm font-semibold text-slate-800 break-words leading-snug">{task.title}</h4>
+                    <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-500">
+                      <span className="flex items-center space-x-1 flex-shrink-0">
                         <span>⏱</span>
                         <span>{task.durationMinutes} menit</span>
                       </span>
-                      <span className="capitalize px-2 py-0.5 rounded bg-slate-200 text-slate-700 text-[10px] font-medium">
+                      <span className="capitalize px-2 py-0.5 rounded bg-slate-200 text-slate-700 text-[10px] font-medium flex-shrink-0">
                         {task.type === 'review' ? 'Fondasi Prasyarat' : task.type === 'practice' ? 'Latihan Adaptif' : 'Materi Baru'}
                       </span>
                     </div>
@@ -191,7 +191,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                     else if (task.type === 'review') onNavigateToMateri(1);
                     else onNavigateToMateri(7);
                   }}
-                  className="px-3.5 py-1.5 text-xs font-semibold bg-white hover:bg-blue-50 text-blue-600 border border-blue-200 rounded-lg transition shrink-0 ml-3"
+                  className="w-full sm:w-auto px-4 py-2 text-xs font-semibold bg-white hover:bg-blue-50 text-blue-600 border border-blue-200 rounded-lg transition shrink-0 min-h-[36px]"
                 >
                   Mulai
                 </button>
@@ -203,14 +203,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
       {/* ================= AREA 6: NEXT BEST ACTION (High Priority Alert) ================= */}
       {nextBestActions.length > 0 && (
-        <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 border-2 border-amber-300 rounded-3xl p-6 shadow-sm">
+        <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 border-2 border-amber-300 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 min-w-0 flex-1">
               <div className="inline-flex items-center space-x-1.5 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                 <span>🎯 Next Best Action Terpilih</span>
               </div>
-              <h3 className="text-xl font-bold text-slate-800">{nextBestActions[0].title}</h3>
-              <p className="text-xs md:text-sm text-slate-700 leading-relaxed max-w-3xl">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-800 break-words">{nextBestActions[0].title}</h3>
+              <p className="text-xs md:text-sm text-slate-700 leading-relaxed max-w-3xl break-words">
                 <span className="font-semibold text-amber-900">Mengapa penting:</span> {nextBestActions[0].reason}
               </p>
             </div>
@@ -221,7 +221,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 else if (nextBestActions[0].actionUrl?.startsWith('quiz')) onNavigateToQuiz(5);
                 else onNavigateToMateri(1);
               }}
-              className="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm rounded-xl transition shadow-md shrink-0 flex items-center justify-center space-x-2"
+              className="w-full md:w-auto px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm rounded-xl transition shadow-md shrink-0 flex items-center justify-center space-x-2 min-h-[44px]"
             >
               <span>Kerjakan Sekarang</span>
               <span>⚡</span>
@@ -326,10 +326,10 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               {strengths.map(s => (
                 <div
                   key={s.id}
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-200/70 text-xs"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50/60 border border-emerald-200/70 text-xs gap-2"
                 >
-                  <span className="font-semibold text-emerald-900">{s.conceptName}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold">
+                  <span className="font-semibold text-emerald-900 break-words min-w-0 flex-1">{s.conceptName}</span>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold flex-shrink-0">
                     {s.score}% (Lvl {s.level})
                   </span>
                 </div>
@@ -347,22 +347,22 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 {gaps.slice(0, 2).map(gap => (
                   <div
                     key={gap.id}
-                    className="p-3.5 rounded-2xl bg-rose-50/70 border border-rose-200 text-xs text-rose-900 space-y-1.5"
+                    className="p-3.5 rounded-2xl bg-rose-50/70 border border-rose-200 text-xs text-rose-900 space-y-2"
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-rose-950 text-sm">{gap.strugglingConceptName}</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-200 text-rose-800">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
+                      <span className="font-bold text-rose-950 text-sm break-words min-w-0 flex-1">{gap.strugglingConceptName}</span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-200 text-rose-800 flex-shrink-0">
                         Skor: {gap.currentMasteryScore}%
                       </span>
                     </div>
-                    <p className="text-slate-700 leading-relaxed">{gap.explanation}</p>
-                    <div className="pt-1 flex items-center justify-between">
-                      <span className="text-[11px] text-rose-700 font-semibold">
+                    <p className="text-slate-700 leading-relaxed break-words">{gap.explanation}</p>
+                    <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-rose-200/60">
+                      <span className="text-[11px] text-rose-800 font-semibold break-words min-w-0 flex-1">
                         Akar Prasyarat: {gap.rootProblemConceptName}
                       </span>
                       <button
                         onClick={() => onNavigateToMateri(1)}
-                        className="px-2.5 py-1 text-[11px] font-bold bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition"
+                        className="w-full sm:w-auto px-3 py-1.5 text-[11px] font-bold bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition flex-shrink-0 min-h-[32px] self-end sm:self-auto"
                       >
                         Perbaiki Fondasi
                       </button>

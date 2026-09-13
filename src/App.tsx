@@ -237,7 +237,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-28 sm:pb-12 overflow-x-hidden">
         
         {/* Onboarding View (First-login Experience for New Students) */}
         {activeView === 'onboarding' && (
@@ -349,7 +349,7 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200/80 py-6 text-center text-xs text-slate-600">
+      <footer className="bg-white border-t border-slate-200/80 py-6 pb-24 sm:pb-6 text-center text-xs text-slate-600">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="font-semibold text-slate-700">
             © 2026 Sqolah — Student Learning Profile & Mastery Intelligence Platform
