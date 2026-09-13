@@ -151,14 +151,22 @@ export const App: React.FC = () => {
     setSelectedMateriId(materiId);
     setActiveView('materi');
 
-    // Track learning event
+    // Track learning event & concept exploration
     if (studentProfile) {
-      IntelligenceService.trackEvent({
-        studentId: studentProfile.studentId,
-        eventType: 'LESSON_STARTED',
-        subjectId: 'sma-kimia-10',
-        metadata: { materiId }
-      }, 5);
+      const materi = materiList.find(m => m.id === materiId);
+      const match = materi?.title.match(/bab\s*(\d+)/i);
+      const bNum = match ? parseInt(match[1]) : 1;
+      const chapterId = `chap-kim-${bNum}`;
+
+      IntelligenceService.recordLessonReading(
+        studentProfile.studentId,
+        'sma-kimia-10',
+        chapterId,
+        `conc-${materiId}`,
+        materi?.title || 'Materi Belajar',
+        5
+      );
+      setRefreshTick(prev => prev + 1);
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -188,17 +196,54 @@ export const App: React.FC = () => {
 
   const handleQuizCompleted = (scorePercent: number, correctCount: number, totalCount: number) => {
     if (studentProfile) {
+      const materi = activeMateri;
+      let chapterId = 'chap-kim-1';
+      let conceptId = 'conc-partikel-atom';
+      let conceptName = 'Struktur Atom & Notasi Nuklida';
+
+      if (materi) {
+        const match = materi.title.match(/bab\s*(\d+)/i);
+        if (match) {
+          const bNum = parseInt(match[1]);
+          chapterId = `chap-kim-${bNum}`;
+        }
+        conceptId = `conc-${materi.id}`;
+        conceptName = materi.title;
+      }
+
+      IntelligenceService.recordQuizPerformance(
+        studentProfile.studentId,
+        'sma-kimia-10',
+        chapterId,
+        conceptId,
+        conceptName,
+        scorePercent,
+        correctCount,
+        totalCount,
+        15
+      );
+
+      // Force UI refresh so dashboard and stats update reactively
+      setRefreshTick(prev => prev + 1);
+    }
+  };
+
+  const handleAudioListen = () => {
+    if (studentProfile && activeMateri) {
+      const match = activeMateri.title.match(/bab\s*(\d+)/i);
+      const bNum = match ? parseInt(match[1]) : 1;
       IntelligenceService.trackEvent({
         studentId: studentProfile.studentId,
-        eventType: 'QUIZ_COMPLETED',
+        eventType: 'AUDIO_LISTENED',
         subjectId: 'sma-kimia-10',
+        chapterId: `chap-kim-${bNum}`,
         metadata: {
-          score: scorePercent,
-          correctCount,
-          totalCount,
-          durationMinutes: 15
+          materiId: activeMateri.id,
+          title: activeMateri.title,
+          durationMinutes: 3
         }
-      }, 15);
+      }, 3);
+      setRefreshTick(prev => prev + 1);
     }
   };
 
@@ -342,6 +387,19 @@ export const App: React.FC = () => {
             hasQuiz={questions.some(q => q.materiId === activeMateri.id || (q.subjectId === activeMateri.subjectId && q.kelas === activeMateri.kelas))}
             auditory={auditory}
             accessibility={accessibility}
+            onAudioListen={() => {
+              if (studentProfile && activeMateri) {
+                IntelligenceService.recordLessonReading(
+                  studentProfile.studentId,
+                  activeMateri.subjectId,
+                  `chap-kim-${activeMateri.babNumber}`,
+                  `con-mat-${activeMateri.id}`,
+                  activeMateri.title,
+                  5
+                );
+                setRefreshTick(t => t + 1);
+              }
+            }}
           />
         )}
 

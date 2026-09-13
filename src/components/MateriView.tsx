@@ -30,6 +30,7 @@ interface MateriViewProps {
   hasQuiz: boolean;
   auditory: AuditorySettings;
   accessibility: AccessibilitySettings;
+  onAudioListen?: () => void;
 }
 
 export const MateriView: React.FC<MateriViewProps> = ({
@@ -39,7 +40,8 @@ export const MateriView: React.FC<MateriViewProps> = ({
   onStartQuiz,
   hasQuiz,
   auditory,
-  accessibility
+  accessibility,
+  onAudioListen
 }) => {
   const [activeParagraphIndex, setActiveParagraphIndex] = useState<number | null>(null);
   const [isReadingAll, setIsReadingAll] = useState<boolean>(false);
@@ -76,6 +78,7 @@ export const MateriView: React.FC<MateriViewProps> = ({
 
     setIsReadingAll(true);
     audioEngine.playSound('click');
+    onAudioListen?.();
 
     // Sequence of speech segments
     const segments: { text: string; index: number | null }[] = [
