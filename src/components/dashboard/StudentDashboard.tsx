@@ -199,6 +199,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 <span>⚡ Simulasikan Sesi Belajar Elang</span>
               </button>
               <button
+                onClick={() => {
+                  IntelligenceService.resetStudentToEmpty(studentId);
+                  onDataRefresh?.();
+                }}
+                className="px-3 py-1.5 bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-600 border border-slate-200 font-semibold text-xs rounded-xl transition"
+                title="Kosongkan dan bersihkan seluruh data belajar Elang ke nol"
+              >
+                🔄 Kosongkan Data (0%)
+              </button>
+              <button
                 onClick={onNavigateToDiagnostic}
                 className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition"
               >
@@ -212,7 +222,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                   IntelligenceService.simulateLearning(studentId);
                   onDataRefresh?.();
                 }}
-                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-xs rounded-xl transition"
+                className="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-xs rounded-xl transition"
                 title="Perbarui sesi belajar simulasi"
               >
                 + Update Sesi Belajar
@@ -292,7 +302,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               <p className="text-xs text-slate-500">3 Target harian terkalibrasi untuk mempertahankan retensi</p>
             </div>
             <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 self-start sm:self-auto flex-shrink-0">
-              Estimasi Total: 60 Menit
+              Estimasi Total: {todayTasks.reduce((acc, t) => acc + t.durationMinutes, 0)} Menit
             </span>
           </div>
 
@@ -409,7 +419,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               );
               let chapScore = 0;
               let chapStatusText = '0% (Belum Dimulai)';
-              let chapBarColor = 'bg-slate-300';
+              let chapBarColor = 'bg-slate-200';
               let chapTextColor = 'text-slate-400';
 
               if (chapterMasteries.length > 0) {

@@ -65,7 +65,9 @@ export const WeeklyReportModal: React.FC<WeeklyReportModalProps> = ({
             </div>
             <h4 className="text-sm font-bold text-slate-800">{report.strongestTopic}</h4>
             <p className="text-xs text-slate-600 mt-1">
-              Konsisten mendapatkan skor di atas 85% pada latihan soal dan penguasaan konsep.
+              {report.strongestTopic === 'Belum Ada Data'
+                ? 'Belum ada konsep teruji. Kerjakan latihan kuis untuk memetakan kekuatan belajarmu.'
+                : 'Konsisten mendapatkan skor tinggi pada latihan soal dan penguasaan konsep.'}
             </p>
           </div>
 
@@ -75,7 +77,9 @@ export const WeeklyReportModal: React.FC<WeeklyReportModalProps> = ({
             </div>
             <h4 className="text-sm font-bold text-slate-800">{report.weakestTopic}</h4>
             <p className="text-xs text-slate-600 mt-1">
-              Disarankan memperkuat konsep prasyarat dan mengulang latihan bertahap.
+              {report.weakestTopic === 'Belum Ada Data'
+                ? 'Tidak ada kesenjangan terdeteksi saat ini.'
+                : 'Disarankan memperkuat konsep prasyarat dan mengulang latihan bertahap.'}
             </p>
           </div>
         </div>

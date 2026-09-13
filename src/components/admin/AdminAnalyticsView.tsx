@@ -15,6 +15,17 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
   const students = AuthService.getStudentProfiles();
   const auditLogs = AuthService.getAuditLogs();
 
+  // Compute platform metrics dynamically from real student records
+  const studentMasteries = students.map(s => IntelligenceService.calculateOverallMastery(s.studentId));
+  const avgMastery = studentMasteries.length > 0
+    ? Math.round(studentMasteries.reduce((a, b) => a + b.overallScore, 0) / studentMasteries.length)
+    : 0;
+  const avgLevelLabel = avgMastery === 0 ? 'Belum Dimulai' : IntelligenceService.getLevelFromScore(avgMastery).label;
+  const totalHours = students.reduce((acc, s) => {
+    const st = IntelligenceService.getStudyStats(s.studentId);
+    return acc + (st?.totalHours || 0);
+  }, 0);
+
   // Find students needing attention (have critical learning gaps or uncompleted onboarding)
   const studentsNeedAttention = students.filter(s => {
     if (!s.diagnosticCompleted) return true;
@@ -73,8 +84,8 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
           <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Rata-rata Penguasaan
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-blue-600">67%</div>
-          <div className="text-[11px] sm:text-xs text-blue-500 font-medium mt-1">Tingkat: Berkembang</div>
+          <div className="text-2xl sm:text-3xl font-bold text-blue-600">{avgMastery}%</div>
+          <div className="text-[11px] sm:text-xs text-blue-500 font-medium mt-1">Tingkat: {avgLevelLabel}</div>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm">
@@ -89,8 +100,8 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
           <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Total Jam Belajar
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-purple-600">14.5 Jam</div>
-          <div className="text-[11px] sm:text-xs text-purple-500 font-medium mt-1">Bulan September 2026</div>
+          <div className="text-2xl sm:text-3xl font-bold text-purple-600">{totalHours} Jam</div>
+          <div className="text-[11px] sm:text-xs text-purple-500 font-medium mt-1">Bulan Ini</div>
         </div>
       </div>
 

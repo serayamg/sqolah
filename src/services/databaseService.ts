@@ -11,7 +11,7 @@ import {
 } from '../types/intelligence';
 
 // Database Table Keys in Storage Engine
-const DB_PREFIX = 'sqolah_db_v5_';
+const DB_PREFIX = 'sqolah_db_v6_';
 const TABLES = {
   USERS: `${DB_PREFIX}users`,
   STUDENTS: `${DB_PREFIX}students`,
@@ -35,18 +35,15 @@ export class DatabaseService {
   public static initDatabase(forceFreshElang = false): void {
     if (this.isInitialized && !forceFreshElang) return;
 
-    // Remove legacy database keys from older iterations
-    ['sqolah_users_v1', 'sqolah_users_v2', 'sqolah_users_v3', 'sqolah_users_v4',
-     'sqolah_students_v1', 'sqolah_students_v2', 'sqolah_students_v3', 'sqolah_students_v4',
-     'sqolah_masteries_v1', 'sqolah_masteries_v4',
-     'sqolah_events_v1', 'sqolah_events_v4',
-     'sqolah_streaks_v1', 'sqolah_streaks_v4',
-     'sqolah_study_stats_v1', 'sqolah_study_stats_v4',
-     'sqolah_goals_v1', 'sqolah_goals_v4',
-     'sqolah_preferences_v1', 'sqolah_preferences_v4',
-     'sqolah_audit_logs_v1', 'sqolah_audit_logs_v4'].forEach(k => {
-      try { localStorage.removeItem(k); } catch {}
-    });
+    // Remove legacy database keys from older iterations (v1 to v5)
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('sqolah_') && !key.startsWith(DB_PREFIX)) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch {}
 
     // Check if DB was already initialized
     const meta = localStorage.getItem(TABLES.DB_META);
@@ -182,7 +179,7 @@ export class DatabaseService {
     localStorage.setItem(TABLES.PREFERENCES, JSON.stringify([initialPreferences]));
     localStorage.setItem(TABLES.AUDIT_LOGS, JSON.stringify(initialAudit));
     localStorage.setItem(TABLES.DB_META, JSON.stringify({
-      version: 5,
+      version: 6,
       initializedAt: new Date().toISOString(),
       activeStudentId: 'SQ-2026-0001'
     }));
