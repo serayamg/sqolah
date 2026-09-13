@@ -37,7 +37,14 @@ export const App: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
 
   // State: Navigation & Filters
-  const [currentLevel, setCurrentLevel] = useState<EducationLevel>('SMA');
+  const [currentLevel, setCurrentLevel] = useState<EducationLevel>(() => {
+    const user = AuthService.getCurrentUser();
+    if (user.role !== 'superadmin') {
+      const profile = AuthService.getStudentProfileByUserId(user.id);
+      return profile?.level || 'SMA';
+    }
+    return 'SMA';
+  });
   const [selectedKelas, setSelectedKelas] = useState<number | null>(null);
   const [activeView, setActiveView] = useState<string>(() => {
     const user = AuthService.getCurrentUser();
@@ -65,6 +72,9 @@ export const App: React.FC = () => {
     setCurrentUser(user);
     const prof = AuthService.getStudentProfileByUserId(user.id);
     setStudentProfile(prof);
+    if (user.role !== 'superadmin' && prof?.level) {
+      setCurrentLevel(prof.level);
+    }
   };
 
   useEffect(() => {
@@ -94,6 +104,11 @@ export const App: React.FC = () => {
     const newProfile = AuthService.getStudentProfileByUserId(newUser.id);
     setStudentProfile(newProfile);
 
+    // If switching to a student/non-superadmin, lock level to their assigned level
+    if (newUser.role !== 'superadmin') {
+      setCurrentLevel(newProfile?.level || 'SMA');
+    }
+
     if (newUser.role === 'superadmin') {
       setActiveView('admin');
     } else if (newProfile && !newProfile.onboardingCompleted) {
@@ -105,6 +120,13 @@ export const App: React.FC = () => {
   };
 
   const handleSelectLevel = (level: EducationLevel) => {
+    if (currentUser.role !== 'superadmin') {
+      const allowedLevel = studentProfile?.level || 'SMA';
+      if (level !== allowedLevel) {
+        // User selain superadmin tidak bisa merubah jenjang SD/SMP/SMA
+        return;
+      }
+    }
     setCurrentLevel(level);
     setSelectedKelas(null);
     if (activeView === 'materi' || activeView === 'quiz') {

@@ -14,7 +14,8 @@ import {
   LayoutDashboard,
   Compass,
   History,
-  Users
+  Users,
+  Lock
 } from 'lucide-react';
 import { EducationLevel, AccessibilitySettings, AuditorySettings } from '../types';
 import { User } from '../types/intelligence';
@@ -67,7 +68,16 @@ export const Header: React.FC<HeaderProps> = ({
     audioEngine.stop();
   };
 
+  const isSuperAdmin = currentUser?.role === 'superadmin';
+
   const handleLevelChange = (lvl: EducationLevel) => {
+    if (!isSuperAdmin) {
+      audioEngine.playSound('wrong');
+      if (auditory.soundEffects) {
+        audioEngine.speak('Perubahan jenjang hanya dapat dilakukan oleh Super Admin', { rate: 1.1 });
+      }
+      return;
+    }
     audioEngine.playSound('click');
     onSelectLevel(lvl);
     if (auditory.soundEffects) {
@@ -119,7 +129,10 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Level Switcher (SD, SMP, SMA) */}
-            <div className="flex items-center bg-slate-100 p-0.5 sm:p-1 rounded-xl border border-slate-200 flex-shrink-0">
+            <div 
+              className="flex items-center bg-slate-100 p-0.5 sm:p-1 rounded-xl border border-slate-200 flex-shrink-0"
+              title={isSuperAdmin ? "Pilih jenjang pendidikan (Mode Super Admin)" : "Jenjang dikunci ke SMA sesuai penugasan siswa (Hanya Super Admin yang dapat mengubah)"}
+            >
               {(['SD', 'SMP', 'SMA'] as EducationLevel[]).map((lvl) => {
                 const isActive = currentLevel === lvl;
                 let activeBadge = 'bg-white text-sky-700 shadow-sm font-bold';
@@ -127,16 +140,30 @@ export const Header: React.FC<HeaderProps> = ({
                 if (lvl === 'SMP') activeBadge = isActive ? 'bg-blue-600 text-white shadow-sm font-bold' : '';
                 if (lvl === 'SMA') activeBadge = isActive ? 'bg-indigo-600 text-white shadow-sm font-bold' : '';
 
+                const isLocked = !isSuperAdmin && lvl !== currentLevel;
+
                 return (
                   <button
                     key={lvl}
+                    disabled={isLocked}
                     onClick={() => handleLevelChange(lvl)}
-                    className={`px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all min-h-[30px] sm:min-h-[36px] flex items-center justify-center ${
-                      isActive
+                    className={`px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all min-h-[30px] sm:min-h-[36px] flex items-center justify-center gap-1 ${
+                      isLocked
+                        ? 'text-slate-400 opacity-50 cursor-not-allowed'
+                        : isActive
                         ? activeBadge
                         : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                     }`}
+                    title={
+                      isLocked
+                        ? `Jenjang ${lvl} terkunci. Hanya Super Admin yang dapat mengubah jenjang pendidikan.`
+                        : !isSuperAdmin
+                        ? `Jenjang ${lvl} (Terkunci untuk akun siswa)`
+                        : `Ganti jenjang ke ${lvl}`
+                    }
                   >
+                    {isLocked && <Lock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400 flex-shrink-0" />}
+                    {!isSuperAdmin && isActive && <Lock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-indigo-200 flex-shrink-0" />}
                     <span className="hidden lg:inline">Jenjang </span>
                     <span>{lvl}</span>
                   </button>
@@ -208,8 +235,12 @@ export const Header: React.FC<HeaderProps> = ({
                   ))}
                 </select>
               </div>
-              <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200/70 flex-shrink-0">
-                {currentLevel}
+              <span 
+                className="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200/70 flex items-center gap-1 flex-shrink-0"
+                title={!isSuperAdmin ? "Jenjang terkunci untuk akun siswa" : "Jenjang aktif"}
+              >
+                {!isSuperAdmin && <Lock className="w-2.5 h-2.5 text-sky-600" />}
+                {currentLevel} {!isSuperAdmin && <span className="text-[9px] text-sky-600 font-normal hidden xs:inline">(Terkunci)</span>}
               </span>
             </div>
           )}

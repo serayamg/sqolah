@@ -204,11 +204,39 @@ export class IntelligenceService {
           type: 'foundation_review',
           priority: 'high',
           title: 'Ikuti Asesmen Diagnostik Awal',
-          description: 'Ukur titik awal pemahaman materi Kimia SMA kamu secara adaptif',
+          description: 'Ukur titik awal pemahaman materi Kimia SMA kamu secara adaptif.',
           subjectId: 'sma-kimia-10',
           estimatedMinutes: 20,
           reason: 'Sqolah perlu memetakan tingkat penguasaan konsep awalmu sebelum menyusun rekomendasi belajar yang presisi.',
           actionUrl: 'diagnostic',
+          completed: false
+        },
+        {
+          id: 'nba-start-atom',
+          studentId,
+          type: 'continue_learning',
+          priority: 'medium',
+          title: 'Pelajari Bab 1: Struktur Atom & Notasi Nuklida',
+          description: 'Pahami partikel dasar atom, elektron, proton, neutron, dan notasi isotop.',
+          subjectId: 'sma-kimia-10',
+          chapterId: 'chap-kim-1',
+          estimatedMinutes: 25,
+          reason: 'Materi pengantar utama kurikulum kimia kelas X SMA.',
+          actionUrl: 'materi-1',
+          completed: false
+        },
+        {
+          id: 'nba-audio-explore',
+          studentId,
+          type: 'practice_exercise',
+          priority: 'low',
+          title: 'Eksplorasi Audio Narasi TTS & Aksesibilitas',
+          description: 'Dengarkan materi pelajaran dengan text-to-speech otomatis dan visual asistif.',
+          subjectId: 'sma-kimia-10',
+          chapterId: 'chap-kim-1',
+          estimatedMinutes: 15,
+          reason: 'Membiasakan diri dengan gaya belajar auditori untuk daya ingat jangka panjang.',
+          actionUrl: 'materi-1',
           completed: false
         }
       ];
@@ -238,7 +266,7 @@ export class IntelligenceService {
 
     // 2. Active Practice / Quiz
     actions.push({
-      id: 'nba-practice-mol',
+      id: 'nba-practice-active',
       studentId,
       type: 'practice_exercise',
       priority: 'medium',
@@ -334,6 +362,157 @@ export class IntelligenceService {
     DatabaseService.updateStreak(streak);
 
     return fullEvent;
+  }
+
+  /**
+   * Records a student's quiz or practice test result, updating concept mastery,
+   * question accuracy statistics, study time, streak, and audit trail.
+   */
+  public static recordQuizPerformance(
+    studentId: string,
+    subjectId: string,
+    chapterId: string,
+    conceptId: string,
+    conceptName: string,
+    scorePercent: number,
+    correctCount: number,
+    totalCount: number,
+    durationMinutes: number = 15
+  ): void {
+    const lvl = this.getLevelFromScore(scorePercent);
+
+    // 1. Update or create ConceptMastery
+    const existingMastery = this.getMasteryForConcept(studentId, conceptId);
+    const newAttempted = (existingMastery?.questionsAttempted || 0) + totalCount;
+    const newCorrect = (existingMastery?.questionsCorrect || 0) + correctCount;
+    const reviewCount = (existingMastery?.reviewCount || 0) + 1;
+    
+    // Blend score if existing, or use current score
+    const newScore = existingMastery
+      ? Math.round(existingMastery.score * 0.35 + scorePercent * 0.65)
+      : scorePercent;
+    const newLevel = this.getLevelFromScore(newScore);
+
+    const updatedMastery: ConceptMastery = {
+      id: existingMastery?.id || `mas-${conceptId}-${Date.now()}`,
+      studentId,
+      subjectId,
+      chapterId,
+      topicId: existingMastery?.topicId || `${chapterId}-top-1`,
+      conceptId,
+      conceptName: existingMastery?.conceptName || conceptName,
+      score: newScore,
+      level: newLevel.level,
+      lastStudiedAt: new Date().toISOString(),
+      reviewCount,
+      questionsAttempted: newAttempted,
+      questionsCorrect: newCorrect,
+      averageTimeSeconds: 45,
+      masteredSkills: newScore >= 75 ? [conceptName] : (existingMastery?.masteredSkills || []),
+      needsImprovementSkills: newScore < 60 ? [conceptName] : [],
+      status: newLevel.status
+    };
+    DatabaseService.saveMastery(updatedMastery);
+
+    // 2. Track Event with full metadata
+    this.trackEvent({
+      studentId,
+      eventType: 'QUIZ_COMPLETED',
+      subjectId,
+      chapterId,
+      metadata: {
+        score: scorePercent,
+        correctCount,
+        totalCount,
+        conceptId,
+        conceptName,
+        durationMinutes
+      }
+    }, durationMinutes);
+
+    // 3. Update StudyTimeStats accurately
+    const stats = DatabaseService.getStats(studentId);
+    const prevTotal = stats.totalQuestionsCompleted;
+    const prevCorrect = Math.round((stats.accuracyPercentage / 100) * prevTotal);
+    const newTotalQ = prevTotal + totalCount;
+    const newTotalC = prevCorrect + correctCount;
+
+    stats.totalQuestionsCompleted = newTotalQ;
+    stats.accuracyPercentage = newTotalQ > 0 ? Math.round((newTotalC / newTotalQ) * 100) : 0;
+    stats.averageQuizScore = stats.averageQuizScore === 0 ? scorePercent : Math.round((stats.averageQuizScore + scorePercent) / 2);
+
+    const allMasteries = DatabaseService.getMasteries(studentId);
+    stats.totalTopicsMastered = allMasteries.filter(m => m.level >= 4).length;
+    DatabaseService.updateStats(stats);
+
+    // 4. Record Audit Log
+    const student = DatabaseService.getStudentById(studentId);
+    DatabaseService.insertAuditLog({
+      id: `audit-quiz-${Date.now()}`,
+      who: 'Student Engine',
+      what: 'Kuis Evaluasi Selesai',
+      targetUserId: student?.userId || studentId,
+      targetUserName: student?.fullName || 'M Elang El Haqeem',
+      when: new Date().toISOString(),
+      oldValue: existingMastery ? `Skor Lama: ${existingMastery.score}%` : 'Belum Ada Skor',
+      newValue: `Skor Baru: ${newScore}% (${correctCount}/${totalCount} Benar)`
+    });
+  }
+
+  /**
+   * Records that a student started or completed reading a lesson module (with visual and TTS audio),
+   * increasing study time and registering initial concept awareness.
+   */
+  public static recordLessonReading(
+    studentId: string,
+    subjectId: string,
+    chapterId: string,
+    conceptId: string,
+    conceptName: string,
+    durationMinutes: number = 5
+  ): void {
+    const existing = this.getMasteryForConcept(studentId, conceptId);
+    if (!existing) {
+      // Create initial baseline mastery for explored lesson
+      const initialScore = 45; // Developing / exploration
+      const lvl = this.getLevelFromScore(initialScore);
+      DatabaseService.saveMastery({
+        id: `mas-${conceptId}-${Date.now()}`,
+        studentId,
+        subjectId,
+        chapterId,
+        topicId: `${chapterId}-top-1`,
+        conceptId,
+        conceptName,
+        score: initialScore,
+        level: lvl.level,
+        lastStudiedAt: new Date().toISOString(),
+        reviewCount: 1,
+        questionsAttempted: 0,
+        questionsCorrect: 0,
+        averageTimeSeconds: 60,
+        masteredSkills: [],
+        needsImprovementSkills: [],
+        status: lvl.status
+      });
+    } else {
+      existing.reviewCount += 1;
+      existing.lastStudiedAt = new Date().toISOString();
+      DatabaseService.saveMastery(existing);
+    }
+
+    // Track Event
+    this.trackEvent({
+      studentId,
+      eventType: 'LESSON_STARTED',
+      subjectId,
+      chapterId,
+      metadata: {
+        conceptId,
+        conceptName,
+        durationMinutes
+      }
+    }, durationMinutes);
   }
 
   // -------------------------------------------------------------
