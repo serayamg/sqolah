@@ -389,10 +389,12 @@ export const App: React.FC = () => {
             accessibility={accessibility}
             onAudioListen={() => {
               if (studentProfile && activeMateri) {
+                const match = activeMateri.title.match(/bab\s*(\d+)/i);
+                const bNum = match ? parseInt(match[1]) : (activeMateri.babNumber || 1);
                 IntelligenceService.recordLessonReading(
                   studentProfile.studentId,
                   activeMateri.subjectId,
-                  `chap-kim-${activeMateri.babNumber}`,
+                  `chap-kim-${bNum}`,
                   `con-mat-${activeMateri.id}`,
                   activeMateri.title,
                   5
