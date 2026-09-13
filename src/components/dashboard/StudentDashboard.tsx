@@ -38,6 +38,65 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   // Top strengths (score >= 75)
   const strengths = masteries.filter(m => m.score >= 75).slice(0, 3);
 
+  // Active continue chapter calculation (reactive to student progress)
+  const continueChapter = React.useMemo(() => {
+    if (masteries.length === 0) {
+      return {
+        babNumber: 1,
+        badge: 'Bab 1 Kimia',
+        title: 'Bab 1: Struktur Atom & Sistem Periodik Unsur',
+        description: 'Mulailah perjalanan belajarmu dengan menguasai partikel subatom, nomor atom, konfigurasi elektron, dan tabel periodik.',
+        score: 0,
+        buttonText: 'Mulai Belajar Bab 1'
+      };
+    }
+    if (gaps.length > 0) {
+      const gap = gaps[0];
+      const match = gap.chapterId?.match(/kim-(\d+)/);
+      const bNum = match ? parseInt(match[1]) : 1;
+      return {
+        babNumber: bNum,
+        badge: `Bab ${bNum} (Perlu Penguatan)`,
+        title: `Bab ${bNum}: Penguatan ${gap.strugglingConceptName}`,
+        description: `Perbaiki konsep prasyarat "${gap.rootProblemConceptName}" agar pemahaman materi tidak terhambat.`,
+        score: gap.currentMasteryScore,
+        buttonText: `Perbaiki Materi Bab ${bNum}`
+      };
+    }
+    return {
+      babNumber: 1,
+      badge: 'Bab 1 Kimia',
+      title: 'Bab 1: Struktur Atom & Notasi Nuklida',
+      description: 'Lanjutkan pendalaman materi dan kerjakan latihan soal untuk meningkatkan akurasi dan retensi.',
+      score: overall.overallScore,
+      buttonText: 'Buka Materi Bab 1'
+    };
+  }, [masteries, gaps, overall]);
+
+  // Active curriculum chapters for overview
+  const displayChapters = [
+    { id: 'chap-kim-1', babNumber: 1, name: 'Bab 1: Struktur Atom & Tabel Periodik' },
+    { id: 'chap-kim-2', babNumber: 2, name: 'Bab 2: Ikatan Kimia & Bentuk Molekul' },
+    { id: 'chap-kim-4', babNumber: 4, name: 'Bab 4: Tata Nama & Persamaan Reaksi' },
+    { id: 'chap-kim-5', babNumber: 5, name: 'Bab 5: Stoikiometri & Konsep Mol' },
+  ];
+
+  // Growth data: If new student with 0 masteries, display 0%
+  const isNewStudent = masteries.length === 0 && stats.totalQuestionsCompleted === 0;
+  const growthData = isNewStudent
+    ? [
+        { week: 'Minggu 1', score: 0 },
+        { week: 'Minggu 2', score: 0 },
+        { week: 'Minggu 3', score: 0 },
+        { week: 'Minggu Ini', score: 0 }
+      ]
+    : [
+        { week: 'Minggu 1', score: Math.max(0, Math.round(overall.overallScore * 0.4)) },
+        { week: 'Minggu 2', score: Math.max(0, Math.round(overall.overallScore * 0.65)) },
+        { week: 'Minggu 3', score: Math.max(0, Math.round(overall.overallScore * 0.85)) },
+        { week: 'Minggu Ini', score: overall.overallScore }
+      ];
+
   return (
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8 space-y-5 sm:space-y-8 animate-fade-in">
       {/* ================= AREA 1: HEADER PROFIL SISWA ================= */}
@@ -183,30 +242,43 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 <span>⚡ Lanjutkan Belajar</span>
               </div>
               <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium">
-                Bab 5 Kimia
+                {continueChapter.badge}
               </span>
             </div>
             <h3 className="text-lg font-bold text-slate-800 leading-snug mb-2">
-              Bab 5: Stoikiometri & Perhitungan Kimia
+              {continueChapter.title}
             </h3>
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              Pelajari konsep mol, massa molar, volume gas kondisi standar (STP), dan penentuan pereaksi pembatas.
+              {continueChapter.description}
             </p>
           </div>
 
           <div className="pt-4 border-t border-slate-100">
             <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
               <span>Progres Materi</span>
-              <span className="font-semibold text-slate-700">76% Dikuasai</span>
+              <span className="font-semibold text-slate-700">
+                {continueChapter.score === 0 ? '0% (Belum Dimulai)' : `${continueChapter.score}% Dikuasai`}
+              </span>
             </div>
             <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-4">
-              <div className="bg-blue-600 h-full rounded-full" style={{ width: '76%' }} />
+              <div
+                className={`h-full rounded-full transition-all duration-500 ${
+                  continueChapter.score >= 75
+                    ? 'bg-emerald-500'
+                    : continueChapter.score >= 50
+                    ? 'bg-blue-600'
+                    : continueChapter.score > 0
+                    ? 'bg-amber-500'
+                    : 'bg-slate-300'
+                }`}
+                style={{ width: `${continueChapter.score}%` }}
+              />
             </div>
             <button
-              onClick={() => onNavigateToMateri(5)}
-              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-xl transition shadow-sm flex items-center justify-center space-x-2"
+              onClick={() => onNavigateToMateri(continueChapter.babNumber)}
+              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-xl transition shadow-sm flex items-center justify-center space-x-2 min-h-[44px]"
             >
-              <span>Buka Materi Bab 5</span>
+              <span>{continueChapter.buttonText}</span>
               <span>→</span>
             </button>
           </div>
