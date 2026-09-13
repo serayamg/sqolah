@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 1 — STRUKTUR ATOM</div>
+  <a href="#cover" class="on"><span class="num">1.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">1.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">1.2</span>Concept Map</a>
+  <a href="#why"><span class="num">1.3</span>Why This Matters</a>
+  <a href="#partikel"><span class="num">1.4</span>Partikel Penyusun Atom</a>
+  <a href="#notasi"><span class="num">1.5</span>Notasi Atom, Isotop &amp; Ion</a>
+  <a href="#ar"><span class="num">1.6</span>Massa Atom Relatif</a>
+  <a href="#model"><span class="num">1.7</span>Perkembangan Model Atom</a>
+  <a href="#konfig"><span class="num">1.8</span>Konfigurasi Elektron</a>
+  <a href="#kuantum"><span class="num">1.9</span>Bilangan Kuantum</a>
+  <a href="#focus"><span class="num">1.10</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">1.11</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 1</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">1.12</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">1.13</span>Formula Sheet</a>
+  <a href="#test"><span class="num">1.14</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 1 &nbsp;·&nbsp; KELAS X &nbsp;·&nbsp; <span class="star">★★★</span> PRIORITAS UJIAN</div>
+  <h1>Struktur Atom dan<br>Sistem Periodik Unsur</h1>
+  <p class="sub">Memahami bagaimana struktur atom menentukan sifat suatu unsur.</p>
+  <div class="meta">
+    <span class="chip">Partikel subatom</span>
+    <span class="chip">Isotop &amp; massa atom relatif</span>
+    <span class="chip">Model atom</span>
+    <span class="chip">Konfigurasi elektron</span>
+    <span class="chip">Bilangan kuantum</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>Learning Objectives</h2>
+  <p class="lead">Bab ini adalah fondasi seluruh Kimia SMA. Hampir semua bab berikutnya — ikatan kimia, stoikiometri, termokimia, sampai elektrokimia — berdiri di atas satu pertanyaan: <em>di mana elektron berada?</em></p>
+
+  <div class="box obj">
+    <div class="bt">Setelah mempelajari bab ini, siswa mampu:</div>
+    <ul>
+      <li>menjelaskan partikel penyusun atom beserta massa dan muatannya;</li>
+      <li>menentukan jumlah proton, elektron, dan neutron dari notasi atom, termasuk pada ion;</li>
+      <li>membedakan isotop, isobar, isoton, dan spesi isoelektronik;</li>
+      <li>menghitung massa atom relatif unsur dari kelimpahan isotopnya;</li>
+      <li>membandingkan model atom Dalton, Thomson, Rutherford, Bohr, dan mekanika kuantum beserta kelemahannya;</li>
+      <li>menuliskan konfigurasi elektron atom dan ion menggunakan aturan Aufbau, Hund, dan larangan Pauli;</li>
+      <li>menentukan keempat bilangan kuantum elektron terakhir suatu atom;</li>
+      <li>menyelesaikan soal UTBK bertipe analitis yang menggabungkan konfigurasi elektron dengan letak unsur dan sifat periodik.</li>
+    </ul>
+  </div>
+
+  <div class="box why" id="why">
+    <div class="bt">Why This Matters</div>
+    <p>Kimia sebenarnya hanya membahas satu hal: <strong>perilaku elektron terluar</strong>. Semua yang terlihat di dunia nyata adalah akibatnya.</p>
+    <ul>
+      <li><strong>Mengapa baterai lithium ada di dalam ponsel Anda?</strong> Karena Li hanya memiliki 1 elektron valensi yang sangat mudah dilepas — sehingga menghasilkan beda potensial besar per satuan massa.</li>
+      <li><strong>Mengapa natrium meledak di air, tetapi neon di sebelahnya tidak bereaksi sama sekali?</strong> Selisihnya hanya satu elektron, tetapi satu elektron itu menentukan segalanya.</li>
+      <li><strong>Mengapa MRI di rumah sakit bisa memotret tubuh tanpa membedah?</strong> Karena inti atom hidrogen punya spin — konsep yang Anda pelajari sebagai bilangan kuantum spin <span class="eq">s = ±½</span>.</li>
+      <li><strong>Mengapa kembang api berwarna-warni?</strong> Elektron tereksitasi lalu turun kembali ke tingkat energi dasar sambil melepas foton — persis model atom Bohr.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>Concept Map</h2>
+  <p>Satu gambar untuk melihat seluruh bab sekaligus. Perhatikan bahwa alurnya <strong>satu arah</strong>: dari partikel di dalam inti sampai ke sifat unsur yang bisa diamati di laboratorium.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 680 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep struktur atom">
+    <defs>
+      <marker id="cmArrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 z" fill="#1B5286"/>
+      </marker>
+      <style>
+        .bx{fill:#fff;stroke:#1B5286;stroke-width:1.6;rx:8}
+        .bxn{fill:#0B2E4F;stroke:#0B2E4F}
+        .bxc{fill:#E9F5FB;stroke:#1A8FBF}
+        .bxa{fill:#FFF6E6;stroke:#C77400}
+        .bxg{fill:#E8F5EE;stroke:#186F45}
+        .t{font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:700;fill:#0B2E4F;text-anchor:middle}
+        .tw{fill:#fff}
+        .s{font-family:Inter,Arial,sans-serif;font-size:11.5px;fill:#5A6B7B;text-anchor:middle}
+        .sw{fill:#9FC4DC}
+        .ln{stroke:#1B5286;stroke-width:1.8;fill:none;marker-end:url(#cmArrow)}
+      </style>
+    </defs>
+
+    <rect class="bx bxn" x="220" y="14" width="240" height="46" rx="8"/>
+    <text class="t tw" x="340" y="35">STRUKTUR ATOM</text>
+    <text class="s sw" x="340" y="51">inti + awan elektron</text>
+
+    <path d="M340,60 L340,78" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path class="ln" d="M120,78 L120,94"/>
+    <path class="ln" d="M340,78 L340,94"/>
+    <path class="ln" d="M560,78 L560,94"/>
+    <path d="M120,78 L560,78" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+
+    <rect class="bx bxc" x="20" y="96" width="200" height="72" rx="8"/>
+    <text class="t" x="120" y="120">Partikel Penyusun</text>
+    <text class="s" x="120" y="138">proton (+1, 1 sma)</text>
+    <text class="s" x="120" y="153">neutron (0) · elektron (−1)</text>
+
+    <rect class="bx bxc" x="240" y="96" width="200" height="72" rx="8"/>
+    <text class="t" x="340" y="120">Notasi Atom</text>
+    <text class="s" x="340" y="138">nomor atom (Z) &amp; massa (A)</text>
+    <text class="s" x="340" y="153">isotop · isobar · isoton · ion</text>
+
+    <rect class="bx bxc" x="460" y="96" width="200" height="72" rx="8"/>
+    <text class="t" x="560" y="120">Model Atom</text>
+    <text class="s" x="560" y="138">Dalton → Thomson →</text>
+    <text class="s" x="560" y="153">Rutherford → Bohr → Kuantum</text>
+
+    <path d="M120,168 L120,196 L560,196 L560,168" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path class="ln" d="M340,168 L340,214"/>
+
+    <rect class="bx bxn" x="170" y="216" width="340" height="52" rx="8"/>
+    <text class="t tw" x="340" y="240">KONFIGURASI ELEKTRON</text>
+    <text class="s sw" x="340" y="257">Aufbau · Larangan Pauli · Aturan Hund</text>
+
+    <path d="M340,268 L340,286" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path d="M150,286 L530,286" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path class="ln" d="M150,286 L150,302"/>
+    <path class="ln" d="M530,286 L530,302"/>
+
+    <rect class="bx bxa" x="40" y="304" width="220" height="70" rx="8"/>
+    <text class="t" x="150" y="328">Bilangan Kuantum</text>
+    <text class="s" x="150" y="345">n · ℓ · m · s</text>
+    <text class="s" x="150" y="361">alamat lengkap tiap elektron</text>
+
+    <rect class="bx bxa" x="420" y="304" width="220" height="70" rx="8"/>
+    <text class="t" x="530" y="328">Elektron Valensi</text>
+    <text class="s" x="530" y="345">elektron kulit terluar</text>
+    <text class="s" x="530" y="361">penentu sifat kimia</text>
+
+    <path d="M530,374 L530,400" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path d="M150,374 L150,400 L530,400" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+    <path class="ln" d="M340,400 L340,428"/>
+    <path d="M150,400 L340,400" stroke="#1B5286" stroke-width="1.8" fill="none"/>
+
+    <rect class="bx" x="170" y="430" width="340" height="52" rx="8"/>
+    <text class="t" x="340" y="454">LETAK UNSUR DALAM SPU</text>
+    <text class="s" x="340" y="471">periode = kulit terluar · golongan = e⁻ valensi</text>
+
+    <path class="ln" d="M340,482 L340,510"/>
+
+    <rect class="bx bxg" x="140" y="512" width="400" height="76" rx="8"/>
+    <text class="t" x="340" y="536">SIFAT PERIODIK UNSUR</text>
+    <text class="s" x="340" y="554">jari-jari atom · energi ionisasi</text>
+    <text class="s" x="340" y="570">afinitas elektron · keelektronegatifan</text>
+
+    <text class="s" x="340" y="606" style="font-style:italic">Semua sifat unsur bermuara pada susunan elektronnya.</text>
+  </svg>
+  <figcaption><b>Peta Konsep Bab 1.</b> Baca dari atas ke bawah. Jika Anda tersesat di tengah bab, kembali ke gambar ini dan tanyakan: “Saya sedang berada di kotak yang mana?”</figcaption>
+  </figure>
+</section>
+
+<!-- ==================== 1.4 PARTIKEL PENYUSUN ==================== -->
+<section class="page" id="partikel">
+  <h2>1.4 &nbsp;Partikel Penyusun Atom</h2>
+
+  <h3>Fenomena dulu, definisi belakangan</h3>
+  <p>Gosokkan penggaris plastik ke rambut kering, lalu dekatkan ke potongan kertas kecil. Kertas melompat. Tidak ada yang “masuk” atau “keluar” dari penggaris secara kasat mata — massanya praktis tidak berubah. Tetapi <em>sesuatu</em> jelas berpindah.</p>
+  <p>Sesuatu itu adalah <strong>elektron</strong>: partikel bermuatan negatif yang massanya sangat kecil sehingga perpindahan miliaran elektron pun tidak mengubah massa benda secara terukur. Dari eksperimen sesederhana ini lahir kesimpulan besar: atom <strong>bukan</strong> bola pejal yang tak terbagi.</p>
+
+  <h3>Tiga partikel, tiga peran berbeda</h3>
+  <figure class="fig">
+  <svg viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram struktur atom dengan inti dan awan elektron">
+    <defs>
+      <radialGradient id="cloud" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#1A8FBF" stop-opacity="0.03"/>
+        <stop offset="70%" stop-color="#1A8FBF" stop-opacity="0.13"/>
+        <stop offset="100%" stop-color="#1A8FBF" stop-opacity="0.02"/>
+      </radialGradient>
+      <style>
+        .lb{font-family:Inter,Arial,sans-serif;font-size:13px;fill:#11212E}
+        .lbb{font-weight:700;fill:#0B2E4F}
+        .sm{font-family:Inter,Arial,sans-serif;font-size:11.5px;fill:#69798A}
+        .gl{stroke:#69798A;stroke-width:1;stroke-dasharray:3 3;fill:none}
+      </style>
+    </defs>
+    <circle cx="200" cy="165" r="140" fill="url(#cloud)" stroke="#BFDFEF" stroke-width="1.2" stroke-dasharray="5 5"/>
+    <circle cx="200" cy="165" r="86" fill="none" stroke="#C3D0DB" stroke-width="1" stroke-dasharray="3 4"/>
+
+    <!-- inti -->
+    <circle cx="200" cy="165" r="34" fill="#FCEDEB" stroke="#B23A2C" stroke-width="1.5"/>
+    <circle cx="188" cy="156" r="10" fill="#B23A2C"/><text x="188" y="160" class="lb" fill="#fff" text-anchor="middle" font-size="12" font-weight="700">+</text>
+    <circle cx="211" cy="152" r="10" fill="#69798A"/>
+    <circle cx="193" cy="177" r="10" fill="#69798A"/>
+    <circle cx="213" cy="175" r="10" fill="#B23A2C"/><text x="213" y="179" class="lb" fill="#fff" text-anchor="middle" font-size="12" font-weight="700">+</text>
+
+    <!-- elektron -->
+    <circle cx="200" cy="79" r="8" fill="#1A8FBF"/><text x="200" y="83" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">−</text>
+    <circle cx="274" cy="208" r="8" fill="#1A8FBF"/><text x="274" y="212" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">−</text>
+    <circle cx="126" cy="208" r="8" fill="#1A8FBF"/><text x="126" y="212" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">−</text>
+    <circle cx="112" cy="120" r="8" fill="#1A8FBF"/><text x="112" y="124" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">−</text>
+
+    <path class="gl" d="M215,148 L400,96"/>
+    <path class="gl" d="M222,168 L400,148"/>
+    <path class="gl" d="M282,205 L400,205"/>
+    <path class="gl" d="M320,262 L400,262"/>
+
+    <text x="408" y="92" class="lb lbb">Proton (p⁺)</text>
+    <text x="408" y="110" class="sm">muatan +1 · massa ≈ 1 sma · di dalam inti</text>
+    <text x="408" y="144" class="lb lbb">Neutron (n⁰)</text>
+    <text x="408" y="162" class="sm">muatan 0 · massa ≈ 1 sma · di dalam inti</text>
+    <text x="408" y="201" class="lb lbb">Elektron (e⁻)</text>
+    <text x="408" y="219" class="sm">muatan −1 · massa ≈ 1/1836 sma</text>
+    <text x="408" y="258" class="lb lbb">Awan elektron</text>
+    <text x="408" y="276" class="sm">daerah kebolehjadian menemukan e⁻</text>
+
+    <text x="200" y="322" class="sm" text-anchor="middle">Jika inti sebesar kelereng, atomnya sebesar stadion sepak bola.</text>
+  </svg>
+  <figcaption><b>Gambar 1.1.</b> Skala pada gambar sengaja dilebih-lebihkan. Kenyataannya diameter inti hanya sekitar 1/100.000 diameter atom — <b>atom sebagian besar adalah ruang kosong</b>, tetapi hampir seluruh massanya terkumpul di inti.</figcaption>
+  </figure>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Partikel</th><th class="c">Lambang</th><th class="c">Muatan relatif</th><th class="c">Massa relatif (sma)</th><th>Letak</th><th>Penemu</th></tr></thead>
+    <tbody>
+      <tr><td>Proton</td><td class="c">p⁺ atau ¹₁p</td><td class="c">+1</td><td class="c">1</td><td>Inti atom</td><td>Goldstein / Rutherford</td></tr>
+      <tr><td>Neutron</td><td class="c">n⁰ atau ¹₀n</td><td class="c">0</td><td class="c">1</td><td>Inti atom</td><td>James Chadwick (1932)</td></tr>
+      <tr><td>Elektron</td><td class="c">e⁻ atau ⁰₋₁e</td><td class="c">−1</td><td class="c">≈ 1/1836 ≈ 0</td><td>Awan elektron</td><td>J.J. Thomson (1897)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ CHEMISTRY SHORTCUT — cara mengingat tanpa menghafal</div>
+    <p>Nama partikelnya sendiri sudah memberi petunjuk: <strong>pro</strong>ton → <strong>positif</strong>; <strong>neu</strong>tron → <strong>netral</strong>; sisanya, elektron, pasti negatif. Untuk massanya: yang ada di dalam inti punya massa 1, yang di luar inti massanya dianggap 0.</p>
+    <p style="margin-top:8px">Konsekuensi langsung yang sering dipakai di soal: <strong>massa atom hanya ditentukan oleh inti</strong>. Maka Na dan Na⁺ punya massa yang praktis sama, walaupun muatannya berbeda.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ COMMON MISTAKE</div>
+    <p>Menganggap massa elektron “boleh diabaikan” berarti elektron tidak penting.</p>
+    <div class="vs">
+      <div class="no"><span class="tag">✗ Keliru</span>Elektron tidak penting karena massanya ≈ 0.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Elektron tidak berpengaruh pada <em>massa</em>, tetapi menentukan hampir seluruh <em>sifat kimia</em>: ikatan, reaktivitas, warna, dan daya hantar listrik.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 1.5 NOTASI ATOM ==================== -->
+<section class="page" id="notasi">
+  <h2>1.5 &nbsp;Notasi Atom, Isotop, dan Ion</h2>
+  <p>Setiap atom punya “KTP” berupa dua angka: berapa proton yang dimilikinya, dan berapa total partikel di intinya. Dua angka itu ditulis mengapit lambang unsur.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomi notasi atom A Z X">
+    <style>
+      .n1{font-family:Inter,Arial,sans-serif;font-size:13px;fill:#11212E}
+      .n2{font-family:Inter,Arial,sans-serif;font-size:12px;fill:#69798A}
+      .hd{font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:700}
+    </style>
+    <rect x="230" y="34" width="220" height="112" rx="10" fill="#F6F8FA" stroke="#C3D0DB"/>
+    <text x="300" y="82" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#B23A2C">A</text>
+    <text x="300" y="128" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#1A8FBF">Z</text>
+    <text x="336" y="112" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#0B2E4F">X</text>
+    <text x="392" y="112" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#186F45">ⁿ±</text>
+
+    <path d="M296,62 L200,42" stroke="#B23A2C" stroke-width="1.4" fill="none"/>
+    <text x="20" y="34" class="hd" fill="#B23A2C">A = nomor massa</text>
+    <text x="20" y="52" class="n2">jumlah proton + neutron</text>
+
+    <path d="M296,132 L200,166" stroke="#1A8FBF" stroke-width="1.4" fill="none"/>
+    <text x="20" y="166" class="hd" fill="#1A8FBF">Z = nomor atom</text>
+    <text x="20" y="184" class="n2">jumlah proton (identitas unsur)</text>
+
+    <path d="M404,84 L500,50" stroke="#186F45" stroke-width="1.4" fill="none"/>
+    <text x="486" y="36" class="hd" fill="#186F45">Muatan</text>
+    <text x="486" y="54" class="n2">selisih proton–elektron</text>
+
+    <path d="M370,140 L470,172" stroke="#0B2E4F" stroke-width="1.4" fill="none"/>
+    <text x="468" y="166" class="hd" fill="#0B2E4F">X = lambang unsur</text>
+    <text x="468" y="184" class="n2">ditentukan oleh Z, bukan A</text>
+  </svg>
+  <figcaption><b>Gambar 1.2.</b> Anatomi notasi atom. Kunci yang sering terlewat: <b>identitas unsur ditentukan oleh Z</b>. Mengubah jumlah neutron tidak mengubah unsurnya; mengubah jumlah proton menghasilkan unsur yang sama sekali berbeda.</figcaption>
+  </figure>
+
+  <div class="formula">
+    <div class="bt">KEY FORMULA — HUBUNGAN PARTIKEL SUBATOM</div>
+    <div class="main-eq">Z = p &nbsp;&nbsp;|&nbsp;&nbsp; A = p + n &nbsp;&nbsp;|&nbsp;&nbsp; n = A − Z<br><span style="font-size:19px">e = Z − muatan</span></div>
+    <table>
+      <tr><td>Z</td><td>Nomor atom = jumlah proton. Tidak pernah berubah selama reaksi kimia.</td></tr>
+      <tr><td>A</td><td>Nomor massa = jumlah proton + neutron. Selalu bilangan bulat (menghitung partikel).</td></tr>
+      <tr><td>n</td><td>Jumlah neutron. Diperoleh dari selisih, bukan dari tabel periodik.</td></tr>
+      <tr><td>e</td><td>Jumlah elektron. Untuk atom netral e = Z; untuk ion, kurangi muatannya.</td></tr>
+    </table>
+    <div class="note"><b>Kapan digunakan:</b> setiap kali soal menyebut notasi <span style="font-family:var(--mono)">ᴬ𝑍X</span>, ion, isotop, atau spesi isoelektronik. <b>Batasan:</b> rumus <span style="font-family:var(--mono)">e = Z − muatan</span> memakai muatan bertanda; ion +2 berarti muatan = +2, ion −2 berarti muatan = −2.</div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ UTBK / EXAM FOCUS — Aritmetika Ion</div>
+    <p>Perhatikan tanda muatan sebagai <em>operasi pengurangan</em>, bukan penambahan otomatis:</p>
+    <ul>
+      <li>Ion <strong>positif</strong> = atom yang <strong>melepas</strong> elektron → e &lt; Z</li>
+      <li>Ion <strong>negatif</strong> = atom yang <strong>menerima</strong> elektron → e &gt; Z</li>
+      <li>Proton dan neutron <strong>tidak pernah berubah</strong> saat atom menjadi ion</li>
+    </ul>
+    <div class="trap">
+      <b>TRAP klasik:</b> Fe³⁺ <em>bukan</em> berarti elektron Fe bertambah 3.<br>
+      Fe → Fe³⁺ + 3e⁻ berarti Fe <b>kehilangan</b> 3 elektron. Dari 26 elektron menjadi <b>23 elektron</b>. Protonnya tetap 26 — kalau protonnya berubah, itu bukan lagi besi.
+    </div>
+  </div>
+
+  <h3>Isotop, Isobar, Isoton, dan Isoelektronik</h3>
+  <p>Awalan <em>iso-</em> berarti “sama”. Yang membedakan keempat istilah ini hanyalah: <strong>apa yang sama?</strong></p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Istilah</th><th>Yang sama</th><th>Yang berbeda</th><th>Contoh</th><th>Unsur sama?</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Isotop</b></td><td>Nomor atom (Z)</td><td>Nomor massa (A) → neutron</td><td>¹²₆C, ¹³₆C, ¹⁴₆C</td><td class="c">Ya</td></tr>
+      <tr><td><b>Isobar</b></td><td>Nomor massa (A)</td><td>Nomor atom (Z)</td><td>⁴⁰₁₈Ar dan ⁴⁰₂₀Ca</td><td class="c">Tidak</td></tr>
+      <tr><td><b>Isoton</b></td><td>Jumlah neutron</td><td>Z dan A</td><td>¹³₆C (n=7) dan ¹⁴₇N (n=7)</td><td class="c">Tidak</td></tr>
+      <tr><td><b>Isoelektronik</b></td><td>Jumlah elektron</td><td>Z, A, muatan</td><td>Na⁺, Mg²⁺, F⁻, Ne (semua 10 e⁻)</td><td class="c">Tidak</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ CHEMISTRY SHORTCUT — mengingat isobar vs isoton</div>
+    <p><strong>Isob<u>A</u>r</strong> → huruf <strong>A</strong> yang sama (nomor massa A sama).<br>
+    <strong>Iso<u>ton</u></strong> → “ton” terdengar seperti “neu<u>tron</u>” → jumlah neutronnya sama.<br>
+    Sisanya, isotop, pasti soal unsur yang sama.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1.5 ==================== -->
+<section class="page">
+  <h2>Worked Example — Notasi Atom &amp; Ion</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Membaca notasi atom netral</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jumlah proton, elektron, dan neutron dalam atom <span class="eq">³⁵₁₇Cl</span>.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>A = 35; Z = 17; spesi netral (tanpa muatan)</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>p, e, n</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Ambil Z sebagai proton, gunakan kenetralan untuk elektron, lalu selisihkan A dan Z untuk neutron.</div></div>
+      <div class="step"><b>Langkah 1 — Proton</b>p = Z = <span class="eq">17</span></div>
+      <div class="step"><b>Langkah 2 — Elektron</b>Atom netral, maka e = p = <span class="eq">17</span></div>
+      <div class="step"><b>Langkah 3 — Neutron</b>n = A − Z = 35 − 17 = <span class="eq">18</span></div>
+      <div class="ansbar">Jawaban: p = 17, e = 17, n = 18</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Karena hanya ada satu angka yang bisa dibaca langsung (Z = proton). Dua besaran lain selalu <em>diturunkan</em> darinya. Biasakan urutan p → e → n; urutan ini tidak pernah gagal.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Ion positif</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jumlah proton, elektron, dan neutron dalam ion <span class="eq">⁵⁶₂₆Fe³⁺</span>.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>A = 56; Z = 26; muatan = +3</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>p, e, n</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Muatan hanya memengaruhi elektron. Proton dan neutron dihitung seperti pada atom netral.</div></div>
+      <div class="step"><b>Langkah 1 — Proton dan neutron tidak terpengaruh</b>p = 26 &nbsp;&nbsp; n = 56 − 26 = 30</div>
+      <div class="step"><b>Langkah 2 — Elektron</b>e = Z − muatan = 26 − (+3) = <span class="eq">23</span></div>
+      <div class="ansbar">Jawaban: p = 26, e = 23, n = 30</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Reaksi kimia tidak pernah menyentuh inti atom — hanya elektron yang berpindah. Karena itu tanda muatan diterjemahkan sebagai instruksi tunggal: “kurangi elektron sebanyak muatannya”.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Bekerja mundur dari ion negatif</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Suatu ion <span class="eq">X²⁻</span> memiliki 18 elektron dan 16 neutron. Tuliskan notasi lengkap ion tersebut dan tentukan nama unsurnya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>e (dalam ion) = 18; n = 16; muatan = −2</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Notasi <span class="eq">ᴬ𝑍X²⁻</span> dan identitas unsur</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Balik rumus <span class="eq">e = Z − muatan</span> menjadi <span class="eq">Z = e + muatan</span>, lalu A = Z + n.</div></div>
+      <div class="step"><b>Langkah 1 — Cari nomor atom</b>Z = e + muatan = 18 + (−2) = <span class="eq">16</span></div>
+      <div class="step"><b>Langkah 2 — Cari nomor massa</b>A = Z + n = 16 + 16 = <span class="eq">32</span></div>
+      <div class="step"><b>Langkah 3 — Identifikasi unsur</b>Z = 16 → belerang (S)</div>
+      <div class="ansbar">Jawaban: <span class="eq">³²₁₆S²⁻</span>, yaitu ion sulfida</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal memberi elektron ion, bukan elektron atom netral. Kesalahan paling umum di sini adalah langsung menulis Z = 18 (yang berarti argon). Ingat: <em>elektronnya sudah bertambah 2, maka protonnya harus 2 lebih sedikit</em>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Dua kondisi sekaligus</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Ion <span class="eq">M³⁺</span> memiliki 10 elektron. Jumlah neutron dalam ion tersebut satu lebih banyak daripada jumlah protonnya. Tentukan nomor massa unsur M.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>e (dalam ion) = 10; muatan = +3; n = p + 1</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>A</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Selesaikan proton lebih dulu dari data elektron, baru gunakan hubungan neutron.</div></div>
+      <div class="step"><b>Langkah 1 — Proton</b>Z = e + muatan = 10 + 3 = <span class="eq">13</span> → unsur M adalah aluminium</div>
+      <div class="step"><b>Langkah 2 — Neutron</b>n = p + 1 = 13 + 1 = <span class="eq">14</span></div>
+      <div class="step"><b>Langkah 3 — Nomor massa</b>A = p + n = 13 + 14 = <span class="eq">27</span></div>
+      <div class="ansbar">Jawaban: A = 27, yaitu <span class="eq">²⁷₁₃Al³⁺</span></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal dua kondisi selalu diselesaikan berurutan, bukan serentak. Cari besaran yang datanya paling “murni” lebih dulu — di sini elektron langsung memberi proton. Setelah proton diketahui, kondisi kedua tinggal disubstitusikan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Isoelektronik multi-spesi</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Ion <span class="eq">X⁺</span> dan ion <span class="eq">Y²⁻</span> keduanya isoelektronik dengan atom argon (Z = 18). Jika jumlah neutron X adalah 20 dan jumlah neutron Y adalah 16, hitunglah selisih nomor massa X dan Y, serta tentukan spesi mana yang memiliki jari-jari lebih besar.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>X⁺ dan Y²⁻ punya 18 elektron; n<sub>X</sub> = 20; n<sub>Y</sub> = 16</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>A<sub>X</sub> − A<sub>Y</sub> dan perbandingan jari-jari</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Ubah “isoelektronik dengan Ar” menjadi angka elektron, cari Z tiap spesi, lalu bandingkan muatan inti karena elektronnya sama.</div></div>
+      <div class="step"><b>Langkah 1 — Terjemahkan kata kunci</b>Isoelektronik dengan Ar → jumlah elektron kedua ion = 18</div>
+      <div class="step"><b>Langkah 2 — Nomor atom X</b>Z<sub>X</sub> = 18 + (+1) = 19 → kalium (K). A<sub>X</sub> = 19 + 20 = <span class="eq">39</span></div>
+      <div class="step"><b>Langkah 3 — Nomor atom Y</b>Z<sub>Y</sub> = 18 + (−2) = 16 → belerang (S). A<sub>Y</sub> = 16 + 16 = <span class="eq">32</span></div>
+      <div class="step"><b>Langkah 4 — Selisih</b>A<sub>X</sub> − A<sub>Y</sub> = 39 − 32 = <span class="eq">7</span></div>
+      <div class="step"><b>Langkah 5 — Bandingkan jari-jari</b>Jumlah elektron sama (18), tetapi muatan inti berbeda: K⁺ memiliki 19 proton, S²⁻ hanya 16 proton. Semakin besar muatan inti, semakin kuat tarikan terhadap 18 elektron yang sama, sehingga awan elektron semakin mengerut.</div>
+      <div class="ansbar">Jawaban: selisih nomor massa = 7; jari-jari S²⁻ &gt; K⁺</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Pada deret isoelektronik, elektronnya <em>dikunci</em> sama sehingga satu-satunya variabel pembeda adalah jumlah proton. Prinsip ini akan Anda pakai lagi di sifat periodik: <span class="eq">jari-jari ion ∝ 1 / muatan inti</span> untuk spesi isoelektronik. Soal seperti ini menguji apakah Anda menghafal definisi atau benar-benar memahami sebabnya.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">QUICK RECALL — jawab dulu, baru buka kuncinya</div>
+    <ol>
+      <li>Apa yang menentukan identitas suatu unsur: nomor atom atau nomor massa?
+        <span class="ans">Nomor atom (Z). Mengubah jumlah neutron hanya menghasilkan isotop unsur yang sama.</span></li>
+      <li>Berapa jumlah elektron dalam ion N³⁻ (Z = 7)?
+        <span class="ans">e = 7 − (−3) = 10 elektron.</span></li>
+      <li>Mengapa massa atom Na dan ion Na⁺ dianggap sama?
+        <span class="ans">Karena yang hilang hanya elektron, yang massanya ≈ 1/1836 sma sehingga dapat diabaikan.</span></li>
+      <li>³⁹₁₉K dan ⁴⁰₂₀Ca termasuk pasangan apa?
+        <span class="ans">Bukan apa-apa — A dan Z keduanya berbeda. Tetapi n<sub>K</sub> = 20 dan n<sub>Ca</sub> = 20, jadi keduanya <b>isoton</b>.</span></li>
+      <li>Manakah yang jari-jarinya lebih besar: Mg²⁺ atau O²⁻? Keduanya punya 10 elektron.
+        <span class="ans">O²⁻, karena muatan intinya lebih kecil (8 proton) sehingga tarikan ke elektron lebih lemah.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1.6 MASSA ATOM RELATIF ==================== -->
+<section class="page" id="ar">
+  <h2>1.6 &nbsp;Massa Atom Relatif <span class="star">★★★</span></h2>
+
+  <h3>Sebuah kejanggalan yang menarik</h3>
+  <p>Nomor massa selalu bilangan bulat — logis, karena kita menghitung partikel. Tetapi di tabel periodik tertulis Ar Cl = 35,5. Tidak ada atom klorin yang memiliki 17,5 neutron.</p>
+  <p>Penjelasannya: <strong>klorin di alam bukan satu jenis atom</strong>. Sekitar 75% adalah Cl-35 dan 25% adalah Cl-37. Angka 35,5 adalah <em>rata-rata tertimbang</em> — sama seperti nilai rapor Anda bukan nilai satu ulangan, melainkan rata-rata yang dibobot oleh jumlah pertemuan.</p>
+
+  <div class="formula">
+    <div class="bt">KEY FORMULA — MASSA ATOM RELATIF DARI KELIMPAHAN ISOTOP</div>
+    <div class="main-eq">Ar = (%₁ · A₁) + (%₂ · A₂) + … <br>⁄ 100</div>
+    <table>
+      <tr><td>Ar</td><td>Massa atom relatif unsur; tidak bersatuan (perbandingan terhadap 1/12 massa atom C-12).</td></tr>
+      <tr><td>%ᵢ</td><td>Kelimpahan isotop ke-i di alam, dalam persen. Jumlah semua kelimpahan = 100%.</td></tr>
+      <tr><td>Aᵢ</td><td>Nomor massa isotop ke-i (bilangan bulat).</td></tr>
+    </table>
+    <div class="note"><b>Kapan digunakan:</b> saat soal memberikan kelimpahan isotop, atau sebaliknya memberi Ar dan meminta kelimpahan. <b>Batasan:</b> jika kelimpahan diberikan dalam pecahan (0,75), jangan dibagi 100 lagi. <b>Hubungan dengan rumus lain:</b> Ar adalah bahan baku Mr, yang kemudian menjadi bahan baku seluruh stoikiometri (<span style="font-family:var(--mono)">n = m/Mr</span>).</div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ CHEMISTRY SHORTCUT — teknik dua isotop</div>
+    <p>Jika unsur hanya punya <strong>dua</strong> isotop dan kelimpahannya ditanya, tidak perlu memisalkan dua variabel. Misalkan kelimpahan isotop ringan = <span class="eq">x</span>%, maka isotop berat otomatis <span class="eq">(100 − x)</span>%. Satu variabel, satu persamaan, selesai.</p>
+    <p style="margin-top:8px">Cek cepat sebelum menghitung: <strong>Ar selalu berada di antara kedua nomor massa</strong>, dan condong ke isotop yang lebih melimpah. Jika Ar Cu = 63,6 sedangkan isotopnya 63 dan 65, Anda sudah tahu Cu-63 pasti lebih dari 50% — sebelum menulis satu pun persamaan.</p>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Menghitung Ar langsung</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Boron di alam terdiri atas B-10 (20%) dan B-11 (80%). Hitunglah massa atom relatif boron.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>A₁ = 10 dengan 20%; A₂ = 11 dengan 80%</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Ar B</div></div>
+      <div class="step"><b>Langkah 1 — Susun rata-rata tertimbang</b>Ar = (20 × 10 + 80 × 11) / 100</div>
+      <div class="step"><b>Langkah 2 — Hitung</b>= (200 + 880) / 100 = 1080 / 100</div>
+      <div class="ansbar">Jawaban: Ar B = 10,8</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Cek nalar: hasilnya 10,8, terletak di antara 10 dan 11 dan lebih dekat ke 11 — sesuai dengan kelimpahan B-11 yang dominan. Selalu lakukan pemeriksaan ini; jika hasil Anda di luar rentang isotop, pasti ada kesalahan hitung.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Tiga isotop</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Unsur X memiliki tiga isotop dengan nomor massa 24, 25, dan 26 serta kelimpahan berturut-turut 78%, 10%, dan 12%. Tentukan Ar unsur X.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>(24; 78%), (25; 10%), (26; 12%)</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Ar X</div></div>
+      <div class="step"><b>Langkah 1 — Periksa total kelimpahan</b>78 + 10 + 12 = 100% ✓ (data lengkap, tidak ada isotop tersembunyi)</div>
+      <div class="step"><b>Langkah 2 — Hitung tiap suku</b>24 × 78 = 1872 &nbsp;|&nbsp; 25 × 10 = 250 &nbsp;|&nbsp; 26 × 12 = 312</div>
+      <div class="step"><b>Langkah 3 — Jumlahkan dan bagi 100</b>(1872 + 250 + 312)/100 = 2434/100</div>
+      <div class="ansbar">Jawaban: Ar X = 24,34 (unsur X adalah magnesium)</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 terlihat sepele tetapi menyelamatkan banyak nilai. Soal UTBK sering hanya memberi dua dari tiga kelimpahan dan membiarkan Anda menyimpulkan sisanya dari total 100%.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Bekerja mundur mencari kelimpahan</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tembaga memiliki dua isotop, Cu-63 dan Cu-65. Jika Ar Cu = 63,5, tentukan persentase kelimpahan masing-masing isotop.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>A₁ = 63; A₂ = 65; Ar = 63,5</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>%Cu-63 dan %Cu-65</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Satu variabel saja: misalkan %Cu-63 = x, maka %Cu-65 = (100 − x).</div></div>
+      <div class="step"><b>Langkah 1 — Susun persamaan</b>63x + 65(100 − x) = 63,5 × 100</div>
+      <div class="step"><b>Langkah 2 — Uraikan</b>63x + 6500 − 65x = 6350 → −2x = −150</div>
+      <div class="step"><b>Langkah 3 — Selesaikan</b>x = 75</div>
+      <div class="step"><b>Langkah 4 — Verifikasi</b>(63 × 75 + 65 × 25)/100 = (4725 + 1625)/100 = 63,5 ✓</div>
+      <div class="ansbar">Jawaban: Cu-63 = 75% dan Cu-65 = 25%</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Memisalkan dua variabel (x dan y) memaksa Anda menulis persamaan kedua x + y = 100 dan menyelesaikan sistem. Dengan langsung menulis (100 − x), pekerjaan aljabar berkurang setengah — penting saat waktu UTBK terbatas.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Ar sebagai jembatan ke Mr</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Galium terdiri atas Ga-69 dan Ga-71 dengan Ar = 69,8. Tentukan kelimpahan Ga-69, lalu hitung Mr senyawa GaCl₃ (Ar Cl = 35,5).</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Isotop 69 dan 71; Ar Ga = 69,8; Ar Cl = 35,5</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>%Ga-69 dan Mr GaCl₃</div></div>
+      <div class="step"><b>Langkah 1 — Misalkan dan susun</b>%Ga-69 = x → 69x + 71(100 − x) = 6980</div>
+      <div class="step"><b>Langkah 2 — Selesaikan</b>7100 − 2x = 6980 → 2x = 120 → x = <span class="eq">60</span></div>
+      <div class="step"><b>Langkah 3 — Hitung Mr</b>Mr GaCl₃ = Ar Ga + 3 × Ar Cl = 69,8 + 3(35,5) = 69,8 + 106,5</div>
+      <div class="ansbar">Jawaban: Ga-69 = 60% (Ga-71 = 40%); Mr GaCl₃ = 176,3</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa Mr dihitung dari <strong>Ar rata-rata (69,8)</strong>, bukan dari nomor massa isotop tertentu (69 atau 71). Inilah alasan Ar perlu berupa rata-rata tertimbang: agar perhitungan massa senyawa mencerminkan komposisi alami, bukan satu isotop pilihan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Menyimpulkan dari data spektrum</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Analisis spektrometer massa terhadap unsur E menghasilkan dua puncak: pada m/z 63 dengan tinggi puncak 3 satuan, dan pada m/z 65 dengan tinggi puncak 1 satuan. Sebanyak 12,7 gram unsur E direaksikan sempurna dengan gas oksigen membentuk E₂O. Tentukan Ar unsur E dan massa E₂O yang terbentuk (Ar O = 16).</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Puncak 63 : 65 = 3 : 1; massa E = 12,7 g; senyawa E₂O; Ar O = 16</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Ar E dan massa E₂O</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tinggi puncak sebanding dengan kelimpahan. Ubah perbandingan menjadi persen, hitung Ar, lalu gunakan hukum kekekalan massa.</div></div>
+      <div class="step"><b>Langkah 1 — Terjemahkan tinggi puncak menjadi kelimpahan</b>Total bagian = 3 + 1 = 4 → E-63 = 3/4 = 75%; E-65 = 1/4 = 25%</div>
+      <div class="step"><b>Langkah 2 — Hitung Ar</b>Ar E = (63 × 75 + 65 × 25)/100 = 6350/100 = <span class="eq">63,5</span> → unsur E adalah tembaga</div>
+      <div class="step"><b>Langkah 3 — Mol E</b>n(E) = 12,7 / 63,5 = <span class="eq">0,2 mol</span></div>
+      <div class="step"><b>Langkah 4 — Perbandingan mol dalam E₂O</b>Setiap 2 mol E membentuk 1 mol E₂O → n(E₂O) = 0,2 / 2 = 0,1 mol</div>
+      <div class="step"><b>Langkah 5 — Massa E₂O</b>Mr E₂O = 2(63,5) + 16 = 143 → m = 0,1 × 143</div>
+      <div class="ansbar">Jawaban: Ar E = 63,5 dan massa E₂O = 14,3 gram</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal ini menyatukan tiga bab: pembacaan data instrumen, massa atom relatif, dan stoikiometri. Kunci pembukanya hanya satu kalimat — “tinggi puncak sebanding dengan kelimpahan”. Setelah perbandingan 3 : 1 diubah menjadi 75% : 25%, sisanya adalah pekerjaan rutin. Soal HOTS umumnya seperti ini: sulit di satu titik terjemahan, mudah setelahnya.</div>
+    </div>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ COMMON MISTAKE</div>
+    <div class="vs">
+      <div class="no"><span class="tag">✗ Keliru</span>Ar Cl = 35,5 berarti ada atom Cl dengan 18,5 neutron.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Tidak ada satu pun atom Cl bermassa 35,5. Angka itu adalah rata-rata populasi, seperti “rata-rata 2,3 anak per keluarga”.</div>
+    </div>
+    <div class="vs" style="margin-top:12px">
+      <div class="no"><span class="tag">✗ Keliru</span>Menjumlahkan nomor massa isotop lalu membaginya dengan banyak isotop: (35+37)/2 = 36.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Harus <em>tertimbang</em> oleh kelimpahan. Rata-rata biasa hanya benar bila semua isotop kelimpahannya sama persis.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 1.7 MODEL ATOM ==================== -->
+<section class="page" id="model">
+  <h2>1.7 &nbsp;Perkembangan Model Atom</h2>
+  <p class="lead">Model atom bukan daftar nama yang harus dihafal. Ia adalah rangkaian <strong>perbaikan</strong>: setiap model lahir karena model sebelumnya gagal menjelaskan satu hasil percobaan. Jika Anda memahami <em>kegagalan</em> tiap model, urutannya akan tertanam sendiri.</p>
+
+  <div class="tl">
+    <div class="tl-item">
+      <svg class="tl-ic" viewBox="0 0 100 100" role="img" aria-label="Model bola pejal Dalton">
+        <circle cx="50" cy="50" r="34" fill="#0B2E4F"/>
+      </svg>
+      <div>
+        <div class="tl-y">1803 · JOHN DALTON</div>
+        <div class="tl-n">Model Bola Pejal</div>
+        <div class="tl-d">Atom adalah bola pejal terkecil yang tidak dapat dibagi lagi. Atom unsur sejenis identik; reaksi kimia hanyalah penataan ulang atom. Model ini berhasil menjelaskan hukum kekekalan massa dan hukum perbandingan tetap.</div>
+        <div class="tl-w"><b>Gagal menjelaskan:</b> mengapa larutan dapat menghantarkan listrik, dan mengapa ada partikel bermuatan. Jika atom pejal dan tak terbagi, dari mana muatan itu berasal?</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <svg class="tl-ic" viewBox="0 0 100 100" role="img" aria-label="Model roti kismis Thomson">
+        <circle cx="50" cy="50" r="34" fill="#FCEDEB" stroke="#B23A2C" stroke-width="2"/>
+        <circle cx="38" cy="40" r="5.5" fill="#1A8FBF"/><circle cx="62" cy="44" r="5.5" fill="#1A8FBF"/>
+        <circle cx="45" cy="62" r="5.5" fill="#1A8FBF"/><circle cx="66" cy="64" r="5.5" fill="#1A8FBF"/>
+        <circle cx="34" cy="55" r="5.5" fill="#1A8FBF"/>
+      </svg>
+      <div>
+        <div class="tl-y">1897 · J.J. THOMSON</div>
+        <div class="tl-n">Model Roti Kismis</div>
+        <div class="tl-d">Dari percobaan tabung sinar katode, Thomson menemukan elektron. Atom digambarkan sebagai bola bermuatan positif merata dengan elektron tersebar di dalamnya seperti kismis dalam roti. Muatan total tetap netral.</div>
+        <div class="tl-w"><b>Gagal menjelaskan:</b> hasil percobaan hamburan sinar alfa. Jika muatan positif tersebar merata, tidak mungkin ada partikel alfa yang dipantulkan balik.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <svg class="tl-ic" viewBox="0 0 100 100" role="img" aria-label="Model inti atom Rutherford">
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#C3D0DB" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <ellipse cx="50" cy="50" rx="36" ry="14" fill="none" stroke="#1A8FBF" stroke-width="1.6" transform="rotate(28 50 50)"/>
+        <ellipse cx="50" cy="50" rx="36" ry="14" fill="none" stroke="#1A8FBF" stroke-width="1.6" transform="rotate(-40 50 50)"/>
+        <circle cx="50" cy="50" r="10" fill="#B23A2C"/>
+        <circle cx="82" cy="34" r="4.5" fill="#1A8FBF"/><circle cx="22" cy="62" r="4.5" fill="#1A8FBF"/>
+      </svg>
+      <div>
+        <div class="tl-y">1911 · ERNEST RUTHERFORD</div>
+        <div class="tl-n">Model Inti Atom</div>
+        <div class="tl-d">Percobaan penembakan lempeng emas tipis dengan sinar alfa: sebagian besar sinar menembus lurus, sebagian kecil dibelokkan, dan sangat sedikit dipantulkan balik. Kesimpulannya, atom sebagian besar adalah ruang kosong dengan inti kecil bermuatan positif yang sangat masif, dikelilingi elektron yang mengorbit.</div>
+        <div class="tl-w"><b>Gagal menjelaskan:</b> mengapa atom stabil. Menurut fisika klasik, elektron yang bergerak melingkar terus-menerus akan memancarkan energi dan jatuh ke inti dalam waktu sangat singkat.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <svg class="tl-ic" viewBox="0 0 100 100" role="img" aria-label="Model lintasan Bohr">
+        <circle cx="50" cy="50" r="20" fill="none" stroke="#1A8FBF" stroke-width="1.8"/>
+        <circle cx="50" cy="50" r="33" fill="none" stroke="#1A8FBF" stroke-width="1.8"/>
+        <circle cx="50" cy="50" r="9" fill="#B23A2C"/>
+        <circle cx="70" cy="50" r="4.5" fill="#0B2E4F"/>
+        <circle cx="50" cy="17" r="4.5" fill="#0B2E4F"/>
+        <circle cx="27" cy="74" r="4.5" fill="#0B2E4F"/>
+        <path d="M62,38 L74,26" stroke="#C77400" stroke-width="2" marker-end="none"/>
+      </svg>
+      <div>
+        <div class="tl-y">1913 · NIELS BOHR</div>
+        <div class="tl-n">Model Lintasan Stasioner</div>
+        <div class="tl-d">Elektron hanya boleh berada pada lintasan (kulit) tertentu dengan energi tertentu. Selama berada di lintasannya, elektron tidak memancarkan energi. Elektron dapat berpindah kulit dengan menyerap energi (eksitasi) atau melepas energi berupa foton (deeksitasi). Model ini berhasil menjelaskan spektrum garis atom hidrogen dan warna nyala unsur.</div>
+        <div class="tl-w"><b>Gagal menjelaskan:</b> spektrum atom berelektron banyak, serta pemecahan garis spektrum dalam medan magnet (efek Zeeman).</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <svg class="tl-ic" viewBox="0 0 100 100" role="img" aria-label="Model mekanika kuantum">
+        <defs><radialGradient id="q1"><stop offset="0%" stop-color="#1A8FBF" stop-opacity=".55"/><stop offset="100%" stop-color="#1A8FBF" stop-opacity="0"/></radialGradient></defs>
+        <ellipse cx="50" cy="34" rx="17" ry="24" fill="url(#q1)"/>
+        <ellipse cx="50" cy="66" rx="17" ry="24" fill="url(#q1)"/>
+        <circle cx="50" cy="50" r="6" fill="#B23A2C"/>
+      </svg>
+      <div>
+        <div class="tl-y">1926 · SCHRÖDINGER, HEISENBERG, DE BROGLIE</div>
+        <div class="tl-n">Model Mekanika Kuantum</div>
+        <div class="tl-d">Elektron bersifat dualisme gelombang–partikel (de Broglie) dan posisinya tidak dapat ditentukan secara pasti bersamaan dengan momentumnya (asas ketidakpastian Heisenberg). Yang dapat dihitung hanyalah <strong>daerah kebolehjadian</strong> menemukan elektron, yang disebut <strong>orbital</strong>. Model inilah yang dipakai sampai sekarang dan menjadi dasar konfigurasi elektron serta bilangan kuantum.</div>
+        <div class="tl-w"><b>Catatan:</b> model ini tidak “salah” seperti pendahulunya, tetapi jauh lebih abstrak — tidak ada lagi gambar lintasan yang rapi, hanya peta peluang.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ UTBK / EXAM FOCUS — Model Atom</div>
+    <p><strong>Bentuk pertanyaan yang paling sering muncul:</strong></p>
+    <ol>
+      <li>Diberikan pernyataan hasil percobaan → tentukan model atom yang sesuai.</li>
+      <li>Diberikan nama model → tentukan kelemahannya.</li>
+      <li>Diberikan urutan model → tentukan penemuan yang memicu pergantian model.</li>
+    </ol>
+    <p style="margin-top:10px"><strong>Yang harus dihafal (sedikit saja):</strong> nama penemu dan tahun penting — Thomson (elektron), Rutherford (inti), Chadwick (neutron), Bohr (kulit).</p>
+    <p><strong>Yang lebih baik dipahami:</strong> hubungan sebab–akibat antarmodel. Jika Anda paham bahwa <em>pemantulan sinar alfa</em> menuntut adanya inti yang padat dan kecil, Anda tidak perlu menghafal kalimat “percobaan Rutherford membuktikan adanya inti atom”.</p>
+    <div class="trap">
+      <b>TRAP:</b> Percobaan hamburan sinar alfa dilakukan oleh Geiger dan Marsden; <em>Rutherford yang menafsirkan hasilnya</em>. Selain itu, penemuan neutron oleh Chadwick terjadi <b>tahun 1932 — setelah model Bohr (1913)</b>, bukan sebelumnya. Banyak siswa mengira inti atom langsung diketahui lengkap sejak awal.
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="bt">THINK LIKE A CHEMIST</div>
+    <div class="tq">Mengapa model Rutherford dianggap gagal padahal percobaannya benar dan kesimpulannya (adanya inti) sampai sekarang masih diterima?</div>
+    <p>Jangan langsung mencari jawaban di daftar kelemahan. Telusuri sendiri alurnya:</p>
+    <div class="chain">elektron bergerak melingkar → gerak melingkar = percepatan →<br>muatan yang dipercepat memancarkan energi (fisika klasik) →<br>energi elektron berkurang → jari-jari orbit mengecil → elektron jatuh ke inti</div>
+    <p>Jadi yang gagal bukan <em>temuan</em> Rutherford, melainkan <em>penjelasan gerak elektronnya</em> jika memakai fisika klasik. Bohr tidak membuang inti atom Rutherford — ia hanya menambahkan satu aturan baru: elektron tidak boleh sembarang berada, hanya di kulit tertentu. Inilah cara kerja sains: model berikutnya menambal, bukan membatalkan.</p>
+  </div>
+</section>
+
+<!-- ==================== 1.8 KONFIGURASI ELEKTRON ==================== -->
+<section class="page" id="konfig">
+  <h2>1.8 &nbsp;Konfigurasi Elektron <span class="star">★★★</span></h2>
+  <p class="lead">Ini adalah keterampilan paling sering dipakai di seluruh Kimia SMA. Menulis konfigurasi elektron bukan sekadar mengisi angka — Anda sedang menentukan letak unsur, jenis ikatan yang akan dibentuknya, bilangan oksidasinya, bahkan warna senyawanya.</p>
+
+  <h3>Analogi: gedung bioskop dengan harga tiket berbeda</h3>
+  <p>Bayangkan bioskop dengan barisan kursi berjenjang. Baris paling depan paling murah, semakin ke belakang semakin mahal. Penonton yang hemat akan selalu mengisi baris termurah dulu. Elektron berperilaku persis sama: <strong>selalu mengisi tingkat energi terendah yang masih kosong</strong>. Aturan ini bernama <strong>asas Aufbau</strong> (bahasa Jerman, artinya “membangun”).</p>
+
+  <h4>Dua cara penulisan: per kulit dan per subkulit</h4>
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Kulit</th><th class="c">Lambang</th><th class="c">n</th><th class="c">Daya tampung maksimum (2n²)</th><th>Subkulit yang ada</th></tr></thead>
+    <tbody>
+      <tr><td>Kulit ke-1</td><td class="c">K</td><td class="c">1</td><td class="c">2</td><td>1s</td></tr>
+      <tr><td>Kulit ke-2</td><td class="c">L</td><td class="c">2</td><td class="c">8</td><td>2s, 2p</td></tr>
+      <tr><td>Kulit ke-3</td><td class="c">M</td><td class="c">3</td><td class="c">18</td><td>3s, 3p, 3d</td></tr>
+      <tr><td>Kulit ke-4</td><td class="c">N</td><td class="c">4</td><td class="c">32</td><td>4s, 4p, 4d, 4f</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Subkulit</th><th class="c">Nilai ℓ</th><th class="c">Jumlah orbital (2ℓ+1)</th><th class="c">Daya tampung elektron</th><th>Bentuk orbital</th></tr></thead>
+    <tbody>
+      <tr><td><b>s</b> (sharp)</td><td class="c">0</td><td class="c">1</td><td class="c">2</td><td>Bola</td></tr>
+      <tr><td><b>p</b> (principal)</td><td class="c">1</td><td class="c">3</td><td class="c">6</td><td>Balon terpilin (dumbbell)</td></tr>
+      <tr><td><b>d</b> (diffuse)</td><td class="c">2</td><td class="c">5</td><td class="c">10</td><td>Empat cuping</td></tr>
+      <tr><td><b>f</b> (fundamental)</td><td class="c">3</td><td class="c">7</td><td class="c">14</td><td>Kompleks</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Pola yang perlu disadari, bukan dihafal: setiap orbital hanya boleh diisi <strong>maksimal 2 elektron</strong>. Karena itu daya tampung subkulit selalu = 2 × jumlah orbitalnya.</p>
+
+  <h3>Aturan Aufbau: urutan pengisian yang benar</h3>
+  <p>Masalahnya, urutan energi subkulit <strong>tidak sama</strong> dengan urutan nomor kulit. Subkulit 4s ternyata berenergi lebih rendah daripada 3d, sehingga 4s terisi lebih dahulu. Diagram berikut memberi urutannya tanpa perlu menghafal.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram aturan Aufbau">
+    <defs>
+      <marker id="au" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C77400"/></marker>
+      <style>
+        .ss{font-family:Inter,Arial,sans-serif;font-size:19px;font-weight:700;fill:#0B2E4F;text-anchor:middle}
+        .hh{font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:700;fill:#69798A;text-anchor:middle}
+        .dg{stroke:#E89A1C;stroke-width:1.7;fill:none;marker-end:url(#au);opacity:.85}
+      </style>
+    </defs>
+    <text class="hh" x="150" y="24">subkulit s</text>
+    <text class="hh" x="270" y="24">subkulit p</text>
+    <text class="hh" x="390" y="24">subkulit d</text>
+    <text class="hh" x="510" y="24">subkulit f</text>
+    <text class="hh" x="70" y="45">n = 1</text>
+    <text class="hh" x="70" y="91">n = 2</text>
+    <text class="hh" x="70" y="137">n = 3</text>
+    <text class="hh" x="70" y="183">n = 4</text>
+    <text class="hh" x="70" y="229">n = 5</text>
+    <text class="hh" x="70" y="275">n = 6</text>
+    <text class="hh" x="70" y="321">n = 7</text>
+    <line class="dg" x1="248" y1="96" x2="172" y2="124"/>
+    <line class="dg" x1="248" y1="142" x2="172" y2="170"/>
+    <line class="dg" x1="368" y1="142" x2="172" y2="216"/>
+    <line class="dg" x1="368" y1="188" x2="172" y2="262"/>
+    <line class="dg" x1="488" y1="188" x2="172" y2="308"/>
+    <line class="dg" x1="488" y1="234" x2="292" y2="308"/>
+    <text class="ss" x="150" y="47">1s</text>
+    <text class="ss" x="150" y="93">2s</text>
+    <text class="ss" x="270" y="93">2p</text>
+    <text class="ss" x="150" y="139">3s</text>
+    <text class="ss" x="270" y="139">3p</text>
+    <text class="ss" x="390" y="139">3d</text>
+    <text class="ss" x="150" y="185">4s</text>
+    <text class="ss" x="270" y="185">4p</text>
+    <text class="ss" x="390" y="185">4d</text>
+    <text class="ss" x="510" y="185">4f</text>
+    <text class="ss" x="150" y="231">5s</text>
+    <text class="ss" x="270" y="231">5p</text>
+    <text class="ss" x="390" y="231">5d</text>
+    <text class="ss" x="510" y="231">5f</text>
+    <text class="ss" x="150" y="277">6s</text>
+    <text class="ss" x="270" y="277">6p</text>
+    <text class="ss" x="390" y="277">6d</text>
+    <text class="ss" x="150" y="323">7s</text>
+    <text class="ss" x="270" y="323">7p</text>
+    <text class="hh" x="340" y="390" style="font-size:13px">Ikuti arah panah: 1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p → 5s → 4d → 5p → 6s → …</text>
+  </svg>  <figcaption><b>Gambar 1.3.</b> Diagram Aufbau. Tulis subkulit dalam kolom menurut jenisnya, lalu tarik panah diagonal dari kanan atas ke kiri bawah. Urutan yang dilalui panah adalah urutan pengisian elektron.</figcaption>
+  </figure>
+
+  <div class="formula">
+    <div class="bt">KEY FORMULA — URUTAN AUFBAU YANG PERLU DIKUASAI</div>
+    <div class="main-eq" style="font-size:17px">1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p</div>
+    <table>
+      <tr><td>Kapasitas</td><td>s = 2 &nbsp;·&nbsp; p = 6 &nbsp;·&nbsp; d = 10 &nbsp;·&nbsp; f = 14</td></tr>
+      <tr><td>Cara pakai</td><td>Isi berurutan dari kiri sampai jumlah elektron habis. Subkulit terakhir boleh terisi sebagian.</td></tr>
+      <tr><td>Batasan</td><td>Urutan ini adalah urutan <b>pengisian</b>, bukan urutan <b>penulisan akhir</b> dan bukan urutan <b>pelepasan</b> elektron pada ion.</td></tr>
+    </table>
+    <div class="note">Untuk soal UTBK, hafal sampai <b>4p</b> saja sudah menutupi hampir seluruh unsur yang diujikan (Z ≤ 36). Sisanya cukup diturunkan dari diagram diagonal.</div>
+  </div>
+
+  <h3>Dua aturan pendamping: Pauli dan Hund</h3>
+  <p>Aufbau menentukan <em>subkulit mana</em> yang diisi lebih dulu. Dua aturan berikut menentukan <em>bagaimana</em> elektron menempati orbital di dalam subkulit tersebut.</p>
+
+  <h4>Larangan Pauli</h4>
+  <p>Tidak boleh ada dua elektron dalam satu atom yang memiliki keempat bilangan kuantum sama persis. Konsekuensi praktisnya: <strong>satu orbital maksimal berisi 2 elektron, dan keduanya harus berlawanan arah spin</strong> (↑↓).</p>
+
+  <h4>Aturan Hund</h4>
+  <p>Pada subkulit dengan beberapa orbital berenergi sama, elektron mengisi <strong>satu per satu dengan arah spin sejajar terlebih dahulu</strong>, baru kemudian berpasangan. Analoginya seperti penumpang bus: orang akan memilih bangku kosong dulu sebelum duduk di sebelah orang lain.</p>
+
+  <p style="margin-bottom:6px"><strong>Contoh: nitrogen (Z = 7), konfigurasi 1s² 2s² 2p³</strong></p>
+  <div class="orb">
+    <div class="grp"><div class="cells"><div class="cell full">↑↓</div></div><div class="lbl">1s</div></div>
+    <div class="grp"><div class="cells"><div class="cell full">↑↓</div></div><div class="lbl">2s</div></div>
+    <div class="grp"><div class="cells"><div class="cell">↑</div><div class="cell">↑</div><div class="cell">↑</div></div><div class="lbl">2p³ — benar (Hund)</div></div>
+  </div>
+  <div class="orb">
+    <div class="grp"><div class="cells"><div class="cell full">↑↓</div><div class="cell">↑</div><div class="cell"></div></div><div class="lbl" style="color:var(--red)">2p³ — salah: berpasangan terlalu cepat</div></div>
+  </div>
+  <p class="cap">Nitrogen memiliki <strong>3 elektron tidak berpasangan</strong>, dan inilah alasan nitrogen dapat membentuk tiga ikatan kovalen (NH₃, N₂ dengan ikatan rangkap tiga). Jika aturan Hund dilanggar, prediksi jumlah ikatan akan salah.</p>
+</section>
+
+<!-- ==================== 1.8b KONFIGURASI ION & SPU ==================== -->
+<section class="page">
+  <h2>1.8b &nbsp;Konfigurasi Ion, Anomali, dan Letak Unsur</h2>
+
+  <h3>Konfigurasi elektron ion — titik gugur paling banyak</h3>
+  <p>Untuk ion <strong>negatif</strong>, prosedurnya lurus: tambahkan elektron, lalu isi menurut Aufbau seperti biasa. Untuk ion <strong>positif dari unsur transisi</strong>, ada satu aturan tambahan yang wajib diingat.</p>
+
+  <div class="box exam">
+    <div class="bt">★ UTBK / EXAM FOCUS — Aturan Pelepasan Elektron pada Ion</div>
+    <p>Elektron dilepas dari <strong>kulit terluar (n terbesar) lebih dahulu</strong>, bukan dari subkulit yang terakhir diisi. Untuk logam transisi periode 4, ini berarti <strong>4s dilepas sebelum 3d</strong>.</p>
+    <p style="margin-top:8px">Alasannya: setelah subkulit 3d mulai terisi, energi 3d turun di bawah 4s. Elektron 4s menjadi yang terluar dan paling lemah terikat, sehingga ia yang pertama pergi.</p>
+    <div class="trap">
+      <b>TRAP paling mematikan di bab ini:</b><br>
+      Fe (Z = 26) = [Ar] 3d⁶ 4s². Untuk Fe³⁺, banyak siswa mengurangi 3 elektron dari <em>ujung tulisan</em> sehingga memperoleh [Ar] 4s² 3d³. <b>Ini salah.</b><br>
+      Yang benar: lepas 4s² dulu, lalu satu elektron dari 3d → <b>Fe³⁺ = [Ar] 3d⁵</b>.<br>
+      Konfigurasi 3d⁵ (setengah penuh) inilah yang membuat Fe³⁺ sangat stabil dan menjelaskan mengapa besi lebih sering ditemukan sebagai Fe³⁺ di alam.
+    </div>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Spesi</th><th>Konfigurasi</th><th class="c">e⁻ tidak berpasangan</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr><td>₂₆Fe</td><td>[Ar] 3d⁶ 4s²</td><td class="c">4</td><td>Atom netral</td></tr>
+      <tr class="hi"><td>Fe²⁺</td><td>[Ar] 3d⁶</td><td class="c">4</td><td>Lepas 4s² saja</td></tr>
+      <tr class="hi"><td>Fe³⁺</td><td>[Ar] 3d⁵</td><td class="c">5</td><td>Lepas 4s² lalu 3d¹ — setengah penuh, stabil</td></tr>
+      <tr><td>₂₉Cu</td><td>[Ar] 3d¹⁰ 4s¹</td><td class="c">1</td><td>Anomali (lihat bawah)</td></tr>
+      <tr><td>Cu²⁺</td><td>[Ar] 3d⁹</td><td class="c">1</td><td>Lepas 4s¹ lalu 3d¹</td></tr>
+      <tr><td>₁₇Cl⁻</td><td>[Ne] 3s² 3p⁶</td><td class="c">0</td><td>Ion negatif: tambah elektron seperti biasa</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Anomali konfigurasi: kestabilan penuh dan setengah penuh</h3>
+  <p>Subkulit d yang terisi <strong>penuh (d¹⁰)</strong> atau <strong>setengah penuh (d⁵)</strong> memiliki kestabilan ekstra. Karena itu, jika dengan memindahkan satu elektron dari 4s ke 3d atom bisa mencapai keadaan tersebut, ia akan melakukannya.</p>
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Unsur</th><th>Prediksi Aufbau biasa</th><th>Konfigurasi sebenarnya</th><th>Alasan</th></tr></thead>
+    <tbody>
+      <tr><td>₂₄Cr</td><td>[Ar] 3d⁴ 4s²</td><td class="hi">[Ar] 3d⁵ 4s¹</td><td>3d setengah penuh lebih stabil</td></tr>
+      <tr><td>₂₉Cu</td><td>[Ar] 3d⁹ 4s²</td><td class="hi">[Ar] 3d¹⁰ 4s¹</td><td>3d penuh lebih stabil</td></tr>
+      <tr><td>₄₂Mo</td><td>[Kr] 4d⁴ 5s²</td><td>[Kr] 4d⁵ 5s¹</td><td>Sekelompok dengan Cr</td></tr>
+      <tr><td>₄₇Ag</td><td>[Kr] 4d⁹ 5s²</td><td>[Kr] 4d¹⁰ 5s¹</td><td>Sekelompok dengan Cu</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Untuk UTBK, cukup kuasai <strong>Cr dan Cu</strong>. Dua unsur ini muncul berulang kali karena menjadi pembeda antara siswa yang menghafal urutan dan siswa yang memahami kestabilan.</p>
+
+  <h3>Dari konfigurasi ke letak unsur dalam tabel periodik</h3>
+  <div class="formula">
+    <div class="bt">KEY FORMULA — MENENTUKAN PERIODE DAN GOLONGAN</div>
+    <div class="main-eq" style="font-size:19px">Periode = nilai n terbesar<br>Golongan = jumlah elektron pada subkulit valensi</div>
+    <table>
+      <tr><td>Blok s</td><td>Berakhir di ns¹ atau ns² → golongan IA / IIA. Contoh: 3s¹ → IA, periode 3.</td></tr>
+      <tr><td>Blok p</td><td>Berakhir di ns² np^x → golongan (2 + x) A. Contoh: 3s² 3p⁵ → 7 → VIIA, periode 3.</td></tr>
+      <tr><td>Blok d</td><td>Berakhir di (n−1)d^y ns² → golongan B, nomor = (y + 2). Bila jumlahnya 8, 9, atau 10 → VIIIB; 11 → IB; 12 → IIB.</td></tr>
+    </table>
+    <div class="note"><b>Batasan penting:</b> periode dan golongan selalu ditentukan dari konfigurasi <b>atom netral</b>, bukan dari ionnya. Jika soal memberi konfigurasi ion, kembalikan dulu ke atom netralnya.</div>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ COMMON MISTAKE</div>
+    <div class="vs">
+      <div class="no"><span class="tag">✗ Keliru</span>Konfigurasi Ca²⁺ adalah [Ar], maka Ca terletak pada golongan VIIIA.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Kembalikan dulu ke atom netral: Ca = [Ar] 4s² → golongan IIA, periode 4. Ion boleh mirip gas mulia, tetapi identitas unsurnya tidak berubah.</div>
+    </div>
+    <div class="vs" style="margin-top:12px">
+      <div class="no"><span class="tag">✗ Keliru</span>Menulis konfigurasi Sc sebagai 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹ lalu menyimpulkan periode 4 karena “4s ditulis terakhir sebelum 3d”.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Kesimpulan periodenya kebetulan benar, tetapi alasannya salah. Periode = <em>n terbesar</em> yang muncul, yaitu 4 pada 4s — bukan karena posisi penulisan.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES KONFIGURASI ==================== -->
+<section class="page">
+  <h2>Worked Example — Konfigurasi Elektron</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Konfigurasi dan letak unsur blok p</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan konfigurasi elektron ₁₇Cl, lalu tentukan elektron valensi, periode, dan golongannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Z = 17 (atom netral, e = 17)</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Konfigurasi, e⁻ valensi, periode, golongan</div></div>
+      <div class="step"><b>Langkah 1 — Isi menurut Aufbau</b>1s² (2) → 2s² (4) → 2p⁶ (10) → 3s² (12) → 3p⁵ (17) ✓</div>
+      <div class="step"><b>Langkah 2 — Tulis lengkap</b><span class="eq">1s² 2s² 2p⁶ 3s² 3p⁵</span> atau ringkas <span class="eq">[Ne] 3s² 3p⁵</span></div>
+      <div class="step"><b>Langkah 3 — Elektron valensi</b>Elektron pada n terbesar (n = 3): 3s² + 3p⁵ = <span class="eq">7 elektron</span></div>
+      <div class="step"><b>Langkah 4 — Periode dan golongan</b>n terbesar = 3 → periode 3. Blok p dengan 7 elektron valensi → golongan VIIA</div>
+      <div class="ansbar">Jawaban: [Ne] 3s² 3p⁵ · valensi 7 · periode 3 · golongan VIIA</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Menuliskan jumlah kumulatif (2, 4, 10, 12, 17) di setiap langkah membuat Anda otomatis berhenti tepat di angka yang benar. Kebiasaan ini menghilangkan kesalahan “kelebihan atau kekurangan satu elektron” yang sering terjadi saat mengerjakan cepat.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Unsur transisi</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan konfigurasi elektron ₂₆Fe dalam bentuk lengkap dan bentuk ringkas gas mulia, lalu tentukan periode dan golongannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Z = 26</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Konfigurasi, periode, golongan</div></div>
+      <div class="step"><b>Langkah 1 — Ikuti urutan Aufbau</b>1s² 2s² 2p⁶ 3s² 3p⁶ (18 e⁻) → 4s² (20) → 3d⁶ (26) ✓</div>
+      <div class="step"><b>Langkah 2 — Bentuk ringkas</b>18 elektron pertama = argon → <span class="eq">[Ar] 3d⁶ 4s²</span></div>
+      <div class="step"><b>Langkah 3 — Periode</b>n terbesar = 4 (pada 4s) → periode 4</div>
+      <div class="step"><b>Langkah 4 — Golongan</b>Blok d: jumlah elektron 3d + 4s = 6 + 2 = 8 → termasuk rentang 8–10 → golongan VIIIB</div>
+      <div class="ansbar">Jawaban: [Ar] 3d⁶ 4s² · periode 4 · golongan VIIIB</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bentuk ringkas gas mulia bukan sekadar mempersingkat tulisan. Ia langsung memperlihatkan bagian yang <em>aktif secara kimia</em> ([Ar] adalah inti yang tak tersentuh reaksi), sehingga langkah menentukan golongan menjadi hampir otomatis.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Konfigurasi ion transisi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan konfigurasi elektron ion Fe³⁺ (Z Fe = 26) dan tentukan jumlah elektron tidak berpasangannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Fe = [Ar] 3d⁶ 4s²; muatan +3</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Konfigurasi Fe³⁺ dan jumlah elektron tidak berpasangan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Mulai dari konfigurasi atom netral, lalu lepas elektron dari <b>n terbesar</b> lebih dahulu.</div></div>
+      <div class="step"><b>Langkah 1 — Tulis atom netral</b>Fe = [Ar] 3d⁶ 4s² (total 26 e⁻)</div>
+      <div class="step"><b>Langkah 2 — Lepas 2 elektron pertama dari 4s</b>[Ar] 3d⁶ → ini adalah Fe²⁺ (24 e⁻)</div>
+      <div class="step"><b>Langkah 3 — Lepas 1 elektron lagi, kini dari 3d</b><span class="eq">Fe³⁺ = [Ar] 3d⁵</span> (23 e⁻)</div>
+      <div class="step"><b>Langkah 4 — Terapkan aturan Hund pada 3d⁵</b>Lima orbital d, lima elektron → masing-masing orbital diisi satu elektron dengan spin sejajar</div>
+      <div class="ansbar">Jawaban: Fe³⁺ = [Ar] 3d⁵ dengan 5 elektron tidak berpasangan</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Kalau Anda menghitung 26 − 3 = 23 lalu langsung menerapkan Aufbau dari nol, hasilnya [Ar] 4s² 3d³ — dan itu keliru. Aufbau adalah aturan <em>membangun atom netral</em>, bukan aturan membentuk ion. Untuk ion, selalu berangkat dari atom netral lalu kupas dari lapisan terluar.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Mengenali anomali</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan konfigurasi elektron ₂₄Cr yang sebenarnya, jelaskan mengapa berbeda dari prediksi Aufbau, dan tentukan jumlah elektron tidak berpasangannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Z = 24</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Konfigurasi sebenarnya, alasan, dan e⁻ tidak berpasangan</div></div>
+      <div class="step"><b>Langkah 1 — Prediksi Aufbau biasa</b>[Ar] 4s² 3d⁴ — subkulit d hanya terisi 4 dari 5 orbital</div>
+      <div class="step"><b>Langkah 2 — Periksa peluang kestabilan</b>Jika satu elektron 4s dipindah ke 3d, diperoleh 3d⁵ (setengah penuh) dan 4s¹ (setengah penuh juga). Kedua subkulit menjadi setengah penuh sekaligus.</div>
+      <div class="step"><b>Langkah 3 — Tulis konfigurasi sebenarnya</b><span class="eq">Cr = [Ar] 3d⁵ 4s¹</span></div>
+      <div class="step"><b>Langkah 4 — Hitung elektron tidak berpasangan</b>3d⁵ → 5 elektron sendirian; 4s¹ → 1 elektron sendirian; total <span class="eq">6</span></div>
+      <div class="ansbar">Jawaban: [Ar] 3d⁵ 4s¹ dengan 6 elektron tidak berpasangan</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Selisih energi 4s dan 3d sangat kecil, sehingga “biaya” memindahkan satu elektron lebih murah daripada “keuntungan” kestabilan setengah penuh. Kromium juga menjadi contoh mengapa Cr memiliki banyak bilangan oksidasi (+2, +3, +6) — enam elektron tidak berpasangan berarti enam elektron yang relatif mudah dilibatkan dalam ikatan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Merekonstruksi unsur dari data ion</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Ion X²⁺ memiliki konfigurasi elektron [Ar] 3d⁷. Tentukan (a) nomor atom X, (b) letak X dalam tabel periodik, (c) jumlah elektron tidak berpasangan dalam ion X²⁺, dan (d) jelaskan mengapa senyawa ion ini umumnya berwarna.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Konfigurasi ion X²⁺ = [Ar] 3d⁷; [Ar] mewakili 18 elektron</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Z, periode, golongan, e⁻ tidak berpasangan, alasan warna</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung elektron ion, kembalikan menjadi atom netral, baru tentukan letak dan sifatnya.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung elektron ion</b>18 + 7 = 25 elektron dalam X²⁺</div>
+      <div class="step"><b>Langkah 2 — Kembalikan ke atom netral</b>Ion +2 berarti atom telah kehilangan 2 elektron → Z = 25 + 2 = <span class="eq">27</span> (kobalt)</div>
+      <div class="step"><b>Langkah 3 — Konfigurasi atom netral</b>Karena yang dilepas adalah 4s², maka Co = [Ar] 3d⁷ 4s²</div>
+      <div class="step"><b>Langkah 4 — Letak dalam SPU</b>n terbesar = 4 → periode 4. Blok d dengan 7 + 2 = 9 elektron → masuk rentang 8–10 → golongan VIIIB</div>
+      <div class="step"><b>Langkah 5 — Elektron tidak berpasangan pada 3d⁷</b>Isi lima orbital satu per satu (5 e⁻), sisa 2 elektron berpasangan pada dua orbital pertama → ↑↓ ↑↓ ↑ ↑ ↑ → <span class="eq">3 elektron tidak berpasangan</span></div>
+      <div class="step"><b>Langkah 6 — Alasan warna</b>Subkulit 3d terisi sebagian (bukan kosong dan bukan penuh), sehingga elektron dapat berpindah antartingkat energi d yang selisihnya setara energi cahaya tampak. Cahaya pada panjang gelombang tertentu diserap, dan warna yang kita lihat adalah warna komplemennya.</div>
+      <div class="ansbar">Jawaban: (a) Z = 27 &nbsp;(b) periode 4, golongan VIIIB &nbsp;(c) 3 elektron tidak berpasangan &nbsp;(d) karena subkulit d terisi sebagian</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan urutan berpikirnya: <em>ion → atom netral → letak → sifat</em>. Banyak siswa langsung menghitung 18 + 7 = 25 lalu menjawab Z = 25 (mangan). Kesalahan itu muncul karena melewati langkah pengembalian ke atom netral. Bagian (d) memperlihatkan tujuan akhir seluruh bab ini: konfigurasi elektron bukan latihan menulis, melainkan alat memprediksi sifat nyata suatu zat.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">QUICK RECALL</div>
+    <ol>
+      <li>Mengapa 4s terisi sebelum 3d?
+        <span class="ans">Karena pada saat pengisian, energi subkulit 4s lebih rendah daripada 3d (nilai n + ℓ lebih kecil: 4 + 0 = 4 dibanding 3 + 2 = 5).</span></li>
+      <li>Berapa jumlah maksimum elektron pada kulit M (n = 3)?
+        <span class="ans">2n² = 2(3)² = 18 elektron, yaitu 3s² 3p⁶ 3d¹⁰.</span></li>
+      <li>Apa konfigurasi Cu²⁺ (Z = 29)?
+        <span class="ans">Cu = [Ar] 3d¹⁰ 4s¹ → lepas 4s¹ lalu 3d¹ → Cu²⁺ = [Ar] 3d⁹.</span></li>
+      <li>Suatu atom berakhir pada 4s² 4p³. Di mana letaknya?
+        <span class="ans">Periode 4, golongan VA (2 + 3 = 5 elektron valensi, blok p).</span></li>
+      <li>Mengapa ion Zn²⁺ ([Ar] 3d¹⁰) tidak berwarna, sedangkan Cu²⁺ ([Ar] 3d⁹) berwarna biru?
+        <span class="ans">Subkulit d pada Zn²⁺ terisi penuh sehingga tidak ada perpindahan elektron antartingkat d; pada Cu²⁺ subkulit d terisi sebagian sehingga transisi d–d memungkinkan penyerapan cahaya tampak.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1.9 BILANGAN KUANTUM ==================== -->
+<section class="page" id="kuantum">
+  <h2>1.9 &nbsp;Bilangan Kuantum</h2>
+  <p class="lead">Jika konfigurasi elektron adalah daftar penghuni sebuah kota, bilangan kuantum adalah <strong>alamat lengkap</strong> tiap penghuni: kota, kecamatan, nomor rumah, dan kamar. Empat angka, dan tidak boleh ada dua elektron dengan alamat yang sama persis.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Bilangan kuantum</th><th class="c">Lambang</th><th>Menyatakan</th><th>Nilai yang diizinkan</th><th>Analogi alamat</th></tr></thead>
+    <tbody>
+      <tr><td><b>Utama</b></td><td class="c">n</td><td>Kulit / tingkat energi utama; ukuran orbital</td><td>1, 2, 3, 4, …</td><td>Nomor blok perumahan</td></tr>
+      <tr><td><b>Azimut</b></td><td class="c">ℓ</td><td>Subkulit; bentuk orbital</td><td>0 sampai (n − 1)</td><td>Nama jalan</td></tr>
+      <tr><td><b>Magnetik</b></td><td class="c">m</td><td>Orientasi orbital dalam ruang</td><td>−ℓ, …, 0, …, +ℓ</td><td>Nomor rumah</td></tr>
+      <tr><td><b>Spin</b></td><td class="c">s</td><td>Arah putaran elektron</td><td>+½ (↑) atau −½ (↓)</td><td>Kamar kiri atau kanan</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure class="fig">
+  <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nilai bilangan kuantum magnetik tiap subkulit">
+    <style>
+      .h2t{font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:700;fill:#0B2E4F}
+      .mt{font-family:Inter,Arial,sans-serif;font-size:12px;fill:#69798A;text-anchor:middle}
+      .bo{fill:#fff;stroke:#1B5286;stroke-width:1.5}
+    </style>
+    <text class="h2t" x="20" y="34">Subkulit s &#160;(ℓ = 0)</text>
+    <rect class="bo" x="240" y="18" width="40" height="26" rx="3"/>
+    <text class="mt" x="260" y="60">m = 0</text>
+    <text class="mt" x="420" y="36" style="text-anchor:start">1 orbital → maksimal 2 elektron</text>
+
+    <text class="h2t" x="20" y="98">Subkulit p &#160;(ℓ = 1)</text>
+    <rect class="bo" x="200" y="82" width="40" height="26" rx="3"/>
+    <rect class="bo" x="240" y="82" width="40" height="26" rx="3"/>
+    <rect class="bo" x="280" y="82" width="40" height="26" rx="3"/>
+    <text class="mt" x="220" y="124">−1</text><text class="mt" x="260" y="124">0</text><text class="mt" x="300" y="124">+1</text>
+    <text class="mt" x="420" y="100" style="text-anchor:start">3 orbital → maksimal 6 elektron</text>
+
+    <text class="h2t" x="20" y="166">Subkulit d &#160;(ℓ = 2)</text>
+    <rect class="bo" x="160" y="150" width="40" height="26" rx="3"/>
+    <rect class="bo" x="200" y="150" width="40" height="26" rx="3"/>
+    <rect class="bo" x="240" y="150" width="40" height="26" rx="3"/>
+    <rect class="bo" x="280" y="150" width="40" height="26" rx="3"/>
+    <rect class="bo" x="320" y="150" width="40" height="26" rx="3"/>
+    <text class="mt" x="180" y="192">−2</text><text class="mt" x="220" y="192">−1</text><text class="mt" x="260" y="192">0</text><text class="mt" x="300" y="192">+1</text><text class="mt" x="340" y="192">+2</text>
+    <text class="mt" x="420" y="168" style="text-anchor:start">5 orbital → maksimal 10 elektron</text>
+
+    <text class="mt" x="20" y="232" style="text-anchor:start; font-style:italic">Urutan pengisian selalu dari m paling negatif ke m paling positif, satu per satu (aturan Hund).</text>
+  </svg>
+  <figcaption><b>Gambar 1.4.</b> Kotak orbital dan nilai m. Untuk menentukan bilangan kuantum elektron terakhir, gambarlah kotak subkulit terakhirnya, isi menurut aturan Hund, lalu baca posisi elektron yang terakhir masuk.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ CHEMISTRY SHORTCUT — prosedur 4 langkah yang selalu berhasil</div>
+    <ol style="margin-bottom:0">
+      <li>Tulis konfigurasi elektron, lihat <strong>subkulit terakhir</strong> saja.</li>
+      <li><strong>n</strong> = angka di depan subkulit; <strong>ℓ</strong> = 0/1/2/3 sesuai huruf s/p/d/f.</li>
+      <li>Gambar kotak orbital subkulit itu, isi satu per satu dari m paling kecil.</li>
+      <li>Baca kotak tempat elektron terakhir mendarat → itulah <strong>m</strong>. Panah ke atas → <strong>s = +½</strong>; panah ke bawah → <strong>s = −½</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Subkulit s</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan keempat bilangan kuantum elektron terakhir atom ₁₁Na.</p>
+      <div class="step"><b>Langkah 1 — Konfigurasi</b>Na = 1s² 2s² 2p⁶ 3s¹ → subkulit terakhir <span class="eq">3s¹</span></div>
+      <div class="step"><b>Langkah 2 — n dan ℓ</b>n = 3; huruf s → ℓ = 0</div>
+      <div class="step"><b>Langkah 3 — m</b>ℓ = 0 → hanya ada satu nilai, m = 0</div>
+      <div class="step"><b>Langkah 4 — s</b>Elektron pertama dalam orbital → panah ke atas → s = +½</div>
+      <div class="ansbar">Jawaban: n = 3, ℓ = 0, m = 0, s = +½</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Subkulit p yang sudah mulai berpasangan</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan keempat bilangan kuantum elektron terakhir atom ₁₇Cl.</p>
+      <div class="step"><b>Langkah 1 — Konfigurasi</b>Cl = [Ne] 3s² 3p⁵ → subkulit terakhir <span class="eq">3p⁵</span></div>
+      <div class="step"><b>Langkah 2 — n dan ℓ</b>n = 3; huruf p → ℓ = 1 → nilai m yang mungkin: −1, 0, +1</div>
+      <div class="step"><b>Langkah 3 — Isi kotak orbital</b>Elektron 1–3 mengisi −1, 0, +1 masing-masing satu (↑). Elektron ke-4 berpasangan di m = −1 (↓). Elektron ke-5 berpasangan di m = 0 (↓).</div>
+      <div class="step"><b>Langkah 4 — Baca posisi elektron kelima</b>m = 0 dengan arah panah ke bawah → s = −½</div>
+      <div class="ansbar">Jawaban: n = 3, ℓ = 1, m = 0, s = −½</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Menggambar kotak terlihat lambat, tetapi justru mencegah kesalahan terbesar: menebak m = +1 karena “p⁵ berarti hampir penuh”. Setelah beberapa kali latihan, Anda akan menggambarnya dalam kepala.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Subkulit d</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan keempat bilangan kuantum elektron terakhir atom ₂₆Fe.</p>
+      <div class="step"><b>Langkah 1 — Konfigurasi</b>Fe = [Ar] 3d⁶ 4s². Subkulit yang <em>terakhir diisi</em> menurut Aufbau adalah <span class="eq">3d⁶</span>, bukan 4s².</div>
+      <div class="step"><b>Langkah 2 — n dan ℓ</b>n = 3; huruf d → ℓ = 2 → m yang mungkin: −2, −1, 0, +1, +2</div>
+      <div class="step"><b>Langkah 3 — Isi kotak</b>Elektron 1–5 mengisi kelima orbital satu per satu (↑). Elektron ke-6 kembali ke orbital pertama dan berpasangan di m = −2 (↓).</div>
+      <div class="ansbar">Jawaban: n = 3, ℓ = 2, m = −2, s = −½</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 adalah jebakannya. Karena kebiasaan menuliskan konfigurasi rapi sebagai “3d⁶ 4s²”, banyak siswa mengira 4s² yang terakhir. Yang menentukan adalah <b>urutan pengisian Aufbau</b>, dan di situ 4s diisi lebih dahulu, baru 3d.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Membaca mundur dari bilangan kuantum</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Elektron terakhir suatu atom netral memiliki bilangan kuantum n = 4, ℓ = 1, m = 0, s = +½. Tentukan nomor atom dan letak unsur tersebut dalam tabel periodik.</p>
+      <div class="step"><b>Langkah 1 — Terjemahkan n dan ℓ</b>n = 4, ℓ = 1 → subkulit <span class="eq">4p</span></div>
+      <div class="step"><b>Langkah 2 — Terjemahkan m dan s</b>m = 0 adalah orbital kedua (urutan −1, 0, +1). Spin +½ berarti orbital itu baru diisi satu elektron, jadi pengisian masih tahap tunggal → subkulit berisi <span class="eq">4p²</span></div>
+      <div class="step"><b>Langkah 3 — Rekonstruksi konfigurasi penuh</b>1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p² → jumlah elektron = 18 + 2 + 10 + 2</div>
+      <div class="step"><b>Langkah 4 — Nomor atom dan letak</b>Z = <span class="eq">32</span> (germanium). n terbesar = 4 → periode 4. Valensi 4s² 4p² = 4 elektron, blok p → golongan IVA</div>
+      <div class="ansbar">Jawaban: Z = 32, periode 4, golongan IVA</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal terbalik seperti ini menguji apakah Anda benar-benar memahami arti tiap bilangan. Kuncinya di Langkah 2: <em>spin positif berarti belum berpasangan</em>, sehingga jumlah elektron dalam subkulit = posisi orbital tersebut dalam urutan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Bilangan kuantum pada ion</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Elektron terakhir pada ion M²⁺ memiliki bilangan kuantum n = 3, ℓ = 2, m = 0, s = −½. Tentukan nomor atom unsur M, letaknya dalam tabel periodik, dan jumlah elektron tidak berpasangan pada atom netral M.</p>
+      <div class="we-row"><div class="k">Strategi</div><div>Bangun subkulit ion dari bilangan kuantum, hitung elektron ion, kembalikan ke atom netral, baru tentukan letak dan sifatnya.</div></div>
+      <div class="step"><b>Langkah 1 — Identifikasi subkulit</b>n = 3, ℓ = 2 → subkulit 3d, dengan m: −2, −1, 0, +1, +2</div>
+      <div class="step"><b>Langkah 2 — Tentukan jumlah elektron 3d</b>Spin −½ berarti elektron ini <em>berpasangan</em>, jadi kelima orbital sudah terisi tunggal lebih dulu (5 e⁻). Pasangan terbentuk berurutan mulai m = −2, lalu −1, lalu 0. Berpasangan di m = 0 berarti sudah ada 3 pasangan → total 5 + 3 = <span class="eq">3d⁸</span></div>
+      <div class="step"><b>Langkah 3 — Konfigurasi dan jumlah elektron ion</b>M²⁺ = [Ar] 3d⁸ → 18 + 8 = 26 elektron</div>
+      <div class="step"><b>Langkah 4 — Kembali ke atom netral</b>Z = 26 + 2 = <span class="eq">28</span> → nikel. Karena yang dilepas adalah 4s², maka Ni = [Ar] 3d⁸ 4s²</div>
+      <div class="step"><b>Langkah 5 — Letak dalam SPU</b>Periode 4; blok d dengan 8 + 2 = 10 elektron → golongan VIIIB</div>
+      <div class="step"><b>Langkah 6 — Elektron tidak berpasangan pada Ni</b>3d⁸ → ↑↓ ↑↓ ↑↓ ↑ ↑ → 2 elektron tidak berpasangan; 4s² sudah berpasangan → total <span class="eq">2</span></div>
+      <div class="ansbar">Jawaban: Z = 28 · periode 4, golongan VIIIB · 2 elektron tidak berpasangan</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal ini menggabungkan tiga konsep sekaligus: bilangan kuantum, aturan Hund, dan aturan pelepasan elektron pada ion. Titik paling rawan ada di Langkah 2 dan Langkah 4. Banyak siswa berhenti di Z = 26 karena lupa mengembalikan dua elektron yang telah dilepas. Biasakan menutup pengerjaan dengan pertanyaan: <em>“angka yang saya dapat ini milik ion atau milik atom netral?”</em></div>
+    </div>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ COMMON MISTAKE</div>
+    <div class="vs">
+      <div class="no"><span class="tag">✗ Keliru</span>ℓ untuk subkulit d bernilai 3.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Urutan dimulai dari nol: s = 0, p = 1, d = 2, f = 3.</div>
+    </div>
+    <div class="vs" style="margin-top:12px">
+      <div class="no"><span class="tag">✗ Keliru</span>Elektron terakhir Fe ada di 4s karena ditulis paling belakang.</div>
+      <div class="yes"><span class="tag">✓ Benar</span>Elektron terakhir ada di 3d, karena Aufbau mengisi 4s lebih dahulu baru 3d.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 1.10 EXAM FOCUS RINGKASAN ==================== -->
+<section class="page" id="focus">
+  <h2>1.10 &nbsp;★ UTBK / Exam Focus — Ringkasan Bab</h2>
+
+  <div class="box exam">
+    <div class="bt">1. Konsep yang paling sering diuji</div>
+    <ul>
+      <li>Menghitung p, e, n dari notasi atom <strong>ion</strong> (bukan atom netral).</li>
+      <li>Massa atom relatif dari kelimpahan isotop, sering digabung dengan stoikiometri.</li>
+      <li>Konfigurasi elektron <strong>ion logam transisi</strong> — terutama Fe, Cu, Cr, Ni, Co.</li>
+      <li>Menentukan periode dan golongan dari konfigurasi, atau sebaliknya.</li>
+      <li>Bilangan kuantum elektron terakhir, khususnya pada subkulit d.</li>
+      <li>Jumlah elektron tidak berpasangan dan kaitannya dengan sifat magnetik.</li>
+    </ul>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">2. Bentuk pertanyaan yang khas UTBK</div>
+    <ul>
+      <li><strong>Bertingkat:</strong> “Ion X²⁺ berkonfigurasi …. Pernyataan yang benar tentang X adalah ….” Satu soal menguntai tiga konsep.</li>
+      <li><strong>Sebab–akibat:</strong> dua pernyataan yang masing-masing harus dinilai benar/salah, ditambah penilaian hubungan sebab-akibatnya.</li>
+      <li><strong>Berbasis data:</strong> tabel kelimpahan isotop atau grafik spektrum, lalu diminta menyimpulkan.</li>
+      <li><strong>Perbandingan:</strong> membandingkan dua spesi isoelektronik atau dua ion dari unsur yang sama.</li>
+    </ul>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">3. Hubungan konsep yang paling sering dipakai</div>
+    <p class="eq" style="line-height:2">konfigurasi elektron → elektron valensi → golongan &amp; periode → sifat periodik → jenis ikatan</p>
+    <p>Rantai ini muncul di hampir semua soal Bab 1 tingkat UTBK. Jika Anda hafal rantai ini, Anda tahu langkah berikutnya bahkan sebelum membaca pilihan jawaban.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">4. Kesalahan yang paling sering terjadi</div>
+    <ol>
+      <li>Menambahkan elektron untuk ion positif (seharusnya dikurangi).</li>
+      <li>Membentuk ion transisi dengan mengurangi elektron dari subkulit d, bukan dari 4s.</li>
+      <li>Menentukan golongan dari konfigurasi ion, bukan dari atom netral.</li>
+      <li>Mengira ℓ untuk subkulit d bernilai 3.</li>
+      <li>Menghitung Ar sebagai rata-rata biasa, tanpa pembobotan kelimpahan.</li>
+      <li>Melupakan anomali Cr dan Cu.</li>
+    </ol>
+  </div>
+
+  <div class="box short">
+    <div class="bt">5. Hal yang WAJIB dihafal (daftarnya pendek)</div>
+    <ul>
+      <li>Urutan Aufbau sampai 4p.</li>
+      <li>Kapasitas subkulit: s = 2, p = 6, d = 10, f = 14.</li>
+      <li>Nilai ℓ: s = 0, p = 1, d = 2, f = 3.</li>
+      <li>Nomor atom gas mulia: He 2, Ne 10, Ar 18, Kr 36, Xe 54.</li>
+      <li>Dua anomali: Cr = [Ar] 3d⁵ 4s¹ dan Cu = [Ar] 3d¹⁰ 4s¹.</li>
+    </ul>
+  </div>
+
+  <div class="box short">
+    <div class="bt">6. Hal yang lebih baik DIPAHAMI daripada dihafal</div>
+    <ul>
+      <li>Mengapa 4s dilepas sebelum 3d pada pembentukan ion.</li>
+      <li>Mengapa konfigurasi setengah penuh dan penuh lebih stabil.</li>
+      <li>Mengapa dalam deret isoelektronik, jari-jari mengecil saat muatan inti bertambah.</li>
+      <li>Mengapa tiap model atom digantikan model berikutnya.</li>
+      <li>Mengapa Ar bukan bilangan bulat.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== 1.11 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>1.11 &nbsp;How to Master This Chapter</h2>
+  <div class="sgrid">
+    <div class="scard">
+      <div class="h">1 · KONSEP YANG HARUS DIPAHAMI</div>
+      <ul>
+        <li>Identitas unsur ditentukan proton, massa ditentukan inti, sifat ditentukan elektron.</li>
+        <li>Aufbau adalah aturan membangun atom netral, bukan aturan membentuk ion.</li>
+        <li>Elektron valensi menghubungkan konfigurasi dengan letak dan sifat unsur.</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="h">2 · RUMUS YANG PERLU DIKUASAI</div>
+      <ul>
+        <li>n = A − Z dan e = Z − muatan</li>
+        <li>Ar = Σ(%ᵢ × Aᵢ) / 100</li>
+        <li>Daya tampung kulit = 2n²; jumlah orbital = 2ℓ + 1</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="h">3 · HUBUNGAN ANTARKONSEP</div>
+      <ul>
+        <li>Konfigurasi → periode &amp; golongan</li>
+        <li>Konfigurasi → elektron tidak berpasangan → sifat magnetik &amp; jumlah ikatan</li>
+        <li>Ar → Mr → mol → seluruh stoikiometri (Bab 6)</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="h">4 · JENIS SOAL YANG HARUS DILATIH</div>
+      <ul>
+        <li>Ion transisi (Fe, Cu, Cr, Co, Ni) — minimal 10 soal.</li>
+        <li>Soal terbalik: dari bilangan kuantum menuju nomor atom.</li>
+        <li>Isotop yang digabung dengan perhitungan mol.</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="h">5 · KESALAHAN YANG HARUS DIHINDARI</div>
+      <ul>
+        <li>Menentukan golongan dari konfigurasi ion.</li>
+        <li>Mengurangi elektron dari ujung tulisan konfigurasi.</li>
+        <li>Lupa memeriksa apakah total kelimpahan isotop sudah 100%.</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="h">6 · CARA BELAJAR YANG EFEKTIF</div>
+      <ul>
+        <li>Tulis konfigurasi 20 unsur pertama tanpa melihat catatan, lalu periksa.</li>
+        <li>Untuk tiap unsur transisi, langsung latih ion +2 dan +3-nya.</li>
+        <li>Gunakan bagian Quick Recall sebagai tes lisan sebelum tidur.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 1</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pembahasan tersedia di bawah setiap soal — bukalah hanya setelah Anda menuliskan jawaban dan alasannya.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji pemahaman definisi, hubungan sederhana, dan pembacaan notasi.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Sifat kimia suatu unsur ditentukan oleh identitasnya. Partikel subatom yang menentukan identitas suatu unsur adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> neutron, karena menentukan massa atom</li>
+      <li><span class="l">B.</span> proton, karena jumlahnya menyatakan nomor atom</li>
+      <li><span class="l">C.</span> elektron, karena berperan dalam reaksi kimia</li>
+      <li><span class="l">D.</span> jumlah proton dan neutron, karena menyusun inti</li>
+      <li><span class="l">E.</span> elektron valensi, karena menentukan golongan</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Nomor atom (Z) = jumlah proton, dan Z inilah yang mendefinisikan unsur. Mengubah jumlah proton berarti mengubah unsurnya.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Mengubah neutron hanya menghasilkan isotop; ¹²C dan ¹⁴C tetap sama-sama karbon.</li>
+        <li><b>C.</b> Elektron menentukan <em>sifat</em> kimia, bukan <em>identitas</em>. Na dan Na⁺ punya elektron berbeda tetapi tetap natrium.</li>
+        <li><b>D.</b> Ini definisi nomor massa, yang berbeda antarisotop unsur yang sama.</li>
+        <li><b>E.</b> Elektron valensi menentukan letak golongan, tetapi banyak unsur berbeda memiliki elektron valensi yang sama (Li, Na, K sama-sama 1).</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Bedakan tiga kata kunci yang sering tertukar dalam soal: <em>identitas</em> (proton), <em>massa</em> (proton + neutron), dan <em>sifat kimia</em> (elektron).</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Perhatikan pasangan spesi <span class="eq">¹⁴₆C</span> dan <span class="eq">¹⁴₇N</span>. Pernyataan yang tepat mengenai pasangan tersebut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> keduanya isotop karena nomor massanya sama</li>
+      <li><span class="l">B.</span> keduanya isoton karena jumlah neutronnya sama</li>
+      <li><span class="l">C.</span> keduanya isobar karena nomor massanya sama</li>
+      <li><span class="l">D.</span> keduanya isoelektronik karena jumlah elektronnya sama</li>
+      <li><span class="l">E.</span> keduanya merupakan unsur yang sama dengan massa berbeda</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Isobar = nomor massa (A) sama, nomor atom berbeda. Di sini A = 14 untuk keduanya, sedangkan Z berbeda (6 dan 7).</p>
+      <h5>Langkah penyelesaian</h5>
+      <p>C: A = 14, Z = 6, n = 8. &nbsp; N: A = 14, Z = 7, n = 7. Yang sama hanya A → isobar.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Isotop mensyaratkan nomor <em>atom</em> sama, bukan nomor massa.</li>
+        <li><b>B.</b> Jumlah neutronnya berbeda: 8 dan 7.</li>
+        <li><b>D.</b> Jumlah elektronnya 6 dan 7, tidak sama.</li>
+        <li><b>E.</b> Z berbeda, jadi jelas unsur yang berbeda.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Selalu hitung dulu (Z, A, n) untuk kedua spesi sebelum memilih istilah. Menebak dari “terlihat mirip” adalah sumber kesalahan utama di tipe soal ini.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Spektrum atom hidrogen berupa garis-garis diskret, bukan spektrum kontinu. Model atom yang pertama kali berhasil menjelaskan fakta tersebut adalah model ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Dalton</li>
+      <li><span class="l">B.</span> Thomson</li>
+      <li><span class="l">C.</span> Rutherford</li>
+      <li><span class="l">D.</span> Bohr</li>
+      <li><span class="l">E.</span> mekanika kuantum</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Bohr memperkenalkan tingkat energi terkuantisasi. Karena elektron hanya boleh menempati energi tertentu, selisih energi antartingkat juga tertentu, sehingga foton yang dipancarkan hanya memiliki panjang gelombang tertentu — muncul sebagai garis, bukan pita kontinu.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B.</b> Kedua model belum mengenal tingkat energi elektron sama sekali.</li>
+        <li><b>C.</b> Model Rutherford memperkirakan spektrum kontinu, karena elektron dianggap dapat berada pada jarak berapa pun dari inti.</li>
+        <li><b>E.</b> Mekanika kuantum memang menjelaskannya lebih lengkap, tetapi soal meminta model yang <em>pertama kali</em> berhasil.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Kata “pertama kali” adalah penentu jawaban. Bacalah kata sifat semacam ini dengan cermat — sering menjadi pembeda antara pilihan D dan E.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Jumlah orbital dan jumlah elektron maksimum pada subkulit d berturut-turut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 3 dan 6</li>
+      <li><span class="l">B.</span> 5 dan 10</li>
+      <li><span class="l">C.</span> 7 dan 14</li>
+      <li><span class="l">D.</span> 5 dan 5</li>
+      <li><span class="l">E.</span> 10 dan 20</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Subkulit d memiliki ℓ = 2. Jumlah orbital = 2ℓ + 1 = 2(2) + 1 = 5. Setiap orbital menampung maksimal 2 elektron (larangan Pauli), sehingga daya tampung = 5 × 2 = 10.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Itu data subkulit p (ℓ = 1).</li>
+        <li><b>C.</b> Itu data subkulit f (ℓ = 3).</li>
+        <li><b>D.</b> Melupakan bahwa satu orbital dapat berisi dua elektron dengan spin berlawanan.</li>
+        <li><b>E.</b> Membalik logika: 10 adalah jumlah elektron, bukan jumlah orbital.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Hafalkan satu rumus saja — jumlah orbital = 2ℓ + 1 — dan seluruh baris tabel subkulit dapat Anda turunkan sendiri saat ujian.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Jumlah elektron dalam ion <span class="eq">⁴⁰₂₀Ca²⁺</span> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 18</li>
+      <li><span class="l">B.</span> 20</li>
+      <li><span class="l">C.</span> 22</li>
+      <li><span class="l">D.</span> 38</li>
+      <li><span class="l">E.</span> 40</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>e = Z − muatan = 20 − (+2) = 18 elektron. (Ion Ca²⁺ isoelektronik dengan argon.)</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Itu jumlah elektron atom Ca netral, bukan ionnya.</li>
+        <li><b>C.</b> Kesalahan tanda: menambahkan 2 elektron untuk ion positif.</li>
+        <li><b>D, E.</b> Mengacaukan jumlah elektron dengan nomor massa.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Ubah tanda muatan menjadi kalimat kerja sebelum menghitung: “+2 berarti <em>kehilangan</em> 2 elektron”. Kalimat ini menutup kemungkinan salah tanda.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menerapkan rumus dan menggabungkan dua sampai tiga konsep.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Jumlah proton, elektron, dan neutron dalam ion <span class="eq">³¹₁₅P³⁻</span> berturut-turut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 15, 12, 16</li>
+      <li><span class="l">B.</span> 15, 15, 16</li>
+      <li><span class="l">C.</span> 15, 18, 16</li>
+      <li><span class="l">D.</span> 18, 15, 13</li>
+      <li><span class="l">E.</span> 15, 18, 31</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>p = Z = 15 (tidak berubah saat menjadi ion).<br>
+      e = Z − muatan = 15 − (−3) = 18.<br>
+      n = A − Z = 31 − 15 = 16.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Mengurangi elektron padahal ion bermuatan negatif.</li>
+        <li><b>B.</b> Memperlakukan ion sebagai atom netral.</li>
+        <li><b>D.</b> Menukar posisi proton dan elektron.</li>
+        <li><b>E.</b> Menggunakan A sebagai jumlah neutron.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Ion negatif selalu memiliki elektron <em>lebih banyak</em> daripada protonnya. Cek cepat ini bisa menggugurkan dua sampai tiga pilihan dalam hitungan detik.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Unsur X memiliki dua isotop, yaitu X-20 dengan kelimpahan 90% dan X-22 dengan kelimpahan 10%. Massa atom relatif unsur X adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 20,0</li>
+      <li><span class="l">B.</span> 20,2</li>
+      <li><span class="l">C.</span> 21,0</li>
+      <li><span class="l">D.</span> 21,8</li>
+      <li><span class="l">E.</span> 22,0</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Ar = (90 × 20 + 10 × 22) / 100 = (1800 + 220) / 100 = 2020 / 100 = <b>20,2</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, E.</b> Mengabaikan salah satu isotop.</li>
+        <li><b>C.</b> Menggunakan rata-rata biasa (20 + 22)/2 tanpa pembobotan.</li>
+        <li><b>D.</b> Menukar kelimpahan kedua isotop.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Kelimpahan 90% ada pada isotop ringan, jadi Ar harus jauh lebih dekat ke 20 daripada ke 22. Penalaran ini saja sudah menyisakan pilihan A dan B.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Unsur brom memiliki nomor atom 35. Letak unsur brom dalam tabel periodik adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> periode 3, golongan VIIA</li>
+      <li><span class="l">B.</span> periode 4, golongan VA</li>
+      <li><span class="l">C.</span> periode 4, golongan VIIA</li>
+      <li><span class="l">D.</span> periode 4, golongan VIIB</li>
+      <li><span class="l">E.</span> periode 5, golongan VIIA</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Konfigurasi: 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁵ = [Ar] 3d¹⁰ 4s² 4p⁵<br>
+      n terbesar = 4 → periode 4.<br>
+      Elektron valensi = 4s² + 4p⁵ = 7, berakhir di blok p → golongan VIIA.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Mengira brom seperiode dengan klorin.</li>
+        <li><b>B.</b> Menghitung 4p⁵ saja atau salah menjumlah elektron valensi.</li>
+        <li><b>D.</b> Golongan B hanya untuk unsur yang <em>berakhir</em> di subkulit d; di sini 3d sudah penuh dan pengisian berlanjut ke 4p.</li>
+        <li><b>E.</b> Salah membaca n terbesar.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Subkulit d yang <b>penuh (d¹⁰)</b> tidak dihitung sebagai elektron valensi. Itu sebabnya Zn, Ga, sampai Kr semuanya masuk golongan A, bukan B.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Konfigurasi elektron ion Cu²⁺ (nomor atom Cu = 29) adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> [Ar] 3d⁷ 4s²</li>
+      <li><span class="l">B.</span> [Ar] 3d⁸ 4s¹</li>
+      <li><span class="l">C.</span> [Ar] 3d⁹</li>
+      <li><span class="l">D.</span> [Ar] 3d¹⁰</li>
+      <li><span class="l">E.</span> [Ar] 3d¹⁰ 4s¹</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Cu netral mengalami anomali: [Ar] 3d¹⁰ 4s¹ (bukan 3d⁹ 4s²).<br>
+      Lepas elektron dari kulit terluar dulu: 4s¹ hilang → [Ar] 3d¹⁰ (ini Cu⁺).<br>
+      Lepas satu elektron lagi, kini dari 3d → <b>Cu²⁺ = [Ar] 3d⁹</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Mengurangi 2 elektron dari 3d dan mempertahankan 4s².</li>
+        <li><b>B.</b> Menggunakan konfigurasi prediksi Aufbau tanpa memperhatikan anomali.</li>
+        <li><b>D.</b> Itu konfigurasi Cu⁺, bukan Cu²⁺.</li>
+        <li><b>E.</b> Itu konfigurasi Cu netral.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Soal ini menggabungkan dua jebakan sekaligus — anomali Cu dan urutan pelepasan elektron. Jika hanya satu yang Anda ingat, jawabannya tetap salah.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Bilangan kuantum elektron terakhir atom fosforus (Z = 15) adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> n = 3, ℓ = 1, m = −1, s = +½</li>
+      <li><span class="l">B.</span> n = 3, ℓ = 1, m = 0, s = −½</li>
+      <li><span class="l">C.</span> n = 3, ℓ = 1, m = +1, s = +½</li>
+      <li><span class="l">D.</span> n = 3, ℓ = 2, m = +1, s = +½</li>
+      <li><span class="l">E.</span> n = 3, ℓ = 0, m = 0, s = −½</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>P = 1s² 2s² 2p⁶ 3s² 3p³ → subkulit terakhir 3p³ sehingga n = 3 dan ℓ = 1.<br>
+      Isi kotak orbital p (m = −1, 0, +1) menurut aturan Hund: ↑ | ↑ | ↑. Ketiga elektron masih sendirian.<br>
+      Elektron ketiga mendarat di m = +1 dengan spin +½.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Itu posisi elektron pertama pada 3p.</li>
+        <li><b>B.</b> Spin −½ berarti sudah berpasangan, padahal 3p³ belum ada pasangan sama sekali.</li>
+        <li><b>D.</b> ℓ = 2 berarti subkulit d, sedangkan konfigurasi P berakhir di p.</li>
+        <li><b>E.</b> ℓ = 0 berarti subkulit s, yaitu posisi elektron ke-12, bukan ke-15.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Untuk konfigurasi p¹, p², dan p³, spin elektron terakhir <b>selalu +½</b> karena belum ada yang berpasangan. Pola ini menghemat waktu Anda.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Jumlah elektron tidak berpasangan pada atom kromium (Z = 24) dalam keadaan dasar adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li>
+      <li><span class="l">B.</span> 4</li>
+      <li><span class="l">C.</span> 5</li>
+      <li><span class="l">D.</span> 6</li>
+      <li><span class="l">E.</span> 8</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Konfigurasi sebenarnya (anomali): Cr = [Ar] 3d⁵ 4s¹.<br>
+      3d⁵ → kelima orbital terisi satu elektron → 5 elektron tidak berpasangan.<br>
+      4s¹ → 1 elektron tidak berpasangan.<br>
+      Total = 5 + 1 = <b>6</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Hasil dari konfigurasi prediksi [Ar] 3d⁴ 4s², yang bukan konfigurasi sebenarnya.</li>
+        <li><b>C.</b> Menghitung 3d⁵ saja dan melupakan 4s¹.</li>
+        <li><b>A, E.</b> Tidak sesuai dengan konfigurasi mana pun.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Kromium adalah unsur dengan elektron tidak berpasangan terbanyak di periode 4. Fakta ini menjelaskan mengapa kromium bersifat paramagnetik kuat dan memiliki banyak bilangan oksidasi.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Analitis, multi-langkah, berbasis data dan tabel, serta menghubungkan beberapa konsep sekaligus.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12 — Analisis tabel</div>
+    <div class="qs">Hasil analisis kelimpahan isotop unsur R disajikan pada tabel berikut.</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Isotop</th><th class="c">R-24</th><th class="c">R-25</th><th class="c">R-26</th></tr></thead>
+      <tbody><tr><td>Kelimpahan (%)</td><td class="c">79</td><td class="c">10</td><td class="c">11</td></tr></tbody>
+    </table></div>
+    <div class="qs">Jika Ar H = 1 dan Ar O = 16, massa molekul relatif senyawa R(OH)₂ adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 41,32</li>
+      <li><span class="l">B.</span> 55,32</li>
+      <li><span class="l">C.</span> 58,00</li>
+      <li><span class="l">D.</span> 58,32</li>
+      <li><span class="l">E.</span> 75,32</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Massa atom relatif dari kelimpahan isotop, dilanjutkan perhitungan Mr senyawa.</p>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Periksa total kelimpahan: 79 + 10 + 11 = 100% ✓<br>
+      <b>Langkah 2.</b> Ar R = (79 × 24 + 10 × 25 + 11 × 26)/100 = (1896 + 250 + 286)/100 = 2432/100 = 24,32<br>
+      <b>Langkah 3.</b> Mr R(OH)₂ = Ar R + 2(Ar O + Ar H) = 24,32 + 2(16 + 1) = 24,32 + 34 = <b>58,32</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Hanya menambahkan satu gugus OH.</li>
+        <li><b>B.</b> Menggunakan 2 × O saja tanpa menghitung hidrogen.</li>
+        <li><b>C.</b> Membulatkan Ar R menjadi 24 (nomor massa isotop terbanyak), bukan memakai rata-rata tertimbang.</li>
+        <li><b>E.</b> Mengalikan seluruh rumus dengan 2, seolah senyawanya R₂(OH)₂.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Pilihan C sengaja disiapkan untuk siswa yang “membulatkan demi kepraktisan”. Dalam soal Ar, jangan pernah membulatkan sebelum langkah terakhir.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Ion X³⁺ isoelektronik dengan atom neon (Z = 10). Jika dalam inti atom X terdapat 14 neutron, notasi atom X yang benar adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> <span class="eq">²⁴₁₀X</span></li>
+      <li><span class="l">B.</span> <span class="eq">²⁷₁₃X</span></li>
+      <li><span class="l">C.</span> <span class="eq">²¹₇X</span></li>
+      <li><span class="l">D.</span> <span class="eq">³¹₁₇X</span></li>
+      <li><span class="l">E.</span> <span class="eq">²⁷₁₄X</span></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Isoelektronik dengan Ne → ion X³⁺ memiliki 10 elektron.<br>
+      <b>Langkah 2.</b> Z = e + muatan = 10 + 3 = 13 → unsur X adalah aluminium.<br>
+      <b>Langkah 3.</b> A = Z + n = 13 + 14 = 27.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menganggap Z ion sama dengan Z atom netral (10).</li>
+        <li><b>C.</b> Mengurangi 3 dari 10 (mengira ion positif menerima elektron).</li>
+        <li><b>D.</b> Z = 17 tidak diperoleh dari data mana pun.</li>
+        <li><b>E.</b> Menukar posisi Z dan n.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Kata “isoelektronik dengan …” selalu berarti satu hal saja: <em>jumlah elektronnya sama</em>. Ubah kalimat itu menjadi angka lebih dulu, lalu soal menjadi rutin.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14 — Sebab–akibat</div>
+    <div class="qs">Perhatikan dua pernyataan berikut.<br><br>
+    <b>Pernyataan 1:</b> Jari-jari ion Na⁺ lebih kecil daripada jari-jari atom Na.<br>
+    <b>SEBAB</b><br>
+    <b>Pernyataan 2:</b> Ion Na⁺ memiliki jumlah kulit elektron yang lebih sedikit daripada atom Na.</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Pernyataan 1 benar, pernyataan 2 benar, dan keduanya berhubungan sebab–akibat</li>
+      <li><span class="l">B.</span> Pernyataan 1 benar, pernyataan 2 benar, tetapi keduanya tidak berhubungan sebab–akibat</li>
+      <li><span class="l">C.</span> Pernyataan 1 benar, pernyataan 2 salah</li>
+      <li><span class="l">D.</span> Pernyataan 1 salah, pernyataan 2 benar</li>
+      <li><span class="l">E.</span> Pernyataan 1 dan pernyataan 2 keduanya salah</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Uji Pernyataan 1.</b> Na = 1s² 2s² 2p⁶ 3s¹ (3 kulit). Na⁺ = 1s² 2s² 2p⁶ (2 kulit). Kulit terluar hilang, sehingga jari-jari ion memang lebih kecil → <b>benar</b>.<br>
+      <b>Uji Pernyataan 2.</b> Jumlah kulit turun dari 3 menjadi 2 → <b>benar</b>.<br>
+      <b>Uji hubungan.</b> Berkurangnya jumlah kulit adalah tepat alasan mengapa jari-jarinya mengecil → <b>berhubungan sebab–akibat</b>.</p>
+      <h5>Catatan penting</h5>
+      <p>Bahkan jika jumlah kulitnya tidak berubah (misalnya Fe²⁺ dibanding Fe³⁺), jari-jari ion positif tetap lebih kecil karena jumlah proton tidak berubah sementara elektron berkurang, sehingga tarikan inti per elektron menguat.</p>
+      <div class="insight"><b>Exam Insight:</b> Kerjakan soal sebab–akibat dalam tiga tahap terpisah: nilai P1, nilai P2, baru nilai hubungannya. Menilai ketiganya sekaligus adalah cara tercepat untuk keliru.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Ion M³⁺ memiliki konfigurasi elektron [Ar] 3d³. Pernyataan yang <b>tidak tepat</b> mengenai unsur M adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> nomor atom M adalah 24</li>
+      <li><span class="l">B.</span> M terletak pada periode 4</li>
+      <li><span class="l">C.</span> konfigurasi elektron atom M adalah [Ar] 3d⁵ 4s¹</li>
+      <li><span class="l">D.</span> M termasuk unsur transisi</li>
+      <li><span class="l">E.</span> atom M memiliki 4 elektron tidak berpasangan</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Elektron ion = 18 + 3 = 21 → Z = 21 + 3 = 24 → unsur M adalah kromium. Pilihan A <b>benar</b>.<br>
+      <b>Langkah 2.</b> Cr mengalami anomali: [Ar] 3d⁵ 4s¹. Pilihan C <b>benar</b>.<br>
+      <b>Langkah 3.</b> n terbesar = 4 → periode 4, blok d → unsur transisi. Pilihan B dan D <b>benar</b>.<br>
+      <b>Langkah 4.</b> Elektron tidak berpasangan pada Cr = 5 (dari 3d⁵) + 1 (dari 4s¹) = <b>6</b>, bukan 4. Pilihan E <b>tidak tepat</b> → inilah jawabannya.</p>
+      <h5>Mengapa pilihan lain salah (sebagai jawaban)</h5>
+      <ul class="distract">
+        <li><b>A–D.</b> Keempatnya merupakan pernyataan yang benar, sehingga tidak memenuhi permintaan soal.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Angka 4 pada pilihan E berasal dari konfigurasi prediksi [Ar] 3d⁴ 4s². Distraktor semacam ini dirancang khusus untuk siswa yang melewatkan anomali Cr. Perhatikan pula perintah soal: yang diminta adalah pernyataan yang <b>tidak tepat</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16 — Analisis data eksperimen</div>
+    <div class="qs">Energi ionisasi bertingkat suatu unsur T (dalam kJ/mol) disajikan sebagai berikut.</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Ionisasi ke-</th><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th></tr></thead>
+      <tbody><tr><td>Energi (kJ/mol)</td><td class="c">738</td><td class="c">1451</td><td class="c">7733</td><td class="c">10 540</td></tr></tbody>
+    </table></div>
+    <div class="qs">Berdasarkan data tersebut, unsur T paling mungkin terletak pada golongan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> IA</li>
+      <li><span class="l">B.</span> IIA</li>
+      <li><span class="l">C.</span> IIIA</li>
+      <li><span class="l">D.</span> IVA</li>
+      <li><span class="l">E.</span> VIA</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Lompatan tajam energi ionisasi menandakan elektron berikutnya diambil dari <em>kulit yang lebih dalam</em>, yaitu setelah semua elektron valensi habis.</p>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Hitung kenaikan antartingkat: 738 → 1451 (naik ±2×), lalu 1451 → 7733 (naik lebih dari 5×).<br>
+      <b>Langkah 2.</b> Lompatan besar terjadi <b>setelah ionisasi kedua</b>.<br>
+      <b>Langkah 3.</b> Artinya unsur T memiliki 2 elektron valensi yang relatif mudah dilepas → golongan IIA. (Data ini sesuai dengan magnesium.)</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Golongan IA akan menunjukkan lompatan setelah ionisasi <em>pertama</em>.</li>
+        <li><b>C.</b> Golongan IIIA menunjukkan lompatan setelah ionisasi ketiga.</li>
+        <li><b>D, E.</b> Lompatannya akan muncul jauh lebih belakang, di ionisasi ke-4 atau ke-6.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Yang dibaca bukan besarnya angka, melainkan <b>letak lompatannya</b>. Aturan praktis: golongan = nomor ionisasi terakhir sebelum lompatan besar terjadi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17 — Multi-concept</div>
+    <div class="qs">Unsur A memiliki nomor atom 12 dan unsur B memiliki nomor atom 17. Jika keduanya bersenyawa, rumus kimia dan jenis ikatan yang terbentuk berturut-turut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> AB, ionik</li>
+      <li><span class="l">B.</span> AB₂, ionik</li>
+      <li><span class="l">C.</span> A₂B, ionik</li>
+      <li><span class="l">D.</span> AB₂, kovalen</li>
+      <li><span class="l">E.</span> A₂B₃, kovalen</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> A: 1s² 2s² 2p⁶ 3s² → 2 elektron valensi, golongan IIA (logam) → cenderung melepas 2 elektron menjadi A²⁺.<br>
+      <b>Langkah 2.</b> B: 1s² 2s² 2p⁶ 3s² 3p⁵ → 7 elektron valensi, golongan VIIA (nonlogam) → cenderung menerima 1 elektron menjadi B⁻.<br>
+      <b>Langkah 3.</b> Agar muatan total nol, dibutuhkan 1 ion A²⁺ dan 2 ion B⁻ → rumus <b>AB₂</b>.<br>
+      <b>Langkah 4.</b> Logam + nonlogam dengan serah terima elektron → ikatan <b>ionik</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Muatannya tidak seimbang (+2 dan −1).</li>
+        <li><b>C.</b> Membalik perbandingan muatan.</li>
+        <li><b>D, E.</b> Ikatan kovalen terbentuk antara sesama nonlogam, sedangkan A adalah logam golongan IIA.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Soal ini adalah jembatan menuju Bab 2. Perhatikan bahwa seluruh jawabannya diturunkan dari satu langkah awal — menulis konfigurasi elektron. Inilah alasan bab ini disebut fondasi.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Menuntut strategi, penalaran, dan integrasi lintas bab. Tidak dapat diselesaikan hanya dengan satu rumus.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Spektrum massa unsur Q menunjukkan dua puncak, yaitu pada m/z 79 dan m/z 81, dengan tinggi puncak yang sama besar. Unsur Q berwujud gas diatomik pada suhu kamar. Massa dari 0,25 mol gas Q₂ adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 20 gram</li>
+      <li><span class="l">B.</span> 30 gram</li>
+      <li><span class="l">C.</span> 40 gram</li>
+      <li><span class="l">D.</span> 60 gram</li>
+      <li><span class="l">E.</span> 80 gram</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Pembacaan data spektrum massa → massa atom relatif → massa molekul relatif → hubungan mol dan massa.</p>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Tinggi puncak sama besar berarti kelimpahan kedua isotop sama, yaitu 50% dan 50%.<br>
+      <b>Langkah 2.</b> Ar Q = (50 × 79 + 50 × 81)/100 = (3950 + 4050)/100 = 80. (Unsur Q adalah bromin.)<br>
+      <b>Langkah 3.</b> Karena Q diatomik, Mr Q₂ = 2 × 80 = 160.<br>
+      <b>Langkah 4.</b> m = n × Mr = 0,25 × 160 = <b>40 gram</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menggunakan Ar Q, bukan Mr Q₂ (0,25 × 80 = 20).</li>
+        <li><b>B.</b> Salah menghitung Ar sebagai 120 atau mengalikan mol dengan angka yang salah.</li>
+        <li><b>D.</b> Menggunakan n = 0,375 atau salah membaca perbandingan puncak.</li>
+        <li><b>E.</b> Mengambil Ar sebagai Mr dan mengabaikan faktor mol.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Ada dua kata kunci yang mudah terlewat: “tinggi puncak sama besar” (berarti 50 : 50) dan “diatomik” (berarti Mr = 2 × Ar). Melewatkan satu saja langsung mengarah ke pilihan A atau E — dan keduanya memang sengaja disediakan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Perhatikan keempat spesi berikut: S²⁻ (Z = 16), Cl⁻ (Z = 17), K⁺ (Z = 19), dan Ca²⁺ (Z = 20). Urutan jari-jari keempat spesi dari yang <b>terbesar</b> ke yang terkecil adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> S²⁻ &gt; Cl⁻ &gt; K⁺ &gt; Ca²⁺</li>
+      <li><span class="l">B.</span> Ca²⁺ &gt; K⁺ &gt; Cl⁻ &gt; S²⁻</li>
+      <li><span class="l">C.</span> Cl⁻ &gt; S²⁻ &gt; Ca²⁺ &gt; K⁺</li>
+      <li><span class="l">D.</span> K⁺ &gt; Ca²⁺ &gt; S²⁻ &gt; Cl⁻</li>
+      <li><span class="l">E.</span> S²⁻ &gt; K⁺ &gt; Cl⁻ &gt; Ca²⁺</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Perbandingan jari-jari pada deret isoelektronik.</p>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Hitung elektron tiap spesi: S²⁻ = 18; Cl⁻ = 18; K⁺ = 18; Ca²⁺ = 18. Semuanya isoelektronik dengan argon.<br>
+      <b>Langkah 2.</b> Karena jumlah elektron dikunci sama, satu-satunya variabel adalah muatan inti: 16 &lt; 17 &lt; 19 &lt; 20.<br>
+      <b>Langkah 3.</b> Semakin besar muatan inti, semakin kuat tarikan terhadap 18 elektron yang sama, sehingga awan elektron makin mengerut.<br>
+      <b>Langkah 4.</b> Jari-jari terbesar dimiliki yang muatan intinya terkecil → S²⁻ &gt; Cl⁻ &gt; K⁺ &gt; Ca²⁺.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Membalik logika, seolah muatan inti besar berarti jari-jari besar.</li>
+        <li><b>C.</b> Mengurutkan berdasarkan besar muatan ion (2− lalu 1−), bukan muatan inti.</li>
+        <li><b>D.</b> Menganggap semua kation lebih besar daripada anion.</li>
+        <li><b>E.</b> Mencampur urutan anion dan kation tanpa dasar yang konsisten.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Langkah pertama pada soal jari-jari selalu sama: <b>periksa apakah spesinya isoelektronik.</b> Jika ya, urutkan semata-mata berdasarkan nomor atom secara terbalik — aturan periodik biasa (kiri-kanan, atas-bawah) tidak berlaku di sini.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Di antara kombinasi bilangan kuantum berikut, yang <b>tidak mungkin</b> dimiliki oleh sebuah elektron adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> n = 3, ℓ = 2, m = −2, s = +½</li>
+      <li><span class="l">B.</span> n = 4, ℓ = 0, m = 0, s = −½</li>
+      <li><span class="l">C.</span> n = 2, ℓ = 2, m = +1, s = +½</li>
+      <li><span class="l">D.</span> n = 3, ℓ = 1, m = 0, s = −½</li>
+      <li><span class="l">E.</span> n = 5, ℓ = 3, m = −3, s = +½</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Batasan nilai bilangan kuantum: ℓ hanya boleh bernilai 0 sampai (n − 1), dan m hanya boleh bernilai −ℓ sampai +ℓ.</p>
+      <h5>Langkah penyelesaian</h5>
+      <p>Uji satu per satu terhadap syarat ℓ ≤ n − 1:</p>
+      <div class="tw"><table class="d">
+        <thead><tr><th class="c">Pilihan</th><th class="c">n</th><th class="c">ℓ maksimum (n−1)</th><th class="c">ℓ diberikan</th><th class="c">Status</th></tr></thead>
+        <tbody>
+          <tr><td class="c">A</td><td class="c">3</td><td class="c">2</td><td class="c">2</td><td class="c">Boleh (3d)</td></tr>
+          <tr><td class="c">B</td><td class="c">4</td><td class="c">3</td><td class="c">0</td><td class="c">Boleh (4s)</td></tr>
+          <tr class="hi"><td class="c">C</td><td class="c">2</td><td class="c">1</td><td class="c">2</td><td class="c">Tidak mungkin</td></tr>
+          <tr><td class="c">D</td><td class="c">3</td><td class="c">2</td><td class="c">1</td><td class="c">Boleh (3p)</td></tr>
+          <tr><td class="c">E</td><td class="c">5</td><td class="c">4</td><td class="c">3</td><td class="c">Boleh (5f)</td></tr>
+        </tbody>
+      </table></div>
+      <p>Pilihan C menuntut adanya subkulit “2d”, padahal kulit ke-2 hanya memiliki subkulit 2s dan 2p.</p>
+      <div class="insight"><b>Exam Insight:</b> Periksa dalam urutan ini: (1) apakah ℓ ≤ n − 1, (2) apakah m berada dalam rentang −ℓ sampai +ℓ, (3) apakah s bernilai ±½. Sebagian besar soal gugur pada pemeriksaan pertama.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21 — Integrasi lintas konsep</div>
+    <div class="qs">Ion X²⁻ memiliki 18 elektron, sedangkan nomor massa atom X adalah 32. Unsur Y memiliki konfigurasi elektron [Ne] 3s². Berdasarkan informasi tersebut, pernyataan berikut yang <b>benar</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> atom X memiliki 18 neutron dan terletak pada golongan VIA</li>
+      <li><span class="l">B.</span> senyawa yang terbentuk antara X dan Y adalah Y₂X dengan ikatan kovalen</li>
+      <li><span class="l">C.</span> senyawa yang terbentuk adalah YX dengan Mr sebesar 56</li>
+      <li><span class="l">D.</span> unsur Y terletak pada periode 2 golongan IIA</li>
+      <li><span class="l">E.</span> atom X dan atom Y sama-sama memiliki 2 elektron tidak berpasangan</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Identifikasi X.</b> e dalam X²⁻ = 18 → Z = 18 + (−2) = 16 → belerang. n = 32 − 16 = 16 neutron. Konfigurasi X = [Ne] 3s² 3p⁴ → periode 3, golongan VIA.<br>
+      <b>Langkah 2 — Identifikasi Y.</b> [Ne] 3s² → Z = 10 + 2 = 12 → magnesium, periode 3, golongan IIA.<br>
+      <b>Langkah 3 — Senyawa.</b> Y melepas 2 elektron (Y²⁺), X menerima 2 elektron (X²⁻). Perbandingan 1 : 1 → rumus <b>YX</b> (MgS), berikatan ionik.<br>
+      <b>Langkah 4 — Mr.</b> Ar Mg = 24 (Z 12, A 24) dan Ar S = 32 → Mr YX = 24 + 32 = <b>56</b>. Pilihan C benar.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Golongannya benar (VIA), tetapi jumlah neutronnya 16, bukan 18. Angka 18 diambil dari jumlah elektron ion.</li>
+        <li><b>B.</b> Rumusnya salah (seharusnya 1 : 1) dan ikatannya ionik, bukan kovalen, karena melibatkan logam dan nonlogam.</li>
+        <li><b>D.</b> Periodenya salah: [Ne] 3s² memiliki n terbesar 3, sehingga Y berada pada periode 3.</li>
+        <li><b>E.</b> X (3p⁴) memiliki 2 elektron tidak berpasangan, tetapi Y (3s²) sudah berpasangan seluruhnya sehingga memiliki 0.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> Inilah bentuk soal UTBK yang paling umum — satu soal, lima konsep. Strateginya bukan mengecek pilihan satu per satu dari atas, melainkan <b>membangun profil lengkap X dan Y terlebih dahulu</b> (Z, konfigurasi, periode, golongan, muatan ion), lalu mencocokkannya. Dengan profil di tangan, kelima pilihan dapat dinilai dalam beberapa detik.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>1.12 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 1</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      notasi ᴬ𝑍X → p, e, n → konfigurasi elektron → elektron valensi<br>
+      → periode &amp; golongan → sifat unsur → jenis ikatan
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">KONSEP UTAMA</div>
+        <ul>
+          <li>Proton menentukan identitas; inti menentukan massa; elektron menentukan sifat.</li>
+          <li>Ar adalah rata-rata tertimbang isotop, karena itu bukan bilangan bulat.</li>
+          <li>Model atom berkembang karena setiap model gagal menjelaskan satu percobaan.</li>
+          <li>Elektron mengisi dari energi terendah (Aufbau), satu per satu (Hund), maksimal dua per orbital (Pauli).</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">RUMUS PENTING</div>
+        <ul>
+          <li>n = A − Z</li>
+          <li>e = Z − muatan</li>
+          <li>Ar = Σ(%ᵢ × Aᵢ) / 100</li>
+          <li>Daya tampung kulit = 2n²</li>
+          <li>Jumlah orbital subkulit = 2ℓ + 1</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">POLA SOAL YANG BERULANG</div>
+        <ul>
+          <li>Hitung p, e, n dari ion.</li>
+          <li>Ar dari tabel kelimpahan, lanjut ke Mr atau mol.</li>
+          <li>Konfigurasi ion logam transisi.</li>
+          <li>Bilangan kuantum elektron terakhir.</li>
+          <li>Urutan jari-jari deret isoelektronik.</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">JEBAKAN YANG SERING DIPASANG</div>
+        <ul>
+          <li>Ion positif dianggap menerima elektron.</li>
+          <li>Elektron ion dikurangi dari subkulit d, bukan 4s.</li>
+          <li>Golongan ditentukan dari konfigurasi ion.</li>
+          <li>Anomali Cr dan Cu diabaikan.</li>
+          <li>Ar dihitung sebagai rata-rata biasa.</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">SHORTCUT YANG VALID</div>
+        <ul>
+          <li>Ar selalu berada di antara nomor massa isotopnya.</li>
+          <li>Dua isotop → misalkan x dan (100 − x).</li>
+          <li>Untuk p¹, p², p³ dan d¹–d⁵, spin elektron terakhir selalu +½.</li>
+          <li>Isoelektronik: makin besar Z, makin kecil jari-jari.</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">FAKTA YANG PERLU DIINGAT</div>
+        <ul>
+          <li>Gas mulia: He 2, Ne 10, Ar 18, Kr 36, Xe 54.</li>
+          <li>Cr = [Ar] 3d⁵ 4s¹ · Cu = [Ar] 3d¹⁰ 4s¹.</li>
+          <li>Fe²⁺ = [Ar] 3d⁶ · Fe³⁺ = [Ar] 3d⁵.</li>
+          <li>ℓ: s = 0, p = 1, d = 2, f = 3.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>1.13 &nbsp;Formula Sheet Bab 1</h2>
+  <p>Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Rumus</th><th>Fungsi</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr><td class="eq">Z = p</td><td>Menentukan identitas unsur</td><td>Selalu, sebagai langkah pertama</td><td>Tidak berubah pada ion maupun isotop</td></tr>
+      <tr><td class="eq">n = A − Z</td><td>Menghitung jumlah neutron</td><td>Diketahui nomor massa dan nomor atom</td><td>Hasilnya selalu bilangan bulat</td></tr>
+      <tr class="hi"><td class="eq">e = Z − muatan</td><td>Menghitung elektron pada ion</td><td>Spesi bermuatan</td><td>Gunakan muatan bertanda; ion negatif menambah elektron</td></tr>
+      <tr><td class="eq">Ar = Σ(%ᵢ · Aᵢ)/100</td><td>Massa atom relatif</td><td>Diketahui kelimpahan isotop</td><td>Periksa total kelimpahan = 100%</td></tr>
+      <tr><td class="eq">Mr = Σ Ar penyusun</td><td>Massa molekul relatif</td><td>Menghitung massa senyawa</td><td>Gunakan Ar rata-rata, bukan nomor massa isotop</td></tr>
+      <tr><td class="eq">2n²</td><td>Daya tampung maksimum kulit</td><td>Menyusun konfigurasi per kulit</td><td>K = 2, L = 8, M = 18, N = 32</td></tr>
+      <tr><td class="eq">2ℓ + 1</td><td>Jumlah orbital dalam subkulit</td><td>Menentukan nilai m dan kapasitas</td><td>s = 1, p = 3, d = 5, f = 7 orbital</td></tr>
+      <tr><td class="eq">2(2ℓ + 1)</td><td>Daya tampung elektron subkulit</td><td>Mengisi konfigurasi</td><td>s = 2, p = 6, d = 10, f = 14</td></tr>
+      <tr class="hi"><td class="eq">Periode = n maks</td><td>Menentukan baris pada SPU</td><td>Setelah konfigurasi ditulis</td><td>Gunakan konfigurasi atom netral</td></tr>
+      <tr><td class="eq">Golongan = e⁻ valensi</td><td>Menentukan kolom pada SPU</td><td>Blok s dan p → golongan A</td><td>Blok d: (n−1)d + ns → golongan B</td></tr>
+      <tr><td class="eq">m = −ℓ … +ℓ</td><td>Menentukan orientasi orbital</td><td>Soal bilangan kuantum</td><td>Isi dari m terkecil menurut aturan Hund</td></tr>
+      <tr><td class="eq">ℓ ≤ n − 1</td><td>Menguji keabsahan bilangan kuantum</td><td>Soal “kombinasi yang tidak mungkin”</td><td>Pemeriksaan pertama yang harus dilakukan</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">URUTAN AUFBAU — HAFALKAN SAMPAI 4p</div>
+    <div class="main-eq" style="font-size:16px">1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁴ 5d¹⁰ 6p⁶ 7s² 5f¹⁴ 6d¹⁰ 7p⁶</div>
+    <div class="note">Titik-titik akumulasi yang berguna dihafal: 2 (He), 10 (Ne), 18 (Ar), 30 (Zn), 36 (Kr). Dengan lima angka ini, Anda dapat melompat langsung ke dekat unsur yang dicari tanpa menghitung dari 1s.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>1.14 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. Tiga soal terakhir mengintegrasikan konsep yang akan Anda pakai di Bab 2. <strong>Waktu yang disarankan: 40 menit.</strong></p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Neutron ditemukan oleh ….</div>
+    <ol class="opt"><li><span class="l">A.</span> J.J. Thomson</li><li><span class="l">B.</span> Ernest Rutherford</li><li><span class="l">C.</span> James Chadwick</li><li><span class="l">D.</span> Niels Bohr</li><li><span class="l">E.</span> John Dalton</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Chadwick menemukan neutron pada tahun 1932, jauh setelah penemuan elektron (Thomson, 1897) dan inti atom (Rutherford, 1911). Karena neutron tidak bermuatan, keberadaannya paling sulit dideteksi.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Suatu atom netral memiliki 20 proton dan 20 neutron. Notasi atom yang tepat adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> <span class="eq">²⁰₂₀X</span></li><li><span class="l">B.</span> <span class="eq">⁴⁰₂₀X</span></li><li><span class="l">C.</span> <span class="eq">²⁰₄₀X</span></li><li><span class="l">D.</span> <span class="eq">⁴⁰₄₀X</span></li><li><span class="l">E.</span> <span class="eq">⁶⁰₂₀X</span></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Z = p = 20 (ditulis di bawah); A = p + n = 20 + 20 = 40 (ditulis di atas). Unsurnya adalah kalsium.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Jumlah elektron maksimum yang dapat menempati kulit L adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 8</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 18</li><li><span class="l">D.</span> 32</li><li><span class="l">E.</span> 10</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Kulit L berarti n = 2, sehingga daya tampung = 2n² = 2(2)² = 8 elektron, terdiri atas 2s² dan 2p⁶.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Model atom yang menggambarkan atom sebagai bola bermuatan positif dengan elektron tersebar di dalamnya dikemukakan oleh ….</div>
+    <ol class="opt"><li><span class="l">A.</span> Dalton</li><li><span class="l">B.</span> Thomson</li><li><span class="l">C.</span> Rutherford</li><li><span class="l">D.</span> Bohr</li><li><span class="l">E.</span> Schrödinger</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Ini adalah model roti kismis Thomson. Model ini runtuh setelah percobaan hamburan sinar alfa menunjukkan adanya inti atom yang kecil dan padat.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Jumlah elektron dalam ion <span class="eq">⁵⁶₂₆Fe²⁺</span> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 26</li><li><span class="l">B.</span> 28</li><li><span class="l">C.</span> 30</li><li><span class="l">D.</span> 24</li><li><span class="l">E.</span> 23</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>e = Z − muatan = 26 − (+2) = 24. Pilihan E adalah jumlah elektron Fe³⁺, dan pilihan C adalah jumlah neutronnya — keduanya distraktor yang sering terambil karena tergesa.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Tembaga memiliki dua isotop, Cu-63 dengan kelimpahan 75% dan Cu-65 dengan kelimpahan 25%. Massa atom relatif tembaga adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 63,0</li><li><span class="l">B.</span> 64,0</li><li><span class="l">C.</span> 63,5</li><li><span class="l">D.</span> 64,5</li><li><span class="l">E.</span> 65,0</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Ar = (75 × 63 + 25 × 65)/100 = (4725 + 1625)/100 = 6350/100 = 63,5. Pilihan B adalah hasil rata-rata biasa (63 + 65)/2, yaitu kesalahan paling umum pada tipe soal ini.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Unsur dengan nomor atom 20 terletak pada ….</div>
+    <ol class="opt"><li><span class="l">A.</span> periode 3, golongan IIA</li><li><span class="l">B.</span> periode 4, golongan IA</li><li><span class="l">C.</span> periode 4, golongan IIB</li><li><span class="l">D.</span> periode 3, golongan VIIIA</li><li><span class="l">E.</span> periode 4, golongan IIA</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Konfigurasi: [Ar] 4s². n terbesar = 4 → periode 4. Elektron valensi 2 pada blok s → golongan IIA. Pilihan C keliru karena golongan B hanya untuk unsur yang berakhir pada subkulit d.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Konfigurasi elektron ion S²⁻ (nomor atom S = 16) adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1s² 2s² 2p⁶ 3s² 3p²</li><li><span class="l">B.</span> 1s² 2s² 2p⁶ 3s² 3p⁴</li><li><span class="l">C.</span> 1s² 2s² 2p⁶ 3s²</li><li><span class="l">D.</span> 1s² 2s² 2p⁶ 3s² 3p⁶</li><li><span class="l">E.</span> 1s² 2s² 2p⁶ 3s² 3p⁶ 4s²</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Ion S²⁻ memiliki 16 + 2 = 18 elektron, sehingga konfigurasinya sama dengan argon. Pilihan B adalah konfigurasi atom S netral.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Jumlah total orbital yang terdapat pada kulit dengan n = 3 adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 9</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 5</li><li><span class="l">D.</span> 18</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Kulit n = 3 memiliki subkulit 3s (1 orbital), 3p (3 orbital), dan 3d (5 orbital) → total 9 orbital. Pilihan D adalah jumlah elektron maksimumnya (2 × 9 = 18), bukan jumlah orbitalnya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Bilangan kuantum elektron terakhir atom oksigen (Z = 8) adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> n = 2, ℓ = 1, m = +1, s = +½</li><li><span class="l">B.</span> n = 2, ℓ = 1, m = −1, s = −½</li><li><span class="l">C.</span> n = 2, ℓ = 0, m = 0, s = −½</li><li><span class="l">D.</span> n = 2, ℓ = 1, m = 0, s = −½</li><li><span class="l">E.</span> n = 2, ℓ = 2, m = −1, s = +½</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>O = 1s² 2s² 2p⁴ → n = 2, ℓ = 1. Kotak 2p: tiga elektron pertama mengisi m = −1, 0, +1 sendiri-sendiri; elektron keempat kembali berpasangan di m = −1 dengan spin −½.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11</div>
+    <div class="qs">Suatu unsur memiliki konfigurasi elektron [Ar] 3d¹⁰ 4s² 4p³. Nomor atom dan letak unsur tersebut adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 31, periode 4 golongan IIIA</li><li><span class="l">B.</span> 33, periode 4 golongan VB</li><li><span class="l">C.</span> 33, periode 4 golongan VA</li><li><span class="l">D.</span> 35, periode 4 golongan VIIA</li><li><span class="l">E.</span> 33, periode 3 golongan VA</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Z = 18 + 10 + 2 + 3 = 33 (arsen). n terbesar = 4 → periode 4. Elektron valensi = 4s² + 4p³ = 5 pada blok p → golongan VA. Subkulit 3d¹⁰ yang penuh tidak dihitung sebagai valensi, sehingga pilihan B keliru.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12</div>
+    <div class="qs">Pasangan berikut yang merupakan isoton adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> <span class="eq">¹²₆C</span> dan <span class="eq">¹⁴₆C</span></li><li><span class="l">B.</span> <span class="eq">⁴⁰₁₈Ar</span> dan <span class="eq">⁴⁰₂₀Ca</span></li><li><span class="l">C.</span> <span class="eq">²³₁₁Na</span> dan <span class="eq">²⁷₁₃Al</span></li><li><span class="l">D.</span> <span class="eq">¹⁶₈O</span> dan <span class="eq">¹⁸₈O</span></li><li><span class="l">E.</span> <span class="eq">³⁹₁₉K</span> dan <span class="eq">⁴⁰₂₀Ca</span></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Hitung neutron tiap pasangan dengan n = A − Z:<br>
+      A → 6 dan 8 (isotop, karena Z sama). &nbsp; B → 22 dan 20 (isobar, karena A sama). &nbsp; C → 12 dan 14 (tidak ada yang sama). &nbsp; D → 8 dan 10 (isotop). &nbsp; <b>E → 20 dan 20 (isoton).</b><br>
+      Hanya pasangan E yang memiliki jumlah neutron sama sekaligus nomor atom dan nomor massa yang berbeda.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13</div>
+    <div class="qs">Ion L²⁺ memiliki konfigurasi elektron [Ar] 3d⁵. Nomor atom unsur L adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 25</li><li><span class="l">B.</span> 23</li><li><span class="l">C.</span> 26</li><li><span class="l">D.</span> 24</li><li><span class="l">E.</span> 27</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Elektron dalam ion = 18 + 5 = 23. Karena ion bermuatan +2, atom netralnya memiliki 23 + 2 = 25 elektron → Z = 25 (mangan), dengan konfigurasi [Ar] 3d⁵ 4s². Pilihan B adalah jebakan bagi yang lupa mengembalikan dua elektron yang dilepas.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14</div>
+    <div class="qs">Jumlah elektron tidak berpasangan pada ion Fe³⁺ (Z = 26) adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 4</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 5</li><li><span class="l">E.</span> 0</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Fe = [Ar] 3d⁶ 4s². Lepas 4s² lalu 3d¹ → Fe³⁺ = [Ar] 3d⁵. Kelima orbital d masing-masing terisi satu elektron → 5 elektron tidak berpasangan. Pilihan A muncul jika seseorang keliru menulis Fe³⁺ sebagai [Ar] 4s² 3d³.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — Sebab–akibat</div>
+    <div class="qs"><b>Pernyataan 1:</b> Massa atom relatif klorin bukan merupakan bilangan bulat.<br><b>SEBAB</b><br><b>Pernyataan 2:</b> Klorin di alam terdiri atas dua isotop dengan kelimpahan yang berbeda.</div>
+    <ol class="opt"><li><span class="l">A.</span> P1 benar, P2 benar, berhubungan sebab–akibat</li><li><span class="l">B.</span> P1 benar, P2 benar, tidak berhubungan sebab–akibat</li><li><span class="l">C.</span> P1 benar, P2 salah</li><li><span class="l">D.</span> P1 salah, P2 benar</li><li><span class="l">E.</span> P1 dan P2 keduanya salah</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Ar Cl = 35,5 → P1 benar. Klorin terdiri atas Cl-35 (±75%) dan Cl-37 (±25%) → P2 benar. Adanya campuran isotop dengan kelimpahan berbeda itulah yang menghasilkan rata-rata tertimbang berupa pecahan → berhubungan sebab–akibat.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16</div>
+    <div class="qs">Energi ionisasi bertingkat unsur W (kJ/mol) berturut-turut adalah 578, 1817, 2745, 11 578, dan 14 831. Unsur W terletak pada golongan ….</div>
+    <ol class="opt"><li><span class="l">A.</span> IA</li><li><span class="l">B.</span> IIA</li><li><span class="l">C.</span> IIIA</li><li><span class="l">D.</span> IVA</li><li><span class="l">E.</span> VA</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Kenaikan dari ionisasi ke-3 (2745) ke ionisasi ke-4 (11 578) mencapai lebih dari empat kali lipat — jauh lebih tajam daripada kenaikan sebelumnya. Artinya elektron keempat sudah diambil dari kulit yang lebih dalam, sehingga unsur W memiliki 3 elektron valensi → golongan IIIA. Data ini sesuai dengan aluminium.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Unsur G memiliki dua isotop dengan nomor massa 69 dan 71. Jika massa atom relatif G adalah 69,8, persentase kelimpahan isotop G-71 adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 20%</li><li><span class="l">B.</span> 40%</li><li><span class="l">C.</span> 50%</li><li><span class="l">D.</span> 60%</li><li><span class="l">E.</span> 80%</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Misalkan kelimpahan G-69 = x, maka G-71 = (100 − x).<br>69x + 71(100 − x) = 6980 → 7100 − 2x = 6980 → x = 60.<br>Jadi G-69 = 60% dan <b>G-71 = 40%</b>. Perhatikan bahwa yang ditanya adalah isotop <em>berat</em>; pilihan D disiapkan bagi yang berhenti di nilai x.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Klorin (Ar = 35,5) berwujud gas diatomik. Massa dari 0,5 mol gas Cl₂ adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 17,75 gram</li><li><span class="l">B.</span> 71,00 gram</li><li><span class="l">C.</span> 142,00 gram</li><li><span class="l">D.</span> 18,00 gram</li><li><span class="l">E.</span> 35,50 gram</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Mr Cl₂ = 2 × 35,5 = 71. Maka m = n × Mr = 0,5 × 71 = 35,5 gram. Pilihan A muncul bila seseorang menggunakan Ar (bukan Mr), dan pilihan B bila lupa mengalikan dengan jumlah mol.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Kombinasi bilangan kuantum berikut yang <b>tidak mungkin</b> ada adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> n = 4, ℓ = 3, m = −3, s = +½</li><li><span class="l">B.</span> n = 2, ℓ = 1, m = 0, s = −½</li><li><span class="l">C.</span> n = 5, ℓ = 2, m = +2, s = +½</li><li><span class="l">D.</span> n = 3, ℓ = 3, m = +2, s = −½</li><li><span class="l">E.</span> n = 1, ℓ = 0, m = 0, s = +½</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Syaratnya ℓ ≤ n − 1. Pada pilihan D, n = 3 sehingga ℓ maksimum adalah 2; nilai ℓ = 3 menuntut adanya subkulit “3f”, yang tidak ada. Semua pilihan lain memenuhi syarat: A = 4f, B = 2p, C = 5d, E = 1s.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Unsur A memiliki nomor atom 19 dan unsur B memiliki nomor atom 8. Rumus senyawa dan jenis ikatan yang terbentuk antara keduanya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> AB, kovalen</li><li><span class="l">B.</span> AB₂, ionik</li><li><span class="l">C.</span> A₂B₃, ionik</li><li><span class="l">D.</span> AB₂, kovalen</li><li><span class="l">E.</span> A₂B, ionik</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>A: [Ar] 4s¹ → golongan IA, logam, melepas 1 elektron menjadi A⁺.<br>B: 1s² 2s² 2p⁴ → golongan VIA, nonlogam, menerima 2 elektron menjadi B²⁻.<br>Agar netral dibutuhkan dua ion A⁺ untuk satu ion B²⁻ → rumus <b>A₂B</b> (yaitu K₂O), dengan ikatan ionik karena melibatkan serah terima elektron antara logam dan nonlogam.</p>
+      <div class="insight"><b>Exam Insight:</b> Soal penutup ini memperlihatkan buah dari seluruh bab: dari dua angka nomor atom saja, Anda dapat memprediksi rumus kimia dan jenis ikatan suatu senyawa yang belum pernah Anda lihat sebelumnya.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. C &nbsp; 2. B &nbsp; 3. A &nbsp; 4. B &nbsp; 5. D &nbsp; 6. C &nbsp; 7. E &nbsp; 8. D &nbsp; 9. A &nbsp; 10. B<br>
+      11. C &nbsp; 12. E &nbsp; 13. A &nbsp; 14. D &nbsp; 15. A &nbsp; 16. C &nbsp; 17. B &nbsp; 18. E &nbsp; 19. D &nbsp; 20. E
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti bab ini sudah tuntas; 14–17 benar berarti ulangi bagian konfigurasi ion dan bilangan kuantum; di bawah 14 berarti kerjakan ulang seluruh Worked Example sebelum melanjutkan ke Bab 2.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 1 sudah tersedia lengkap dalam file ini. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap</div></div>
+    <div class="rm"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">Ikatan ion, kovalen, logam, Lewis, VSEPR, kepolaran, gaya antarmolekul</div></div>
+    <div class="rm"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">Keselamatan laboratorium, variabel, pengukuran</div></div>
+    <div class="rm"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">Senyawa biner, poliatom, asam basa, penyetaraan</div></div>
+    <div class="rm"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">Konsep mol, pereaksi pembatas, rumus empiris</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">Alkana, alkena, alkuna, isomer, fraksi minyak bumi</div></div>
+    <div class="rm"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">Entalpi, hukum Hess, energi ikatan, kalorimetri</div></div>
+    <div class="rm"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">Persamaan laju, orde reaksi, teori tumbukan, katalis</div></div>
+    <div class="rm"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">Kc, Kp, pergeseran, prinsip Le Chatelier</div></div>
+    <div class="rm"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">Arrhenius, Brønsted–Lowry, Lewis, pH, Ka, Kb</div></div>
+    <div class="rm"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">pH garam, buffer, kapasitas penyangga</div></div>
+    <div class="rm"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">Kurva titrasi, indikator, titik ekuivalen</div></div>
+    <div class="rm"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">Pengaruh ion senama, prediksi pengendapan</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">ΔP, ΔTb, ΔTf, tekanan osmotik, faktor Van't Hoff</div></div>
+    <div class="rm"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">Bilangan oksidasi, penyetaraan setengah reaksi &amp; PBO</div></div>
+    <div class="rm"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">Sel volta, potensial sel, elektrolisis, hukum Faraday, korosi</div></div>
+    <div class="rm"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">Golongan utama, unsur transisi, pembuatan dan kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">Alkohol, eter, aldehida, keton, asam karboksilat, ester</div></div>
+    <div class="rm"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">Resonansi, substitusi, tata nama, kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">Adisi, kondensasi, karbohidrat, protein, lemak</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 1: Struktur Atom dan Sistem Periodik Unsur · 20 worked example · 21 soal latihan · 20 soal tes akhir bab</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>

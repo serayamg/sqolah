@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+/* ============ TAMBAHAN BAB 2 ============ */
+.phen{
+  background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet);
+  border-radius:var(--radius); padding:18px 20px; margin:22px 0;
+}
+.phen .pt{font-size:12px; letter-spacing:.1em; font-weight:750; color:var(--violet); margin-bottom:9px}
+.phen p:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0}
+.card{background:#fff; border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px}
+.card .ct{font-size:14px; font-weight:750; color:var(--navy); margin-bottom:8px; padding-bottom:7px; border-bottom:2px solid var(--cyan-bg)}
+.card p{font-size:15px; margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.card .ex{font-family:var(--mono); font-size:13.5px; background:var(--paper-2); border-radius:6px; padding:6px 9px; color:var(--navy-2)}
+.tick{list-style:none; padding-left:0; font-size:15px; margin-bottom:0}
+.tick li{padding-left:20px; position:relative; margin-bottom:7px; color:var(--ink-2)}
+.tick li::before{content:"▸"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+.tick li:last-child{margin-bottom:0}
+
+.fx{
+  font-family:var(--mono); font-size:16px; text-align:center; margin-top:12px;
+  background:rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:#EAF4FA;
+}
+.box.short .fx, .box.exam .fx, .box.recall .fx{
+  background:#fff; color:var(--navy-2); border:1px solid var(--line-2);
+}
+table.mini{width:100%; border-collapse:collapse; font-size:13.5px; margin:6px 0 10px; background:#fff}
+table.mini th{background:var(--paper-3); color:var(--navy); text-align:left; padding:6px 9px; border:1px solid var(--line-2); white-space:nowrap; font-weight:700}
+table.mini td{padding:6px 9px; border:1px solid var(--line-2); text-align:center; color:var(--ink-2)}
+
+.shape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin:20px 0}
+.shape{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:10px 10px 12px; text-align:center}
+.shape svg{width:100%; height:auto; display:block; margin-bottom:4px; border:0; background:transparent}
+.shape .sn{font-size:12px; font-weight:750; color:var(--cyan); letter-spacing:.05em}
+.shape .sb{font-size:14.5px; font-weight:700; color:var(--navy); margin:4px 0 2px}
+.shape .sa{font-size:12.5px; color:var(--muted)}
+
+@media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 20 — POLIMER &amp; MAKROMOLEKUL</div>
+  <a href="#cover" class="on"><span class="num">20.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">20.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">20.2</span>Concept Map</a>
+  <a href="#why"><span class="num">20.3</span>Why This Matters</a>
+  <a href="#polimer"><span class="num">20.4</span>Polimer dan Polimerisasi</a>
+  <a href="#karbohidrat"><span class="num">20.5</span>Karbohidrat</a>
+  <a href="#protein"><span class="num">20.6</span>Protein dan Asam Amino</a>
+  <a href="#lemak"><span class="num">20.7</span>Lemak dan Minyak</a>
+  <a href="#uji"><span class="num">20.8</span>Uji Identifikasi</a>
+  <a href="#dampak"><span class="num">20.9</span>Polimer dan Lingkungan</a>
+  <a href="#focus"><span class="num">20.10</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">20.11</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 20</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">20.12</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">20.13</span>Formula Sheet</a>
+  <a href="#test"><span class="num">20.14</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 20 &nbsp;·&nbsp; KELAS XII &nbsp;·&nbsp; BAB PENUTUP</div>
+  <h1>Polimer dan Makromolekul</h1>
+  <p class="sub">Botol plastik, nasi yang Anda makan, otot yang menggerakkan tangan Anda, dan minyak goreng di dapur — keempatnya dibangun dengan cara yang sama: molekul kecil disambung berulang-ulang.</p>
+  <div class="meta">
+    <span class="chip">Polimerisasi adisi &amp; kondensasi</span>
+    <span class="chip">Karbohidrat</span>
+    <span class="chip">Protein &amp; asam amino</span>
+    <span class="chip">Lemak &amp; minyak</span>
+    <span class="chip">Uji identifikasi</span>
+    <span class="chip">Dampak lingkungan</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>20.1&nbsp; Learning Objectives</h2>
+  <p class="lead">Bab penutup ini menyatukan hampir semua yang sudah Anda pelajari: gugus fungsi dari Bab 18, ikatan hidrogen dari Bab 2, dan hidrolisis dari Bab 11.</p>
+  <div class="box obj"><div class="bt">Target penguasaan Bab 20</div>
+  <ul>
+    <li>Menjelaskan pengertian monomer, polimer, dan polimerisasi.</li>
+    <li>Membedakan polimerisasi adisi dari polimerisasi kondensasi.</li>
+    <li>Menuliskan monomer dari polimer yang diketahui, dan sebaliknya.</li>
+    <li>Menggolongkan polimer menurut asal, jenis monomer, dan sifat panasnya.</li>
+    <li>Menggolongkan karbohidrat menjadi mono-, di-, dan polisakarida.</li>
+    <li>Menuliskan reaksi hidrolisis disakarida dan polisakarida.</li>
+    <li>Menjelaskan struktur asam amino dan pembentukan ikatan peptida.</li>
+    <li>Menghitung jumlah ikatan peptida dan air yang terbentuk.</li>
+    <li>Menjelaskan struktur trigliserida dan membedakan lemak dari minyak.</li>
+    <li>Menentukan kejenuhan asam lemak dari rumus molekulnya.</li>
+    <li>Menyebutkan uji identifikasi karbohidrat, protein, dan lemak.</li>
+    <li>Menjelaskan dampak polimer sintetis terhadap lingkungan.</li>
+  </ul>
+  </div>
+  <div class="box short">
+    <div class="bt">⚡ Satu gagasan yang menjelaskan seluruh bab</div>
+    <p><b>Semua makromolekul dibangun dengan cara yang sama: molekul kecil disambung berulang-ulang.</b> Yang membedakannya hanya jenis monomernya dan cara menyambungnya.</p>
+    <p><b>Setiap persamaan kondensasi di bab ini diperiksa atom demi atom</b> dengan pengurai rumus kimia — termasuk rantai sepanjang 100 unit glukosa. Pengurainya sendiri diuji lebih dulu, termasuk diberi rumus yang sengaja dibuat salah untuk memastikan ia menolaknya.</p>
+  </div>
+</section>
+
+<!-- ==================== WHY THIS MATTERS ==================== -->
+<section class="page" id="why">
+  <h2>20.3&nbsp; Why This Matters</h2>
+  <div class="phen">
+    <div class="pt">FENOMENA</div>
+    <p>Botol air mineral yang Anda buang hari ini kemungkinan masih akan ada ratusan tahun dari sekarang. Sementara itu, nasi yang Anda makan pagi ini sudah terurai dalam hitungan jam.</p>
+    <p>Keduanya polimer. Keduanya rantai panjang dari molekul kecil yang berulang. Tetapi yang satu dapat diurai tubuh dalam sekejap, dan yang lain bertahan lebih lama daripada umur orang yang membuangnya.</p>
+    <p>Dan ada teka-teki lain: tubuh Anda hanya memakai <b>20 jenis</b> asam amino, tetapi dari bahan sesedikit itu terbentuk jutaan protein yang berbeda — enzim, hormon, otot, rambut, antibodi.</p>
+  </div>
+  <p class="lead">Kedua teka-teki itu punya jawaban di bab ini, dan keduanya berpangkal pada satu hal: <b>bagaimana rantainya disambung</b>.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Di kehidupan sehari-hari</div>
+      <ul class="tick">
+        <li><b>Plastik</b> — kemasan, pipa, peralatan rumah tangga.</li>
+        <li><b>Karbohidrat</b> — nasi, roti, gula, sumber tenaga utama.</li>
+        <li><b>Protein</b> — daging, telur, tahu, bahan pembangun tubuh.</li>
+        <li><b>Lemak</b> — minyak goreng, mentega, cadangan tenaga.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Di soal UTBK</div>
+      <ul class="tick">
+        <li>Soal <b>adisi versus kondensasi</b> hampir pasti muncul.</li>
+        <li>Soal hidrolisis disakarida menguji hafalan hasilnya.</li>
+        <li>Soal uji identifikasi menguji pasangan pereaksi dan warnanya.</li>
+        <li>Soal ikatan peptida menjebak yang menghitung n, bukan n−1.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>20.2&nbsp; Concept Map</h2>
+  <p class="lead">Empat golongan makromolekul, satu gagasan yang sama: <b>molekul kecil disambung berulang-ulang</b>.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 720 448" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep polimer dan makromolekul">
+    <defs>
+      <marker id="cm20Arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+        <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1A8FBF"/>
+      </marker>
+    </defs>
+    <g stroke="#1A8FBF" stroke-width="2" fill="none">
+      <path d="M360,74 L360,96"/>
+      <path d="M186,96 L534,96"/>
+      <path d="M186,96 L186,122" marker-end="url(#cm20Arrow)"/>
+      <path d="M534,96 L534,122" marker-end="url(#cm20Arrow)"/>
+    </g>
+
+    <rect x="152" y="10" width="416" height="64" rx="8" fill="#0B2E4F"/>
+    <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">MONOMER &#8594; POLIMER</text>
+    <text x="360" y="51" text-anchor="middle" fill="#BBD4E8" font-size="10.5">molekul kecil disambung berulang-ulang menjadi rantai panjang</text>
+    <text x="360" y="67" text-anchor="middle" fill="#7FA8C9" font-size="9.5">yang membedakan hanya jenis monomernya dan cara menyambungnya</text>
+
+    <rect x="18" y="124" width="330" height="104" rx="9" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+    <text x="183" y="145" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">POLIMERISASI ADISI</text>
+    <text x="36" y="166" font-size="10" fill="#3A4C5C">monomer wajib punya <tspan font-weight="700">ikatan rangkap</tspan></text>
+    <text x="36" y="184" font-size="10" fill="#3A4C5C"><tspan font-weight="700">TIDAK ADA</tspan> molekul kecil yang keluar</text>
+    <text x="36" y="202" font-size="10" fill="#3A4C5C">Mr polimer = <tspan font-family="monospace">n &#215; Mr monomer</tspan> tepat</text>
+    <text x="183" y="221" text-anchor="middle" fill="#1A8FBF" font-size="9.5" font-weight="700">polietilena · PVC · polistirena · teflon</text>
+
+    <rect x="372" y="124" width="330" height="104" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.8"/>
+    <text x="537" y="145" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">POLIMERISASI KONDENSASI</text>
+    <text x="390" y="166" font-size="10" fill="#3A4C5C">monomer punya <tspan font-weight="700">dua gugus fungsi</tspan></text>
+    <text x="390" y="184" font-size="10" fill="#3A4C5C"><tspan font-weight="700">ADA</tspan> molekul kecil yang keluar (biasanya air)</text>
+    <text x="390" y="202" font-size="10" fill="#3A4C5C">n monomer &#8594; <tspan font-family="monospace">(n&#8722;1)</tspan> molekul air</text>
+    <text x="537" y="221" text-anchor="middle" fill="#C77400" font-size="9.5" font-weight="700">nilon · dakron · amilum · protein</text>
+
+    <rect x="18" y="242" width="684" height="106" rx="9" fill="#fff" stroke="#DCE4EB" stroke-width="1.6"/>
+    <text x="360" y="262" text-anchor="middle" fill="#0B2E4F" font-size="12" font-weight="700">TIGA MAKROMOLEKUL ALAM — SEMUANYA HASIL KONDENSASI</text>
+
+    <rect x="30" y="272" width="214" height="66" rx="7" fill="#E8F5EE" stroke="#186F45"/>
+    <text x="137" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#186F45">KARBOHIDRAT</text>
+    <text x="137" y="306" text-anchor="middle" font-size="9.5" fill="#3A4C5C">monomer: <tspan font-weight="700">glukosa</tspan></text>
+    <text x="137" y="320" text-anchor="middle" font-size="9.5" fill="#3A4C5C">ikatan <tspan font-weight="700">glikosida</tspan></text>
+    <text x="137" y="333" text-anchor="middle" font-size="9" fill="#69798A">amilum · selulosa · glikogen</text>
+
+    <rect x="253" y="272" width="214" height="66" rx="7" fill="#FCEDEB" stroke="#B23A2C"/>
+    <text x="360" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#B23A2C">PROTEIN</text>
+    <text x="360" y="306" text-anchor="middle" font-size="9.5" fill="#3A4C5C">monomer: <tspan font-weight="700">asam amino</tspan></text>
+    <text x="360" y="320" text-anchor="middle" font-size="9.5" fill="#3A4C5C">ikatan <tspan font-weight="700">peptida</tspan></text>
+    <text x="360" y="333" text-anchor="middle" font-size="9" fill="#69798A">enzim · hormon · otot · rambut</text>
+
+    <rect x="476" y="272" width="214" height="66" rx="7" fill="#FFF6E6" stroke="#E89A1C"/>
+    <text x="583" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#C77400">LEMAK</text>
+    <text x="583" y="306" text-anchor="middle" font-size="9.5" fill="#3A4C5C">gliserol + <tspan font-weight="700">3 asam lemak</tspan></text>
+    <text x="583" y="320" text-anchor="middle" font-size="9.5" fill="#3A4C5C">ikatan <tspan font-weight="700">ester</tspan></text>
+    <text x="583" y="333" text-anchor="middle" font-size="9" fill="#69798A">3 molekul air keluar</text>
+
+    <rect x="18" y="358" width="684" height="44" rx="6" fill="#E9F5FB" stroke="#3FB0DC"/>
+    <text x="360" y="376" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">EMPAT UJI IDENTIFIKASI YANG WAJIB DIHAFAL</text>
+    <text x="360" y="394" text-anchor="middle" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">Iodin</tspan> &#8594; amilum biru &#160;·&#160; <tspan font-weight="700">Fehling</tspan> &#8594; gula pereduksi merah bata &#160;·&#160; <tspan font-weight="700">Biuret</tspan> &#8594; protein ungu &#160;·&#160; <tspan font-weight="700">Xantoprotein</tspan> &#8594; kuning</text>
+
+    <rect x="18" y="410" width="684" height="30" rx="6" fill="#FCEDEB" stroke="#B23A2C"/>
+    <text x="360" y="430" text-anchor="middle" font-size="11" font-weight="700" fill="#B23A2C">Hidrolisis adalah kebalikan kondensasi — air masuk kembali, rantai terputus</text>
+  </svg>
+  <figcaption><b>Gambar 20.1.</b> Peta Konsep Bab 20. Kedua kotak atas adalah <b>dua cara menyambung</b>, dan pembedanya satu hal: apakah ada molekul kecil yang keluar. Ketiga kotak makromolekul alam di tengah <b>semuanya hasil kondensasi</b> — itulah sebabnya ketiganya dapat dihidrolisis kembali menjadi monomernya, baik di dalam tubuh maupun di laboratorium.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara membaca peta ini</div>
+    <p>Pertanyaan pertama pada hampir setiap soal bab ini: <b>apakah ada molekul kecil yang keluar?</b> Bila ada, reaksinya kondensasi; bila tidak, adisi. Satu pertanyaan memisahkan dua golongan besar.</p>
+    <p>Perhatikan bahwa ketiga makromolekul alam berada di sisi <b>kondensasi</b>. Inilah yang memungkinkan tubuh menguraikannya kembali — dan yang membuat plastik hasil adisi begitu sukar terurai.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.4 POLIMER DAN POLIMERISASI ==================== -->
+<section class="page" id="polimer">
+  <h2>20.4&nbsp; Polimer dan Polimerisasi <span class="star">★★★</span></h2>
+  <p class="lead"><b>Monomer</b> adalah molekul kecilnya, <b>polimer</b> adalah rantai panjang hasil penyambungannya, dan <b>polimerisasi</b> adalah proses menyambungnya.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 428" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perbandingan polimerisasi adisi dan kondensasi">
+<rect x="1" y="1" width="718" height="426" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">DUA CARA MENYAMBUNG — PEMBEDANYA SATU HAL</text>
+<rect x="12" y="38" width="696" height="152" rx="9" fill="#fff" stroke="#1A8FBF" stroke-width="1.8"/>
+<rect x="12" y="38" width="696" height="26" rx="9" fill="#E9F5FB"/>
+<rect x="12" y="54" width="696" height="10" fill="#E9F5FB"/>
+<text x="30" y="56" font-size="11.5" font-weight="700" fill="#1A8FBF">POLIMERISASI ADISI</text>
+<rect x="46" y="82" width="76" height="34" rx="6" fill="#E9F5FB" stroke="#1A8FBF" stroke-width="1.6"/>
+<text x="84" y="103" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₂H₄</text>
+<text x="130" y="104" text-anchor="middle" font-size="13" fill="#69798A">+</text>
+<rect x="138" y="82" width="76" height="34" rx="6" fill="#E9F5FB" stroke="#1A8FBF" stroke-width="1.6"/>
+<text x="176" y="103" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₂H₄</text>
+<text x="222" y="104" text-anchor="middle" font-size="13" fill="#69798A">+</text>
+<rect x="230" y="82" width="76" height="34" rx="6" fill="#E9F5FB" stroke="#1A8FBF" stroke-width="1.6"/>
+<text x="268" y="103" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₂H₄</text>
+<path d="M330,99 L366,99" stroke="#1A8FBF" stroke-width="2"/>
+<path d="M360,94 L370,99 L360,104 z" fill="#1A8FBF"/>
+<rect x="384" y="80" width="200" height="38" rx="6" fill="#1A8FBF"/>
+<text x="484" y="104" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">–(C₂H₄)₃–  =  C₆H₁₂</text>
+<rect x="600" y="82" width="94" height="34" rx="6" fill="#F6F8FA" stroke="#DCE4EB" stroke-dasharray="4 3"/>
+<text x="647" y="103" text-anchor="middle" font-size="9.5" fill="#69798A">tidak ada</text>
+<text x="360" y="138" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Monomer wajib punya <tspan font-weight='700'>ikatan rangkap</tspan> yang terbuka saat menyambung</text>
+<text x="360" y="155" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Cacah atom 3 monomer = cacah atom polimer, tanpa sisa → <tspan font-weight='700'>Mr = n × Mr monomer</tspan> tepat</text>
+<rect x="12" y="202" width="696" height="152" rx="9" fill="#fff" stroke="#E89A1C" stroke-width="1.8"/>
+<rect x="12" y="202" width="696" height="26" rx="9" fill="#FFF6E6"/>
+<rect x="12" y="218" width="696" height="10" fill="#FFF6E6"/>
+<text x="30" y="220" font-size="11.5" font-weight="700" fill="#E89A1C">POLIMERISASI KONDENSASI</text>
+<rect x="46" y="246" width="76" height="34" rx="6" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.6"/>
+<text x="84" y="267" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₆H₁₂O₆</text>
+<text x="130" y="268" text-anchor="middle" font-size="13" fill="#69798A">+</text>
+<rect x="138" y="246" width="76" height="34" rx="6" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.6"/>
+<text x="176" y="267" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₆H₁₂O₆</text>
+<text x="222" y="268" text-anchor="middle" font-size="13" fill="#69798A">+</text>
+<rect x="230" y="246" width="76" height="34" rx="6" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.6"/>
+<text x="268" y="267" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">C₆H₁₂O₆</text>
+<path d="M330,263 L366,263" stroke="#E89A1C" stroke-width="2"/>
+<path d="M360,258 L370,263 L360,268 z" fill="#E89A1C"/>
+<rect x="384" y="244" width="200" height="38" rx="6" fill="#E89A1C"/>
+<text x="484" y="268" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">C₁₈H₃₂O₁₆</text>
+<text x="596" y="268" text-anchor="middle" font-size="13" fill="#69798A">+</text>
+<rect x="612" y="246" width="76" height="34" rx="6" fill="#FCEDEB" stroke="#B23A2C" stroke-width="1.6"/>
+<text x="650" y="267" text-anchor="middle" font-size="10.5" font-weight="700" fill="#B23A2C">2 H₂O</text>
+<text x="360" y="302" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Monomer wajib punya <tspan font-weight='700'>dua gugus fungsi</tspan> di kedua ujungnya</text>
+<text x="360" y="319" text-anchor="middle" font-size="10.5" fill="#3A4C5C">n monomer selalu melepas <tspan font-weight='700'>(n−1) molekul air</tspan> — di sini 3 monomer melepas 2</text>
+<rect x="12" y="366" width="696" height="52" rx="8" fill="#E8F5EE" stroke="#186F45"/>
+<text x="360" y="385" text-anchor="middle" font-size="11.5" font-weight="700" fill="#186F45">Pertanyaan pembeda: APAKAH ADA MOLEKUL KECIL YANG KELUAR?</text>
+<text x="360" y="404" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Ada → <tspan font-weight="700">kondensasi</tspan> · Tidak ada → <tspan font-weight="700">adisi</tspan> &#160;·&#160; kedua persamaan di atas diperiksa atom demi atom</text>
+</svg>  <figcaption><b>Gambar 20.2.</b> Dua cara menyambung monomer. Rumus hasil pada kedua baris <b>dihitung dari cacah atomnya</b>, bukan diketik: tiga etena memberi C<sub>6</sub>H<sub>12</sub> tanpa sisa, sedangkan tiga glukosa memberi rantai C<sub>18</sub>H<sub>32</sub>O<sub>16</sub> ditambah dua molekul air. Kedua persamaan diperiksa atom demi atom sebelum digambar.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Membedakan adisi dari kondensasi</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Pembeda</th><th>Adisi</th><th>Kondensasi</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Syarat monomer</td><td>Punya <b>ikatan rangkap</b></td><td>Punya <b>dua gugus fungsi</b></td></tr>
+        <tr><td>Molekul kecil yang keluar</td><td><b>Tidak ada</b></td><td><b>Ada</b> — biasanya air</td></tr>
+        <tr class="hi"><td>Massa molekul polimer</td><td>Tepat <b>n × Mr monomer</b></td><td><b>Kurang</b> dari n × Mr monomer</td></tr>
+        <tr><td>Contoh sintetis</td><td>Polietilena, PVC, polistirena, teflon</td><td>Nilon, dakron, bakelit</td></tr>
+        <tr class="hi"><td>Contoh alami</td><td>Karet alam</td><td>Amilum, selulosa, protein</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Pertanyaan pembedanya cuma satu:</b> apakah ada molekul kecil yang keluar? Bila ada, kondensasi; bila tidak, adisi. Baris ketiga memberi pemeriksa berupa angka — pada adisi, massa polimer adalah kelipatan tepat massa monomernya.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Polimer</th><th>Monomer</th><th>Jenis</th><th>Kegunaan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Polietilena</b></td><td>Etena</td><td>Adisi</td><td>Kantong plastik, botol</td></tr>
+      <tr><td><b>Polipropilena</b></td><td>Propena</td><td>Adisi</td><td>Karung, tali, wadah makanan</td></tr>
+      <tr class="hi"><td><b>PVC</b></td><td>Vinil klorida</td><td>Adisi</td><td>Pipa air, pelapis lantai</td></tr>
+      <tr><td><b>Polistirena</b></td><td>Stirena</td><td>Adisi</td><td>Styrofoam, gelas plastik</td></tr>
+      <tr class="hi"><td><b>Teflon</b></td><td>Tetrafluoroetena</td><td>Adisi</td><td>Pelapis antilengket</td></tr>
+      <tr><td><b>Karet alam</b></td><td>Isoprena</td><td>Adisi</td><td>Ban, sarung tangan</td></tr>
+      <tr class="hi"><td><b>Nilon</b></td><td>Asam adipat + heksametilendiamin</td><td><b>Kondensasi</b></td><td>Serat kain, tali, parasut</td></tr>
+      <tr><td><b>Dakron</b></td><td>Asam tereftalat + etilena glikol</td><td><b>Kondensasi</b></td><td>Serat kain, botol PET</td></tr>
+      <tr class="hi"><td><b>Bakelit</b></td><td>Fenol + metanal</td><td><b>Kondensasi</b></td><td>Alat listrik, gagang panci</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Perhatikan pola pada kolom monomer:</b> polimer adisi dibuat dari <b>satu</b> jenis monomer bergugus rangkap, sedangkan tiga polimer kondensasi di baris terakhir dibuat dari <b>dua</b> jenis monomer — masing-masing menyumbang gugus fungsi yang berbeda.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Tiga cara menggolongkan polimer</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Menurut asalnya</th><td><b>Alami</b> (karet, amilum, protein) atau <b>sintetis</b> (plastik, nilon)</td></tr>
+      <tr><th>Menurut monomernya</th><td><b>Homopolimer</b> (satu jenis monomer) atau <b>kopolimer</b> (dua jenis atau lebih)</td></tr>
+      <tr><th>Menurut sifat panasnya</th><td><b>Termoplas</b> (melunak saat dipanaskan, dapat didaur ulang) atau <b>termoset</b> (mengeras tetap, tidak dapat dilelehkan ulang)</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Contoh termoplas:</b> polietilena, PVC, polipropilena — inilah yang dapat didaur ulang. <b>Contoh termoset:</b> bakelit dan melamin — sekali mengeras, tidak dapat dilunakkan lagi, sehingga daur ulangnya jauh lebih sulit.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira semua plastik hasil adisi</div>
+    <p>Sebagian besar plastik sehari-hari memang polimer adisi, tetapi <b>nilon, dakron, dan bakelit adalah polimer kondensasi</b> — dan ketiganya sering muncul di soal.</p>
+    <p><b>Cara cepat mengenalinya:</b> bila monomernya <b>dua jenis</b>, hampir pasti kondensasi. Bila monomernya <b>satu jenis bergugus rangkap</b>, hampir pasti adisi.</p>
+    <p><b>Kesalahan kedua:</b> mengira polimer kondensasi bermassa tepat n kali massa monomernya. Tidak — ada (n−1) molekul air yang keluar, sehingga massanya <b>selalu lebih kecil</b>.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.5 KARBOHIDRAT ==================== -->
+<section class="page" id="karbohidrat">
+  <h2>20.5&nbsp; Karbohidrat <span class="star">★★★</span></h2>
+  <p class="lead">Namanya berarti "karbon yang berair" — karena rumus umumnya C<sub>n</sub>(H<sub>2</sub>O)<sub>m</sub>. Glukosa C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> dapat ditulis C<sub>6</sub>(H<sub>2</sub>O)<sub>6</sub>.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Golongan</th><th>Contoh</th><th>Rumus</th><th>Hasil hidrolisis</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td rowspan="3"><b>Monosakarida</b></td><td>Glukosa</td><td>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td><td>Tidak dapat dihidrolisis</td></tr>
+      <tr class="hi"><td>Fruktosa</td><td>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td><td>Tidak dapat dihidrolisis</td></tr>
+      <tr class="hi"><td>Galaktosa</td><td>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td><td>Tidak dapat dihidrolisis</td></tr>
+      <tr><td rowspan="3"><b>Disakarida</b></td><td><b>Sukrosa</b></td><td>C<sub>12</sub>H<sub>22</sub>O<sub>11</sub></td><td>Glukosa + <b>fruktosa</b></td></tr>
+      <tr><td><b>Maltosa</b></td><td>C<sub>12</sub>H<sub>22</sub>O<sub>11</sub></td><td>Glukosa + <b>glukosa</b></td></tr>
+      <tr><td><b>Laktosa</b></td><td>C<sub>12</sub>H<sub>22</sub>O<sub>11</sub></td><td>Glukosa + <b>galaktosa</b></td></tr>
+      <tr class="hi"><td rowspan="3"><b>Polisakarida</b></td><td>Amilum</td><td>(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub></td><td>Banyak glukosa</td></tr>
+      <tr class="hi"><td>Selulosa</td><td>(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub></td><td>Banyak glukosa</td></tr>
+      <tr class="hi"><td>Glikogen</td><td>(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub></td><td>Banyak glukosa</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Ketiga disakarida berumus sama persis</b> — C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>. Yang membedakannya hanya <b>hasil hidrolisisnya</b>, dan itulah yang selalu ditanyakan di soal.</p>
+
+  <div class="box exam">
+    <div class="bt">★ Aritmetika kondensasi karbohidrat</div>
+    <p>Dua glukosa bergabung melepas satu molekul air:</p>
+    <p class="eq">C₆H₁₂O₆ + C₆H₁₂O₆ → C₁₂H₂₂O₁₁ + H₂O</p>
+    <p style="margin-top:12px"><b>Periksa:</b> ruas kiri punya 12 C, 24 H, 12 O. Ruas kanan punya 12 C, (22+2)=24 H, (11+1)=12 O. <b>Setara ✔</b></p>
+    <p>Perhatikan bahwa 12 + 12 = 24 hidrogen, tetapi disakaridanya hanya punya <b>22</b> — dua sisanya keluar bersama air. Begitu pula oksigennya: 6 + 6 = 12, tetapi disakaridanya hanya 11.</p>
+    <p><b>Untuk polisakarida panjang</b>, n glukosa memberi rantai (C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> ditambah <b>n</b> molekul air. Persamaan ini diperiksa secara terprogram sampai n = 100, dan tetap setara atom demi atom.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Selulosa dan amilum sama-sama dari glukosa — mengapa yang satu tak dapat dicerna</div>
+    <p>Keduanya berumus <b>(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub></b> dan sama-sama rantai glukosa. Yang berbeda hanya <b>arah sambungannya</b>.</p>
+    <p>Enzim pencernaan manusia hanya cocok dengan arah sambungan pada <b>amilum</b>. Sambungan pada <b>selulosa</b> berarah berlawanan, dan enzim kita tidak dapat memutusnya — sehingga selulosa lewat begitu saja sebagai serat.</p>
+    <p>Sapi dan kambing dapat mencernanya bukan karena enzimnya berbeda, melainkan karena <b>bakteri dalam lambungnya</b> yang melakukannya. Inilah contoh bagus bahwa rumus molekul yang sama tidak menjamin sifat yang sama — persis seperti isomer di Bab 18.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.6 PROTEIN DAN ASAM AMINO ==================== -->
+<section class="page" id="protein">
+  <h2>20.6&nbsp; Protein dan Asam Amino <span class="star">★★★</span></h2>
+  <p class="lead">Asam amino punya <b>dua</b> gugus fungsi di satu molekul — gugus amino (–NH<sub>2</sub>) dan gugus karboksil (–COOH). Dua gugus itulah syarat untuk berkondensasi.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Ikatan peptida</div>
+    <p>Gugus –COOH satu asam amino bertemu gugus –NH<sub>2</sub> asam amino lain, melepas satu molekul air:</p>
+    <p class="eq">H₂N–CHR–COOH + H₂N–CHR′–COOH → H₂N–CHR–<b>CO–NH</b>–CHR′–COOH + H₂O</p>
+    <p style="margin-top:12px">Sambungan <b>–CO–NH–</b> itulah yang disebut <b>ikatan peptida</b>.</p>
+    <div class="tw" style="margin-top:12px"><table class="mini">
+      <tr><th>2 asam amino</th><td><b>dipeptida</b> · 1 ikatan peptida · 1 molekul air</td></tr>
+      <tr><th>3 asam amino</th><td><b>tripeptida</b> · 2 ikatan peptida · 2 molekul air</td></tr>
+      <tr><th>banyak asam amino</th><td><b>polipeptida</b> · (n−1) ikatan · (n−1) molekul air</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Rumus yang wajib diingat:</b> n asam amino memberi <b>(n−1)</b> ikatan peptida dan <b>(n−1)</b> molekul air — bukan n. Alasannya sederhana: sambungan selalu satu lebih sedikit daripada yang disambung, persis seperti ruas jari.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Mengapa protein bisa begitu beragam</div>
+    <p>Tubuh hanya memakai <b>20 jenis</b> asam amino. Tetapi karena <b>urutannya menentukan</b>, jumlah kemungkinannya meledak dengan cepat:</p>
+    <div class="tw"><table class="mini">
+      <tr><th>Dipeptida</th><td>20<sup>2</sup> = <b>400</b> kemungkinan</td></tr>
+      <tr><th>Tripeptida</th><td>20<sup>3</sup> = <b>8.000</b> kemungkinan</td></tr>
+      <tr><th>Rantai 5 asam amino</th><td>20<sup>5</sup> = <b>3.200.000</b> kemungkinan</td></tr>
+    </table></div>
+    <p style="margin-top:12px">Dan protein sungguhan panjangnya bisa <b>ratusan</b> asam amino. Inilah jawaban teka-teki di awal bab: dari bahan yang cuma 20 jenis, terbentuk jutaan protein berbeda — enzim, hormon, otot, antibodi.</p>
+    <p><b>Perhatikan bahwa urutan itu penting.</b> Glisilalanina dan alanilglisina tersusun dari asam amino yang sama persis, tetapi merupakan <b>senyawa berbeda</b> karena urutannya terbalik.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Sifat asam amino</th><th>Penjelasan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Amfoter</b></td><td>Punya gugus asam (–COOH) <b>dan</b> basa (–NH<sub>2</sub>), sehingga dapat bereaksi dengan keduanya</td></tr>
+      <tr><td><b>Zwitterion</b></td><td>Dalam air, H<sup>+</sup> berpindah dari –COOH ke –NH<sub>2</sub>, membentuk ion dengan dua muatan berlawanan</td></tr>
+      <tr class="hi"><td><b>Titik isoelektrik</b></td><td>pH saat muatan totalnya nol; pada pH ini kelarutannya paling kecil</td></tr>
+      <tr><td><b>Esensial</b></td><td>Tidak dapat dibuat tubuh, harus dari makanan</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Denaturasi protein</div>
+    <p><b>Denaturasi</b> adalah rusaknya bentuk lipatan protein sehingga ia kehilangan fungsinya. Yang rusak bukan ikatan peptidanya, melainkan <b>lipatan tiga dimensinya</b>.</p>
+    <p><b>Penyebabnya:</b> pemanasan, asam atau basa kuat, logam berat, dan alkohol.</p>
+    <p><b>Contoh sehari-hari:</b> putih telur yang bening berubah menjadi putih padat saat digoreng — itu denaturasi. Susu yang menggumpal saat diberi cuka juga. Dan inilah pula cara alkohol membunuh kuman: ia mendenaturasi protein di dalamnya.</p>
+    <p><b>Perhatikan:</b> denaturasi bersifat <b>tetap</b> pada kebanyakan kasus. Telur goreng tidak dapat dikembalikan menjadi telur mentah.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.7 LEMAK DAN MINYAK ==================== -->
+<section class="page" id="lemak">
+  <h2>20.7&nbsp; Lemak dan Minyak <span class="star">★★★</span></h2>
+  <p class="lead">Lemak adalah <b>ester</b> — hasil kondensasi satu gliserol dengan tiga asam lemak. Karena itu ia juga disebut <b>trigliserida</b>.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Pembentukan trigliserida</div>
+    <p>Gliserol punya <b>tiga</b> gugus –OH, sehingga dapat mengikat tiga asam lemak sekaligus:</p>
+    <p class="eq">C₃H₈O₃ + 3 C₁₆H₃₂O₂ → C₅₁H₉₈O₆ + 3 H₂O</p>
+    <p style="margin-top:12px"><b>Periksa:</b> kiri punya 3 + 48 = 51 C · 8 + 96 = 104 H · 3 + 6 = 9 O. Kanan punya 51 C · 98 + 6 = 104 H · 6 + 3 = 9 O. <b>Setara ✔</b></p>
+    <p><b>Selalu 3 molekul air</b> yang keluar — satu untuk tiap gugus –OH gliserol. Ini berbeda dari pola (n−1) pada protein dan karbohidrat, karena di sini gliserol adalah <b>tulang punggung</b> yang mengikat tiga cabang, bukan rantai yang disambung berderet.</p>
+  </div>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 448" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asam lemak jenuh dan tak jenuh serta titik lelehnya">
+<rect x="1" y="1" width="718" height="446" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">ASAM LEMAK — KEJENUHAN DIHITUNG DARI RUMUSNYA</text>
+<rect x="12" y="36" width="696" height="310" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<line x1="66" y1="258.0" x2="660" y2="258.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="262.0" text-anchor="end" font-size="9.5" fill="#69798A">-30</text>
+<line x1="66" y1="214.0" x2="660" y2="214.0" stroke="#B7C3CE" stroke-width="1"/>
+<text x="58" y="218.0" text-anchor="end" font-size="9.5" fill="#69798A">0</text>
+<line x1="66" y1="170.0" x2="660" y2="170.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="174.0" text-anchor="end" font-size="9.5" fill="#69798A">30</text>
+<line x1="66" y1="126.0" x2="660" y2="126.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="130.0" text-anchor="end" font-size="9.5" fill="#69798A">60</text>
+<line x1="66" y1="82.0" x2="660" y2="82.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="86.0" text-anchor="end" font-size="9.5" fill="#69798A">90</text>
+<line x1="66" y1="82" x2="66" y2="258" stroke="#69798A" stroke-width="1.6"/>
+<text x="22" y="170" text-anchor="middle" font-size="10" fill="#69798A" transform="rotate(-90 22 170)">titik leleh (°C)</text>
+<text x="656" y="208" text-anchor="end" font-size="8.5" fill="#69798A">0 °C — batas padat / cair pada suhu dingin</text>
+<rect x="88.0" y="121.6" width="83.6" height="92.4" rx="3" fill="#B23A2C"/>
+<text x="129.8" y="115" text-anchor="middle" font-size="10" font-weight="700" fill="#B23A2C">63°C</text>
+<text x="129.8" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0B2E4F">palmitat</text>
+<text x="129.8" y="292" text-anchor="middle" font-size="8.5" fill="#69798A" font-family="monospace">C16H32O2</text>
+<rect x="99.8" y="300" width="60" height="18" rx="4" fill="#B23A2C"/>
+<text x="129.8" y="313" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">0 C=C</text>
+<rect x="201.6" y="112.8" width="83.6" height="101.2" rx="3" fill="#B23A2C"/>
+<text x="243.4" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="#B23A2C">69°C</text>
+<text x="243.4" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0B2E4F">stearat</text>
+<text x="243.4" y="292" text-anchor="middle" font-size="8.5" fill="#69798A" font-family="monospace">C18H36O2</text>
+<rect x="213.4" y="300" width="60" height="18" rx="4" fill="#B23A2C"/>
+<text x="243.4" y="313" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">0 C=C</text>
+<rect x="315.2" y="194.9" width="83.6" height="19.1" rx="3" fill="#E89A1C"/>
+<text x="357.0" y="188" text-anchor="middle" font-size="10" font-weight="700" fill="#E89A1C">13°C</text>
+<text x="357.0" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0B2E4F">oleat</text>
+<text x="357.0" y="292" text-anchor="middle" font-size="8.5" fill="#69798A" font-family="monospace">C18H34O2</text>
+<rect x="327.0" y="300" width="60" height="18" rx="4" fill="#E89A1C"/>
+<text x="357.0" y="313" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">1 C=C</text>
+<rect x="428.8" y="214.0" width="83.6" height="7.3" rx="3" fill="#186F45"/>
+<text x="470.6" y="235" text-anchor="middle" font-size="10" font-weight="700" fill="#186F45">-5°C</text>
+<text x="470.6" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0B2E4F">linoleat</text>
+<text x="470.6" y="292" text-anchor="middle" font-size="8.5" fill="#69798A" font-family="monospace">C18H32O2</text>
+<rect x="440.6" y="300" width="60" height="18" rx="4" fill="#186F45"/>
+<text x="470.6" y="313" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">2 C=C</text>
+<rect x="542.4" y="214.0" width="83.6" height="16.1" rx="3" fill="#186F45"/>
+<text x="584.2" y="244" text-anchor="middle" font-size="10" font-weight="700" fill="#186F45">-11°C</text>
+<text x="584.2" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0B2E4F">linolenat</text>
+<text x="584.2" y="292" text-anchor="middle" font-size="8.5" fill="#69798A" font-family="monospace">C18H30O2</text>
+<rect x="554.2" y="300" width="60" height="18" rx="4" fill="#186F45"/>
+<text x="584.2" y="313" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">3 C=C</text>
+<text x="360" y="340" text-anchor="middle" font-size="10" fill="#3A4C5C">merah = <tspan font-weight="700">jenuh</tspan> (lemak, padat) &#160;·&#160; jingga dan hijau = <tspan font-weight="700">tak jenuh</tspan> (minyak, cair)</text>
+<rect x="12" y="356" width="696" height="80" rx="8" fill="#E8F5EE" stroke="#186F45"/>
+<text x="360" y="375" text-anchor="middle" font-size="11.5" font-weight="700" fill="#186F45">Jumlah ikatan rangkap tidak dihafal — ia dihitung dari DBE</text>
+<text x="360" y="394" text-anchor="middle" font-size="10.5" fill="#3A4C5C">DBE = (2C + 2 − H) ÷ 2 &#160;·&#160; satu DBE selalu terpakai gugus <tspan font-weight="700">C=O</tspan>, sisanya adalah ikatan rangkap <tspan font-weight="700">C=C</tspan></text>
+<text x="360" y="412" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Pada keluarga C₁₈, titik leleh <tspan font-weight="700">turun terus</tspan> seiring bertambahnya C=C: 69 → 13 → −5 → −11 °C</text>
+<text x="360" y="429" text-anchor="middle" font-size="9.5" fill="#69798A">ikatan rangkap menekuk rantai sehingga molekul sukar tersusun rapat — itulah sebabnya minyak nabati cair</text>
+</svg>  <figcaption><b>Gambar 20.3.</b> Asam lemak dan titik lelehnya. Jumlah ikatan rangkap C=C pada setiap batang <b>dihitung dari rumus molekulnya</b> lewat DBE, bukan dihafal — satu DBE selalu terpakai gugus C=O, dan sisanya adalah ikatan rangkap C=C. Pada keluarga C<sub>18</sub> yang panjang rantainya sama, titik leleh turun terus seiring bertambahnya C=C, tanpa satu pun penyimpangan.</figcaption>
+  </figure>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pembeda</th><th>Lemak</th><th>Minyak</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Wujud pada suhu kamar</td><td><b>Padat</b></td><td><b>Cair</b></td></tr>
+      <tr><td>Asam lemaknya</td><td>Sebagian besar <b>jenuh</b></td><td>Sebagian besar <b>tak jenuh</b></td></tr>
+      <tr class="hi"><td>Ikatan rangkap C=C</td><td>Sedikit atau tidak ada</td><td><b>Banyak</b></td></tr>
+      <tr><td>Asalnya</td><td>Umumnya hewani</td><td>Umumnya nabati</td></tr>
+      <tr class="hi"><td>Titik leleh</td><td>Tinggi</td><td>Rendah</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa ikatan rangkap menurunkan titik leleh</div>
+    <p>Ikatan rangkap C=C membuat rantai asam lemak <b>menekuk</b>. Rantai yang bengkok sukar tersusun rapat satu sama lain, sehingga gaya antarmolekulnya lemah dan mudah dipisahkan.</p>
+    <p>Rantai jenuh yang lurus dapat tersusun rapat seperti tumpukan lidi, sehingga gaya antarmolekulnya kuat dan titik lelehnya tinggi.</p>
+    <p>Inilah sebabnya <b>minyak nabati cair</b> sedangkan <b>lemak hewani padat</b> — dan mengapa margarin dibuat dengan <b>menghidrogenasi</b> minyak nabati, yaitu menambahkan H<sub>2</sub> untuk membuang sebagian ikatan rangkapnya sehingga rantainya lurus kembali dan produknya memadat.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Dua reaksi penting lemak</div>
+    <p><b>Penyabunan (saponifikasi)</b> — hidrolisis lemak dengan basa kuat:</p>
+    <p class="eq">lemak + 3 NaOH → 3 sabun (garam asam lemak) + gliserol</p>
+    <p style="margin-top:12px">Inilah cara sabun dibuat, dan <b>gliserol</b> adalah hasil sampingnya yang kemudian dipakai untuk kosmetik. Reaksi ini adalah penerapan langsung hidrolisis ester dari Bab 18.</p>
+    <p style="margin-top:12px"><b>Hidrogenasi</b> — menambahkan H<sub>2</sub> pada ikatan rangkap asam lemak tak jenuh, mengubah minyak cair menjadi lemak padat. Inilah cara <b>margarin</b> dibuat dari minyak nabati.</p>
+    <p><b>Ketengikan</b> terjadi ketika lemak teroksidasi oleh udara, terutama pada bagian ikatan rangkapnya — itulah sebabnya minyak tak jenuh lebih cepat tengik daripada lemak jenuh.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.8 UJI IDENTIFIKASI ==================== -->
+<section class="page" id="uji">
+  <h2>20.8&nbsp; Uji Identifikasi Makromolekul <span class="star">★★★</span></h2>
+  <p class="lead">Bagian ini <b>hafalan murni</b> — pasangan pereaksi, warna hasil, dan apa yang dibuktikannya. Untunglah daftarnya pendek.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Uji</th><th>Pereaksi</th><th>Hasil positif</th><th>Membuktikan adanya</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Iodin</b></td><td>Larutan I<sub>2</sub></td><td>Warna <b>biru kehitaman</b></td><td><b>Amilum</b></td></tr>
+      <tr><td><b>Fehling</b></td><td>Cu<sup>2+</sup> dalam basa</td><td>Endapan <b>merah bata</b></td><td><b>Gula pereduksi</b></td></tr>
+      <tr class="hi"><td><b>Tollens</b></td><td>Perak amoniakal</td><td><b>Cermin perak</b></td><td>Gula pereduksi</td></tr>
+      <tr><td><b>Biuret</b></td><td>CuSO<sub>4</sub> + NaOH</td><td>Warna <b>ungu</b></td><td><b>Ikatan peptida</b> (protein)</td></tr>
+      <tr class="hi"><td><b>Xantoprotein</b></td><td>HNO<sub>3</sub> pekat</td><td>Warna <b>kuning</b></td><td>Protein <b>bercincin benzena</b></td></tr>
+      <tr><td><b>Timbal(II) asetat</b></td><td>Pb(CH<sub>3</sub>COO)<sub>2</sub></td><td>Endapan <b>hitam</b> PbS</td><td>Protein <b>mengandung belerang</b></td></tr>
+      <tr class="hi"><td><b>Kertas buram</b></td><td>—</td><td>Noda <b>transparan</b> yang tidak hilang</td><td><b>Lemak</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara mengingat tujuh uji ini tanpa menghafal buta</div>
+    <p><b>Kelompokkan menurut golongan yang diuji.</b> Dua uji untuk karbohidrat (iodin dan Fehling), tiga untuk protein (biuret, xantoprotein, timbal asetat), dan satu untuk lemak.</p>
+    <p><b>Hubungkan warna dengan zatnya.</b> Fehling dan Tollens sudah Anda kenal dari Bab 18 — keduanya menguji <b>gugus aldehid</b>, dan gula pereduksi memang punya gugus itu. Tidak ada yang baru di sini.</p>
+    <p><b>Tiga uji protein menguji tiga hal berbeda:</b> biuret menguji <b>ikatan peptidanya</b> (jadi positif untuk semua protein), xantoprotein menguji <b>cincin benzena</b> pada sebagian asam aminonya, dan timbal asetat menguji <b>belerang</b>. Karena itu hasil positif biuret paling menentukan.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira semua disakarida positif Fehling</div>
+    <p><b>Sukrosa negatif Fehling</b>, sedangkan maltosa dan laktosa positif. Sukrosa bukan gula pereduksi karena gugus aldehid kedua monomernya <b>terpakai habis</b> dalam sambungannya.</p>
+    <p><b>Yang positif Fehling:</b> glukosa, fruktosa, galaktosa, maltosa, dan laktosa. <b>Yang negatif:</b> sukrosa, amilum, dan selulosa.</p>
+    <p><b>Tetapi bila sukrosa dihidrolisis dulu</b>, hasilnya glukosa dan fruktosa yang keduanya <b>positif</b>. Soal sering memakai urutan ini sebagai jebakan: sukrosa yang tadinya negatif menjadi positif setelah dipanaskan dengan asam.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Urutan uji untuk mengenali bahan makanan</div>
+    <ol class="step">
+      <li><b>Teteskan pada kertas buram.</b> Noda transparan yang tidak hilang → ada <b>lemak</b>.</li>
+      <li><b>Teteskan larutan iodin.</b> Biru kehitaman → ada <b>amilum</b>.</li>
+      <li><b>Tambahkan pereaksi biuret.</b> Ungu → ada <b>protein</b>.</li>
+      <li><b>Panaskan dengan Fehling.</b> Merah bata → ada <b>gula pereduksi</b>.</li>
+    </ol>
+    <p style="margin-top:12px">Inilah percobaan yang biasa dikerjakan di laboratorium sekolah. Satu bahan makanan bisa memberi <b>beberapa hasil positif</b> sekaligus — nasi positif iodin, telur positif biuret, dan susu positif keduanya ditambah lemak.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.9 POLIMER DAN LINGKUNGAN ==================== -->
+<section class="page" id="dampak">
+  <h2>20.9&nbsp; Polimer dan Lingkungan</h2>
+  <p class="lead">Sifat yang membuat plastik berguna — kuat, ringan, tahan lama — adalah sifat yang sama yang membuatnya menjadi masalah.</p>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Mengapa plastik begitu sukar terurai</div>
+    <p>Bandingkan dengan amilum. Keduanya polimer, tetapi <b>amilum dibentuk lewat kondensasi</b> — sambungannya dapat diputus kembali oleh air, dan enzim tubuh kita memang punya alat untuk itu.</p>
+    <p><b>Polietilena dibentuk lewat adisi</b>, dan sambungannya berupa ikatan C–C biasa yang sangat kuat. Tidak ada air yang perlu dikembalikan, dan tidak ada enzim di alam yang berevolusi untuk memutusnya — karena rantai semacam itu memang tidak pernah ada di alam sebelum manusia membuatnya.</p>
+    <p>Itulah sebabnya kantong plastik dapat bertahan <b>ratusan tahun</b>, sedangkan nasi terurai dalam hitungan jam.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Masalah</th><th>Penjelasan</th><th>Upaya mengatasinya</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Sukar terurai</b></td><td>Bertahan ratusan tahun di tanah dan laut</td><td>Kurangi pemakaian, daur ulang</td></tr>
+      <tr><td><b>Mikroplastik</b></td><td>Pecahan halus yang masuk rantai makanan</td><td>Kurangi plastik sekali pakai</td></tr>
+      <tr class="hi"><td><b>Pembakaran beracun</b></td><td>PVC yang dibakar melepas gas berbahaya</td><td>Jangan bakar sampah plastik</td></tr>
+      <tr><td><b>Termoset sukar didaur ulang</b></td><td>Tidak dapat dilelehkan ulang</td><td>Pilih produk termoplas</td></tr>
+      <tr class="hi"><td><b>Berbahan minyak bumi</b></td><td>Sumbernya tak terbarukan</td><td>Kembangkan <b>bioplastik</b> dari pati</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Bioplastik — meminjam cara alam</div>
+    <p><b>Bioplastik</b> dibuat dari pati jagung, singkong, atau tebu. Karena rantainya dibentuk lewat <b>kondensasi</b> seperti polimer alami, sambungannya dapat diputus kembali oleh air dan mikroba — sehingga ia terurai dalam hitungan bulan, bukan abad.</p>
+    <p><b>Tetapi ada batasnya.</b> Bioplastik umumnya kurang kuat dan lebih mahal, dan sebagian hanya terurai pada keadaan pengomposan tertentu — bukan begitu saja di tempat sampah biasa.</p>
+    <p><b>Kode daur ulang</b> yang tercetak di dasar wadah plastik menunjukkan jenis polimernya: 1 untuk PET (dakron), 2 untuk polietilena rapat, 3 untuk PVC, dan 6 untuk polistirena. Nomor 1 dan 2 yang paling mudah didaur ulang.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1-7 ==================== -->
+<section class="page">
+  <h2>Worked Example — Polimerisasi dan Karbohidrat</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Membedakan adisi dari kondensasi</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jenis polimerisasi untuk (a) polietilena dari etena; (b) nilon dari asam adipat dan heksametilendiamin.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jenis polimerisasi keduanya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tanyakan: apakah ada molekul kecil yang keluar?</div></div>
+      <div class="step"><b>(a) Polietilena</b>Monomernya <b>satu jenis</b> bergugus rangkap; tidak ada yang keluar → <span class="eq">ADISI</span></div>
+      <div class="step"><b>(b) Nilon</b>Monomernya <b>dua jenis</b>, masing-masing bergugus fungsi; air keluar → <span class="eq">KONDENSASI</span></div>
+      <div class="ansbar">Jawaban: (a) adisi; (b) kondensasi</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Ada dua petunjuk yang saling menguatkan. Yang paling pasti adalah <b>ada tidaknya molekul kecil yang keluar</b>. Yang paling cepat adalah <b>jumlah jenis monomernya</b> — dua jenis hampir selalu berarti kondensasi, karena masing-masing perlu menyumbang gugus fungsi yang berbeda. Bila soal hanya memberi nama monomer tanpa persamaan, petunjuk kedua inilah yang dipakai.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Menentukan monomer dari polimernya</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Sebutkan monomer dari (a) PVC; (b) polistirena; (c) teflon; (d) karet alam.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat monomer</div></div>
+      <div class="step"><b>(a) PVC</b><span class="eq">Vinil klorida</span>, C₂H₃Cl</div>
+      <div class="step"><b>(b) Polistirena</b><span class="eq">Stirena</span>, C₈H₈ — turunan benzena dari Bab 19</div>
+      <div class="step"><b>(c) Teflon</b><span class="eq">Tetrafluoroetena</span>, C₂F₄</div>
+      <div class="step"><b>(d) Karet alam</b><span class="eq">Isoprena</span></div>
+      <div class="ansbar">Jawaban: (a) vinil klorida; (b) stirena; (c) tetrafluoroetena; (d) isoprena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan pola penamaannya: nama polimer hampir selalu <b>"poli" + nama monomernya</b>. Polistirena dari stirena, polipropilena dari propena, polietilena dari etena. Dua pengecualiannya adalah <b>teflon</b> dan <b>karet alam</b> — keduanya bernama lazim, sehingga monomernya harus dihafal terpisah.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Menggolongkan karbohidrat</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Golongkan glukosa, sukrosa, dan amilum, lalu sebutkan hasil hidrolisisnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Golongan dan hasil hidrolisisnya</div></div>
+      <div class="step"><b>Glukosa</b><span class="eq">Monosakarida</span> → <b>tidak dapat dihidrolisis</b>, ia sudah bentuk paling sederhana</div>
+      <div class="step"><b>Sukrosa</b><span class="eq">Disakarida</span> → menghasilkan <b>glukosa + fruktosa</b></div>
+      <div class="step"><b>Amilum</b><span class="eq">Polisakarida</span> → menghasilkan <b>banyak glukosa</b></div>
+      <div class="ansbar">Jawaban: glukosa monosakarida; sukrosa disakarida (glukosa + fruktosa); amilum polisakarida (banyak glukosa)</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Yang paling sering ditanyakan adalah <b>hasil hidrolisis ketiga disakarida</b>, karena ketiganya berumus sama persis C<sub>12</sub>H<sub>22</sub>O<sub>11</sub> dan hanya hasilnya yang membedakan. Hafalkan bertiga sekaligus: <b>sukrosa → glukosa + fruktosa</b>, <b>maltosa → dua glukosa</b>, <b>laktosa → glukosa + galaktosa</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Aritmetika kondensasi disakarida</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tunjukkan bahwa persamaan C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> → C<sub>12</sub>H<sub>22</sub>O<sub>11</sub> + H<sub>2</sub>O sudah setara.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Pembuktian kesetaraannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung tiap unsur di kedua ruas.</div></div>
+      <div class="step"><b>Karbon</b>Kiri 6 + 6 = 12 · Kanan 12 + 0 = <span class="eq">12 ✔</span></div>
+      <div class="step"><b>Hidrogen</b>Kiri 12 + 12 = 24 · Kanan 22 + 2 = <span class="eq">24 ✔</span></div>
+      <div class="step"><b>Oksigen</b>Kiri 6 + 6 = 12 · Kanan 11 + 1 = <span class="eq">12 ✔</span></div>
+      <div class="ansbar">Jawaban: ketiga unsur setara, persamaannya benar</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa disakaridanya kehilangan tepat <b>H<sub>2</sub>O</b> dari jumlah kedua monomernya: 24 hidrogen menjadi 22, dan 12 oksigen menjadi 11. Inilah tanda khas kondensasi, dan pemeriksaan ini berlaku untuk <b>semua</b> reaksi kondensasi di bab ini. Seluruh persamaan di bab ini diperiksa dengan cara yang sama secara terprogram, termasuk rantai sepanjang 100 unit glukosa.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Massa polimer adisi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sebuah polietilena bermassa molekul 28.000. Berapa banyak monomer etena yang menyusunnya? (A<sub>r</sub> C = 12, H = 1)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Mr polimer = 28.000; monomer C<sub>2</sub>H<sub>4</sub></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah monomer (n)</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pada adisi, Mr polimer = n × Mr monomer <b>tepat</b>.</div></div>
+      <div class="step"><b>Langkah 1 — Mr monomer</b>C₂H₄ = (2 × 12) + (4 × 1) = <span class="eq">28</span></div>
+      <div class="step"><b>Langkah 2 — Bagi</b>n = 28.000 ÷ 28 = <span class="eq">1.000</span></div>
+      <div class="ansbar">Jawaban: 1.000 monomer etena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Pembagian sederhana ini <b>hanya berlaku untuk polimer adisi</b>, karena tidak ada atom yang hilang saat menyambung. Pada polimer <b>kondensasi</b>, cara ini akan memberi jawaban yang keliru — di sana Mr polimer selalu <b>lebih kecil</b> daripada n × Mr monomer, karena (n−1) molekul air sudah keluar. Perhatikan dulu jenis polimerisasinya sebelum membagi.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Uji Fehling pada karbohidrat</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sukrosa diuji dengan Fehling dan hasilnya negatif. Setelah dipanaskan dengan asam encer lalu diuji ulang, hasilnya positif. Jelaskan.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Penjelasan perubahannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Perhatikan apa yang terjadi saat dipanaskan dengan asam.</div></div>
+      <div class="step"><b>Langkah 1 — Mengapa awalnya negatif</b>Gugus aldehid kedua monomer sukrosa <b>terpakai habis</b> dalam sambungannya → bukan gula pereduksi</div>
+      <div class="step"><b>Langkah 2 — Pemanasan dengan asam</b>Terjadi <span class="eq">hidrolisis</span> → sukrosa terurai menjadi <b>glukosa + fruktosa</b></div>
+      <div class="step"><b>Langkah 3 — Mengapa lalu positif</b>Keduanya <b>gula pereduksi</b> yang gugus aldehidnya kini bebas → memberi endapan merah bata</div>
+      <div class="ansbar">Jawaban: hidrolisis memecah sukrosa menjadi glukosa dan fruktosa yang keduanya gula pereduksi</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal ini menguji pemahaman <b>mengapa</b> sukrosa berbeda dari maltosa dan laktosa yang sama-sama disakarida tetapi <b>positif</b> Fehling. Pada maltosa dan laktosa, masih ada satu gugus aldehid yang bebas. Perhatikan pula bahwa uji Fehling di sini adalah uji yang sama persis dari Bab 18 — ia menguji gugus aldehid, bukan sesuatu yang baru.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Amilum versus selulosa</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Amilum dan selulosa sama-sama berumus (C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> dan sama-sama tersusun dari glukosa. Mengapa manusia hanya dapat mencerna amilum?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Sebab perbedaannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bila rumus dan monomernya sama, yang berbeda pasti susunannya.</div></div>
+      <div class="step"><b>Langkah 1 — Yang sama</b>Rumus molekul, monomer, bahkan jenis ikatannya — seluruhnya sama</div>
+      <div class="step"><b>Langkah 2 — Yang berbeda</b><span class="eq">Arah sambungan</span> antarglukosanya berlawanan</div>
+      <div class="step"><b>Langkah 3 — Akibatnya</b>Enzim pencernaan manusia hanya <b>cocok bentuknya</b> dengan sambungan pada amilum</div>
+      <div class="step"><b>Langkah 4 — Pada hewan pemamah biak</b>Yang mencerna selulosa bukan enzimnya, melainkan <b>bakteri</b> dalam lambungnya</div>
+      <div class="ansbar">Jawaban: karena arah sambungan antarglukosanya berbeda, dan enzim manusia hanya cocok dengan arah pada amilum</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 adalah kuncinya — <b>menyebut dulu apa yang sama</b> membuat jelas bahwa perbedaannya tidak mungkin terletak pada rumus atau monomernya. Ini gagasan yang sudah Anda temui di Bab 18: rumus molekul yang sama tidak menjamin sifat yang sama. Di sini bahkan jenis ikatannya sama; yang berbeda hanya <b>arahnya di ruang</b>.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Apa pertanyaan pembeda antara polimerisasi adisi dan kondensasi?</li>
+      <li>Apa hasil hidrolisis sukrosa?</li>
+      <li>Mengapa sukrosa negatif terhadap Fehling?</li>
+      <li>Berapa jumlah monomer pada polietilena bermassa 28.000?</li>
+      <li>Apakah cara "Mr polimer ÷ Mr monomer" berlaku untuk polimer kondensasi?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>apakah ada molekul kecil yang keluar</b> — ada berarti kondensasi; (2) <b>glukosa dan fruktosa</b>; (3) karena gugus aldehid kedua monomernya <b>terpakai</b> dalam sambungannya; (4) <b>1.000</b>; (5) <b>tidak</b> — pada kondensasi Mr polimer lebih kecil karena (n−1) molekul air sudah keluar.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 8-14 ==================== -->
+<section class="page">
+  <h2>Worked Example — Protein, Lemak, dan Uji Identifikasi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Menghitung ikatan peptida</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Sebuah rantai polipeptida tersusun dari 50 asam amino. Berapa ikatan peptida dan berapa molekul air yang terbentuk?</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>n = 50 asam amino</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah ikatan peptida dan molekul air</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Sambungan selalu satu lebih sedikit daripada yang disambung.</div></div>
+      <div class="step"><b>Langkah 1 — Ikatan peptida</b>n − 1 = 50 − 1 = <span class="eq">49 ikatan</span></div>
+      <div class="step"><b>Langkah 2 — Molekul air</b>Setiap ikatan melepas satu air → <span class="eq">49 molekul air</span></div>
+      <div class="ansbar">Jawaban: 49 ikatan peptida dan 49 molekul air</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Menjawab 50 adalah kesalahan paling sering di bagian ini. Gambarkan saja: untuk menyambung <b>tiga</b> manik-manik menjadi satu untaian, Anda butuh <b>dua</b> tali — bukan tiga. Pola (n−1) itu diperiksa secara terprogram untuk n = 2, 3, 5, 10, dan 100, dan selalu konsisten. Perhatikan pula bahwa jumlah air <b>selalu sama</b> dengan jumlah ikatannya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Menyetarakan pembentukan dipeptida</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Glisina (C<sub>2</sub>H<sub>5</sub>NO<sub>2</sub>) bergabung dengan alanina (C<sub>3</sub>H<sub>7</sub>NO<sub>2</sub>). Tentukan rumus dipeptidanya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Rumus dipeptida</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Jumlahkan kedua rumus, lalu kurangi satu H<sub>2</sub>O.</div></div>
+      <div class="step"><b>Langkah 1 — Jumlahkan</b>C: 2+3=5 · H: 5+7=12 · N: 1+1=2 · O: 2+2=4</div>
+      <div class="step"><b>Langkah 2 — Kurangi H₂O</b>H: 12−2=10 · O: 4−1=3 · C dan N tidak berubah</div>
+      <div class="step"><b>Langkah 3 — Rumusnya</b><span class="eq">C₅H₁₀N₂O₃</span></div>
+      <div class="step"><b>Periksa</b>C₅H₁₀N₂O₃ + H₂O memberi C₅H₁₂N₂O₄ = jumlah kedua monomernya ✔</div>
+      <div class="ansbar">Jawaban: C<sub>5</sub>H<sub>10</sub>N<sub>2</sub>O<sub>3</sub></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Cara "jumlahkan lalu kurangi air" berlaku untuk <b>setiap</b> reaksi kondensasi — disakarida, dipeptida, maupun ester. Langkah 4 adalah pemeriksa yang murah: kembalikan airnya, dan hasilnya harus sama dengan jumlah kedua monomernya. Persamaan ini diperiksa atom demi atom secara terprogram dan terbukti setara.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Berapa banyak tripeptida yang mungkin</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Dari 20 jenis asam amino, berapa banyak tripeptida berbeda yang dapat dibentuk? Jelaskan mengapa jumlahnya demikian.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Perhatikan apakah urutan menentukan.</div></div>
+      <div class="step"><b>Langkah 1 — Urutan menentukan</b>Glisilalanina berbeda dari alanilglisina → susunannya <b>bukan sekadar kombinasi</b></div>
+      <div class="step"><b>Langkah 2 — Posisi pertama</b>Ada <span class="eq">20 pilihan</span></div>
+      <div class="step"><b>Langkah 3 — Posisi kedua dan ketiga</b>Masing-masing juga <b>20 pilihan</b>, karena asam amino boleh berulang</div>
+      <div class="step"><b>Langkah 4 — Kalikan</b>20 × 20 × 20 = <span class="eq">8.000 tripeptida</span></div>
+      <div class="ansbar">Jawaban: 8.000 tripeptida berbeda</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 adalah penentunya — bila urutan <b>tidak</b> menentukan, jawabannya akan jauh lebih kecil. Rumus pangkat ini diperiksa dengan mencacah langsung untuk kasus kecil: dengan 3 jenis asam amino, cacah langsung memberi 9 dipeptida, dan 3<sup>2</sup> memang 9. Inilah jawaban teka-teki di awal bab — dari 20 bahan saja, rantai sepanjang <b>ratusan</b> asam amino memberi kemungkinan yang praktis tak terhingga.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Menentukan kejenuhan asam lemak</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jumlah ikatan rangkap C=C pada (a) asam stearat C<sub>18</sub>H<sub>36</sub>O<sub>2</sub>; (b) asam oleat C<sub>18</sub>H<sub>34</sub>O<sub>2</sub>; (c) asam linoleat C<sub>18</sub>H<sub>32</sub>O<sub>2</sub>.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah C=C ketiganya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung DBE, lalu kurangi satu untuk gugus C=O.</div></div>
+      <div class="step"><b>(a) Asam stearat</b>DBE = (36 + 2 − 36) ÷ 2 = 1 → 1 − 1 = <span class="eq">0 C=C</span> → <b>jenuh</b></div>
+      <div class="step"><b>(b) Asam oleat</b>DBE = (36 + 2 − 34) ÷ 2 = 2 → 2 − 1 = <span class="eq">1 C=C</span> → tak jenuh tunggal</div>
+      <div class="step"><b>(c) Asam linoleat</b>DBE = (36 + 2 − 32) ÷ 2 = 3 → 3 − 1 = <span class="eq">2 C=C</span> → tak jenuh ganda</div>
+      <div class="ansbar">Jawaban: (a) 0; (b) 1; (c) 2 ikatan rangkap C=C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah "kurangi satu" wajib dikerjakan — <b>satu DBE selalu terpakai gugus C=O</b> pada –COOH, dan melupakannya membuat setiap jawaban kelebihan satu. Perhatikan bahwa kejenuhan di sini <b>dihitung dari rumusnya</b>, bukan dihafal; dan ketiga hasilnya cocok dengan urutan titik leleh yang menurun: 69 °C, 13 °C, lalu −5 °C.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Pembentukan trigliserida</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Gliserol (C<sub>3</sub>H<sub>8</sub>O<sub>3</sub>) bereaksi dengan tiga molekul asam stearat (C<sub>18</sub>H<sub>36</sub>O<sub>2</sub>). Tentukan rumus lemaknya dan berapa air yang keluar.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Rumus lemak dan jumlah air</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Gliserol punya tiga gugus –OH, jadi tiga air yang keluar.</div></div>
+      <div class="step"><b>Langkah 1 — Jumlahkan</b>C: 3 + 54 = 57 · H: 8 + 108 = 116 · O: 3 + 6 = 9</div>
+      <div class="step"><b>Langkah 2 — Kurangi 3 H₂O</b>H: 116 − 6 = 110 · O: 9 − 3 = 6</div>
+      <div class="step"><b>Langkah 3 — Rumusnya</b><span class="eq">C₅₇H₁₁₀O₆</span>, dengan <b>3 molekul air</b> keluar</div>
+      <div class="ansbar">Jawaban: C<sub>57</sub>H<sub>110</sub>O<sub>6</sub>, disertai 3 molekul air</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa di sini <b>selalu 3</b> molekul air, bukan (n−1). Polanya berbeda karena gliserol berperan sebagai <b>tulang punggung</b> yang mengikat tiga cabang, bukan sebagai bagian rantai yang disambung berderet. Satu air untuk tiap gugus –OH gliserol. Persamaan ini diperiksa atom demi atom dan terbukti setara.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Mengenali bahan makanan lewat uji</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sebuah bahan makanan memberi warna <b>biru kehitaman</b> dengan iodin dan warna <b>ungu</b> dengan biuret. Apa kandungannya?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Kandungan bahan makanan itu</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Terjemahkan tiap hasil uji satu per satu.</div></div>
+      <div class="step"><b>Uji iodin biru kehitaman</b>Menunjukkan adanya <span class="eq">amilum</span></div>
+      <div class="step"><b>Uji biuret ungu</b>Menunjukkan adanya <span class="eq">ikatan peptida</span> → ada <b>protein</b></div>
+      <div class="step"><b>Simpulkan</b>Bahan makanan itu mengandung <b>amilum dan protein</b></div>
+      <div class="ansbar">Jawaban: mengandung amilum (karbohidrat) dan protein</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Satu bahan makanan dapat memberi <b>beberapa hasil positif sekaligus</b> — itu wajar, bukan tanda percobaan yang keliru. Susu misalnya positif biuret, positif Fehling, dan meninggalkan noda pada kertas buram. Perhatikan pula bahwa uji biuret menguji <b>ikatan peptida</b>, sehingga ia positif untuk semua protein — itulah sebabnya hasilnya paling menentukan di antara ketiga uji protein.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Reaksi penyabunan</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan hasil reaksi lemak dengan NaOH, sebutkan nama reaksinya, dan jelaskan hubungannya dengan Bab 18.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Hasil, nama reaksi, dan kaitannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Lemak adalah ester — terapkan hidrolisis ester dengan basa.</div></div>
+      <div class="step"><b>Langkah 1 — Lemak itu apa</b>Ester dari gliserol dan tiga asam lemak</div>
+      <div class="step"><b>Langkah 2 — Hidrolisis dengan basa kuat</b>Sisi asam menjadi <b>garam</b>, sisi alkohol menjadi <b>alkohol</b></div>
+      <div class="step"><b>Langkah 3 — Hasilnya</b><span class="eq">3 garam asam lemak (sabun) + gliserol</span></div>
+      <div class="step"><b>Langkah 4 — Nama reaksinya</b><span class="eq">Penyabunan</span> (saponifikasi)</div>
+      <div class="ansbar">Jawaban: menghasilkan sabun dan gliserol; reaksinya disebut penyabunan</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 adalah kuncinya — begitu Anda sadar bahwa lemak <b>adalah ester</b>, seluruh aturan hidrolisis ester dari Bab 18 berlaku tanpa perlu dihafal ulang. Tiga garam terbentuk karena ada tiga ikatan ester, dan gliserol muncul karena dialah bagian alkoholnya. Gliserol hasil samping inilah yang kemudian dipakai untuk kosmetik dan pelembap.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 15-20 ==================== -->
+<section class="page">
+  <h2>Worked Example — Penalaran Gabungan dan Penutup</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Mengapa plastik sukar terurai</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Amilum dan polietilena sama-sama polimer rantai panjang. Mengapa amilum terurai dalam hitungan jam sedangkan polietilena bertahan ratusan tahun?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Sebab perbedaannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan cara keduanya disambung.</div></div>
+      <div class="step"><b>Langkah 1 — Amilum</b>Dibentuk lewat <b>kondensasi</b> → sambungannya dapat diputus kembali oleh <span class="eq">air</span></div>
+      <div class="step"><b>Langkah 2 — Enzim tubuh</b>Ada enzim yang memang bertugas melakukan hidrolisis itu</div>
+      <div class="step"><b>Langkah 3 — Polietilena</b>Dibentuk lewat <b>adisi</b> → sambungannya <span class="eq">ikatan C–C biasa</span> yang sangat kuat</div>
+      <div class="step"><b>Langkah 4 — Mengapa tak ada enzimnya</b>Rantai semacam itu <b>tidak pernah ada di alam</b> sebelum manusia membuatnya, sehingga tidak ada makhluk yang berevolusi untuk memakannya</div>
+      <div class="ansbar">Jawaban: amilum hasil kondensasi sehingga dapat dihidrolisis; polietilena hasil adisi dengan ikatan C–C yang tidak dapat diputus air maupun enzim alami</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 4 adalah bagian yang jarang disebut buku, padahal justru itu yang paling menjelaskan. Masalahnya bukan sekadar "ikatannya kuat" — ikatan pada selulosa juga kuat, tetapi bakteri sudah lama berevolusi untuk memutusnya. Yang membuat plastik istimewa adalah ia <b>baru</b>, dan alam belum sempat menyesuaikan diri. Ini juga menjelaskan mengapa <b>bioplastik</b> dari pati terurai jauh lebih cepat: sambungannya kondensasi, jenis yang sudah dikenal alam.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Menghitung mundur dari hasil hidrolisis</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sebuah rantai polipeptida dihidrolisis sempurna dan menghasilkan 30 molekul asam amino. Berapa molekul air yang dipakai pada hidrolisis itu?</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Hasil hidrolisis: 30 asam amino</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah molekul air yang dipakai</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hidrolisis adalah <b>kebalikan</b> kondensasi — air yang dulu keluar, kini masuk kembali.</div></div>
+      <div class="step"><b>Langkah 1 — Saat rantai dibentuk</b>30 asam amino melepas (30 − 1) = <span class="eq">29 molekul air</span></div>
+      <div class="step"><b>Langkah 2 — Saat dihidrolisis</b>Jumlah air yang sama <b>masuk kembali</b> → <span class="eq">29 molekul air</span></div>
+      <div class="step"><b>Periksa</b>Ada 29 ikatan peptida; tiap ikatan butuh satu air untuk diputus ✔</div>
+      <div class="ansbar">Jawaban: 29 molekul air</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Menyadari bahwa <b>hidrolisis adalah kebalikan kondensasi</b> mengubah soal ini menjadi soal yang sudah Anda kerjakan di Contoh 8. Jumlah air masuk saat hidrolisis <b>selalu sama</b> dengan jumlah air yang keluar saat pembentukannya, dan keduanya sama dengan jumlah ikatannya. Menjawab 30 adalah jebakan yang sama seperti pada Contoh 8.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Mengenali tiga bahan tak berlabel</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Tiga bahan: larutan amilum, putih telur, dan minyak goreng. Rancang percobaan untuk mengenali ketiganya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Rancangan percobaan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pilih uji yang khas untuk tiap golongan.</div></div>
+      <div class="step"><b>Uji 1 — Kertas buram</b>Yang meninggalkan noda transparan menetap adalah <span class="eq">minyak goreng</span></div>
+      <div class="step"><b>Uji 2 — Larutan iodin</b>Yang memberi warna biru kehitaman adalah <span class="eq">amilum</span></div>
+      <div class="step"><b>Uji 3 — Pereaksi biuret</b>Yang memberi warna ungu adalah <span class="eq">putih telur</span> (protein)</div>
+      <div class="step"><b>Pemeriksa silang</b>Putih telur juga positif <b>xantoprotein</b> (kuning) karena mengandung asam amino bercincin benzena</div>
+      <div class="ansbar">Jawaban: kertas buram untuk minyak, iodin untuk amilum, biuret untuk protein</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Setiap uji dipilih karena <b>khas</b> untuk satu golongan saja, sehingga tidak ada hasil yang membingungkan. Langkah pemeriksa silang berguna untuk menguatkan kesimpulan — bila sebuah bahan positif biuret <b>dan</b> xantoprotein, hampir pasti ia protein. Perhatikan bahwa uji kertas buram tidak butuh pereaksi apa pun, sehingga wajar dikerjakan lebih dulu.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Mengapa margarin padat</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Margarin dibuat dari minyak nabati yang cair. Jelaskan prosesnya dan mengapa hasilnya memadat.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Proses dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Perhatikan apa yang membedakan minyak dari lemak.</div></div>
+      <div class="step"><b>Langkah 1 — Bedanya</b>Minyak banyak <b>ikatan rangkap C=C</b>; lemak sedikit atau tidak ada</div>
+      <div class="step"><b>Langkah 2 — Prosesnya</b><span class="eq">Hidrogenasi</span> — menambahkan H₂ pada ikatan rangkapnya</div>
+      <div class="step"><b>Langkah 3 — Akibat pada bentuk rantai</b>Ikatan rangkap yang menekuk rantai <b>hilang</b> → rantainya menjadi <span class="eq">lurus</span></div>
+      <div class="step"><b>Langkah 4 — Akibat pada wujudnya</b>Rantai lurus tersusun <b>rapat</b> → gaya antarmolekul menguat → titik leleh naik → <b>memadat</b></div>
+      <div class="ansbar">Jawaban: lewat hidrogenasi; ikatan rangkap hilang sehingga rantainya lurus, tersusun rapat, dan titik lelehnya naik</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 dan 4 adalah inti penjelasannya, dan keduanya bersandar pada gagasan <b>gaya antarmolekul</b> dari Bab 2 — bukan pada sesuatu yang baru. Perhitungan DBE membuktikannya dengan angka: pada keluarga C<sub>18</sub>, titik leleh turun terus dari 69 °C (tanpa C=C) ke −11 °C (tiga C=C). Hidrogenasi hanya menjalankan urutan itu ke arah sebaliknya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Membedakan dua disakarida</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sukrosa dan maltosa sama-sama berumus C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>. Bagaimana membedakannya, dan apa hasil hidrolisis masing-masing?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Cara membedakan dan hasil hidrolisisnya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pakai perbedaan sifat pereduksinya.</div></div>
+      <div class="step"><b>Langkah 1 — Uji Fehling</b>Maltosa <b>positif</b> (merah bata); sukrosa <span class="eq">negatif</span></div>
+      <div class="step"><b>Langkah 2 — Sebabnya</b>Pada sukrosa, gugus aldehid <b>kedua</b> monomernya terpakai dalam sambungannya; pada maltosa masih ada satu yang bebas</div>
+      <div class="step"><b>Langkah 3 — Hidrolisis sukrosa</b>→ <span class="eq">glukosa + fruktosa</span></div>
+      <div class="step"><b>Langkah 4 — Hidrolisis maltosa</b>→ <span class="eq">dua glukosa</span></div>
+      <div class="ansbar">Jawaban: dibedakan dengan uji Fehling — maltosa positif, sukrosa negatif; hidrolisisnya memberi glukosa+fruktosa dan dua glukosa</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Ini contoh lain dari gagasan yang berulang di bab ini: <b>rumus molekul sama tidak menjamin sifat sama</b> — sudah Anda temui pada isomer di Bab 18 dan pada amilum-selulosa di bab ini. Perhatikan bahwa uji Fehling di sini adalah uji yang sama persis dari Bab 18, yang menguji gugus aldehid. Tidak ada aturan baru; yang baru hanya penerapannya pada molekul yang jauh lebih besar.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Analisis lengkap satu bahan</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Untuk nasi putih, tentukan (a) golongan makromolekul utamanya; (b) monomernya; (c) hasil uji iodin; (d) jenis polimerisasinya; (e) apa yang terjadi saat dicerna.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Lima hal berantai</div></div>
+      <div class="step"><b>(a) Golongan</b><span class="eq">Karbohidrat</span> — terutama amilum, (C₆H₁₀O₅)ₙ</div>
+      <div class="step"><b>(b) Monomer</b><span class="eq">Glukosa</span>, C₆H₁₂O₆</div>
+      <div class="step"><b>(c) Uji iodin</b><span class="eq">Positif</span> — memberi warna biru kehitaman</div>
+      <div class="step"><b>(d) Polimerisasi</b><span class="eq">Kondensasi</span> — n glukosa melepas n molekul air</div>
+      <div class="step"><b>(e) Saat dicerna</b><span class="eq">Hidrolisis</span> oleh enzim → terurai kembali menjadi glukosa yang diserap tubuh</div>
+      <div class="ansbar">Jawaban: kelima butir di atas — dan semuanya bermuara pada kenyataan bahwa amilum adalah polimer kondensasi dari glukosa</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan hubungan (d) dan (e): <b>justru karena</b> amilum dibentuk lewat kondensasi, ia dapat dihidrolisis kembali — dan itulah yang memungkinkan tubuh mengambil tenaga darinya. Bandingkan dengan kantong plastik hasil adisi yang tidak dapat diperlakukan begitu. Satu perbedaan pada cara menyambung menentukan apakah sebuah polimer menjadi makanan atau menjadi sampah yang bertahan ratusan tahun.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa ikatan peptida pada rantai 100 asam amino?</li>
+      <li>Berapa molekul air yang keluar saat trigliserida terbentuk?</li>
+      <li>Bagaimana membedakan sukrosa dari maltosa?</li>
+      <li>Apa proses pembuatan margarin dari minyak nabati?</li>
+      <li>Mengapa bioplastik lebih mudah terurai daripada polietilena?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>99</b>, yaitu n−1; (2) selalu <b>3</b>, satu untuk tiap gugus –OH gliserol; (3) <b>uji Fehling</b> — maltosa positif, sukrosa negatif; (4) <b>hidrogenasi</b>, menambahkan H<sub>2</sub> pada ikatan rangkapnya; (5) karena bioplastik dibentuk lewat <b>kondensasi</b> sehingga sambungannya dapat diputus air dan mikroba.</p>
+  </div>
+</section>
+
+<!-- ==================== 20.10 EXAM FOCUS ==================== -->
+<section class="page" id="focus">
+  <h2>20.10&nbsp; ★ UTBK / Exam Focus — Ringkasan Bab</h2>
+  <p class="lead">Satu pertanyaan membuka sebagian besar soal bab ini: <b>apakah ada molekul kecil yang keluar?</b></p>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 1 — "Adisi atau kondensasi"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Ada molekul kecil keluar</th><td><b>Kondensasi</b> — nilon, dakron, bakelit, amilum, protein</td></tr>
+      <tr><th>Tidak ada</th><td><b>Adisi</b> — polietilena, PVC, polistirena, teflon, karet</td></tr>
+      <tr><th>Petunjuk cepat</th><td>dua jenis monomer → kondensasi · satu jenis bergugus rangkap → adisi</td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 2 — "Hitung jumlah monomer atau air"</div>
+    <p><b>Adisi:</b> Mr polimer = n × Mr monomer <b>tepat</b>, sehingga n = Mr polimer ÷ Mr monomer.</p>
+    <p><b>Kondensasi rantai</b> (protein, polisakarida): n monomer → <b>(n−1)</b> ikatan dan <b>(n−1)</b> molekul air.</p>
+    <p><b>Trigliserida:</b> selalu <b>3</b> molekul air, karena gliserol punya tiga gugus –OH.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 3 — "Hasil hidrolisis"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Sukrosa</th><td>glukosa + <b>fruktosa</b></td></tr>
+      <tr><th>Maltosa</th><td>glukosa + <b>glukosa</b></td></tr>
+      <tr><th>Laktosa</th><td>glukosa + <b>galaktosa</b></td></tr>
+      <tr><th>Amilum / selulosa</th><td>banyak <b>glukosa</b></td></tr>
+      <tr><th>Protein</th><td><b>asam amino</b></td></tr>
+      <tr><th>Lemak (dengan basa)</th><td><b>sabun</b> + gliserol</td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 4 — "Uji identifikasi"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Iodin</th><td>biru kehitaman → <b>amilum</b></td></tr>
+      <tr><th>Fehling</th><td>merah bata → <b>gula pereduksi</b> (sukrosa negatif)</td></tr>
+      <tr><th>Biuret</th><td>ungu → <b>protein</b> (ikatan peptida)</td></tr>
+      <tr><th>Xantoprotein</th><td>kuning → protein <b>bercincin benzena</b></td></tr>
+      <tr><th>Kertas buram</th><td>noda transparan menetap → <b>lemak</b></td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 5 — "Jenuh atau tak jenuh"</div>
+    <div class="fx">jumlah C=C = DBE − 1 &nbsp;&nbsp;(satu DBE terpakai gugus C=O)</div>
+    <p style="margin-top:10px"><b>0 ikatan C=C</b> → jenuh → lemak padat. <b>Ada C=C</b> → tak jenuh → minyak cair.</p>
+    <p>Makin banyak C=C, makin rendah titik lelehnya — karena rantai yang tertekuk sukar tersusun rapat.</p>
+  </div>
+
+  <div class="box trap">
+    <div class="bt">⚠ Delapan jebakan paling sering dipakai penyusun soal</div>
+    <ol class="step">
+      <li><b>Menjawab n, bukan (n−1)</b>, untuk jumlah ikatan peptida.</li>
+      <li><b>Mengira nilon dan dakron polimer adisi</b> — keduanya kondensasi.</li>
+      <li><b>Membagi Mr polimer dengan Mr monomer pada polimer kondensasi</b> — hanya berlaku untuk adisi.</li>
+      <li><b>Mengira sukrosa positif Fehling</b> — ia negatif.</li>
+      <li><b>Lupa mengurangi 1 dari DBE</b> saat menghitung ikatan rangkap asam lemak.</li>
+      <li><b>Mengira trigliserida melepas (n−1) air</b> — selalu 3.</li>
+      <li><b>Menyamakan hidrolisis dengan denaturasi</b> — yang pertama memutus ikatan peptida, yang kedua hanya merusak lipatannya.</li>
+      <li><b>Mengira amilum dan selulosa punya sifat sama</b> karena rumusnya sama.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 20.11 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>20.11&nbsp; How to Master This Chapter</h2>
+  <p class="lead">Bab penutup ini banyak hafalannya, tetapi hafalan itu tersusun rapi dalam empat kelompok — dan sebagian besarnya mengalir dari satu gagasan.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Tahap 1 · Polimerisasi (1 hari)</div>
+      <ul class="tick">
+        <li>Pahami beda adisi dan kondensasi beserta pemeriksanya.</li>
+        <li>Hafalkan sembilan pasangan polimer-monomer.</li>
+        <li>Latih menghitung n dari massa polimer adisi.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 2 · Karbohidrat (setengah hari)</div>
+      <ul class="tick">
+        <li>Hafalkan hasil hidrolisis ketiga disakarida.</li>
+        <li>Pahami mengapa sukrosa negatif Fehling.</li>
+        <li>Pahami beda amilum dan selulosa.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 3 · Protein dan lemak (1 hari)</div>
+      <ul class="tick">
+        <li>Latih rumus (n−1) sampai otomatis.</li>
+        <li>Latih menghitung C=C dari DBE untuk 10 asam lemak.</li>
+        <li>Pahami hubungan C=C, bentuk rantai, dan titik leleh.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 4 · Uji dan penutup (1 hari)</div>
+      <ul class="tick">
+        <li>Hafalkan lima uji identifikasi beserta warnanya.</li>
+        <li>Pahami dampak polimer terhadap lingkungan.</li>
+        <li>Kerjakan Final Chapter Test dengan batas waktu 40 menit.</li>
+        <li>Ulangi seluruh Formula Sheet dari Bab 1 sampai 20.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Kebiasaan yang paling menyelamatkan nilai di bab ini</div>
+    <p><b>Selalu tanyakan dulu: ada molekul kecil yang keluar atau tidak?</b> Satu pertanyaan itu memisahkan adisi dari kondensasi, dan dari situ mengalir cara menghitung massanya, jumlah airnya, dan apakah polimernya dapat dihidrolisis kembali.</p>
+    <p><b>Tulis (n−1), bukan n.</b> Jebakan ini muncul hampir setiap tahun. Bayangkan manik-manik: menyambung tiga manik butuh dua tali, bukan tiga.</p>
+    <p><b>Kurangi satu dari DBE</b> saat menghitung ikatan rangkap asam lemak — satu DBE selalu terpakai gugus C=O pada –COOH.</p>
+    <p><b>Ingat bahwa bab ini banyak mengulang.</b> Uji Fehling dan Tollens dari Bab 18, hidrolisis ester dari Bab 18, gaya antarmolekul dari Bab 2, dan cincin benzena dari Bab 19 — semuanya muncul kembali di sini. Yang baru hanya ukurannya.</p>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 20</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pada soal polimerisasi, tanyakan dulu <b>apakah ada molekul kecil yang keluar</b>.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji pengertian dasar, penggolongan, dan pasangan polimer-monomer.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Monomer dari polietilena adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etana</li><li><span class="l">B.</span> etanol</li><li><span class="l">C.</span> etuna</li><li><span class="l">D.</span> etena</li><li><span class="l">E.</span> etanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Polietilena dibentuk lewat polimerisasi <b>adisi</b> dari <b>etena</b> (C<sub>2</sub>H<sub>4</sub>), yang punya ikatan rangkap C=C.</p>
+      <p>Ikatan rangkap itulah yang terbuka saat molekul-molekulnya saling menyambung.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Etana tidak punya ikatan rangkap, sehingga tidak dapat berpolimerisasi adisi.</li>
+        <li><b>B, E.</b> Etanol dan etanal adalah senyawa bergugus fungsi dari Bab 18.</li>
+        <li><b>C.</b> Etuna punya ikatan rangkap tiga, bukan bahan polietilena.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> nama polimer hampir selalu <b>"poli" + nama monomernya</b> — polietilena dari etena, polistirena dari stirena. Kecualinya teflon dan karet alam.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Hasil hidrolisis sukrosa adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> dua molekul glukosa</li>
+      <li><span class="l">B.</span> glukosa dan fruktosa</li>
+      <li><span class="l">C.</span> glukosa dan galaktosa</li>
+      <li><span class="l">D.</span> dua molekul fruktosa</li>
+      <li><span class="l">E.</span> asam amino</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Ketiga disakarida berumus sama C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>, dan hanya hasil hidrolisisnya yang membedakan:</p>
+      <p><b>Sukrosa</b> → glukosa + fruktosa · <b>Maltosa</b> → dua glukosa · <b>Laktosa</b> → glukosa + galaktosa</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini hasil hidrolisis <b>maltosa</b>.</li>
+        <li><b>C.</b> Ini hasil hidrolisis <b>laktosa</b>.</li>
+        <li><b>E.</b> Asam amino adalah hasil hidrolisis <b>protein</b>, bukan karbohidrat.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> hafalkan ketiganya sekaligus karena soal sering memasang ketiga hasilnya sebagai pilihan. Jembatan: <b>su</b>krosa mengandung <b>fru</b>ktosa — keduanya gula manis dari tebu dan buah.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Ikatan yang menghubungkan asam amino dalam protein disebut ikatan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> peptida</li><li><span class="l">B.</span> glikosida</li><li><span class="l">C.</span> ester</li><li><span class="l">D.</span> hidrogen</li><li><span class="l">E.</span> ion</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Gugus –COOH satu asam amino bertemu gugus –NH<sub>2</sub> asam amino lain, membentuk sambungan <b>–CO–NH–</b> yang disebut <b>ikatan peptida</b>. Satu molekul air terlepas.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ikatan <b>glikosida</b> menghubungkan monosakarida dalam karbohidrat.</li>
+        <li><b>C.</b> Ikatan <b>ester</b> menghubungkan gliserol dengan asam lemak.</li>
+        <li><b>D.</b> Ikatan hidrogen menjaga <b>lipatan</b> protein, bukan menyambung asam aminonya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ketiga makromolekul alam punya nama ikatan yang berbeda — <b>peptida</b> untuk protein, <b>glikosida</b> untuk karbohidrat, <b>ester</b> untuk lemak. Ketiganya sering dipasang sebagai pilihan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Uji yang dipakai untuk membuktikan adanya amilum adalah uji ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> biuret</li><li><span class="l">B.</span> Fehling</li><li><span class="l">C.</span> xantoprotein</li><li><span class="l">D.</span> Tollens</li><li><span class="l">E.</span> iodin</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Larutan <b>iodin</b> memberi warna <b>biru kehitaman</b> pada amilum. Inilah uji yang dipakai untuk menguji kandungan pati pada nasi, roti, dan kentang.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, C.</b> Biuret dan xantoprotein adalah uji <b>protein</b>.</li>
+        <li><b>B, D.</b> Fehling dan Tollens menguji <b>gula pereduksi</b>, dan amilum bukan gula pereduksi.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> amilum <b>negatif</b> terhadap Fehling, sehingga pilihan B bukan sekadar salah golongan — ia memberi hasil yang benar-benar berlawanan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Lemak merupakan ester dari gliserol dengan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> asam amino</li><li><span class="l">B.</span> glukosa</li><li><span class="l">C.</span> tiga asam lemak</li><li><span class="l">D.</span> dua asam lemak</li><li><span class="l">E.</span> asam benzoat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Gliserol punya <b>tiga</b> gugus –OH, sehingga dapat mengikat <b>tiga</b> asam lemak sekaligus. Karena itu lemak juga disebut <b>trigliserida</b>.</p>
+      <p>Tiga molekul air terlepas — satu untuk tiap gugus –OH.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>D.</b> Dua saja berarti satu gugus –OH gliserol tersisa, dan itu bukan trigliserida.</li>
+        <li><b>A, B, E.</b> Ketiganya bukan bahan penyusun lemak.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> awalan <b>"tri"</b> pada trigliserida adalah petunjuk langsung — ada <b>tiga</b> asam lemak dan <b>tiga</b> molekul air yang keluar.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menerapkan aturan (n−1), menghitung DBE asam lemak, dan mengenali jenis polimerisasi.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Polimer berikut yang terbentuk lewat polimerisasi <b>kondensasi</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> polietilena</li><li><span class="l">B.</span> nilon</li><li><span class="l">C.</span> PVC</li><li><span class="l">D.</span> polistirena</li><li><span class="l">E.</span> teflon</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Nilon</b> dibuat dari <b>dua jenis</b> monomer — asam adipat dan heksametilendiamin — dan melepaskan air saat menyambung.</p>
+      <p>Dua petunjuknya sejalan: dua jenis monomer, dan ada molekul kecil yang keluar → <b>kondensasi</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, C, D, E.</b> Keempatnya dibuat dari <b>satu jenis</b> monomer bergugus rangkap dan tidak melepas apa pun → <b>adisi</b>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> tiga polimer kondensasi yang paling sering muncul: <b>nilon, dakron, dan bakelit</b>. Selain ketiganya, hampir semua plastik sehari-hari adalah polimer adisi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Rantai polipeptida tersusun dari 8 asam amino. Jumlah ikatan peptidanya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 9</li><li><span class="l">B.</span> 8</li><li><span class="l">C.</span> 16</li><li><span class="l">D.</span> 7</li><li><span class="l">E.</span> 4</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Jumlah ikatan peptida = <b>n − 1</b> = 8 − 1 = <b>7</b></p>
+      <p>Jumlah molekul air yang keluar juga <b>7</b> — sama dengan jumlah ikatannya.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Menjawab n, bukan (n−1) — inilah jebakan utamanya.</li>
+        <li><b>A.</b> Menjawab (n+1).</li>
+        <li><b>C, E.</b> Mengalikan atau membagi dua, tanpa dasar.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> bayangkan manik-manik. Untuk menyambung <b>tiga</b> manik menjadi satu untaian, Anda butuh <b>dua</b> tali. Sambungan selalu satu lebih sedikit daripada yang disambung.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Asam lemak C<sub>18</sub>H<sub>34</sub>O<sub>2</sub> memiliki ikatan rangkap C=C sebanyak ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 1</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 0</li><li><span class="l">D.</span> 3</li><li><span class="l">E.</span> 4</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — DBE.</b> (2×18 + 2 − 34) ÷ 2 = (38 − 34) ÷ 2 = <b>2</b></p>
+      <p><b>Langkah 2 — Kurangi 1.</b> Satu DBE terpakai gugus <b>C=O</b> pada –COOH → 2 − 1 = <b>1 ikatan C=C</b></p>
+      <p>Ini asam oleat, asam lemak tak jenuh tunggal yang banyak terdapat pada minyak zaitun.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Lupa mengurangi satu untuk gugus C=O — kesalahan paling sering.</li>
+        <li><b>C.</b> Ini jawaban untuk asam lemak <b>jenuh</b> seperti C<sub>18</sub>H<sub>36</sub>O<sub>2</sub>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> selalu kurangi satu. Gugus –COOH <b>selalu</b> menyumbang satu DBE, berapa pun panjang rantainya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Uji biuret memberi warna ungu pada suatu bahan makanan. Hal itu menunjukkan adanya ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> amilum</li><li><span class="l">B.</span> glukosa</li><li><span class="l">C.</span> protein</li><li><span class="l">D.</span> lemak</li><li><span class="l">E.</span> selulosa</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Uji biuret menguji adanya <b>ikatan peptida</b>, dan ikatan itu hanya terdapat pada <b>protein</b>. Hasil positifnya berwarna <b>ungu</b>.</p>
+      <p>Karena ia menguji ikatan peptidanya sendiri, uji ini positif untuk <b>semua</b> protein.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, E.</b> Amilum diuji dengan <b>iodin</b>; selulosa tidak diuji dengan biuret.</li>
+        <li><b>B.</b> Glukosa diuji dengan <b>Fehling</b> atau Tollens.</li>
+        <li><b>D.</b> Lemak diuji dengan <b>kertas buram</b>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> tiga uji protein menguji tiga hal berbeda — biuret menguji <b>ikatan peptidanya</b>, xantoprotein menguji <b>cincin benzenanya</b>, timbal asetat menguji <b>belerangnya</b>. Biuret yang paling menentukan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Polimer yang <b>tidak</b> dapat dilelehkan ulang setelah mengeras disebut ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> termoplas</li><li><span class="l">B.</span> homopolimer</li><li><span class="l">C.</span> kopolimer</li><li><span class="l">D.</span> polimer alami</li><li><span class="l">E.</span> termoset</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Termoset</b> mengeras secara tetap dan tidak dapat dilunakkan lagi dengan pemanasan. Contohnya <b>bakelit</b> dan <b>melamin</b>.</p>
+      <p>Karena itu termoset jauh lebih sulit didaur ulang daripada termoplas.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> <b>Termoplas</b> justru kebalikannya — melunak saat dipanaskan dan dapat didaur ulang.</li>
+        <li><b>B, C.</b> Keduanya penggolongan menurut <b>jenis monomernya</b>, bukan sifat panasnya.</li>
+        <li><b>D.</b> Penggolongan menurut asalnya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ada <b>tiga</b> cara menggolongkan polimer — menurut asal, jenis monomer, dan sifat panasnya. Bacalah dengan teliti yang mana yang ditanyakan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Karbohidrat yang <b>tidak dapat</b> dihidrolisis lagi adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> sukrosa</li><li><span class="l">B.</span> glukosa</li><li><span class="l">C.</span> maltosa</li><li><span class="l">D.</span> amilum</li><li><span class="l">E.</span> laktosa</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Glukosa</b> adalah <b>monosakarida</b> — bentuk karbohidrat paling sederhana, sehingga tidak dapat diuraikan lagi menjadi gula yang lebih kecil.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, C, E.</b> Ketiganya <b>disakarida</b> yang terurai menjadi dua monosakarida.</li>
+        <li><b>D.</b> Amilum adalah <b>polisakarida</b> yang terurai menjadi banyak glukosa.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> monosakarida yang paling sering muncul ada tiga — <b>glukosa, fruktosa, dan galaktosa</b> — dan ketiganya berumus sama C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Perhitungan massa polimer, penalaran uji identifikasi, dan hubungan struktur dengan sifat.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12</div>
+    <div class="qs">Polipropilena bermassa molekul 84.000 tersusun dari monomer propena (M<sub>r</sub> = 42). Jumlah monomernya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 1.000</li><li><span class="l">B.</span> 4.200</li><li><span class="l">C.</span> 2.000</li><li><span class="l">D.</span> 42.000</li><li><span class="l">E.</span> 500</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Polipropilena adalah polimer <b>adisi</b>, sehingga M<sub>r</sub> polimer = n × M<sub>r</sub> monomer <b>tepat</b>.</p>
+      <p><b>Langkah 2.</b> n = 84.000 ÷ 42 = <b>2.000</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Membagi dengan 84, bukan 42.</li>
+        <li><b>B, D, E.</b> Salah operasi hitung.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pembagian sederhana ini <b>hanya berlaku untuk polimer adisi</b>. Pada kondensasi, (n−1) molekul air sudah keluar sehingga M<sub>r</sub> polimer selalu <b>lebih kecil</b> daripada n × M<sub>r</sub> monomer. Periksa jenis polimerisasinya lebih dulu.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Sukrosa diuji Fehling dan hasilnya <b>negatif</b>. Setelah dipanaskan dengan asam encer lalu diuji ulang, hasilnya <b>positif</b>. Penjelasannya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> asam mengubah warna pereaksi Fehling</li>
+      <li><span class="l">B.</span> sukrosa menguap saat dipanaskan</li>
+      <li><span class="l">C.</span> pemanasan membuat sukrosa jadi gula pereduksi tanpa berubah</li>
+      <li><span class="l">D.</span> sukrosa terhidrolisis menjadi glukosa dan fruktosa yang keduanya gula pereduksi</li>
+      <li><span class="l">E.</span> sukrosa berubah menjadi protein</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Mengapa awalnya negatif:</b> gugus aldehid <b>kedua</b> monomer sukrosa terpakai habis dalam sambungannya, sehingga tidak ada gugus bebas untuk bereaksi.</p>
+      <p><b>Saat dipanaskan dengan asam:</b> terjadi <b>hidrolisis</b> → sukrosa terurai menjadi glukosa dan fruktosa.</p>
+      <p><b>Mengapa lalu positif:</b> keduanya gula pereduksi dengan gugus aldehid yang kini bebas.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Sukrosa <b>berubah</b> — itulah intinya; tanpa hidrolisis hasilnya tetap negatif.</li>
+        <li><b>A, B, E.</b> Tidak sesuai dengan apa yang terjadi.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> maltosa dan laktosa <b>positif</b> Fehling tanpa perlu dihidrolisis dulu, karena pada keduanya masih ada satu gugus aldehid yang bebas. Sukrosa satu-satunya disakarida umum yang negatif.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14</div>
+    <div class="qs">Minyak nabati berwujud cair sedangkan lemak hewani padat. Penyebabnya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> minyak lebih ringan</li>
+      <li><span class="l">B.</span> minyak tidak mengandung gliserol</li>
+      <li><span class="l">C.</span> minyak banyak mengandung ikatan rangkap sehingga rantainya tertekuk dan sukar tersusun rapat</li>
+      <li><span class="l">D.</span> lemak mengandung protein</li>
+      <li><span class="l">E.</span> minyak larut dalam air</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Ikatan rangkap C=C membuat rantai asam lemak <b>menekuk</b>. Rantai yang bengkok sukar tersusun rapat, sehingga gaya antarmolekulnya lemah dan titik lelehnya rendah.</p>
+      <p>Rantai jenuh yang lurus tersusun rapat seperti tumpukan lidi, sehingga gaya antarmolekulnya kuat dan titik lelehnya tinggi.</p>
+      <p><b>Buktinya pada data:</b> pada keluarga C<sub>18</sub>, titik leleh turun terus seiring bertambahnya C=C — 69 °C, 13 °C, −5 °C, lalu −11 °C.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B, D.</b> Keduanya keliru — minyak juga mengandung gliserol, dan lemak bukan protein.</li>
+        <li><b>A, E.</b> Massa jenis dan kelarutan tidak menentukan wujudnya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> penjelasan ini bersandar pada <b>gaya antarmolekul</b> dari Bab 2. Inilah pula dasar pembuatan margarin lewat hidrogenasi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Sebuah polipeptida dihidrolisis sempurna dan menghasilkan 25 asam amino. Jumlah molekul air yang dipakai adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 25</li><li><span class="l">B.</span> 26</li><li><span class="l">C.</span> 50</li><li><span class="l">D.</span> 12</li><li><span class="l">E.</span> 24</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Rantai berisi 25 asam amino berarti punya <b>24</b> ikatan peptida.</p>
+      <p><b>Langkah 2.</b> Tiap ikatan memerlukan satu molekul air untuk diputus → <b>24 molekul air</b>.</p>
+      <p>Hidrolisis adalah <b>kebalikan</b> kondensasi: air yang dulu keluar saat rantai terbentuk, kini masuk kembali — jumlahnya sama persis.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menjawab n, bukan (n−1) — jebakan utamanya.</li>
+        <li><b>B, C, D.</b> Salah operasi hitung.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> tiga bilangan ini <b>selalu sama</b>: jumlah ikatan peptida, jumlah air yang keluar saat pembentukan, dan jumlah air yang masuk saat hidrolisis. Ketiganya (n−1).</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16</div>
+    <div class="qs">Putih telur yang digoreng berubah dari bening menjadi putih padat. Peristiwa ini disebut ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> hidrolisis</li><li><span class="l">B.</span> polimerisasi</li><li><span class="l">C.</span> denaturasi</li><li><span class="l">D.</span> esterifikasi</li><li><span class="l">E.</span> penyabunan</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Denaturasi</b> adalah rusaknya <b>lipatan tiga dimensi</b> protein sehingga ia kehilangan fungsinya. Ikatan peptidanya <b>tidak</b> putus.</p>
+      <p>Penyebabnya bisa pemanasan, asam atau basa kuat, logam berat, atau alkohol.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Hidrolisis <b>memutus</b> ikatan peptida menjadi asam amino — itu berbeda dari denaturasi.</li>
+        <li><b>B, D, E.</b> Ketiganya reaksi lain yang tidak berkaitan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan pentingnya. <b>Denaturasi merusak lipatan; hidrolisis memutus ikatan.</b> Telur goreng masih berupa protein utuh, hanya bentuknya yang berubah dan tidak dapat dikembalikan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17</div>
+    <div class="qs">Amilum dan selulosa sama-sama berumus (C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub>, tetapi manusia hanya dapat mencerna amilum. Penyebabnya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> monomernya berbeda</li>
+      <li><span class="l">B.</span> arah sambungan antarglukosanya berbeda, dan enzim manusia hanya cocok dengan arah pada amilum</li>
+      <li><span class="l">C.</span> selulosa tidak mengandung karbon</li>
+      <li><span class="l">D.</span> amilum berupa monosakarida</li>
+      <li><span class="l">E.</span> selulosa larut dalam air</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Yang sama:</b> rumus molekul, monomer (sama-sama glukosa), bahkan jenis ikatannya.</p>
+      <p><b>Yang berbeda:</b> <b>arah sambungan</b> antarglukosanya. Enzim pencernaan manusia hanya cocok bentuknya dengan arah pada amilum.</p>
+      <p>Sapi dapat mencerna selulosa bukan karena enzimnya berbeda, melainkan karena <b>bakteri</b> dalam lambungnya.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Monomernya <b>sama</b> — keduanya glukosa.</li>
+        <li><b>D.</b> Amilum polisakarida, bukan monosakarida.</li>
+        <li><b>C, E.</b> Keduanya keliru.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ini gagasan yang berulang sejak Bab 18 — <b>rumus molekul sama tidak menjamin sifat sama</b>. Di sini bahkan monomernya sama; yang berbeda hanya arahnya di ruang.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Penyetaraan kondensasi, penalaran lintas bab, dan analisis gabungan.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Glisina (C<sub>2</sub>H<sub>5</sub>NO<sub>2</sub>) bergabung dengan alanina (C<sub>3</sub>H<sub>7</sub>NO<sub>2</sub>) membentuk dipeptida. Rumus dipeptidanya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> C<sub>5</sub>H<sub>12</sub>N<sub>2</sub>O<sub>4</sub></li>
+      <li><span class="l">B.</span> C<sub>5</sub>H<sub>8</sub>N<sub>2</sub>O<sub>2</sub></li>
+      <li><span class="l">C.</span> C<sub>6</sub>H<sub>10</sub>N<sub>2</sub>O<sub>3</sub></li>
+      <li><span class="l">D.</span> C<sub>5</sub>H<sub>10</sub>N<sub>2</sub>O<sub>3</sub></li>
+      <li><span class="l">E.</span> C<sub>5</sub>H<sub>10</sub>NO<sub>3</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Jumlahkan.</b> C: 2+3 = 5 · H: 5+7 = 12 · N: 1+1 = 2 · O: 2+2 = 4</p>
+      <p><b>Langkah 2 — Kurangi satu H<sub>2</sub>O.</b> H: 12−2 = <b>10</b> · O: 4−1 = <b>3</b> · C dan N tetap</p>
+      <p><b>Hasilnya C<sub>5</sub>H<sub>10</sub>N<sub>2</sub>O<sub>3</sub></b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Lupa mengurangi air — ini jumlah kedua monomernya.</li>
+        <li><b>B.</b> Mengurangi terlalu banyak.</li>
+        <li><b>C, E.</b> Salah menghitung C atau N.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> cara "jumlahkan lalu kurangi air" berlaku untuk <b>setiap</b> kondensasi. Pemeriksanya murah: kembalikan airnya, dan hasilnya harus sama dengan pilihan A.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Dari 20 jenis asam amino, jumlah dipeptida berbeda yang dapat dibentuk adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 400</li><li><span class="l">B.</span> 40</li><li><span class="l">C.</span> 190</li><li><span class="l">D.</span> 20</li><li><span class="l">E.</span> 8.000</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Urutan <b>menentukan</b> — glisilalanina berbeda dari alanilglisina.</p>
+      <p><b>Langkah 2.</b> Posisi pertama 20 pilihan, posisi kedua juga 20 pilihan (boleh berulang).</p>
+      <p><b>Langkah 3.</b> 20 × 20 = <b>400</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Ini jawaban bila urutan <b>tidak</b> menentukan dan pengulangan tidak dibolehkan.</li>
+        <li><b>E.</b> Ini jumlah <b>tripeptida</b>, yaitu 20<sup>3</sup>.</li>
+        <li><b>B, D.</b> Salah operasi hitung.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> inilah jawaban teka-teki di awal bab. Dari 20 bahan saja, rantai sepanjang <b>ratusan</b> asam amino memberi kemungkinan yang praktis tak terhingga — dan itulah sebabnya protein bisa begitu beragam.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Plastik polietilena bertahan ratusan tahun di alam, sedangkan amilum terurai dalam hitungan jam. Alasan paling tepat adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> polietilena lebih berat</li>
+      <li><span class="l">B.</span> amilum berwarna putih</li>
+      <li><span class="l">C.</span> polietilena tidak mengandung karbon</li>
+      <li><span class="l">D.</span> polietilena larut dalam air</li>
+      <li><span class="l">E.</span> amilum hasil kondensasi sehingga dapat dihidrolisis, sedangkan polietilena hasil adisi dengan ikatan C–C yang tak dapat diputus air</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Amilum</b> dibentuk lewat <b>kondensasi</b> — sambungannya dapat diputus kembali oleh air, dan enzim tubuh memang bertugas melakukannya.</p>
+      <p><b>Polietilena</b> dibentuk lewat <b>adisi</b> — sambungannya ikatan C–C biasa yang sangat kuat, dan tidak ada air yang perlu dikembalikan.</p>
+      <p><b>Tambahan penting:</b> rantai semacam itu <b>tidak pernah ada di alam</b> sebelum manusia membuatnya, sehingga tidak ada makhluk yang berevolusi untuk menguraikannya.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B.</b> Massa dan warna tidak menentukan keterurainya.</li>
+        <li><b>C, D.</b> Keduanya keliru — polietilena mengandung karbon dan tidak larut dalam air.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> inilah dasar pengembangan <b>bioplastik</b> dari pati — karena rantainya kondensasi, sambungannya dapat diputus air dan mikroba.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21</div>
+    <div class="qs">Perhatikan nasi putih. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> mengandung amilum, polimer kondensasi dari glukosa, dan positif terhadap uji iodin</li>
+      <li><span class="l">B.</span> mengandung protein sebagai penyusun utamanya</li>
+      <li><span class="l">C.</span> amilumnya polimer adisi</li>
+      <li><span class="l">D.</span> positif terhadap uji biuret</li>
+      <li><span class="l">E.</span> monomernya asam amino</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Periksa B dan E.</b> Penyusun utama nasi adalah <b>amilum</b> (karbohidrat), dan monomernya <b>glukosa</b> — bukan protein maupun asam amino.</p>
+      <p><b>Periksa C.</b> Amilum terbentuk lewat <b>kondensasi</b>: n glukosa melepas n molekul air.</p>
+      <p><b>Periksa D.</b> Uji biuret menguji <b>ikatan peptida</b>, yang tidak ada pada amilum.</p>
+      <p>Pernyataan A benar pada <b>ketiga</b> bagiannya ✔</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab sekaligus — golongan makromolekul, monomernya, jenis polimerisasinya, dan uji identifikasinya. Perhatikan bahwa justru <b>karena</b> amilum hasil kondensasi, ia dapat dihidrolisis kembali saat dicerna.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>20.12 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 20</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      <b>MONOMER → POLIMER</b> — molekul kecil disambung berulang-ulang<br>
+      pertanyaan pembeda: <b>apakah ada molekul kecil yang keluar?</b>
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">DUA CARA MENYAMBUNG</div>
+        <ul>
+          <li><b>Adisi</b> — monomer bergugus rangkap, tak ada yang keluar</li>
+          <li>Mr polimer = <b>n × Mr monomer</b> tepat</li>
+          <li>Polietilena · PVC · polistirena · teflon · karet</li>
+          <li><b>Kondensasi</b> — monomer bergugus dua, air keluar</li>
+          <li>n monomer → <b>(n−1)</b> ikatan dan (n−1) air</li>
+          <li>Nilon · dakron · bakelit · amilum · protein</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">KARBOHIDRAT</div>
+        <ul>
+          <li><b>Mono:</b> glukosa, fruktosa, galaktosa — C₆H₁₂O₆</li>
+          <li><b>Di:</b> sukrosa, maltosa, laktosa — C₁₂H₂₂O₁₁</li>
+          <li><b>Poli:</b> amilum, selulosa, glikogen — (C₆H₁₀O₅)ₙ</li>
+          <li>Sukrosa → glukosa + <b>fruktosa</b></li>
+          <li>Maltosa → <b>dua glukosa</b> · Laktosa → + <b>galaktosa</b></li>
+          <li><b>Sukrosa negatif Fehling</b>, yang lain positif</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">PROTEIN DAN LEMAK</div>
+        <ul>
+          <li>Asam amino punya <b>–NH₂ dan –COOH</b></li>
+          <li>Ikatan <b>peptida</b> –CO–NH– · n asam amino → (n−1)</li>
+          <li>20 jenis → 20ⁿ kemungkinan rantai</li>
+          <li>Lemak = gliserol + <b>3 asam lemak</b>, <b>3 air</b> keluar</li>
+          <li>C=C = <b>DBE − 1</b> · banyak C=C → titik leleh rendah</li>
+          <li><b>Penyabunan</b> → sabun + gliserol</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">UJI IDENTIFIKASI</div>
+        <ul>
+          <li><b>Iodin</b> → biru kehitaman → amilum</li>
+          <li><b>Fehling</b> → merah bata → gula pereduksi</li>
+          <li><b>Tollens</b> → cermin perak → gula pereduksi</li>
+          <li><b>Biuret</b> → ungu → protein</li>
+          <li><b>Xantoprotein</b> → kuning → protein bercincin benzena</li>
+          <li><b>Kertas buram</b> → noda menetap → lemak</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat untuk seluruh Bab 20</div>
+    <p><b>Cara sebuah rantai disambung menentukan apakah ia dapat diurai kembali</b> — dan itulah bedanya antara nasi yang menjadi tenaga dalam hitungan jam dan kantong plastik yang bertahan ratusan tahun.</p>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>20.13 &nbsp;Formula Sheet Bab 20</h2>
+  <p>Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Rumus / Aturan</th><th>Isinya</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="eq">ada molekul kecil keluar?</td><td>Membedakan adisi dari kondensasi</td><td><b>Langkah pertama</b> soal polimer</td><td>Ada → kondensasi</td></tr>
+      <tr><td class="eq">n = Mr polimer ÷ Mr monomer</td><td>Jumlah monomer</td><td>Soal massa polimer</td><td><b>Hanya untuk adisi</b></td></tr>
+      <tr class="hi"><td class="eq">ikatan = air = (n − 1)</td><td>Rantai protein dan polisakarida</td><td>Soal ikatan peptida</td><td>Bukan n — jebakan tersering</td></tr>
+      <tr><td class="eq">trigliserida → 3 H₂O</td><td>Pembentukan lemak</td><td>Soal lemak</td><td>Selalu 3, bukan (n−1)</td></tr>
+      <tr class="hi"><td class="eq">jumlah C=C = DBE − 1</td><td>Kejenuhan asam lemak</td><td>Soal lemak dan minyak</td><td>Satu DBE terpakai <b>C=O</b></td></tr>
+      <tr><td class="eq">20ⁿ</td><td>Banyaknya rantai peptida</td><td>Soal keragaman protein</td><td>Urutan <b>menentukan</b></td></tr>
+      <tr class="hi"><td class="eq">jumlahkan lalu kurangi H₂O</td><td>Rumus hasil kondensasi</td><td>Soal dipeptida, disakarida</td><td>Periksa dengan mengembalikan airnya</td></tr>
+      <tr><td class="eq">sukrosa → glukosa + fruktosa</td><td>Hidrolisis disakarida</td><td>Soal karbohidrat</td><td>Maltosa → 2 glukosa</td></tr>
+      <tr class="hi"><td class="eq">laktosa → glukosa + galaktosa</td><td>Hidrolisis disakarida</td><td>Soal karbohidrat</td><td>Sering dipasang bertiga</td></tr>
+      <tr><td class="eq">lemak + NaOH → sabun + gliserol</td><td>Penyabunan</td><td>Soal reaksi lemak</td><td>Hidrolisis ester dari Bab 18</td></tr>
+      <tr class="hi"><td class="eq">minyak + H₂ → margarin</td><td>Hidrogenasi</td><td>Soal pengolahan minyak</td><td>C=C hilang, rantai lurus, memadat</td></tr>
+      <tr><td class="eq">denaturasi ≠ hidrolisis</td><td>Perubahan pada protein</td><td>Soal sifat protein</td><td>Lipatan rusak vs ikatan putus</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">TIGA PERTANYAAN YANG MENYELESAIKAN HAMPIR SEMUA SOAL BAB INI</div>
+    <div class="main-eq" style="font-size:15px; line-height:2">
+      1. Apakah ada <b>molekul kecil yang keluar</b>? → adisi atau kondensasi<br>
+      2. Berapa <b>n</b>, dan apakah jawabannya n atau <b>(n−1)</b>?<br>
+      3. Golongan apa yang ditanyakan? → pilih <b>uji identifikasi</b> yang cocok
+    </div>
+    <div class="note">Pertanyaan pertama membuka hampir semua soal polimer, dan dari situ mengalir cara menghitung massanya, jumlah airnya, dan apakah polimernya dapat dihidrolisis kembali. Pertanyaan kedua menutup jebakan tersering di bab ini — ingat manik-manik: menyambung tiga manik butuh dua tali. Perkecualiannya trigliserida, yang selalu melepas 3 molekul air karena gliserol berperan sebagai tulang punggung, bukan bagian rantai. Dan ingat bahwa bab ini banyak <b>mengulang</b>: uji Fehling dan hidrolisis ester dari Bab 18, gaya antarmolekul dari Bab 2, cincin benzena dari Bab 19. Yang baru hanya ukuran molekulnya.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>20.14 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab — sekaligus soal terakhir dari seluruh rangkaian 20 bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. <strong>Waktu yang disarankan: 40 menit.</strong></p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Molekul kecil penyusun polimer disebut ….</div>
+    <ol class="opt"><li><span class="l">A.</span> polimer</li><li><span class="l">B.</span> isomer</li><li><span class="l">C.</span> monomer</li><li><span class="l">D.</span> dimer</li><li><span class="l">E.</span> oligomer</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Monomer</b> adalah molekul kecilnya, <b>polimer</b> adalah rantai panjang hasil penyambungannya, dan <b>polimerisasi</b> adalah prosesnya.</p>
+      <p>Pilihan D dan E merujuk pada rantai yang sangat pendek, bukan pada molekul penyusunnya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Polimer berikut yang terbentuk lewat polimerisasi adisi adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> nilon</li><li><span class="l">B.</span> PVC</li><li><span class="l">C.</span> dakron</li><li><span class="l">D.</span> protein</li><li><span class="l">E.</span> bakelit</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>PVC</b> dibuat dari satu jenis monomer bergugus rangkap, yaitu vinil klorida, dan tidak melepaskan molekul kecil apa pun → <b>adisi</b>.</p>
+      <p>Keempat pilihan lain adalah polimer <b>kondensasi</b> — masing-masing melepaskan air saat menyambung.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Monomer penyusun amilum adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> fruktosa</li><li><span class="l">B.</span> glukosa</li><li><span class="l">C.</span> asam amino</li><li><span class="l">D.</span> gliserol</li><li><span class="l">E.</span> galaktosa</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Amilum, selulosa, dan glikogen semuanya polisakarida yang tersusun dari <b>glukosa</b>, dengan rumus (C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub>.</p>
+      <p>Pilihan C adalah monomer <b>protein</b>; pilihan D adalah tulang punggung <b>lemak</b>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Uji yang memberi warna <b>ungu</b> pada protein adalah uji ….</div>
+    <ol class="opt"><li><span class="l">A.</span> iodin</li><li><span class="l">B.</span> Fehling</li><li><span class="l">C.</span> Tollens</li><li><span class="l">D.</span> xantoprotein</li><li><span class="l">E.</span> biuret</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Uji <b>biuret</b> menguji adanya <b>ikatan peptida</b> dan memberi warna <b>ungu</b>. Karena ia menguji ikatan peptidanya sendiri, uji ini positif untuk semua protein.</p>
+      <p>Pilihan D juga uji protein, tetapi hasilnya <b>kuning</b> dan hanya positif untuk protein bercincin benzena.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Rantai polipeptida tersusun dari 12 asam amino. Jumlah ikatan peptidanya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 12</li><li><span class="l">B.</span> 11</li><li><span class="l">C.</span> 13</li><li><span class="l">D.</span> 24</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Jumlah ikatan peptida = <b>n − 1</b> = 12 − 1 = <b>11</b>, dan jumlah molekul air yang keluar juga 11.</p>
+      <p>Pilihan A menampung jebakan tersering — menjawab n, bukan (n−1).</p>
+      <div class="insight"><b>Exam Insight:</b> bayangkan manik-manik. Menyambung tiga manik butuh dua tali.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Hasil hidrolisis maltosa adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> glukosa dan fruktosa</li><li><span class="l">B.</span> glukosa dan galaktosa</li><li><span class="l">C.</span> dua fruktosa</li><li><span class="l">D.</span> asam amino</li><li><span class="l">E.</span> dua glukosa</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Maltosa</b> tersusun dari dua molekul glukosa, sehingga hidrolisisnya memberi <b>dua glukosa</b>.</p>
+      <p>Pilihan A adalah hasil hidrolisis <b>sukrosa</b>; pilihan B adalah hasil hidrolisis <b>laktosa</b>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Lemak dan minyak sama-sama trigliserida. Minyak berwujud cair karena ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tidak mengandung gliserol</li><li><span class="l">B.</span> massa jenisnya kecil</li><li><span class="l">C.</span> mengandung air</li><li><span class="l">D.</span> banyak mengandung asam lemak tak jenuh</li><li><span class="l">E.</span> berasal dari hewan</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Asam lemak <b>tak jenuh</b> punya ikatan rangkap C=C yang membuat rantainya <b>menekuk</b>, sehingga molekulnya sukar tersusun rapat dan titik lelehnya rendah.</p>
+      <p>Pilihan E justru terbalik — minyak umumnya <b>nabati</b>, lemak umumnya hewani.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Polimer yang melunak saat dipanaskan dan dapat didaur ulang disebut ….</div>
+    <ol class="opt"><li><span class="l">A.</span> termoset</li><li><span class="l">B.</span> kopolimer</li><li><span class="l">C.</span> homopolimer</li><li><span class="l">D.</span> polimer alami</li><li><span class="l">E.</span> termoplas</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Termoplas</b> melunak saat dipanaskan sehingga dapat dilelehkan dan dicetak ulang. Contohnya polietilena, PVC, dan polipropilena.</p>
+      <p><b>Termoset</b> kebalikannya — sekali mengeras tidak dapat dilunakkan lagi, sehingga daur ulangnya jauh lebih sulit.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Reaksi lemak dengan NaOH menghasilkan sabun dan gliserol. Reaksi ini disebut ….</div>
+    <ol class="opt"><li><span class="l">A.</span> penyabunan</li><li><span class="l">B.</span> hidrogenasi</li><li><span class="l">C.</span> denaturasi</li><li><span class="l">D.</span> polimerisasi</li><li><span class="l">E.</span> esterifikasi</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Penyabunan</b> (saponifikasi) adalah hidrolisis lemak dengan basa kuat. Karena lemak adalah <b>ester</b>, reaksi ini adalah penerapan langsung hidrolisis ester dari Bab 18.</p>
+      <p>Tiga garam asam lemak terbentuk karena ada tiga ikatan ester, dan gliserol muncul sebagai bagian alkoholnya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Disakarida yang memberi hasil <b>negatif</b> terhadap uji Fehling adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> maltosa</li><li><span class="l">B.</span> laktosa</li><li><span class="l">C.</span> glukosa</li><li><span class="l">D.</span> sukrosa</li><li><span class="l">E.</span> fruktosa</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Pada <b>sukrosa</b>, gugus aldehid <b>kedua</b> monomernya terpakai habis dalam sambungannya, sehingga tidak ada gugus bebas untuk bereaksi.</p>
+      <p>Maltosa dan laktosa masih punya satu gugus bebas, sehingga keduanya <b>positif</b>. Pilihan C dan E adalah monosakarida yang juga positif.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11 — gaya UTBK</div>
+    <div class="qs">Polietilena bermassa molekul 56.000 tersusun dari monomer etena (M<sub>r</sub> = 28). Jumlah monomernya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1.000</li><li><span class="l">B.</span> 28.000</li><li><span class="l">C.</span> 2.000</li><li><span class="l">D.</span> 560</li><li><span class="l">E.</span> 4.000</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Polietilena adalah polimer <b>adisi</b>, sehingga M<sub>r</sub> polimer = n × M<sub>r</sub> monomer tepat:</p>
+      <p class="eq">n = 56.000 ÷ 28 = 2.000</p>
+      <div class="insight"><b>Exam Insight:</b> pembagian ini <b>hanya berlaku untuk adisi</b>. Pada kondensasi, (n−1) molekul air sudah keluar sehingga massanya lebih kecil.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12 — gaya UTBK</div>
+    <div class="qs">Asam lemak C<sub>18</sub>H<sub>32</sub>O<sub>2</sub> memiliki ikatan rangkap C=C sebanyak ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 1</li><li><span class="l">D.</span> 0</li><li><span class="l">E.</span> 4</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Langkah 1 — DBE.</b> (2×18 + 2 − 32) ÷ 2 = (38 − 32) ÷ 2 = <b>3</b></p>
+      <p><b>Langkah 2 — Kurangi 1</b> untuk gugus C=O → 3 − 1 = <b>2 ikatan C=C</b></p>
+      <p>Ini asam linoleat, asam lemak tak jenuh ganda. Pilihan B menampung kesalahan lupa mengurangi satu.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13 — gaya UTBK</div>
+    <div class="qs">Dari 20 jenis asam amino, jumlah tripeptida berbeda yang dapat dibentuk adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 60</li><li><span class="l">B.</span> 400</li><li><span class="l">C.</span> 8.000</li><li><span class="l">D.</span> 1.140</li><li><span class="l">E.</span> 20</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Urutan <b>menentukan</b>, dan asam amino boleh berulang, sehingga tiap posisi punya 20 pilihan:</p>
+      <p class="eq">20 × 20 × 20 = 8.000</p>
+      <p>Pilihan B adalah jumlah <b>dipeptida</b> (20<sup>2</sup>); pilihan D adalah jawaban bila urutan tidak menentukan.</p>
+      <div class="insight"><b>Exam Insight:</b> inilah sebabnya protein bisa begitu beragam — rantai sepanjang ratusan asam amino memberi kemungkinan yang praktis tak terhingga.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14 — gaya UTBK</div>
+    <div class="qs">Glisina (C<sub>2</sub>H<sub>5</sub>NO<sub>2</sub>) berkondensasi dengan sesama glisina. Rumus dipeptidanya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> C<sub>4</sub>H<sub>8</sub>N<sub>2</sub>O<sub>3</sub></li><li><span class="l">B.</span> C<sub>4</sub>H<sub>10</sub>N<sub>2</sub>O<sub>4</sub></li><li><span class="l">C.</span> C<sub>4</sub>H<sub>8</sub>N<sub>2</sub>O<sub>2</sub></li><li><span class="l">D.</span> C<sub>2</sub>H<sub>5</sub>NO<sub>2</sub></li><li><span class="l">E.</span> C<sub>4</sub>H<sub>10</sub>N<sub>2</sub>O<sub>3</sub></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Jumlahkan.</b> C: 2+2 = 4 · H: 5+5 = 10 · N: 1+1 = 2 · O: 2+2 = 4</p>
+      <p><b>Kurangi satu H<sub>2</sub>O.</b> H: 10−2 = <b>8</b> · O: 4−1 = <b>3</b></p>
+      <p>Hasilnya <b>C<sub>4</sub>H<sub>8</sub>N<sub>2</sub>O<sub>3</sub></b>. Pilihan B menampung kesalahan lupa mengurangi air.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — gaya UTBK</div>
+    <div class="qs">Peristiwa menggumpalnya putih telur saat dipanaskan disebut ….</div>
+    <ol class="opt"><li><span class="l">A.</span> hidrolisis</li><li><span class="l">B.</span> koagulasi rantai peptida</li><li><span class="l">C.</span> polimerisasi</li><li><span class="l">D.</span> denaturasi</li><li><span class="l">E.</span> esterifikasi</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Denaturasi</b> adalah rusaknya <b>lipatan tiga dimensi</b> protein. Ikatan peptidanya <b>tidak</b> putus — yang berubah hanya bentuknya.</p>
+      <p>Pilihan A adalah jebakan pentingnya: hidrolisis <b>memutus</b> ikatan peptida menjadi asam amino, dan itu berbeda dari denaturasi.</p>
+      <div class="insight"><b>Exam Insight:</b> denaturasi bersifat tetap — telur goreng tidak dapat dikembalikan menjadi telur mentah.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16 — HOTS</div>
+    <div class="qs">Gliserol (C<sub>3</sub>H<sub>8</sub>O<sub>3</sub>) bereaksi dengan tiga molekul asam palmitat (C<sub>16</sub>H<sub>32</sub>O<sub>2</sub>). Jumlah molekul air yang terbentuk adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 3</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Gliserol punya <b>tiga</b> gugus –OH, dan tiap gugus melepaskan satu molekul air saat berikatan dengan asam lemak → <b>3 molekul air</b>.</p>
+      <p class="eq">C₃H₈O₃ + 3 C₁₆H₃₂O₂ → C₅₁H₉₈O₆ + 3 H₂O</p>
+      <div class="insight"><b>Exam Insight:</b> pola di sini <b>bukan</b> (n−1). Gliserol berperan sebagai tulang punggung yang mengikat tiga cabang, bukan sebagai bagian rantai yang disambung berderet.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Margarin dibuat dari minyak nabati lewat proses ….</div>
+    <ol class="opt"><li><span class="l">A.</span> penyabunan</li><li><span class="l">B.</span> hidrogenasi</li><li><span class="l">C.</span> hidrolisis</li><li><span class="l">D.</span> denaturasi</li><li><span class="l">E.</span> polimerisasi</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Hidrogenasi</b> menambahkan H<sub>2</sub> pada ikatan rangkap asam lemak tak jenuh. Ikatan rangkap yang menekuk rantai hilang, sehingga rantainya <b>lurus</b>, tersusun rapat, dan titik lelehnya naik — minyak cair pun memadat.</p>
+      <div class="insight"><b>Exam Insight:</b> hidrogenasi menjalankan urutan titik leleh ke arah sebaliknya — dari −11 °C menuju 69 °C pada keluarga C<sub>18</sub>.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Amilum terurai dalam hitungan jam, tetapi polietilena bertahan ratusan tahun. Alasan paling tepat adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> polietilena lebih berat</li>
+      <li><span class="l">B.</span> amilum larut dalam air</li>
+      <li><span class="l">C.</span> polietilena berasal dari minyak bumi</li>
+      <li><span class="l">D.</span> amilum berwarna putih</li>
+      <li><span class="l">E.</span> amilum hasil kondensasi sehingga sambungannya dapat diputus air, sedangkan polietilena hasil adisi dengan ikatan C–C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Amilum</b> dibentuk lewat <b>kondensasi</b> — air dapat masuk kembali dan memutus sambungannya, dan enzim tubuh memang bertugas melakukannya.</p>
+      <p><b>Polietilena</b> dibentuk lewat <b>adisi</b> — sambungannya ikatan C–C biasa yang sangat kuat, dan tidak ada air yang perlu dikembalikan.</p>
+      <p>Pilihan C menyebut fakta yang benar tetapi <b>bukan</b> alasan sukar terurainya.</p>
+      <div class="insight"><b>Exam Insight:</b> inilah dasar pengembangan bioplastik dari pati — rantainya kondensasi, sehingga dapat diurai air dan mikroba.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Sebuah polipeptida dihidrolisis sempurna dan menghasilkan 40 asam amino. Jumlah molekul air yang dipakai adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 40</li><li><span class="l">B.</span> 41</li><li><span class="l">C.</span> 39</li><li><span class="l">D.</span> 80</li><li><span class="l">E.</span> 20</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Rantai berisi 40 asam amino punya <b>39</b> ikatan peptida, dan tiap ikatan memerlukan satu molekul air untuk diputus → <b>39 molekul air</b>.</p>
+      <p>Hidrolisis adalah <b>kebalikan</b> kondensasi: air yang dulu keluar saat rantai terbentuk, kini masuk kembali dengan jumlah yang sama.</p>
+      <div class="insight"><b>Exam Insight:</b> tiga bilangan ini selalu sama — jumlah ikatan peptida, air yang keluar saat pembentukan, dan air yang masuk saat hidrolisis. Ketiganya (n−1).</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Perhatikan putih telur. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> mengandung protein, monomernya asam amino, dan positif terhadap uji biuret</li>
+      <li><span class="l">B.</span> monomernya glukosa</li>
+      <li><span class="l">C.</span> positif terhadap uji iodin</li>
+      <li><span class="l">D.</span> merupakan polimer adisi</li>
+      <li><span class="l">E.</span> tidak berubah saat dipanaskan</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Periksa B.</b> Monomer protein adalah <b>asam amino</b>, bukan glukosa.</p>
+      <p><b>Periksa C.</b> Uji iodin menguji <b>amilum</b>, dan putih telur tidak mengandungnya.</p>
+      <p><b>Periksa D.</b> Protein adalah polimer <b>kondensasi</b> — tiap ikatan peptida melepas satu molekul air.</p>
+      <p><b>Periksa E.</b> Putih telur <b>berubah</b> saat dipanaskan — itulah denaturasi.</p>
+      <p>Pernyataan A benar pada <b>ketiga</b> bagiannya ✔</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini — sekaligus soal terakhir dari seluruh 20 bab — menguji golongan makromolekul, monomernya, jenis polimerisasinya, uji identifikasinya, dan sifatnya terhadap panas.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. C &nbsp; 2. B &nbsp; 3. B &nbsp; 4. E &nbsp; 5. B &nbsp; 6. E &nbsp; 7. D &nbsp; 8. E &nbsp; 9. A &nbsp; 10. D<br>
+      11. C &nbsp; 12. A &nbsp; 13. C &nbsp; 14. A &nbsp; 15. D &nbsp; 16. D &nbsp; 17. B &nbsp; 18. E &nbsp; 19. C &nbsp; 20. A
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti Bab 20 tuntas — dan dengan itu seluruh 81 topik Kimia SMA sudah Anda selesaikan; 14–17 benar berarti ulangi bagian aturan (n−1) dan uji identifikasi; di bawah 14 berarti kerjakan ulang seluruh Worked Example sambil memeriksa setiap persamaan kondensasi atom demi atom.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 20 tersedia lengkap dalam berkas ini. Dengan selesainya bab ini, <b>seluruh 81 topik Kimia SMA sudah tersedia</b> dalam dua puluh berkas. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">✓ Tersedia lengkap — berkas ini</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 20: Polimer dan Makromolekul · 20 worked example · 21 soal latihan · 20 soal tes akhir bab — BAB PENUTUP</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>
