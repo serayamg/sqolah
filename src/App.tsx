@@ -53,17 +53,24 @@ export const App: React.FC = () => {
   const [auditory, setAuditory] = useState<AuditorySettings>(StorageService.getAuditorySettings());
   const [accessibility, setAccessibility] = useState<AccessibilitySettings>(StorageService.getAccessibilitySettings());
 
-  // Load data on mount
+  // State: Refresh trigger for database updates
+  const [refreshTick, setRefreshTick] = useState(0);
+
+  // Load data on mount and on database refresh
   const refreshData = () => {
     setSubjects(StorageService.getSubjects());
     setMateriList(StorageService.getMateri());
     setQuestions(StorageService.getQuestions());
+    const user = AuthService.getCurrentUser();
+    setCurrentUser(user);
+    const prof = AuthService.getStudentProfileByUserId(user.id);
+    setStudentProfile(prof);
   };
 
   useEffect(() => {
     refreshData();
     IntelligenceService.initSeedData();
-  }, []);
+  }, [refreshTick]);
 
   // Sync accessibility classes with document body
   useEffect(() => {
@@ -259,6 +266,7 @@ export const App: React.FC = () => {
             onNavigateToQuiz={handleOpenQuizByBab}
             onNavigateToMasteryMap={() => setActiveView('mastery-map')}
             onNavigateToDiagnostic={() => setActiveView('onboarding')}
+            onDataRefresh={() => setRefreshTick(p => p + 1)}
           />
         )}
 

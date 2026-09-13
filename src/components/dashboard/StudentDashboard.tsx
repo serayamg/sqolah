@@ -9,6 +9,7 @@ interface StudentDashboardProps {
   onNavigateToQuiz: (babNumber: number) => void;
   onNavigateToMasteryMap: () => void;
   onNavigateToDiagnostic: () => void;
+  onDataRefresh?: () => void;
 }
 
 export const StudentDashboard: React.FC<StudentDashboardProps> = ({
@@ -16,7 +17,8 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   onNavigateToMateri,
   onNavigateToQuiz,
   onNavigateToMasteryMap,
-  onNavigateToDiagnostic
+  onNavigateToDiagnostic,
+  onDataRefresh
 }) => {
   const [showWeeklyModal, setShowWeeklyModal] = useState(false);
 
@@ -107,6 +109,67 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ================= DATABASE STATUS & LEARNING SIMULATOR ================= */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center space-x-2.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div>
+            <span className="text-xs font-bold text-slate-800">Database Sqolah Terhubung</span>
+            <span className="text-xs text-slate-500 ml-2">
+              {masteries.length === 0
+                ? '• Status: Data Belajar Bersih (0% - Belum Ada Riwayat)'
+                : `• Status: ${masteries.length} Konsep Tersimpan (${overall.overallScore}% Penguasaan)`}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          {masteries.length === 0 ? (
+            <>
+              <button
+                onClick={() => {
+                  IntelligenceService.simulateLearning(studentId);
+                  onDataRefresh?.();
+                }}
+                className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition shadow-sm flex items-center space-x-1.5"
+                title="Simulasikan proses belajar Elang (Asesmen Diagnostik, Membaca Materi dengan Audio TTS, dan Kuis)"
+              >
+                <span>⚡ Simulasikan Sesi Belajar Elang</span>
+              </button>
+              <button
+                onClick={onNavigateToDiagnostic}
+                className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition"
+              >
+                Mulai Asesmen
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  IntelligenceService.simulateLearning(studentId);
+                  onDataRefresh?.();
+                }}
+                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-xs rounded-xl transition"
+                title="Perbarui sesi belajar simulasi"
+              >
+                + Update Sesi Belajar
+              </button>
+              <button
+                onClick={() => {
+                  IntelligenceService.resetStudentToEmpty(studentId);
+                  onDataRefresh?.();
+                }}
+                className="px-3 py-1.5 bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-600 border border-slate-200 font-semibold text-xs rounded-xl transition"
+                title="Kosongkan kembali semua riwayat dan data belajar Elang ke awal"
+              >
+                🔄 Kosongkan Data
+              </button>
+            </>
+          )}
         </div>
       </div>
 
