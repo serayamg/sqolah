@@ -47,7 +47,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 ID: {studentProfile.studentId}
               </span>
               <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-semibold">
-                {studentProfile.level} - Kelas {studentProfile.grade}
+                {studentProfile.level} - Kelas {studentProfile.grade === 11 ? 'XI' : studentProfile.grade}
               </span>
               <span className="bg-white/10 text-slate-200 text-xs px-3 py-1 rounded-full">
                 {studentProfile.curriculum}

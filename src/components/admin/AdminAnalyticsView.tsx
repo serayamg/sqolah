@@ -189,7 +189,7 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
                     </td>
                     <td className="py-3.5 px-4">
                       <div className="font-medium text-slate-800">{st.program}</div>
-                      <div className="text-[11px] text-slate-500">Kelas {st.grade} ({st.level})</div>
+                      <div className="text-[11px] text-slate-500">Kelas {st.grade === 11 ? 'XI' : st.grade} ({st.level})</div>
                     </td>
                     <td className="py-3.5 px-4 font-medium">{st.curriculum}</td>
                     <td className="py-3.5 px-4">
