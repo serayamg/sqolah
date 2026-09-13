@@ -15,12 +15,15 @@ import {
   Compass,
   History,
   Users,
-  Lock
+  Lock,
+  Terminal,
+  Key
 } from 'lucide-react';
 import { EducationLevel, AccessibilitySettings, AuditorySettings } from '../types';
 import { User } from '../types/intelligence';
 import { audioEngine } from '../services/audioEngine';
 import { AuthService } from '../services/authService';
+import { AiService } from '../services/aiService';
 
 interface HeaderProps {
   currentLevel: EducationLevel;
@@ -36,6 +39,8 @@ interface HeaderProps {
   onUpdateAuditory: (settings: Partial<AuditorySettings>) => void;
   currentUser?: User;
   onSwitchUser?: (userId: string) => void;
+  onOpenApiKeyModal?: () => void;
+  onOpenAiCli?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -51,7 +56,9 @@ export const Header: React.FC<HeaderProps> = ({
   auditory,
   onUpdateAuditory,
   currentUser,
-  onSwitchUser
+  onSwitchUser,
+  onOpenApiKeyModal,
+  onOpenAiCli
 }) => {
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -89,7 +96,8 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'dashboard', label: 'Dashboard Belajar', icon: LayoutDashboard },
     { id: 'home', label: 'Materi Kimia SMA', icon: BookOpen },
     { id: 'mastery-map', label: 'Mastery Map', icon: Compass },
-    { id: 'history', label: 'Riwayat', icon: History }
+    { id: 'history', label: 'Riwayat', icon: History },
+    { id: 'cli', label: 'AI & CLI', icon: Terminal }
   ];
 
   if (currentUser?.role === 'superadmin' || currentUser?.role === 'admin' || isAdmin) {
@@ -204,6 +212,31 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               )}
 
+              {/* AI CLI Button */}
+              <button
+                onClick={onOpenAiCli}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 text-xs font-semibold transition-colors min-h-[30px] sm:min-h-[36px]"
+                title="Buka AI Intelligence Terminal CLI (OpenAI, Gemini, DeepSeek, Claude)"
+              >
+                <Terminal className="w-3.5 h-3.5 text-indigo-600" />
+                <span className="hidden md:inline">AI CLI</span>
+                {AiService.isAnyKeyConfigured() ? (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" title="API Key Aktif" />
+                ) : (
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" title="Atur API Key" />
+                )}
+              </button>
+
+              {/* API Keys Configuration Button */}
+              <button
+                onClick={onOpenApiKeyModal}
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 text-xs font-medium transition-colors min-h-[30px] sm:min-h-[36px]"
+                title="Pengaturan Kunci API Multi-Provider"
+              >
+                <Key className="w-3.5 h-3.5 text-slate-600" />
+                <span className="hidden xl:inline">API Keys</span>
+              </button>
+
               {/* Accessibility & Audio Preferences Button */}
               <button
                 onClick={() => setShowSettingsModal(!showSettingsModal)}
@@ -253,7 +286,13 @@ export const Header: React.FC<HeaderProps> = ({
               return (
                 <button
                   key={item.id}
-                  onClick={() => onNavigateView(item.id)}
+                  onClick={() => {
+                    if (item.id === 'cli') {
+                      onOpenAiCli?.();
+                    } else {
+                      onNavigateView(item.id);
+                    }
+                  }}
                   className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all min-h-[36px] ${
                     isActive
                       ? 'bg-blue-600 text-white shadow-sm'
@@ -283,11 +322,18 @@ export const Header: React.FC<HeaderProps> = ({
           if (item.id === 'mastery-map') shortLabel = 'Mastery';
           if (item.id === 'history') shortLabel = 'Riwayat';
           if (item.id === 'admin') shortLabel = 'Admin';
+          if (item.id === 'cli') shortLabel = 'AI CLI';
 
           return (
             <button
               key={item.id}
-              onClick={() => onNavigateView(item.id)}
+              onClick={() => {
+                if (item.id === 'cli') {
+                  onOpenAiCli?.();
+                } else {
+                  onNavigateView(item.id);
+                }
+              }}
               className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all min-h-[46px] ${
                 isActive
                   ? 'text-blue-600 font-bold'

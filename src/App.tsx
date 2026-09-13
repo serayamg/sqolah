@@ -23,6 +23,8 @@ import { MasteryMapView } from './components/dashboard/MasteryMapView';
 import { LearningHistoryView } from './components/dashboard/LearningHistoryView';
 import { OnboardingWizard } from './components/onboarding/OnboardingWizard';
 import { AdminAnalyticsView } from './components/admin/AdminAnalyticsView';
+import { ApiKeyModal } from './components/ai/ApiKeyModal';
+import { AiCliDrawer } from './components/ai/AiCliDrawer';
 
 export const App: React.FC = () => {
   // State: Auth & Student Intelligence
@@ -59,6 +61,10 @@ export const App: React.FC = () => {
   // State: Preferences
   const [auditory, setAuditory] = useState<AuditorySettings>(StorageService.getAuditorySettings());
   const [accessibility, setAccessibility] = useState<AccessibilitySettings>(StorageService.getAccessibilitySettings());
+
+  // State: Multi-Provider AI & CLI
+  const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
+  const [isAiCliOpen, setIsAiCliOpen] = useState(false);
 
   // State: Refresh trigger for database updates
   const [refreshTick, setRefreshTick] = useState(0);
@@ -308,6 +314,8 @@ export const App: React.FC = () => {
         onUpdateAuditory={handleUpdateAuditory}
         currentUser={currentUser}
         onSwitchUser={handleSwitchUser}
+        onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
+        onOpenAiCli={() => setIsAiCliOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -436,6 +444,21 @@ export const App: React.FC = () => {
       <AudioBar
         auditory={auditory}
         onUpdateAuditory={handleUpdateAuditory}
+      />
+
+      {/* Multi-Provider AI API Key Settings Modal */}
+      <ApiKeyModal
+        isOpen={isApiKeyModalOpen}
+        onClose={() => setIsApiKeyModalOpen(false)}
+        onOpenCli={() => setIsAiCliOpen(true)}
+      />
+
+      {/* In-App Interactive AI CLI Drawer */}
+      <AiCliDrawer
+        isOpen={isAiCliOpen}
+        onClose={() => setIsAiCliOpen(false)}
+        onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
+        studentId={effectiveStudentProfile.studentId}
       />
 
       {/* Footer */}
