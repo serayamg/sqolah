@@ -418,7 +418,7 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
               <div
                 key={option.id}
                 onClick={() => handleSelectOption(option.id)}
-                className={`w-full p-4 rounded-2xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer group ${optionStyle}`}
+                className={`w-full p-3.5 sm:p-4 rounded-2xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer group min-h-[52px] ${optionStyle}`}
               >
                 <div className="flex items-center gap-3.5 flex-1 min-w-0">
                   <div className={`w-8 h-8 rounded-xl font-black text-sm flex items-center justify-center flex-shrink-0 transition-colors ${badgeStyle}`}>
@@ -444,7 +444,7 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
                       e.stopPropagation();
                       handleReadSingleOption(option.text, letter, option.id);
                     }}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition-colors"
+                    className="p-2 min-h-[38px] min-w-[38px] rounded-lg text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition-colors flex items-center justify-center"
                     title={`Dengarkan pilihan ${letter}`}
                   >
                     <Volume2 className="w-4 h-4" />
@@ -457,7 +457,7 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
 
         {/* Explanation Box after answering */}
         {isAnswered && (
-          <div className={`p-5 rounded-2xl border mb-6 animate-in fade-in slide-in-from-top-2 duration-200 ${
+          <div className={`p-4 sm:p-5 rounded-2xl border mb-6 animate-in fade-in slide-in-from-top-2 duration-200 ${
             selectedOptionId === currentQuestion.correctOptionId
               ? 'bg-emerald-50/70 border-emerald-200'
               : 'bg-amber-50/70 border-amber-200'
@@ -471,11 +471,11 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
               </h4>
               <button
                 onClick={() => {
-                  audioEngine.speak(`Penjelasan: ${currentQuestion.explanation}`, {
+                  audioEngine.speak(`Pembahasan: ${currentQuestion.explanation}`, {
                     rate: auditory.rate
                   });
                 }}
-                className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-200/50"
+                className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 transition-colors"
                 title="Dengarkan Pembahasan"
               >
                 <Volume2 className="w-4 h-4" />
@@ -497,7 +497,7 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
           <button
             onClick={handleNextQuestion}
             disabled={!isAnswered}
-            className={`w-full sm:w-auto px-6 py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+            className={`w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all min-h-[48px] ${
               isAnswered
                 ? 'bg-sky-600 hover:bg-sky-500 text-white shadow-md shadow-sky-600/25'
                 : 'bg-slate-100 text-slate-400 cursor-not-allowed'

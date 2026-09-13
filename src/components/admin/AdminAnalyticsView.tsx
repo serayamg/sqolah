@@ -60,37 +60,37 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
       </div>
 
       {/* Top Platform Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
-          <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm">
+          <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Total Siswa Terdaftar
           </div>
-          <div className="text-3xl font-bold text-slate-800">{students.length}</div>
-          <div className="text-xs text-emerald-600 font-medium mt-1">100% Akun Aktif</div>
+          <div className="text-2xl sm:text-3xl font-bold text-slate-800">{students.length}</div>
+          <div className="text-[11px] sm:text-xs text-emerald-600 font-medium mt-1">100% Akun Aktif</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
-          <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
+        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm">
+          <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Rata-rata Penguasaan
           </div>
-          <div className="text-3xl font-bold text-blue-600">67%</div>
-          <div className="text-xs text-blue-500 font-medium mt-1">Tingkat: Berkembang</div>
+          <div className="text-2xl sm:text-3xl font-bold text-blue-600">67%</div>
+          <div className="text-[11px] sm:text-xs text-blue-500 font-medium mt-1">Tingkat: Berkembang</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
-          <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
+        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm">
+          <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Butuh Perhatian
           </div>
-          <div className="text-3xl font-bold text-rose-600">{studentsNeedAttention.length}</div>
-          <div className="text-xs text-rose-500 font-medium mt-1">Gaps / Diagnostik Tertunda</div>
+          <div className="text-2xl sm:text-3xl font-bold text-rose-600">{studentsNeedAttention.length}</div>
+          <div className="text-[11px] sm:text-xs text-rose-500 font-medium mt-1">Gaps / Diagnostik</div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
-          <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
+        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm">
+          <div className="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
             Total Jam Belajar
           </div>
-          <div className="text-3xl font-bold text-purple-600">14.5 Jam</div>
-          <div className="text-xs text-purple-500 font-medium mt-1">Bulan September 2026</div>
+          <div className="text-2xl sm:text-3xl font-bold text-purple-600">14.5 Jam</div>
+          <div className="text-[11px] sm:text-xs text-purple-500 font-medium mt-1">Bulan September 2026</div>
         </div>
       </div>
 
@@ -160,14 +160,14 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ onSwitch
       </div>
 
       {/* ================= SECTION: ALL STUDENTS DIRECTORY ================= */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm overflow-hidden">
-        <h2 className="text-lg font-bold text-slate-800 mb-1">Daftar Seluruh Siswa Sqolah</h2>
-        <p className="text-xs text-slate-500 mb-5">
+      <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm overflow-hidden">
+        <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-1">Daftar Seluruh Siswa Sqolah</h2>
+        <p className="text-xs text-slate-500 mb-4 sm:mb-5">
           Manajemen penugasan silabus, kurikulum, dan pemantauan individual siswa
         </p>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-700">
+        <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table className="w-full text-left text-xs text-slate-700 min-w-[620px]">
             <thead className="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
               <tr>
                 <th className="py-3 px-4">Siswa</th>

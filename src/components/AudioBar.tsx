@@ -54,7 +54,10 @@ export const AudioBar: React.FC<AudioBarProps> = ({ auditory, onUpdateAuditory }
   };
 
   return (
-    <aside aria-label="Pemutar Suara Aktif" className="fixed bottom-3 sm:bottom-4 left-3 right-3 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 sm:w-11/12 max-w-2xl bg-slate-900/95 backdrop-blur-md text-white px-3 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-2xl border border-slate-700/80 flex items-center justify-between gap-2 sm:gap-3 animate-in slide-in-from-bottom duration-200">
+    <aside 
+      aria-label="Pemutar Suara Aktif" 
+      className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] sm:bottom-4 left-2 right-2 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 sm:w-11/12 max-w-2xl bg-slate-900/95 backdrop-blur-md text-white px-2.5 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-2xl border border-slate-700/80 flex items-center justify-between gap-1.5 sm:gap-3 animate-in slide-in-from-bottom duration-200"
+    >
       {/* Wave Visualizer & Status */}
       <div className="flex items-center gap-3 min-w-0 flex-1">
         <div className="flex items-end gap-0.5 h-6 w-7 justify-center flex-shrink-0">

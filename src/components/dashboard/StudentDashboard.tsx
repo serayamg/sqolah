@@ -37,9 +37,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   const strengths = masteries.filter(m => m.score >= 75).slice(0, 3);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 space-y-8 animate-fade-in">
+    <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8 space-y-5 sm:space-y-8 animate-fade-in">
       {/* ================= AREA 1: HEADER PROFIL SISWA ================= */}
-      <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl border border-slate-700/50 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-slate-700/50 relative overflow-hidden">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-2">
@@ -432,22 +432,22 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-center">
-              <div className="text-xs text-slate-500 mb-1">Hari Ini</div>
-              <div className="text-lg font-bold text-slate-800">{stats.todayMinutes} Menit</div>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-5">
+            <div className="bg-slate-50 p-2.5 sm:p-3.5 rounded-2xl border border-slate-200 text-center">
+              <div className="text-[11px] sm:text-xs text-slate-500 mb-1">Hari Ini</div>
+              <div className="text-sm sm:text-lg font-bold text-slate-800">{stats.todayMinutes}m</div>
             </div>
 
-            <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-center">
-              <div className="text-xs text-slate-500 mb-1">Minggu Ini</div>
-              <div className="text-lg font-bold text-blue-600">
+            <div className="bg-slate-50 p-2.5 sm:p-3.5 rounded-2xl border border-slate-200 text-center">
+              <div className="text-[11px] sm:text-xs text-slate-500 mb-1">Minggu Ini</div>
+              <div className="text-sm sm:text-lg font-bold text-blue-600">
                 {Math.floor(stats.thisWeekMinutes / 60)}j {stats.thisWeekMinutes % 60}m
               </div>
             </div>
 
-            <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-center">
-              <div className="text-xs text-slate-500 mb-1">Bulan Ini</div>
-              <div className="text-lg font-bold text-purple-600">{stats.totalHours} Jam</div>
+            <div className="bg-slate-50 p-2.5 sm:p-3.5 rounded-2xl border border-slate-200 text-center">
+              <div className="text-[11px] sm:text-xs text-slate-500 mb-1">Bulan Ini</div>
+              <div className="text-sm sm:text-lg font-bold text-purple-600">{stats.totalHours} Jam</div>
             </div>
           </div>
 

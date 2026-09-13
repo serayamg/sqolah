@@ -158,7 +158,7 @@ export const MateriView: React.FC<MateriViewProps> = ({
             audioEngine.stop();
             onBack();
           }}
-          className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold shadow-sm transition-all min-h-[40px]"
+          className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold shadow-sm transition-all min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Kembali ke Daftar Materi</span>
@@ -170,7 +170,7 @@ export const MateriView: React.FC<MateriViewProps> = ({
               audioEngine.stop();
               onStartQuiz(materi.id);
             }}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 transition-all min-h-[40px]"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 transition-all min-h-[44px]"
           >
             <HelpCircle className="w-4 h-4" />
             <span>Latihan Soal Bab Ini</span>
@@ -200,7 +200,7 @@ export const MateriView: React.FC<MateriViewProps> = ({
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight mb-4">
+        <h1 className="text-xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight mb-4">
           {materi.title}
         </h1>
 
@@ -211,13 +211,13 @@ export const MateriView: React.FC<MateriViewProps> = ({
               onClick={() => {
                 setDisplayMode('auditory');
               }}
-              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 transition-all whitespace-nowrap min-h-[38px] ${
+              className={`px-3.5 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 transition-all whitespace-nowrap min-h-[44px] ${
                 displayMode === 'auditory'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <Headphones className="w-4 h-4" />
               <span>Belajar Auditori & Ringkasan</span>
             </button>
 
@@ -226,13 +226,13 @@ export const MateriView: React.FC<MateriViewProps> = ({
                 audioEngine.stop();
                 setDisplayMode('handbook');
               }}
-              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 transition-all whitespace-nowrap min-h-[38px] ${
+              className={`px-3.5 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 transition-all whitespace-nowrap min-h-[44px] ${
                 displayMode === 'handbook'
                   ? 'bg-emerald-600 text-white shadow-sm'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <FileText className="w-4 h-4" />
               <span>Buku Handbook Lengkap</span>
             </button>
 
