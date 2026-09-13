@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+/* ============ TAMBAHAN BAB 2 ============ */
+.phen{
+  background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet);
+  border-radius:var(--radius); padding:18px 20px; margin:22px 0;
+}
+.phen .pt{font-size:12px; letter-spacing:.1em; font-weight:750; color:var(--violet); margin-bottom:9px}
+.phen p:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0}
+.card{background:#fff; border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px}
+.card .ct{font-size:14px; font-weight:750; color:var(--navy); margin-bottom:8px; padding-bottom:7px; border-bottom:2px solid var(--cyan-bg)}
+.card p{font-size:15px; margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.card .ex{font-family:var(--mono); font-size:13.5px; background:var(--paper-2); border-radius:6px; padding:6px 9px; color:var(--navy-2)}
+.tick{list-style:none; padding-left:0; font-size:15px; margin-bottom:0}
+.tick li{padding-left:20px; position:relative; margin-bottom:7px; color:var(--ink-2)}
+.tick li::before{content:"▸"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+.tick li:last-child{margin-bottom:0}
+
+.fx{
+  font-family:var(--mono); font-size:16px; text-align:center; margin-top:12px;
+  background:rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:#EAF4FA;
+}
+.box.short .fx, .box.exam .fx, .box.recall .fx{
+  background:#fff; color:var(--navy-2); border:1px solid var(--line-2);
+}
+table.mini{width:100%; border-collapse:collapse; font-size:13.5px; margin:6px 0 10px; background:#fff}
+table.mini th{background:var(--paper-3); color:var(--navy); text-align:left; padding:6px 9px; border:1px solid var(--line-2); white-space:nowrap; font-weight:700}
+table.mini td{padding:6px 9px; border:1px solid var(--line-2); text-align:center; color:var(--ink-2)}
+
+.shape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin:20px 0}
+.shape{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:10px 10px 12px; text-align:center}
+.shape svg{width:100%; height:auto; display:block; margin-bottom:4px; border:0; background:transparent}
+.shape .sn{font-size:12px; font-weight:750; color:var(--cyan); letter-spacing:.05em}
+.shape .sb{font-size:14.5px; font-weight:700; color:var(--navy); margin:4px 0 2px}
+.shape .sa{font-size:12.5px; color:var(--muted)}
+
+@media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 14 — SIFAT KOLIGATIF</div>
+  <a href="#cover" class="on"><span class="num">14.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">14.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">14.2</span>Concept Map</a>
+  <a href="#why"><span class="num">14.3</span>Why This Matters</a>
+  <a href="#konsentrasi"><span class="num">14.4</span>Molalitas &amp; Fraksi Mol</a>
+  <a href="#tekananuap"><span class="num">14.5</span>Penurunan Tekanan Uap</a>
+  <a href="#titikdidih"><span class="num">14.6</span>Kenaikan Titik Didih</a>
+  <a href="#titikbeku"><span class="num">14.7</span>Penurunan Titik Beku</a>
+  <a href="#osmotik"><span class="num">14.8</span>Tekanan Osmotik</a>
+  <a href="#vanthoff"><span class="num">14.9</span>Larutan Elektrolit</a>
+  <a href="#terapan"><span class="num">14.10</span>Penerapan Sifat Koligatif</a>
+  <a href="#focus"><span class="num">14.11</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">14.12</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 14</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">14.13</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">14.14</span>Formula Sheet</a>
+  <a href="#test"><span class="num">14.15</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 14 &nbsp;·&nbsp; KELAS XII &nbsp;·&nbsp; PEMBUKA RANGKAIAN KELAS XII</div>
+  <h1>Sifat Koligatif Larutan</h1>
+  <p class="sub">Mengapa garam yang ditebar di jalan dapat mencairkan salju? Dan mengapa air laut membeku pada suhu di bawah nol, padahal isinya sama-sama air?</p>
+  <div class="meta">
+    <span class="chip">Molalitas &amp; fraksi mol</span>
+    <span class="chip">Penurunan tekanan uap</span>
+    <span class="chip">Kenaikan titik didih</span>
+    <span class="chip">Penurunan titik beku</span>
+    <span class="chip">Tekanan osmotik</span>
+    <span class="chip">Faktor van 't Hoff</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>14.1&nbsp; Learning Objectives</h2>
+  <p class="lead">Kata "koligatif" berarti <b>bergantung pada jumlah</b>. Seluruh bab ini berdiri di atas satu gagasan: yang menentukan keempat sifat ini adalah <b>banyaknya partikel terlarut</b>, bukan jenis zatnya.</p>
+  <div class="box obj"><div class="bt">Target penguasaan Bab 14</div>
+  <ul>
+    <li>Menjelaskan pengertian sifat koligatif dan mengapa ia bergantung pada jumlah partikel.</li>
+    <li>Menghitung molalitas dan fraksi mol suatu larutan.</li>
+    <li>Membedakan molalitas dari molaritas, dan tahu kapan masing-masing dipakai.</li>
+    <li>Menerapkan hukum Raoult untuk menghitung tekanan uap larutan.</li>
+    <li>Menghitung penurunan tekanan uap jenuh larutan.</li>
+    <li>Menghitung kenaikan titik didih dan titik didih larutan.</li>
+    <li>Menghitung penurunan titik beku dan titik beku larutan.</li>
+    <li>Menghitung tekanan osmotik larutan.</li>
+    <li>Membaca diagram P–T dan menunjukkan letak ΔT<sub>b</sub> dan ΔT<sub>f</sub> padanya.</li>
+    <li>Menghitung faktor van 't Hoff untuk elektrolit kuat maupun lemah.</li>
+    <li>Membandingkan sifat koligatif beberapa larutan pada konsentrasi yang sama.</li>
+    <li>Menentukan M<sub>r</sub> suatu zat dari data sifat koligatif.</li>
+  </ul>
+  </div>
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat yang menjelaskan seluruh bab</div>
+    <p><b>Partikel terlarut menghalangi molekul pelarut untuk menguap dan untuk membeku.</b> Dari satu kenyataan itu, keempat sifat koligatif mengalir: tekanan uap turun, titik didih naik, titik beku turun, dan muncul tekanan osmotik.</p>
+    <p>Karena yang menghalangi adalah <b>jumlah partikelnya</b>, larutan garam yang terurai menjadi dua ion memberi pengaruh <b>dua kali lipat</b> dibanding larutan gula pada kepekatan yang sama. Inilah yang diukur oleh faktor van 't Hoff.</p>
+  </div>
+</section>
+
+<!-- ==================== WHY THIS MATTERS ==================== -->
+<section class="page" id="why">
+  <h2>14.3&nbsp; Why This Matters</h2>
+  <div class="phen">
+    <div class="pt">FENOMENA</div>
+    <p>Di negara bersalju, garam ditebar di jalan raya untuk mencairkan es. Garam itu tidak memanaskan apa pun — ia hanya membuat air tidak lagi sanggup membeku pada 0 °C.</p>
+    <p>Air laut tetap cair pada suhu yang sudah membekukan air tawar. Padahal keduanya sama-sama air; yang berbeda hanya ada tidaknya zat terlarut di dalamnya.</p>
+    <p>Sayuran yang direndam air garam menjadi layu, sedangkan yang direndam air biasa justru menggembung. Dan cairan infus harus dibuat dengan kepekatan tepat, karena salah sedikit saja sel darah merah pasien bisa pecah.</p>
+  </div>
+  <p class="lead">Ketiganya bersumber pada satu gagasan: <b>kehadiran partikel terlarut mengubah perilaku pelarutnya</b>. Yang menarik, perubahannya tidak bergantung pada <em>apa</em> zat terlarutnya — gula, garam, atau urea memberi pengaruh yang sama asalkan jumlah partikelnya sama.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Di kehidupan sehari-hari</div>
+      <ul class="tick">
+        <li><b>Penebaran garam di jalan bersalju</b> memanfaatkan penurunan titik beku.</li>
+        <li><b>Cairan antibeku radiator</b> mencegah air membeku sekaligus menaikkan titik didihnya.</li>
+        <li><b>Pengawetan makanan</b> dengan garam atau gula bekerja lewat tekanan osmotik.</li>
+        <li><b>Cairan infus dan tetes mata</b> dibuat isotonik dengan cairan tubuh.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Di soal UTBK</div>
+      <ul class="tick">
+        <li>Soal <b>membandingkan</b> beberapa larutan hampir pasti muncul.</li>
+        <li>Soal elektrolit menjebak yang lupa faktor van 't Hoff.</li>
+        <li>Soal penentuan M<sub>r</sub> menguji alur perhitungan terbalik.</li>
+        <li>Soal molalitas vs molaritas menjebak yang salah memilih.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>14.2&nbsp; Concept Map</h2>
+  <p class="lead">Keempat sifat koligatif berdiri di atas satu akar yang sama, dan seluruhnya dikalikan faktor yang sama bila zat terlarutnya elektrolit.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep sifat koligatif larutan">
+    <defs>
+      <marker id="cm14Arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+        <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1A8FBF"/>
+      </marker>
+    </defs>
+    <g stroke="#1A8FBF" stroke-width="2" fill="none">
+      <path d="M360,72 L360,96"/>
+      <path d="M96,96 L624,96"/>
+      <path d="M96,96 L96,124" marker-end="url(#cm14Arrow)"/>
+      <path d="M272,96 L272,124" marker-end="url(#cm14Arrow)"/>
+      <path d="M448,96 L448,124" marker-end="url(#cm14Arrow)"/>
+      <path d="M624,96 L624,124" marker-end="url(#cm14Arrow)"/>
+      <path d="M96,222 L96,246"/>
+      <path d="M96,246 L624,246"/>
+      <path d="M272,222 L272,246"/>
+      <path d="M448,222 L448,246"/>
+      <path d="M624,222 L624,246"/>
+      <path d="M360,246 L360,268" marker-end="url(#cm14Arrow)"/>
+    </g>
+
+    <rect x="176" y="10" width="368" height="62" rx="8" fill="#0B2E4F"/>
+    <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">JUMLAH PARTIKEL TERLARUT</text>
+    <text x="360" y="52" text-anchor="middle" fill="#BBD4E8" font-size="10.5">bukan jenis zatnya — gula, garam, dan urea sama saja</text>
+    <text x="360" y="66" text-anchor="middle" fill="#7FA8C9" font-size="9.5">partikel menghalangi pelarut menguap dan membeku</text>
+
+    <rect x="20" y="124" width="152" height="98" rx="8" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+    <text x="96" y="146" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">TEKANAN UAP</text>
+    <text x="96" y="164" text-anchor="middle" fill="#3A4C5C" font-size="10">TURUN</text>
+    <text x="96" y="188" text-anchor="middle" fill="#186F45" font-size="11.5" font-weight="700" font-family="monospace">ΔP = X&#8348; · P°</text>
+    <text x="96" y="209" text-anchor="middle" fill="#69798A" font-size="9.5">pakai FRAKSI MOL</text>
+
+    <rect x="196" y="124" width="152" height="98" rx="8" fill="#FCEDEB" stroke="#B23A2C" stroke-width="1.8"/>
+    <text x="272" y="146" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">TITIK DIDIH</text>
+    <text x="272" y="164" text-anchor="middle" fill="#3A4C5C" font-size="10">NAIK</text>
+    <text x="272" y="188" text-anchor="middle" fill="#186F45" font-size="11.5" font-weight="700" font-family="monospace">ΔT&#7495; = K&#7495; · m</text>
+    <text x="272" y="209" text-anchor="middle" fill="#69798A" font-size="9.5">pakai MOLALITAS</text>
+
+    <rect x="372" y="124" width="152" height="98" rx="8" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+    <text x="448" y="146" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">TITIK BEKU</text>
+    <text x="448" y="164" text-anchor="middle" fill="#3A4C5C" font-size="10">TURUN</text>
+    <text x="448" y="188" text-anchor="middle" fill="#186F45" font-size="11.5" font-weight="700" font-family="monospace">ΔT&#7584; = K&#7584; · m</text>
+    <text x="448" y="209" text-anchor="middle" fill="#69798A" font-size="9.5">pakai MOLALITAS</text>
+
+    <rect x="548" y="124" width="152" height="98" rx="8" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+    <text x="624" y="146" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">TEKANAN OSMOTIK</text>
+    <text x="624" y="164" text-anchor="middle" fill="#3A4C5C" font-size="10">MUNCUL</text>
+    <text x="624" y="188" text-anchor="middle" fill="#186F45" font-size="11.5" font-weight="700" font-family="monospace">π = M · R · T</text>
+    <text x="624" y="209" text-anchor="middle" fill="#69798A" font-size="9.5">pakai MOLARITAS</text>
+
+    <rect x="150" y="268" width="420" height="66" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="2"/>
+    <text x="360" y="290" text-anchor="middle" fill="#C77400" font-size="12.5" font-weight="700">BILA ZATNYA ELEKTROLIT: KALIKAN FAKTOR i</text>
+    <text x="360" y="312" text-anchor="middle" fill="#186F45" font-size="12.5" font-weight="700" font-family="monospace">i = 1 + (n − 1)α</text>
+    <text x="360" y="328" text-anchor="middle" fill="#3A4C5C" font-size="10">n = jumlah ion per satuan rumus &#160;·&#160; α = derajat ionisasi</text>
+
+    <rect x="22" y="346" width="332" height="72" rx="9" fill="#fff" stroke="#DCE4EB" stroke-width="1.6"/>
+    <text x="188" y="366" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">NILAI i UNTUK TIGA GOLONGAN</text>
+    <text x="42" y="386" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">nonelektrolit</tspan> (gula, urea) &#8594; i = 1</text>
+    <text x="42" y="404" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">elektrolit kuat</tspan> (α = 1) &#8594; i = n</text>
+
+    <rect x="366" y="346" width="332" height="72" rx="9" fill="#fff" stroke="#DCE4EB" stroke-width="1.6"/>
+    <text x="532" y="366" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">TIGA SATUAN YANG BERBEDA</text>
+    <text x="386" y="386" font-size="10.5" fill="#3A4C5C">molalitas per kg <tspan font-weight="700">PELARUT</tspan> &#8594; ΔT&#7495; dan ΔT&#7584;</text>
+    <text x="386" y="404" font-size="10.5" fill="#3A4C5C">molaritas per L <tspan font-weight="700">LARUTAN</tspan> &#8594; tekanan osmotik</text>
+  </svg>
+  <figcaption><b>Gambar 14.1.</b> Peta Konsep Bab 14. Perhatikan baris terbawah tiap kotak — <b>ketiga sifat memakai satuan kepekatan yang berbeda</b>, dan inilah sumber kesalahan paling sering di bab ini. Faktor i di tengah dikalikan ke <b>keempat</b> rumus tanpa kecuali bila zat terlarutnya elektrolit.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara membaca peta ini</div>
+    <p>Keempat kotak di baris atas terlihat berbeda, padahal semuanya menjawab pertanyaan yang sama: <b>seberapa terhalang molekul pelarut oleh partikel terlarut</b>. Makin banyak partikel penghalang, makin besar pengaruhnya — dan itu berlaku untuk keempatnya sekaligus.</p>
+    <p>Karena itu bila suatu larutan punya titik beku paling rendah di antara beberapa larutan, ia <b>pasti juga</b> punya titik didih paling tinggi dan tekanan osmotik paling besar. Keempat sifat selalu bergerak searah.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.4 MOLALITAS DAN FRAKSI MOL ==================== -->
+<section class="page" id="konsentrasi">
+  <h2>14.4&nbsp; Molalitas dan Fraksi Mol</h2>
+  <p class="lead">Sebelum menghitung apa pun di bab ini, Anda harus tahu <b>satuan kepekatan mana</b> yang dipakai oleh rumus yang bersangkutan. Tiga satuan berbeda muncul di bab ini.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Tiga satuan kepekatan</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Satuan</th><th>Rumus</th><th>Pembagi</th><th>Dipakai untuk</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Molalitas (m)</b></td><td class="eq">m = mol zat ÷ massa pelarut (kg)</td><td>massa <b>PELARUT</b></td><td>ΔT<sub>b</sub> dan ΔT<sub>f</sub></td></tr>
+        <tr><td><b>Molaritas (M)</b></td><td class="eq">M = mol zat ÷ volume larutan (L)</td><td>volume <b>LARUTAN</b></td><td>Tekanan osmotik</td></tr>
+        <tr class="hi"><td><b>Fraksi mol (X)</b></td><td class="eq">X = mol zat ÷ mol total</td><td>jumlah mol seluruhnya</td><td>Penurunan tekanan uap</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Perbedaan molalitas dan molaritas layak diperhatikan.</b> Molalitas membagi dengan massa <b>pelarut</b> saja; molaritas membagi dengan volume <b>larutan</b> seluruhnya. Keduanya berbeda, dan memakai yang salah membuat jawaban meleset.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa ΔT<sub>b</sub> dan ΔT<sub>f</sub> memakai molalitas, bukan molaritas</div>
+    <p>Karena percobaannya melibatkan <b>perubahan suhu</b>. Volume larutan memuai atau menyusut ketika suhunya berubah, sehingga molaritas ikut berubah — padahal zatnya sama.</p>
+    <p>Massa tidak berubah oleh suhu. Karena itu molalitas <b>tetap</b> berapa pun suhunya, dan hanya satuan seperti itulah yang layak dipakai untuk rumus yang bekerja pada suhu didih maupun suhu beku.</p>
+    <p>Tekanan osmotik memakai molaritas karena pengukurannya dilakukan pada suhu tetap, sehingga masalah pemuaian tidak muncul.</p>
+  </div>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Sifat fraksi mol</div>
+    <p>Untuk larutan dengan satu zat terlarut:</p>
+    <div class="fx">X<sub>terlarut</sub> + X<sub>pelarut</sub> = 1</div>
+    <p style="margin-top:12px">Sifat ini berguna sebagai <b>pemeriksa gratis</b>: bila Anda menghitung salah satunya, yang lain diperoleh dengan pengurangan sederhana. Terverifikasi secara komputasi untuk berbagai kepekatan — jumlahnya selalu tepat 1.</p>
+    <p><b>Contoh terverifikasi:</b> 18 gram glukosa (M<sub>r</sub> = 180) dalam 500 gram air memberi 0,1 mol glukosa dan 27,78 mol air. Maka X<sub>terlarut</sub> = 0,1 ÷ (0,1 + 27,78) = <b>0,00359</b> dan X<sub>pelarut</sub> = <b>0,99641</b>. Molalitasnya 0,1 ÷ 0,5 = <b>0,2 molal</b>.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — memakai massa larutan sebagai pembagi molalitas</div>
+    <p>Pembagi molalitas adalah massa <b>pelarut</b>, bukan massa larutan. Bila soal memberi "20 gram zat dilarutkan dalam 200 gram air", pembaginya adalah <b>0,2 kg</b> — bukan 0,22 kg.</p>
+    <p><b>Tetapi bila soal berbunyi</b> "20 gram zat dalam 200 gram <b>larutan</b>", massa pelarutnya adalah 200 − 20 = <b>180 gram</b>. Bacalah kata "larutan" atau "pelarut" dengan cermat; keduanya memberi jawaban yang berbeda.</p>
+    <p><b>Kesalahan kedua:</b> lupa mengubah gram menjadi kilogram. Memakai 200 langsung alih-alih 0,2 membuat hasilnya seribu kali terlalu kecil.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.5 PENURUNAN TEKANAN UAP ==================== -->
+<section class="page" id="tekananuap">
+  <h2>14.5&nbsp; Penurunan Tekanan Uap</h2>
+  <p class="lead">Partikel terlarut <b>menghalangi</b> molekul pelarut yang hendak menguap dari permukaan. Akibatnya lebih sedikit yang berhasil menguap, dan tekanan uapnya turun.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Hukum Raoult</div>
+    <div class="fx">P<sub>larutan</sub> = X<sub>pelarut</sub> × P°</div>
+    <p style="margin-top:12px">dengan P° adalah tekanan uap <b>pelarut murni</b>. Penurunannya:</p>
+    <div class="fx">ΔP = P° − P<sub>larutan</sub> = X<sub>terlarut</sub> × P°</div>
+    <p style="margin-top:12px"><b>Dua rumus, satu gagasan.</b> Yang pertama memakai fraksi mol <b>pelarut</b>; yang kedua memakai fraksi mol <b>terlarut</b>. Keduanya selalu saling melengkapi, karena kedua fraksi mol berjumlah 1.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>X terlarut</th><th>X pelarut</th><th>P larutan (P° = 100 mmHg)</th><th>ΔP</th><th>P + ΔP</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>0,0</td><td>1,0</td><td>100,0 mmHg</td><td>0,0</td><td>100,0 ✔</td></tr>
+      <tr><td>0,1</td><td>0,9</td><td>90,0 mmHg</td><td>10,0</td><td>100,0 ✔</td></tr>
+      <tr class="hi"><td>0,2</td><td>0,8</td><td>80,0 mmHg</td><td>20,0</td><td>100,0 ✔</td></tr>
+      <tr><td>0,5</td><td>0,5</td><td>50,0 mmHg</td><td>50,0</td><td>100,0 ✔</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px">Kolom terakhir adalah pemeriksa yang dijalankan secara terprogram: <b>P larutan ditambah ΔP selalu kembali ke P pelarut murni</b>. Pemeriksa ini gratis dan menangkap kesalahan memilih fraksi mol seketika.</p>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — tertukar antara X terlarut dan X pelarut</div>
+    <p>Ini kesalahan paling sering di bagian ini. Ingat arahnya: <b>tekanan uap larutan selalu lebih kecil</b> daripada pelarut murni, dan X<sub>pelarut</sub> selalu mendekati 1 pada larutan encer.</p>
+    <p><b>Pemeriksa yang gratis:</b> untuk larutan encer, P larutan harus <b>hampir sama</b> dengan P°, dan ΔP harus <b>kecil</b>. Bila hasil Anda menunjukkan penurunan yang besar pada larutan encer, kedua fraksi mol tertukar.</p>
+    <p><b>Kesalahan kedua:</b> lupa bahwa untuk larutan <b>elektrolit</b>, jumlah mol partikel terlarut harus dikalikan faktor i lebih dahulu sebelum fraksi molnya dihitung.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.6 KENAIKAN TITIK DIDIH ==================== -->
+<section class="page" id="titikdidih">
+  <h2>14.6&nbsp; Kenaikan Titik Didih <span class="star">★★★</span></h2>
+  <p class="lead">Karena tekanan uap larutan lebih rendah, larutan harus <b>dipanaskan lebih tinggi</b> agar tekanan uapnya mencapai tekanan udara di sekitarnya.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Kenaikan titik didih</div>
+    <div class="fx">ΔT<sub>b</sub> = K<sub>b</sub> × m &nbsp;&nbsp;dan&nbsp;&nbsp; T<sub>b</sub> larutan = T<sub>b</sub> pelarut + ΔT<sub>b</sub></div>
+    <p style="margin-top:12px">dengan K<sub>b</sub> adalah <b>tetapan kenaikan titik didih molal</b>, yang nilainya bergantung pada <b>jenis pelarut</b>, bukan zat terlarut. Untuk air, K<sub>b</sub> = 0,52 °C/molal.</p>
+    <p><b>Perhatikan bahwa ΔT<sub>b</sub> adalah selisih</b>, bukan titik didihnya. Menjawab soal dengan angka ΔT<sub>b</sub> saja adalah kesalahan yang sering terjadi — masih harus ditambahkan ke titik didih pelarut murninya.</p>
+  </div>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 428" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram P-T penurunan titik beku dan kenaikan titik didih">
+<rect x="1" y="1" width="718" height="426" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">DIAGRAM P–T — MENGAPA TITIK BEKU TURUN DAN TITIK DIDIH NAIK</text>
+<rect x="14" y="38" width="692" height="290" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<line x1="64" y1="306" x2="656" y2="306" stroke="#69798A" stroke-width="1.6"/>
+<line x1="64" y1="306" x2="64" y2="62" stroke="#69798A" stroke-width="1.6"/>
+<text x="360" y="346" text-anchor="middle" font-size="10.5" fill="#69798A">suhu &#8594;</text>
+<text x="24" y="184" text-anchor="middle" font-size="10.5" fill="#69798A" transform="rotate(-90 24 184)">tekanan &#8594;</text>
+<line x1="64" y1="154.7" x2="656" y2="154.7" stroke="#B7C3CE" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text x="70" y="149" font-size="9.5" fill="#69798A">tekanan 1 atm</text>
+<path d="M182.4,297.3 L186.3,297.0 L190.3,296.7 L194.2,296.3 L198.2,296.0 L202.1,295.6 L206.1,295.2 L210.0,294.8 L214.0,294.4 L217.9,293.9 L221.9,293.5 L225.8,293.0 L229.8,292.5 L233.7,292.0 L237.7,291.5 L241.6,291.0 L245.5,290.4 L249.5,289.8 L253.4,289.2 L257.4,288.6 L261.3,288.0 L265.3,287.3 L269.2,286.6 L273.2,285.9 L277.1,285.1 L281.1,284.3 L285.0,283.5 L289.0,282.7 L292.9,281.8 L296.9,280.9 L300.8,280.0 L304.7,279.0 L308.7,278.0 L312.6,276.9 L316.6,275.9 L320.5,274.7 L324.5,273.6 L328.4,272.4 L332.4,271.1 L336.3,269.8 L340.3,268.4 L344.2,267.0 L348.2,265.6 L352.1,264.1 L356.1,262.5 L360.0,260.9 L363.9,259.2 L367.9,257.5 L371.8,255.6 L375.8,253.8 L379.7,251.8 L383.7,249.8 L387.6,247.7 L391.6,245.5 L395.5,243.3 L399.5,240.9 L403.4,238.5 L407.4,236.0 L411.3,233.3 L415.3,230.6 L419.2,227.8 L423.1,224.9 L427.1,221.9 L431.0,218.7 L435.0,215.5 L438.9,212.1 L442.9,208.6 L446.8,204.9 L450.8,201.2 L454.7,197.2 L458.7,193.2 L462.6,189.0 L466.6,184.6 L470.5,180.1 L474.5,175.4 L478.4,170.5 L482.3,165.4 L486.3,160.2 L490.2,154.7 L494.2,149.1 L498.1,143.2 L502.1,137.1 L506.0,130.8 L510.0,124.3 L513.9,117.5 L517.9,110.5 L521.8,103.2 L525.8,95.6 L529.7,87.7 L533.7,79.6" fill="none" stroke="#B23A2C" stroke-width="2.8"/>
+<path d="M182.4,299.4 L186.3,299.2 L190.3,298.9 L194.2,298.7 L198.2,298.4 L202.1,298.1 L206.1,297.8 L210.0,297.5 L214.0,297.2 L217.9,296.8 L221.9,296.5 L225.8,296.2 L229.8,295.8 L233.7,295.4 L237.7,295.0 L241.6,294.6 L245.5,294.2 L249.5,293.7 L253.4,293.3 L257.4,292.8 L261.3,292.3 L265.3,291.8 L269.2,291.3 L273.2,290.7 L277.1,290.1 L281.1,289.5 L285.0,288.9 L289.0,288.3 L292.9,287.6 L296.9,286.9 L300.8,286.2 L304.7,285.5 L308.7,284.7 L312.6,283.9 L316.6,283.1 L320.5,282.3 L324.5,281.4 L328.4,280.4 L332.4,279.5 L336.3,278.5 L340.3,277.5 L344.2,276.4 L348.2,275.3 L352.1,274.2 L356.1,273.0 L360.0,271.7 L363.9,270.5 L367.9,269.1 L371.8,267.8 L375.8,266.3 L379.7,264.8 L383.7,263.3 L387.6,261.7 L391.6,260.1 L395.5,258.3 L399.5,256.6 L403.4,254.7 L407.4,252.8 L411.3,250.8 L415.3,248.7 L419.2,246.6 L423.1,244.4 L427.1,242.1 L431.0,239.7 L435.0,237.2 L438.9,234.7 L442.9,232.0 L446.8,229.2 L450.8,226.4 L454.7,223.4 L458.7,220.3 L462.6,217.1 L466.6,213.8 L470.5,210.3 L474.5,206.8 L478.4,203.1 L482.3,199.2 L486.3,195.2 L490.2,191.1 L494.2,186.8 L498.1,182.3 L502.1,177.7 L506.0,172.9 L510.0,168.0 L513.9,162.8 L517.9,157.5 L521.8,151.9 L525.8,146.2 L529.7,140.2 L533.7,134.0 L537.6,127.6 L541.5,120.9 L545.5,114.0 L549.4,106.8 L553.4,99.4 L557.3,91.7 L561.3,83.7 L565.2,75.4" fill="none" stroke="#186F45" stroke-width="2.8"/>
+<path d="M244.0,291.0 L241.6,154.7 L232.1,71.8" fill="none" stroke="#B23A2C" stroke-width="2.8"/>
+<path d="M202.5,298.2 L200.2,154.7 L190.7,71.8" fill="none" stroke="#186F45" stroke-width="2.8"/>
+<path d="M241.6,291.0 L239.4,291.4 L237.3,291.9 L235.1,292.3 L232.9,292.7 L230.7,293.2 L228.6,293.5 L226.4,293.9 L224.2,294.3 L222.1,294.7 L219.9,295.0 L217.7,295.3 L215.6,295.7 L213.4,296.0 L211.2,296.3 L209.0,296.6 L206.9,296.9 L204.7,297.2 L202.5,297.4 L200.4,297.7 L198.2,297.9 L196.0,298.2 L193.8,298.4 L191.7,298.7 L189.5,298.9 L187.3,299.1 L185.2,299.3 L183.0,299.5 L180.8,299.7 L178.7,299.9 L176.5,300.1 L174.3,300.3 L172.1,300.5 L170.0,300.6 L167.8,300.8 L165.6,301.0 L163.5,301.1 L161.3,301.3 L159.1,301.4 L156.9,301.5 L154.8,301.7 L152.6,301.8 L150.4,301.9 L148.3,302.1 L146.1,302.2 L143.9,302.3" fill="none" stroke="#B23A2C" stroke-width="2.4"/>
+<path d="M200.2,298.2 L198.7,298.4 L197.2,298.6 L195.7,298.7 L194.2,298.9 L192.8,299.0 L191.3,299.2 L189.8,299.3 L188.3,299.5 L186.8,299.6 L185.4,299.7 L183.9,299.9 L182.4,300.0 L180.9,300.1 L179.4,300.2 L178.0,300.4 L176.5,300.5 L175.0,300.6 L173.5,300.7 L172.0,300.8 L170.6,300.9 L169.1,301.0 L167.6,301.1 L166.1,301.2 L164.6,301.3 L163.2,301.4 L161.7,301.5 L160.2,301.6 L158.7,301.7 L157.2,301.8 L155.8,301.9 L154.3,302.0 L152.8,302.1 L151.3,302.2 L149.8,302.2 L148.4,302.3" fill="none" stroke="#186F45" stroke-width="2.4"/>
+<circle cx="200.2" cy="154.7" r="4" fill="#186F45" stroke="#fff" stroke-width="1.4"/>
+<line x1="200.2" y1="154.7" x2="200.2" y2="306" stroke="#186F45" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+<circle cx="241.6" cy="154.7" r="4" fill="#B23A2C" stroke="#fff" stroke-width="1.4"/>
+<line x1="241.6" y1="154.7" x2="241.6" y2="306" stroke="#B23A2C" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+<circle cx="490.2" cy="154.7" r="4" fill="#B23A2C" stroke="#fff" stroke-width="1.4"/>
+<line x1="490.2" y1="154.7" x2="490.2" y2="306" stroke="#B23A2C" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+<circle cx="519.8" cy="154.7" r="4" fill="#186F45" stroke="#fff" stroke-width="1.4"/>
+<line x1="519.8" y1="154.7" x2="519.8" y2="306" stroke="#186F45" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+<text x="200" y="322" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">T&#7584; larutan</text>
+<text x="242" y="334" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B23A2C">T&#7584; pelarut</text>
+<text x="490" y="322" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B23A2C">T&#7495; pelarut</text>
+<text x="520" y="334" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">T&#7495; larutan</text>
+<path d="M200.2,132.7 L200.2,126.7 L241.6,126.7 L241.6,132.7" fill="none" stroke="#0B2E4F" stroke-width="1.4"/>
+<text x="221" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="#0B2E4F">ΔT&#7584;</text>
+<path d="M490.2,132.7 L490.2,126.7 L519.8,126.7 L519.8,132.7" fill="none" stroke="#0B2E4F" stroke-width="1.4"/>
+<text x="505" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="#0B2E4F">ΔT&#7495;</text>
+<line x1="366" y1="52" x2="388" y2="52" stroke="#B23A2C" stroke-width="3"/>
+<text x="394" y="56" font-size="10" font-weight="700" fill="#B23A2C">pelarut murni</text>
+<line x1="516" y1="52" x2="538" y2="52" stroke="#186F45" stroke-width="3"/>
+<text x="544" y="56" font-size="10" font-weight="700" fill="#186F45">larutan</text>
+<text x="597" y="223" text-anchor="middle" font-size="10" font-weight="700" fill="#69798A">GAS</text>
+<text x="348" y="86" text-anchor="middle" font-size="10" font-weight="700" fill="#69798A">CAIR</text>
+<text x="135" y="111" text-anchor="middle" font-size="10" font-weight="700" fill="#69798A">PADAT</text>
+<rect x="14" y="336" width="692" height="80" rx="8" fill="#E9F5FB" stroke="#3FB0DC"/>
+<text x="360" y="355" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">Kurva larutan selalu berada DI BAWAH kurva pelarut murni — itulah sebab keduanya bergeser</text>
+<text x="360" y="374" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Larutan 1 molal nonelektrolit: ΔT&#7495; = 0,52 · 1 = <tspan font-weight="700">0,52 °C</tspan> &#160;&#160; ΔT&#7584; = 1,86 · 1 = <tspan font-weight="700">1,86 °C</tspan></text>
+<text x="360" y="392" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Penurunan titik beku selalu <tspan font-weight="700">3.58 kali</tspan> lebih besar daripada kenaikan titik didih, karena K&#7584;/K&#7495; = 1,86/0,52</text>
+<text x="360" y="409" text-anchor="middle" font-size="9.5" fill="#69798A">skala pergeseran pada gambar sengaja dilebihkan agar terlihat; nilai sebenarnya tertulis di atas</text>
+</svg>  <figcaption><b>Gambar 14.2.</b> Diagram P–T untuk pelarut murni dan larutannya. Karena kurva cair-gas larutan berada <b>di bawah</b> kurva pelarut murni, garis 1 atm memotongnya pada suhu yang <b>lebih tinggi</b> — itulah kenaikan titik didih. Pada sisi kiri, kurva padat-cair bergeser ke kiri sehingga titik bekunya <b>turun</b>. Skala pergeseran pada gambar sengaja dilebihkan agar terlihat; nilai sebenarnya untuk larutan 1 molal adalah 0,52 °C dan 1,86 °C.</figcaption>
+  </figure>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pelarut</th><th>Titik didih (°C)</th><th>K<sub>b</sub> (°C/molal)</th><th>Titik beku (°C)</th><th>K<sub>f</sub> (°C/molal)</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Air</b></td><td>100</td><td><b>0,52</b></td><td>0</td><td><b>1,86</b></td></tr>
+      <tr><td>Benzena</td><td>80,1</td><td>2,53</td><td>5,5</td><td>5,12</td></tr>
+      <tr class="hi"><td>Kloroform</td><td>61,2</td><td>3,63</td><td>−63,5</td><td>4,68</td></tr>
+      <tr><td>Asam asetat</td><td>118,1</td><td>3,07</td><td>16,6</td><td>3,90</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Perhatikan kolom K<sub>b</sub> dan K<sub>f</sub>:</b> untuk setiap pelarut, nilai K<sub>f</sub> selalu <b>lebih besar</b> daripada K<sub>b</sub>. Inilah sebabnya penurunan titik beku selalu lebih besar daripada kenaikan titik didih pada molalitas yang sama.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Perbandingan yang layak dihafal untuk larutan berpelarut air</div>
+    <div class="fx">K<sub>f</sub> ÷ K<sub>b</sub> = 1,86 ÷ 0,52 = 3,58</div>
+    <p style="margin-top:12px">Artinya pada molalitas berapa pun, <b>penurunan titik beku selalu 3,58 kali lebih besar</b> daripada kenaikan titik didih. Terverifikasi secara komputasi pada 0,5 molal, 1 molal, dan 2 molal — perbandingannya selalu sama persis.</p>
+    <p><b>Kegunaan praktisnya:</b> bila soal sudah memberi ΔT<sub>b</sub> dan menanyakan ΔT<sub>f</sub> untuk larutan yang sama, Anda cukup mengalikan 3,58 tanpa menghitung molalitasnya lagi. Ini juga menjelaskan mengapa cairan antibeku radiator jauh lebih efektif mencegah pembekuan daripada menaikkan titik didih.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.7 PENURUNAN TITIK BEKU ==================== -->
+<section class="page" id="titikbeku">
+  <h2>14.7&nbsp; Penurunan Titik Beku <span class="star">★★★</span></h2>
+  <p class="lead">Partikel terlarut mengganggu susunan molekul pelarut yang hendak membentuk kristal padat. Akibatnya larutan harus <b>didinginkan lebih rendah</b> agar mau membeku.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Penurunan titik beku</div>
+    <div class="fx">ΔT<sub>f</sub> = K<sub>f</sub> × m &nbsp;&nbsp;dan&nbsp;&nbsp; T<sub>f</sub> larutan = T<sub>f</sub> pelarut − ΔT<sub>f</sub></div>
+    <p style="margin-top:12px"><b>Perhatikan tanda minusnya.</b> Berbeda dari titik didih yang <b>ditambah</b>, titik beku <b>dikurangi</b>. Untuk larutan berpelarut air, titik bekunya menjadi bernilai <b>negatif</b>.</p>
+    <p>Bentuk rumusnya sama persis dengan kenaikan titik didih, hanya tetapannya yang berbeda — dan arah perubahannya berlawanan.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Molalitas</th><th>ΔT<sub>b</sub></th><th>Titik didih</th><th>ΔT<sub>f</sub></th><th>Titik beku</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>0,5 m</td><td>0,260 °C</td><td>100,260 °C</td><td>0,930 °C</td><td><b>−0,930 °C</b></td></tr>
+      <tr><td>1,0 m</td><td>0,520 °C</td><td>100,520 °C</td><td>1,860 °C</td><td><b>−1,860 °C</b></td></tr>
+      <tr class="hi"><td>2,0 m</td><td>1,040 °C</td><td>101,040 °C</td><td>3,720 °C</td><td><b>−3,720 °C</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px">Seluruh baris dihitung ulang secara terprogram untuk larutan <b>nonelektrolit</b> berpelarut air. Perhatikan bahwa keduanya <b>sebanding lurus</b> dengan molalitas: melipatduakan molalitas melipatduakan kedua selisihnya.</p>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — menjawab dengan ΔT, bukan titik bekunya</div>
+    <p>Bila soal menanyakan "berapa <b>titik beku</b> larutan", jawabannya adalah <b>−1,86 °C</b>, bukan 1,86 °C. Angka 1,86 hanyalah <b>selisihnya</b>.</p>
+    <p>Soal sering menyediakan kedua angka sebagai pilihan sekaligus, sehingga kesalahan ini tidak tertangkap oleh kewajaran bentuk jawaban. <b>Bacalah pertanyaannya</b>: yang diminta ΔT<sub>f</sub> atau T<sub>f</sub>?</p>
+    <p><b>Kesalahan kedua:</b> menambahkan alih-alih mengurangkan. Titik beku larutan <b>selalu lebih rendah</b> daripada pelarut murninya — bila jawaban Anda di atas 0 °C untuk larutan berpelarut air, arahnya terbalik.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Chemistry Shortcut — menentukan M<sub>r</sub> dari data sifat koligatif</div>
+    <p>Alur ini sering diuji dan berjalan mundur dari rumus biasa:</p>
+    <ol class="step">
+      <li><b>Hitung molalitas</b> dari ΔT yang diukur: m = ΔT<sub>f</sub> ÷ K<sub>f</sub>.</li>
+      <li><b>Hitung mol zat</b>: mol = m × massa pelarut dalam kg.</li>
+      <li><b>Hitung M<sub>r</sub></b>: M<sub>r</sub> = massa zat ÷ mol.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Contoh terverifikasi:</b> 1,8 gram zat nonelektrolit dalam 100 gram air menurunkan titik beku sebesar 0,186 °C. Maka m = 0,186 ÷ 1,86 = 0,1 molal → mol = 0,1 × 0,1 = 0,01 mol → M<sub>r</sub> = 1,8 ÷ 0,01 = <b>180</b>. Nilai itu cocok dengan glukosa.</p>
+    <p><b>Mengapa cara ini dipakai di laboratorium:</b> mengukur penurunan titik beku jauh lebih mudah daripada menimbang molekul. Metodenya disebut <b>kriometri</b>, dan dipilih karena K<sub>f</sub> lebih besar daripada K<sub>b</sub> sehingga selisihnya lebih mudah diukur dengan teliti.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.8 TEKANAN OSMOTIK ==================== -->
+<section class="page" id="osmotik">
+  <h2>14.8&nbsp; Tekanan Osmotik <span class="star">★★★</span></h2>
+  <p class="lead">Bila larutan dan pelarut murni dipisahkan oleh <b>selaput semipermeabel</b>, pelarut mengalir masuk ke larutan. Tekanan yang diperlukan untuk menghentikan aliran itu disebut tekanan osmotik.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Tekanan osmotik</div>
+    <div class="fx">π = M × R × T</div>
+    <div class="tw" style="margin-top:14px"><table class="d">
+      <thead><tr><th>Lambang</th><th>Arti</th><th>Satuan</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>π</td><td>Tekanan osmotik</td><td>atm</td></tr>
+        <tr><td>M</td><td><b>Molaritas</b> — bukan molalitas</td><td>mol/L</td></tr>
+        <tr class="hi"><td>R</td><td>Tetapan gas</td><td>0,082 L·atm/mol·K</td></tr>
+        <tr><td>T</td><td>Suhu mutlak</td><td><b>kelvin</b> — bukan celsius</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Bentuknya mirip persamaan gas ideal</b> PV = nRT, dan itu bukan kebetulan — partikel terlarut berperilaku menyerupai gas yang tersebar di dalam pelarut.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Molaritas</th><th>Suhu</th><th>Tekanan osmotik</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>0,1 M</td><td>300 K</td><td>2,460 atm</td><td>acuan</td></tr>
+      <tr><td><b>0,2 M</b></td><td>300 K</td><td>4,920 atm</td><td>M dua kali → π <b>dua kali</b></td></tr>
+      <tr class="hi"><td>0,1 M</td><td><b>600 K</b></td><td>4,920 atm</td><td>T dua kali → π <b>dua kali</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px">Diuji secara terprogram: π <b>sebanding lurus</b> dengan molaritas maupun suhu mutlaknya. Perhatikan bahwa perbandingan suhu hanya berlaku bila dinyatakan dalam <b>kelvin</b> — 600 K memang dua kali 300 K, tetapi 600 °C bukan dua kali 300 °C.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Larutan isotonik, hipertonik, dan hipotonik</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Istilah</th><th>Artinya</th><th>Yang terjadi pada sel</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Isotonik</b></td><td>Tekanan osmotiknya <b>sama</b> dengan cairan sel</td><td>Sel tetap normal</td></tr>
+        <tr><td><b>Hipertonik</b></td><td>Tekanan osmotiknya <b>lebih besar</b></td><td>Air keluar dari sel → sel <b>mengerut</b></td></tr>
+        <tr class="hi"><td><b>Hipotonik</b></td><td>Tekanan osmotiknya <b>lebih kecil</b></td><td>Air masuk ke sel → sel <b>menggembung</b> dan bisa pecah</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Inilah jawaban atas teka-teki pembuka bab:</b> sayuran yang direndam air garam menjadi layu karena larutannya <b>hipertonik</b> — air keluar dari selnya. Yang direndam air biasa menggembung karena air biasa bersifat <b>hipotonik</b> terhadap cairan selnya.</p>
+    <p><b>Dan inilah sebabnya cairan infus harus tepat kepekatannya.</b> Cairan yang terlalu encer membuat sel darah merah menggembung sampai pecah; yang terlalu pekat membuatnya mengerut. Keduanya berbahaya, sehingga cairan infus selalu dibuat <b>isotonik</b> dengan darah.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — memakai celsius alih-alih kelvin</div>
+    <p>Suhu pada rumus tekanan osmotik <b>wajib</b> dalam kelvin. Memakai 27 alih-alih 300 membuat jawaban meleset lebih dari sepuluh kali.</p>
+    <p><b>Kesalahan kedua:</b> memakai molalitas alih-alih molaritas. Rumus π adalah satu-satunya di bab ini yang memakai <b>molaritas</b>; tiga rumus lainnya tidak.</p>
+    <p><b>Kesalahan ketiga:</b> lupa mengalikan faktor i untuk larutan elektrolit. Rumus π sama seperti ketiga rumus lainnya — faktor van 't Hoff berlaku untuk <b>keempatnya</b>.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.9 FAKTOR VAN 'T HOFF ==================== -->
+<section class="page" id="vanthoff">
+  <h2>14.9&nbsp; Larutan Elektrolit dan Faktor van 't Hoff <span class="star">★★★</span></h2>
+  <p class="lead">Elektrolit terurai menjadi ion, sehingga satu satuan rumus menghasilkan <b>beberapa partikel</b>. Karena sifat koligatif bergantung pada jumlah partikel, pengaruhnya berlipat.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Faktor van 't Hoff</div>
+    <div class="fx">i = 1 + (n − 1) α</div>
+    <div class="tw" style="margin-top:14px"><table class="d">
+      <thead><tr><th>Golongan zat</th><th>Nilai α</th><th>Nilai i</th><th>Contoh</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Nonelektrolit</b></td><td>tidak terion</td><td><b>i = 1</b></td><td>Glukosa, urea, sukrosa</td></tr>
+        <tr><td><b>Elektrolit kuat</b></td><td>α = 1</td><td><b>i = n</b></td><td>NaCl (i = 2), CaCl₂ (i = 3)</td></tr>
+        <tr class="hi"><td><b>Elektrolit lemah</b></td><td>0 &lt; α &lt; 1</td><td><b>1 &lt; i &lt; n</b></td><td>CH₃COOH, NH₃</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px">dengan <b>n</b> = jumlah ion yang dihasilkan satu satuan rumus, dan <b>α</b> = derajat ionisasi. Faktor i lalu <b>dikalikan ke keempat rumus</b> tanpa kecuali.</p>
+  </div>
+
+  <div class="box formula">
+    <div class="bt">Key Formula — Keempat rumus untuk larutan elektrolit</div>
+    <div class="fx" style="line-height:2.2">
+      ΔP = X<sub>terlarut</sub> × P° &nbsp;(dengan mol terlarut dikali i)<br>
+      ΔT<sub>b</sub> = K<sub>b</sub> × m × <b>i</b><br>
+      ΔT<sub>f</sub> = K<sub>f</sub> × m × <b>i</b><br>
+      π = M × R × T × <b>i</b>
+    </div>
+  </div>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 398" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perbandingan penurunan titik beku lima larutan pada molalitas sama">
+<rect x="1" y="1" width="718" height="396" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">LIMA LARUTAN, MOLALITAS SAMA (0,1 m) — HASILNYA JAUH BERBEDA</text>
+<rect x="14" y="38" width="692" height="266" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<line x1="88" y1="224.0" x2="684" y2="224.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="79" y="228.0" text-anchor="end" font-size="9.5" fill="#69798A">0,2</text>
+<line x1="88" y1="186.0" x2="684" y2="186.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="79" y="190.0" text-anchor="end" font-size="9.5" fill="#69798A">0,4</text>
+<line x1="88" y1="148.0" x2="684" y2="148.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="79" y="152.0" text-anchor="end" font-size="9.5" fill="#69798A">0,6</text>
+<line x1="88" y1="110.0" x2="684" y2="110.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="79" y="114.0" text-anchor="end" font-size="9.5" fill="#69798A">0,8</text>
+<line x1="88" y1="72.0" x2="684" y2="72.0" stroke="#EDF1F5" stroke-width="1"/>
+<text x="79" y="76.0" text-anchor="end" font-size="9.5" fill="#69798A">1,0</text>
+<line x1="88" y1="262" x2="684" y2="262" stroke="#69798A" stroke-width="1.6"/>
+<line x1="88" y1="262" x2="88" y2="72" stroke="#69798A" stroke-width="1.6"/>
+<text x="38" y="167" text-anchor="middle" font-size="10.5" fill="#69798A" transform="rotate(-90 38 167)">penurunan titik beku (°C)</text>
+<rect x="106.0" y="226.7" width="86.0" height="35.3" rx="4" fill="#7FA8C9"/>
+<text x="149.0" y="208" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">0,186 °C</text>
+<text x="149.0" y="221" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">i = 1,0</text>
+<text x="149.0" y="278" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">Glukosa</text>
+<text x="149.0" y="292" text-anchor="middle" font-size="9" fill="#69798A">nonelektrolit</text>
+<rect x="218.0" y="219.6" width="86.0" height="42.4" rx="4" fill="#E89A1C"/>
+<text x="261.0" y="201" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">0,223 °C</text>
+<text x="261.0" y="214" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">i = 1,2</text>
+<text x="261.0" y="278" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">Asam asetat</text>
+<text x="261.0" y="292" text-anchor="middle" font-size="9" fill="#69798A">elektrolit lemah</text>
+<rect x="330.0" y="191.3" width="86.0" height="70.7" rx="4" fill="#3FB0DC"/>
+<text x="373.0" y="172" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">0,372 °C</text>
+<text x="373.0" y="185" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">i = 2,0</text>
+<text x="373.0" y="278" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">NaCl</text>
+<text x="373.0" y="292" text-anchor="middle" font-size="9" fill="#69798A">elektrolit kuat</text>
+<rect x="442.0" y="156.0" width="86.0" height="106.0" rx="4" fill="#1A8FBF"/>
+<text x="485.0" y="137" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">0,558 °C</text>
+<text x="485.0" y="150" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">i = 3,0</text>
+<text x="485.0" y="278" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">CaCl₂</text>
+<text x="485.0" y="292" text-anchor="middle" font-size="9" fill="#69798A">elektrolit kuat</text>
+<rect x="554.0" y="85.3" width="86.0" height="176.7" rx="4" fill="#B23A2C"/>
+<text x="597.0" y="66" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">0,930 °C</text>
+<text x="597.0" y="79" text-anchor="middle" font-size="9.5" font-weight="700" fill="#186F45">i = 5,0</text>
+<text x="597.0" y="278" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0B2E4F">Al₂(SO₄)₃</text>
+<text x="597.0" y="292" text-anchor="middle" font-size="9" fill="#69798A">elektrolit kuat</text>
+<rect x="14" y="312" width="692" height="76" rx="8" fill="#FFF6E6" stroke="#E89A1C"/>
+<text x="360" y="331" text-anchor="middle" font-size="11.5" font-weight="700" fill="#C77400">Kelima larutan punya molalitas yang sama persis — yang berbeda hanyalah JUMLAH PARTIKELNYA</text>
+<text x="360" y="350" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Al₂(SO₄)₃ memberi penurunan <tspan font-weight="700">5 kali</tspan> lipat glukosa, karena satu satuan rumusnya melepas lima ion</text>
+<text x="360" y="368" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Asam asetat hanya sedikit di atas glukosa karena ionisasinya tidak sempurna (α = 0,2 → i = 1,2)</text>
+<text x="360" y="383" text-anchor="middle" font-size="9.5" fill="#69798A">tinggi tiap batang dihitung dari ΔT&#7584; = K&#7584; · m · i, dengan i = 1 + (n − 1)α</text>
+</svg>  <figcaption><b>Gambar 14.3.</b> Tinggi setiap batang dihitung dari ΔT<sub>f</sub> = K<sub>f</sub> · m · i, dengan i diturunkan sendiri dari rumus 1 + (n − 1)α. Kelima larutan punya molalitas <b>sama persis</b>, sehingga seluruh perbedaan tinggi batangnya bersumber pada jumlah partikel. Perhatikan asam asetat: meski melepas dua ion, derajat ionisasinya hanya 0,2 sehingga i-nya 1,2 — nyaris sama dengan glukosa yang tidak terion sama sekali.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Menghitung n dengan cepat</div>
+    <p>Nilai n adalah jumlah ion pada persamaan ionisasinya, bukan jumlah jenis ionnya:</p>
+    <div class="tw"><table class="mini">
+      <tr><th>NaCl → Na⁺ + Cl⁻</th><td>n = <b>2</b></td></tr>
+      <tr><th>CaCl₂ → Ca²⁺ + 2Cl⁻</th><td>n = 1 + 2 = <b>3</b></td></tr>
+      <tr><th>Al₂(SO₄)₃ → 2Al³⁺ + 3SO₄²⁻</th><td>n = 2 + 3 = <b>5</b></td></tr>
+      <tr><th>K₃PO₄ → 3K⁺ + PO₄³⁻</th><td>n = 3 + 1 = <b>4</b></td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Jebakan yang sering muncul:</b> CaCl<sub>2</sub> punya <b>dua</b> jenis ion tetapi n-nya <b>3</b>, karena satu satuan rumus melepas satu Ca<sup>2+</sup> dan <b>dua</b> Cl<sup>−</sup>. Menuliskan persamaan ionisasinya lebih dulu menutup jebakan ini sepenuhnya.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — melupakan faktor i sama sekali</div>
+    <p>Ini kesalahan paling merugikan di bab ini, karena terjadi pada soal yang sebenarnya mudah. Pemeriksanya sederhana: <b>periksa apakah zat terlarutnya elektrolit</b> sebelum menghitung apa pun.</p>
+    <p><b>Cara mengenali dengan cepat:</b> zat yang berupa <b>garam, asam, atau basa</b> hampir selalu elektrolit. Zat organik seperti glukosa, sukrosa, urea, dan gliserol adalah nonelektrolit.</p>
+    <p><b>Kesalahan kedua:</b> memakai i = n untuk elektrolit <b>lemah</b>. Elektrolit lemah tidak terion sempurna, sehingga i-nya berada di antara 1 dan n — dan soal pasti memberi nilai α bila zatnya lemah.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.10 PENERAPAN ==================== -->
+<section class="page" id="terapan">
+  <h2>14.10&nbsp; Penerapan Sifat Koligatif</h2>
+  <p class="lead">Keempat sifat ini dipakai setiap hari, sering tanpa disadari.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Penerapan</th><th>Sifat yang dipakai</th><th>Cara kerjanya</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Garam di jalan bersalju</b></td><td>Penurunan titik beku</td><td>Air tidak lagi sanggup membeku pada 0 °C</td></tr>
+      <tr><td><b>Antibeku radiator</b></td><td>ΔT<sub>f</sub> dan ΔT<sub>b</sub></td><td>Etilena glikol mencegah beku sekaligus menaikkan titik didih</td></tr>
+      <tr class="hi"><td><b>Pengawetan dengan garam/gula</b></td><td>Tekanan osmotik</td><td>Larutan hipertonik mengeluarkan air dari sel mikroba</td></tr>
+      <tr><td><b>Cairan infus</b></td><td>Tekanan osmotik</td><td>Dibuat isotonik agar sel darah tidak pecah atau mengerut</td></tr>
+      <tr class="hi"><td><b>Desalinasi air laut</b></td><td>Osmosis balik</td><td>Tekanan melebihi π mendorong air melewati selaput</td></tr>
+      <tr><td><b>Membuat es putar</b></td><td>Penurunan titik beku</td><td>Campuran es dan garam mencapai suhu jauh di bawah 0 °C</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa garam dipilih, bukan gula, untuk mencairkan salju</div>
+    <p>Pada molalitas yang sama, NaCl memberi penurunan titik beku <b>dua kali lipat</b> glukosa — karena ia melepas dua ion sedangkan glukosa tidak terion sama sekali.</p>
+    <p><b>Keunggulannya bertambah bila dihitung per gram.</b> M<sub>r</sub> NaCl hanya 58,5 sedangkan glukosa 180, sehingga satu gram NaCl mengandung tiga kali lebih banyak satuan rumus. Digabung dengan faktor i = 2, satu gram garam kira-kira <b>enam kali</b> lebih efektif daripada satu gram gula.</p>
+    <p>Ditambah harganya yang jauh lebih murah, tidak heran garamlah yang dipakai.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ UTBK / Exam Focus — soal membandingkan beberapa larutan</div>
+    <p>Ini bentuk soal yang paling sering muncul. Alurnya:</p>
+    <ol class="step">
+      <li><b>Samakan satuan kepekatannya</b> — bila soal memberi gram, ubah menjadi mol lebih dulu.</li>
+      <li><b>Hitung faktor i</b> masing-masing dari persamaan ionisasinya.</li>
+      <li><b>Kalikan kepekatan dengan i</b> — inilah <b>jumlah partikel efektif</b> yang menentukan segalanya.</li>
+      <li><b>Urutkan.</b> Yang partikel efektifnya terbesar punya titik beku <b>terendah</b>, titik didih <b>tertinggi</b>, dan tekanan osmotik <b>terbesar</b> sekaligus.</li>
+    </ol>
+    <p><b>Pintasan yang menghemat waktu:</b> Anda tidak perlu menghitung ΔT satu per satu. Cukup bandingkan hasil kali <b>m × i</b>, karena K<sub>f</sub> dan K<sub>b</sub> sama untuk semuanya bila pelarutnya sama.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1-7 ==================== -->
+<section class="page">
+  <h2>Worked Example — Satuan Kepekatan dan Empat Sifat Dasar</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Menghitung molalitas</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 18 gram glukosa (M<sub>r</sub> = 180) dilarutkan dalam 500 gram air. Hitung molalitas larutannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>massa zat 18 g, M<sub>r</sub> 180; massa pelarut 500 g</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Molalitas</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Ubah massa zat menjadi mol, massa pelarut menjadi kilogram.</div></div>
+      <div class="step"><b>Langkah 1 — Mol glukosa</b>18 ÷ 180 = <span class="eq">0,1 mol</span></div>
+      <div class="step"><b>Langkah 2 — Massa pelarut dalam kg</b>500 gram = <span class="eq">0,5 kg</span></div>
+      <div class="step"><b>Langkah 3 — Hitung molalitas</b>0,1 ÷ 0,5 = <span class="eq">0,2 molal</span></div>
+      <div class="ansbar">Jawaban: molalitas = 0,2 molal</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Dua hal yang sering terlewat ada di langkah 2. Pertama, satuannya <b>wajib</b> kilogram — memakai 500 langsung membuat hasilnya seribu kali terlalu kecil. Kedua, yang dibagi adalah massa <b>pelarut</b>, bukan massa larutan. Bila soal berbunyi "18 gram glukosa dalam 500 gram larutan", massa pelarutnya menjadi 500 − 18 = 482 gram, dan hasilnya berbeda.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Menghitung fraksi mol</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung fraksi mol glukosa dan air pada larutan Contoh 1. (M<sub>r</sub> air = 18)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>0,1 mol glukosa; 500 gram air</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>X glukosa dan X air</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pelarutnya juga harus diubah menjadi mol.</div></div>
+      <div class="step"><b>Langkah 1 — Mol air</b>500 ÷ 18 = <span class="eq">27,78 mol</span></div>
+      <div class="step"><b>Langkah 2 — Mol total</b>0,1 + 27,78 = <span class="eq">27,88 mol</span></div>
+      <div class="step"><b>Langkah 3 — X glukosa</b>0,1 ÷ 27,88 = <span class="eq">0,00359</span></div>
+      <div class="step"><b>Langkah 4 — X air</b>1 − 0,00359 = <span class="eq">0,99641</span></div>
+      <div class="ansbar">Jawaban: X glukosa = 0,00359; X air = 0,99641</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 4 memanfaatkan sifat bahwa kedua fraksi mol <b>selalu berjumlah 1</b> — lebih cepat daripada membaginya lagi, dan sekaligus menjadi pemeriksa. Perhatikan pula betapa kecilnya X glukosa: air sebagai pelarut jumlah molnya jauh lebih besar. Inilah sebabnya penurunan tekanan uap pada larutan encer selalu kecil.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Hukum Raoult</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tekanan uap air murni pada suhu tertentu adalah 100 mmHg. Bila fraksi mol zat terlarut 0,2, hitung tekanan uap larutan dan penurunannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>P° = 100 mmHg; X<sub>terlarut</sub> = 0,2</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>P larutan dan ΔP</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pilih fraksi mol yang tepat untuk masing-masing rumus.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung X pelarut</b>1 − 0,2 = <span class="eq">0,8</span></div>
+      <div class="step"><b>Langkah 2 — Tekanan uap larutan</b>0,8 × 100 = <span class="eq">80 mmHg</span></div>
+      <div class="step"><b>Langkah 3 — Penurunannya</b>0,2 × 100 = <span class="eq">20 mmHg</span></div>
+      <div class="step"><b>Langkah 4 — Periksa</b>80 + 20 = 100 ✔ kembali ke tekanan uap pelarut murni</div>
+      <div class="ansbar">Jawaban: P larutan = 80 mmHg; ΔP = 20 mmHg</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 4 adalah pemeriksa gratis yang menangkap kesalahan paling sering di bagian ini: tertukarnya X terlarut dengan X pelarut. Bila keduanya tertukar, hasil penjumlahannya tetap 100 — tetapi angka P larutan dan ΔP akan bertukar tempat. Pemeriksa arah yang kedua: <b>P larutan harus selalu lebih kecil</b> daripada P°.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Kenaikan titik didih</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung titik didih larutan glukosa 0,5 molal dalam air. (K<sub>b</sub> air = 0,52 °C/molal)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,5 molal; K<sub>b</sub> = 0,52; glukosa <b>nonelektrolit</b></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Titik didih larutan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung selisihnya dulu, lalu tambahkan ke titik didih air.</div></div>
+      <div class="step"><b>Langkah 1 — Periksa jenis zatnya</b>Glukosa nonelektrolit → <span class="eq">i = 1</span>, tidak ada pengali tambahan</div>
+      <div class="step"><b>Langkah 2 — Hitung ΔT<sub>b</sub></b>0,52 × 0,5 = <span class="eq">0,26 °C</span></div>
+      <div class="step"><b>Langkah 3 — Hitung titik didih</b>100 + 0,26 = <span class="eq">100,26 °C</span></div>
+      <div class="ansbar">Jawaban: titik didih larutan = 100,26 °C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 tampak berlebihan pada soal ini, tetapi membiasakannya sekarang mencegah kesalahan terbesar bab ini — melupakan faktor i ketika zatnya elektrolit. Langkah 3 juga penting: soal menanyakan <b>titik didih</b>, bukan kenaikannya. Menjawab 0,26 adalah kesalahan yang sering terjadi, dan angka itu hampir selalu tersedia sebagai pengecoh.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Penurunan titik beku</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung titik beku larutan glukosa 0,5 molal dalam air, lalu bandingkan dengan hasil Contoh 4. (K<sub>f</sub> air = 1,86 °C/molal)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,5 molal; K<sub>f</sub> = 1,86</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Titik beku dan perbandingannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bentuk rumusnya sama, tetapi arahnya berlawanan.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung ΔT<sub>f</sub></b>1,86 × 0,5 = <span class="eq">0,93 °C</span></div>
+      <div class="step"><b>Langkah 2 — Hitung titik beku</b>0 − 0,93 = <span class="eq">−0,93 °C</span> — <b>dikurangi</b>, bukan ditambah</div>
+      <div class="step"><b>Langkah 3 — Bandingkan</b>0,93 ÷ 0,26 = <span class="eq">3,58 kali</span> lebih besar daripada kenaikan titik didihnya</div>
+      <div class="ansbar">Jawaban: titik beku = −0,93 °C, dan selisihnya 3,58 kali ΔT<sub>b</sub></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memunculkan perbandingan yang berlaku untuk <b>semua</b> larutan berpelarut air, karena angkanya tidak lain adalah K<sub>f</sub> ÷ K<sub>b</sub> = 1,86 ÷ 0,52. Terverifikasi secara komputasi pada tiga molalitas berbeda dan hasilnya selalu sama. Kegunaannya: bila soal sudah memberi ΔT<sub>b</sub>, Anda dapat langsung memperoleh ΔT<sub>f</sub> dengan mengalikan 3,58.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Tekanan osmotik</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung tekanan osmotik larutan glukosa 0,1 M pada suhu 27 °C. (R = 0,082)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>M = 0,1; t = 27 °C; R = 0,082</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Tekanan osmotik</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Ubah suhu menjadi kelvin lebih dulu.</div></div>
+      <div class="step"><b>Langkah 1 — Ubah suhu</b>27 + 273 = <span class="eq">300 K</span></div>
+      <div class="step"><b>Langkah 2 — Masukkan ke rumus</b>π = 0,1 × 0,082 × 300 = <span class="eq">2,46 atm</span></div>
+      <div class="ansbar">Jawaban: tekanan osmotik = 2,46 atm</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 wajib dan sering terlewat. Memakai 27 langsung memberi 0,22 atm — meleset lebih dari sepuluh kali, dan angka itu masih terlihat wajar sebagai sebuah tekanan sehingga tidak memicu kecurigaan. Perhatikan pula bahwa rumus ini memakai <b>molaritas</b>, satu-satunya di bab ini; tiga rumus lainnya memakai molalitas atau fraksi mol.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Menghitung faktor van 't Hoff</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan faktor van 't Hoff untuk (a) glukosa; (b) NaCl; (c) CaCl<sub>2</sub>; (d) Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>; semuanya dianggap terion sempurna bila elektrolit.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Empat zat dengan jumlah ion berbeda</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nilai i masing-masing</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tuliskan persamaan ionisasinya, lalu hitung n.</div></div>
+      <div class="step"><b>(a) Glukosa</b>Nonelektrolit, tidak terion → <span class="eq">i = 1</span></div>
+      <div class="step"><b>(b) NaCl</b>NaCl → Na⁺ + Cl⁻ → n = 2, α = 1 → <span class="eq">i = 2</span></div>
+      <div class="step"><b>(c) CaCl₂</b>CaCl₂ → Ca²⁺ + <b>2</b>Cl⁻ → n = 1 + 2 = 3 → <span class="eq">i = 3</span></div>
+      <div class="step"><b>(d) Al₂(SO₄)₃</b>→ <b>2</b>Al³⁺ + <b>3</b>SO₄²⁻ → n = 2 + 3 = 5 → <span class="eq">i = 5</span></div>
+      <div class="ansbar">Jawaban: (a) 1; (b) 2; (c) 3; (d) 5</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (c) adalah jebakan yang paling laris: CaCl₂ punya <b>dua jenis</b> ion tetapi n-nya <b>3</b>, karena koefisien ikut dihitung. Menuliskan persamaan ionisasinya lebih dulu — satu baris pendek — menutup jebakan ini sepenuhnya. Untuk elektrolit <b>kuat</b>, α = 1 sehingga rumus i = 1 + (n − 1)α menyederhana menjadi i = n.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Apa pembagi pada rumus molalitas?</li>
+      <li>Rumus mana yang memakai molaritas, bukan molalitas?</li>
+      <li>Berapa titik didih larutan nonelektrolit 1 molal dalam air?</li>
+      <li>Berapa nilai n untuk K<sub>3</sub>PO<sub>4</sub>?</li>
+      <li>Mengapa ΔT<sub>b</sub> dan ΔT<sub>f</sub> memakai molalitas?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) massa <b>pelarut</b> dalam <b>kilogram</b>; (2) <b>tekanan osmotik</b> (π = MRT); (3) 100 + 0,52 = <b>100,52 °C</b>; (4) K<sub>3</sub>PO<sub>4</sub> → 3K<sup>+</sup> + PO<sub>4</sub><sup>3−</sup> → n = <b>4</b>; (5) karena percobaannya melibatkan <b>perubahan suhu</b>, sedangkan volume larutan berubah oleh suhu — massa tidak.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 8-14 ==================== -->
+<section class="page">
+  <h2>Worked Example — Larutan Elektrolit dan Perbandingan</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Titik beku larutan elektrolit</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung titik beku larutan NaCl 0,2 molal dalam air. (K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,2 molal; NaCl <b>elektrolit kuat</b></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Titik beku larutan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Periksa jenis zatnya lebih dulu, lalu kalikan faktor i.</div></div>
+      <div class="step"><b>Langkah 1 — Tentukan i</b>NaCl → Na⁺ + Cl⁻ → n = 2, terion sempurna → <span class="eq">i = 2</span></div>
+      <div class="step"><b>Langkah 2 — Hitung ΔT<sub>f</sub></b>1,86 × 0,2 × <b>2</b> = <span class="eq">0,744 °C</span></div>
+      <div class="step"><b>Langkah 3 — Hitung titik beku</b>0 − 0,744 = <span class="eq">−0,744 °C</span></div>
+      <div class="ansbar">Jawaban: titik beku = −0,744 °C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Melewatkan faktor i pada langkah 2 memberi −0,372 °C — tepat separuh jawaban yang benar, dan angka itu hampir selalu tersedia sebagai pengecoh. Pemeriksa yang gratis: larutan NaCl <b>pasti</b> membeku pada suhu lebih rendah daripada larutan glukosa dengan molalitas sama, karena partikelnya dua kali lebih banyak.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Titik didih elektrolit bervalensi tiga</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung titik didih larutan CaCl<sub>2</sub> 0,5 molal dalam air. (K<sub>b</sub> = 0,52)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,5 molal; CaCl<sub>2</sub> elektrolit kuat</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Titik didih larutan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung n dari persamaan ionisasinya, jangan dari jumlah jenis ionnya.</div></div>
+      <div class="step"><b>Langkah 1 — Tuliskan ionisasinya</b>CaCl₂ → Ca²⁺ + <b>2</b>Cl⁻ → n = <span class="eq">3</span>, bukan 2</div>
+      <div class="step"><b>Langkah 2 — Hitung ΔT<sub>b</sub></b>0,52 × 0,5 × <b>3</b> = <span class="eq">0,78 °C</span></div>
+      <div class="step"><b>Langkah 3 — Hitung titik didih</b>100 + 0,78 = <span class="eq">100,78 °C</span></div>
+      <div class="ansbar">Jawaban: titik didih = 100,78 °C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 adalah tempat jebakan dipasang. Memakai n = 2 karena melihat "dua jenis ion" memberi 100,52 °C — dan angka itu tersedia sebagai pengecoh. Menuliskan persamaan ionisasinya lengkap dengan koefisiennya memakan lima detik dan menutup jebakan ini sepenuhnya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Elektrolit lemah</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung penurunan titik beku larutan CH<sub>3</sub>COOH 0,1 molal yang derajat ionisasinya 0,25. (K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,1 molal; n = 2; α = 0,25</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Penurunan titik beku</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Elektrolit lemah menuntut rumus i yang lengkap, bukan pintasan i = n.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung i</b>1 + (2 − 1) × 0,25 = 1 + 0,25 = <span class="eq">1,25</span></div>
+      <div class="step"><b>Langkah 2 — Hitung ΔT<sub>f</sub></b>1,86 × 0,1 × 1,25 = <span class="eq">0,2325 °C</span></div>
+      <div class="ansbar">Jawaban: ΔT<sub>f</sub> = 0,2325 °C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan letak nilainya: 1,25 berada <b>di antara</b> 1 dan 2 — antara nonelektrolit dan elektrolit kuat. Inilah ciri elektrolit lemah. Memakai i = 2 memberi 0,372 °C, jauh terlalu besar. <b>Petunjuk dari soal:</b> bila nilai α diberikan, zatnya pasti elektrolit lemah dan rumus lengkapnya wajib dipakai; bila α tidak disebut, zatnya nonelektrolit atau elektrolit kuat.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Tekanan osmotik larutan elektrolit</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung tekanan osmotik larutan NaCl 0,1 M pada 27 °C, lalu bandingkan dengan larutan glukosa 0,1 M pada suhu yang sama.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>M = 0,1; T = 300 K; R = 0,082</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>π NaCl dan perbandingannya dengan glukosa</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Faktor i berlaku untuk rumus tekanan osmotik juga.</div></div>
+      <div class="step"><b>Langkah 1 — Tentukan i</b>NaCl elektrolit kuat biner → <span class="eq">i = 2</span></div>
+      <div class="step"><b>Langkah 2 — Hitung π</b>0,1 × 0,082 × 300 × <b>2</b> = <span class="eq">4,92 atm</span></div>
+      <div class="step"><b>Langkah 3 — Bandingkan</b>Glukosa memberi 2,46 atm → NaCl <span class="eq">tepat dua kali lipat</span></div>
+      <div class="ansbar">Jawaban: π = 4,92 atm, dua kali lipat larutan glukosa</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Faktor i berlaku untuk <b>keempat</b> sifat koligatif tanpa kecuali — banyak yang mengira ia hanya untuk titik didih dan titik beku. Perbandingan pada langkah 3 memperlihatkan gagasan inti bab ini dengan jelas: pada molaritas yang sama persis, larutan yang partikelnya dua kali lebih banyak memberi pengaruh dua kali lebih besar.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Menentukan M<sub>r</sub> dari penurunan titik beku</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 1,8 gram zat nonelektrolit dilarutkan dalam 100 gram air, dan titik beku larutannya −0,186 °C. Hitung M<sub>r</sub> zat tersebut. (K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>massa 1,8 g; pelarut 100 g; ΔT<sub>f</sub> = 0,186 °C</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nilai M<sub>r</sub></div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Alurnya berjalan mundur: dari ΔT ke molalitas ke mol ke M<sub>r</sub>.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung molalitas</b>m = ΔT<sub>f</sub> ÷ K<sub>f</sub> = 0,186 ÷ 1,86 = <span class="eq">0,1 molal</span></div>
+      <div class="step"><b>Langkah 2 — Hitung mol zat</b>0,1 × 0,1 kg = <span class="eq">0,01 mol</span></div>
+      <div class="step"><b>Langkah 3 — Hitung M<sub>r</sub></b>1,8 ÷ 0,01 = <span class="eq">180</span></div>
+      <div class="ansbar">Jawaban: M<sub>r</sub> = 180 — cocok dengan glukosa</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Metode ini disebut <b>kriometri</b> dan benar-benar dipakai di laboratorium untuk menentukan massa molekul zat yang belum diketahui. Penurunan titik beku dipilih daripada kenaikan titik didih justru karena K<sub>f</sub> lebih besar — selisih suhunya lebih besar sehingga lebih mudah diukur dengan teliti. Perhatikan langkah 2: massa pelarut 100 gram harus diubah menjadi <b>0,1 kg</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Menentukan M<sub>r</sub> dari tekanan osmotik</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 3 gram zat nonelektrolit dilarutkan hingga volumenya 500 mL. Tekanan osmotiknya 2,46 atm pada 27 °C. Hitung M<sub>r</sub>-nya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>massa 3 g; V = 0,5 L; π = 2,46 atm; T = 300 K</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nilai M<sub>r</sub></div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Susun ulang π = MRT untuk memperoleh M, lalu lanjutkan ke mol.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung molaritas</b>M = π ÷ (R × T) = 2,46 ÷ (0,082 × 300) = <span class="eq">0,1 M</span></div>
+      <div class="step"><b>Langkah 2 — Hitung mol zat</b>0,1 × 0,5 L = <span class="eq">0,05 mol</span></div>
+      <div class="step"><b>Langkah 3 — Hitung M<sub>r</sub></b>3 ÷ 0,05 = <span class="eq">60</span></div>
+      <div class="ansbar">Jawaban: M<sub>r</sub> = 60 — cocok dengan urea</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bandingkan langkah 2 dengan Contoh 12 — di sini yang dikalikan adalah <b>volume larutan dalam liter</b>, bukan massa pelarut dalam kilogram. Perbedaan ini bersumber pada satuan kepekatan yang dipakai kedua rumus: tekanan osmotik memakai molaritas, sedangkan titik beku memakai molalitas. Tertukar di sini membuat hasilnya meleset meski seluruh langkah lain sudah benar.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Membandingkan tiga larutan</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Urutkan titik beku ketiga larutan berikut dari yang <b>tertinggi</b>: (a) glukosa 0,1 molal; (b) NaCl 0,1 molal; (c) CaCl<sub>2</sub> 0,05 molal.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Tiga larutan dengan molalitas dan jenis zat berbeda</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Urutan titik bekunya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan hasil kali <b>m × i</b> saja — tidak perlu menghitung ΔT satu per satu.</div></div>
+      <div class="step"><b>(a) Glukosa</b>i = 1 → m × i = 0,1 × 1 = <span class="eq">0,10</span></div>
+      <div class="step"><b>(b) NaCl</b>i = 2 → m × i = 0,1 × 2 = <span class="eq">0,20</span></div>
+      <div class="step"><b>(c) CaCl₂</b>i = 3 → m × i = 0,05 × 3 = <span class="eq">0,15</span></div>
+      <div class="step"><b>Urutkan</b>Makin besar m × i, makin <b>rendah</b> titik bekunya → tertinggi ke terendah: <span class="eq">(a) &gt; (c) &gt; (b)</span></div>
+      <div class="ansbar">Jawaban: glukosa (−0,186 °C) &gt; CaCl<sub>2</sub> (−0,279 °C) &gt; NaCl (−0,372 °C)</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Membandingkan m × i saja menghemat banyak waktu, karena K<sub>f</sub> sama untuk ketiganya. Perhatikan hasil yang berlawanan dengan dugaan: CaCl₂ punya i terbesar tetapi <b>bukan</b> yang titik bekunya terendah, karena molalitasnya hanya separuh. Yang menentukan adalah <b>hasil kali</b>, bukan salah satunya saja. Perhatikan juga arah pertanyaannya — "tertinggi" berarti yang <b>paling sedikit</b> partikelnya.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 15-20 ==================== -->
+<section class="page">
+  <h2>Worked Example — Dari Data Massa, Perancangan, dan Integrasi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Dari massa zat ke titik beku</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 5,85 gram NaCl (M<sub>r</sub> = 58,5) dilarutkan dalam 500 gram air. Hitung titik beku larutannya. (K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>massa 5,85 g; M<sub>r</sub> 58,5; pelarut 500 g; NaCl elektrolit kuat</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Titik beku larutan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Empat langkah berurutan: mol → molalitas → i → ΔT<sub>f</sub>.</div></div>
+      <div class="step"><b>Langkah 1 — Mol NaCl</b>5,85 ÷ 58,5 = <span class="eq">0,1 mol</span></div>
+      <div class="step"><b>Langkah 2 — Molalitas</b>0,1 ÷ 0,5 kg = <span class="eq">0,2 molal</span></div>
+      <div class="step"><b>Langkah 3 — Faktor i</b>NaCl → Na⁺ + Cl⁻ → <span class="eq">i = 2</span></div>
+      <div class="step"><b>Langkah 4 — Hitung ΔT<sub>f</sub></b>1,86 × 0,2 × 2 = <span class="eq">0,744 °C</span></div>
+      <div class="step"><b>Langkah 5 — Titik beku</b>0 − 0,744 = <span class="eq">−0,744 °C</span></div>
+      <div class="ansbar">Jawaban: titik beku = −0,744 °C</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal bentuk ini menggabungkan seluruh alur dasar bab, dan setiap langkah punya jebakannya sendiri: langkah 2 menuntut kilogram, langkah 3 menuntut faktor i, langkah 5 menuntut tanda minus. Tiga kesalahan berbeda yang masing-masing menghasilkan jawaban yang tetap terlihat masuk akal. Menuliskan kelima langkahnya secara terpisah membuat kesalahan mudah ditelusuri.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Merancang larutan antibeku</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa gram etilena glikol (M<sub>r</sub> = 62, nonelektrolit) yang harus dilarutkan dalam 1 kg air agar larutannya membeku pada −3,72 °C?</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>T<sub>f</sub> target = −3,72 °C; pelarut 1 kg; M<sub>r</sub> = 62</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Massa etilena glikol</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Soal arah balik: dari ΔT<sub>f</sub> ke molalitas ke mol ke massa.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung ΔT<sub>f</sub></b>0 − (−3,72) = <span class="eq">3,72 °C</span></div>
+      <div class="step"><b>Langkah 2 — Hitung molalitas</b>3,72 ÷ 1,86 = <span class="eq">2 molal</span></div>
+      <div class="step"><b>Langkah 3 — Hitung mol</b>2 × 1 kg = <span class="eq">2 mol</span></div>
+      <div class="step"><b>Langkah 4 — Hitung massa</b>2 × 62 = <span class="eq">124 gram</span></div>
+      <div class="ansbar">Jawaban: diperlukan 124 gram etilena glikol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 sering dijawab keliru dengan menyalin −3,72 langsung. ΔT<sub>f</sub> adalah <b>selisih</b> dan selalu bernilai positif; tanda minus hanya menunjukkan bahwa titik bekunya di bawah nol. Perhatikan pula bahwa 124 gram diperlukan untuk 1 kg air — inilah alasan cairan antibeku radiator dijual dalam jumlah besar; kepekatan yang diperlukan memang tinggi.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Tekanan uap larutan elektrolit</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 0,2 mol NaCl dilarutkan dalam 64,8 gram air (M<sub>r</sub> = 18). Bila tekanan uap air murni 30 mmHg, hitung tekanan uap larutannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>0,2 mol NaCl; 64,8 g air; P° = 30 mmHg</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Tekanan uap larutan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Faktor i berlaku juga di sini — tetapi masuknya lewat <b>jumlah mol partikel</b>.</div></div>
+      <div class="step"><b>Langkah 1 — Mol air</b>64,8 ÷ 18 = <span class="eq">3,6 mol</span></div>
+      <div class="step"><b>Langkah 2 — Mol partikel terlarut</b>0,2 × <b>2</b> = <span class="eq">0,4 mol</span> — NaCl terurai menjadi dua ion</div>
+      <div class="step"><b>Langkah 3 — Fraksi mol terlarut</b>0,4 ÷ (0,4 + 3,6) = 0,4 ÷ 4,0 = <span class="eq">0,1</span></div>
+      <div class="step"><b>Langkah 4 — Hitung ΔP</b>0,1 × 30 = <span class="eq">3 mmHg</span></div>
+      <div class="step"><b>Langkah 5 — Tekanan uap larutan</b>30 − 3 = <span class="eq">27 mmHg</span></div>
+      <div class="ansbar">Jawaban: tekanan uap larutan = 27 mmHg</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan cara faktor i masuk pada langkah 2 — <b>berbeda</b> dari ketiga rumus lainnya. Di sini ia tidak dikalikan ke hasil akhir, melainkan ke <b>jumlah mol terlarut</b> sebelum fraksi molnya dihitung. Alasannya masuk akal: yang menghalangi penguapan adalah partikel yang benar-benar ada di larutan, dan NaCl menyumbang dua partikel per satuan rumus. Mengalikan 2 di akhir memberi jawaban yang berbeda dan keliru.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Menentukan derajat ionisasi dari data</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Larutan CH<sub>3</sub>COOH 0,2 molal membeku pada −0,4464 °C. Hitung derajat ionisasi asam asetat tersebut. (K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>m = 0,2 molal; ΔT<sub>f</sub> = 0,4464 °C; n = 2</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Derajat ionisasi α</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung i dari data, lalu susun ulang rumus van 't Hoff.</div></div>
+      <div class="step"><b>Langkah 1 — Hitung i dari data</b>i = ΔT<sub>f</sub> ÷ (K<sub>f</sub> × m) = 0,4464 ÷ (1,86 × 0,2) = 0,4464 ÷ 0,372 = <span class="eq">1,2</span></div>
+      <div class="step"><b>Langkah 2 — Susun ulang rumus</b>i = 1 + (n − 1)α → α = (i − 1) ÷ (n − 1)</div>
+      <div class="step"><b>Langkah 3 — Hitung α</b>(1,2 − 1) ÷ (2 − 1) = 0,2 ÷ 1 = <span class="eq">0,2</span></div>
+      <div class="step"><b>Langkah 4 — Periksa</b>Nilainya antara 0 dan 1 ✔ dan i = 1,2 berada antara 1 dan n = 2 ✔</div>
+      <div class="ansbar">Jawaban: derajat ionisasi α = 0,2 atau 20 %</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Inilah cara nyata mengukur derajat ionisasi asam lemah tanpa alat khusus — cukup mengukur titik bekunya. Langkah 4 adalah pemeriksa yang wajib: <b>α harus berada antara 0 dan 1</b>, dan i harus berada antara 1 dan n. Bila hasil Anda melanggar salah satunya, ada langkah yang keliru — biasanya rumus i yang terbalik penyusunannya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Merancang larutan isotonik</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa molaritas larutan NaCl agar isotonik dengan larutan glukosa 0,3 M pada suhu yang sama?</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Glukosa 0,3 M (i = 1); NaCl (i = 2); suhu sama</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Molaritas NaCl</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Isotonik berarti tekanan osmotiknya sama, sehingga hasil kali M × i harus sama.</div></div>
+      <div class="step"><b>Langkah 1 — Susun syarat isotonik</b>M<sub>glukosa</sub> × i × R × T = M<sub>NaCl</sub> × i × R × T</div>
+      <div class="step"><b>Langkah 2 — Sederhanakan</b>R dan T sama di kedua ruas → <span class="eq">M<sub>glukosa</sub> × 1 = M<sub>NaCl</sub> × 2</span></div>
+      <div class="step"><b>Langkah 3 — Hitung</b>0,3 = M × 2 → M = <span class="eq">0,15 M</span></div>
+      <div class="ansbar">Jawaban: diperlukan larutan NaCl 0,15 M</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 2 memperlihatkan pintasan yang berguna: karena R dan T sama, keduanya saling meniadakan dan yang tersisa hanyalah <b>perbandingan M × i</b>. Hasilnya masuk akal — NaCl hanya perlu <b>separuh</b> molaritas glukosa karena tiap satuan rumusnya menyumbang dua partikel. Inilah dasar peracikan cairan infus, tempat kepekatan harus disetarakan dengan cairan tubuh.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Analisis lengkap satu larutan</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 6 gram urea (M<sub>r</sub> = 60, nonelektrolit) dilarutkan dalam 200 gram air. Tentukan (a) molalitas; (b) titik didih; (c) titik beku; (d) perbandingan ΔT<sub>f</sub> terhadap ΔT<sub>b</sub>. (K<sub>b</sub> = 0,52; K<sub>f</sub> = 1,86)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>massa 6 g; M<sub>r</sub> 60; pelarut 200 g</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat hal sekaligus</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hasil (a) dipakai oleh seluruh bagian berikutnya.</div></div>
+      <div class="step"><b>(a) Molalitas</b>mol = 6 ÷ 60 = 0,1 → m = 0,1 ÷ <b>0,2 kg</b> = <span class="eq">0,5 molal</span></div>
+      <div class="step"><b>(b) Titik didih</b>ΔT<sub>b</sub> = 0,52 × 0,5 = 0,26 → T<sub>b</sub> = 100 + 0,26 = <span class="eq">100,26 °C</span></div>
+      <div class="step"><b>(c) Titik beku</b>ΔT<sub>f</sub> = 1,86 × 0,5 = 0,93 → T<sub>f</sub> = 0 − 0,93 = <span class="eq">−0,93 °C</span></div>
+      <div class="step"><b>(d) Perbandingan</b>0,93 ÷ 0,26 = <span class="eq">3,58</span>, sama dengan K<sub>f</sub> ÷ K<sub>b</sub></div>
+      <div class="ansbar">Jawaban: (a) 0,5 molal; (b) 100,26 °C; (c) −0,93 °C; (d) 3,58</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (d) memperlihatkan bahwa perbandingan itu <b>tidak bergantung pada molalitas sama sekali</b> — molalitas muncul di pembilang dan penyebut lalu saling meniadakan, menyisakan K<sub>f</sub> ÷ K<sub>b</sub>. Karena itu angka 3,58 berlaku untuk larutan apa pun asalkan pelarutnya air, baik elektrolit maupun bukan. Perhatikan pula (a): urea adalah <b>nonelektrolit</b> meski namanya terdengar seperti zat kimia biasa, sehingga i = 1 dan tidak ada pengali tambahan.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Bagaimana faktor i masuk ke rumus penurunan tekanan uap?</li>
+      <li>Berapa rentang nilai α yang sah?</li>
+      <li>Dua larutan disebut isotonik bila apa yang sama?</li>
+      <li>Berapa perbandingan ΔT<sub>f</sub> terhadap ΔT<sub>b</sub> untuk larutan berpelarut air?</li>
+      <li>ΔT<sub>f</sub> bernilai positif atau negatif?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) lewat <b>jumlah mol partikel</b> sebelum fraksi mol dihitung, bukan dikalikan di akhir; (2) antara <b>0 dan 1</b>; (3) <b>tekanan osmotiknya</b>, yang berarti hasil kali M × i sama bila suhunya sama; (4) <b>3,58</b>, yaitu K<sub>f</sub> ÷ K<sub>b</sub>; (5) <b>positif</b> — ia adalah selisih; tanda minus hanya muncul pada titik bekunya.</p>
+  </div>
+</section>
+
+<!-- ==================== 14.11 EXAM FOCUS ==================== -->
+<section class="page" id="focus">
+  <h2>14.11&nbsp; ★ UTBK / Exam Focus — Ringkasan Bab</h2>
+  <p class="lead">Dua pertanyaan yang wajib dijawab sebelum menghitung apa pun: <b>satuan kepekatan mana yang dipakai rumus ini?</b> dan <b>apakah zat terlarutnya elektrolit?</b></p>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 1 — "Hitung titik didih atau titik beku"</div>
+    <div class="fx">ΔT<sub>b</sub> = K<sub>b</sub> · m · i &nbsp;&nbsp;|&nbsp;&nbsp; ΔT<sub>f</sub> = K<sub>f</sub> · m · i</div>
+    <p style="margin-top:12px">Titik didih <b>ditambah</b>, titik beku <b>dikurangi</b>. Bacalah pertanyaannya: yang diminta ΔT atau T-nya?</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 2 — "Hitung tekanan uap"</div>
+    <div class="fx">P<sub>larutan</sub> = X<sub>pelarut</sub> · P° &nbsp;&nbsp;|&nbsp;&nbsp; ΔP = X<sub>terlarut</sub> · P°</div>
+    <p style="margin-top:12px">Untuk elektrolit, faktor i masuk lewat <b>jumlah mol partikel</b> sebelum fraksi mol dihitung — bukan dikalikan di akhir.</p>
+    <p><b>Pemeriksa gratis:</b> P larutan + ΔP harus kembali ke P°.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 3 — "Hitung tekanan osmotik"</div>
+    <div class="fx">π = M · R · T · i</div>
+    <p style="margin-top:12px">Dua hal yang wajib diperiksa: suhu dalam <b>kelvin</b>, dan kepekatan dalam <b>molaritas</b> — bukan molalitas.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 4 — "Membandingkan beberapa larutan"</div>
+    <p>Bandingkan hasil kali <b>m × i</b> saja; tidak perlu menghitung ΔT satu per satu, karena K<sub>f</sub> dan K<sub>b</sub> sama bila pelarutnya sama.</p>
+    <p>Yang hasil kalinya terbesar punya titik beku <b>terendah</b>, titik didih <b>tertinggi</b>, dan tekanan osmotik <b>terbesar</b> sekaligus — keempat sifat selalu bergerak searah.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 5 — "Tentukan M<sub>r</sub> atau α dari data"</div>
+    <p><b>Mencari M<sub>r</sub>:</b> dari ΔT ke molalitas ke mol ke M<sub>r</sub>. Perhatikan bahwa yang dikalikan adalah massa pelarut (kg) untuk ΔT, tetapi volume larutan (L) untuk π.</p>
+    <p><b>Mencari α:</b> hitung i dari data lebih dulu, lalu α = (i − 1) ÷ (n − 1). Periksa bahwa hasilnya berada antara 0 dan 1.</p>
+  </div>
+
+  <div class="box trap">
+    <div class="bt">⚠ Delapan jebakan paling sering dipakai penyusun soal</div>
+    <ol class="step">
+      <li><b>Melupakan faktor i</b> untuk larutan elektrolit — kesalahan paling merugikan.</li>
+      <li><b>Memakai i = n untuk elektrolit lemah</b> — padahal α-nya kurang dari 1.</li>
+      <li><b>Salah menghitung n</b> — CaCl<sub>2</sub> bernilai 3, bukan 2.</li>
+      <li><b>Menjawab dengan ΔT</b> padahal yang diminta titik didih atau titik bekunya.</li>
+      <li><b>Menambahkan pada titik beku</b> alih-alih mengurangkan.</li>
+      <li><b>Memakai celsius</b> pada rumus tekanan osmotik.</li>
+      <li><b>Tertukar molalitas dan molaritas</b>, atau massa larutan dengan massa pelarut.</li>
+      <li><b>Tertukar X terlarut dan X pelarut</b> pada hukum Raoult.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 14.12 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>14.12&nbsp; How to Master This Chapter</h2>
+  <p class="lead">Bab ini tergolong ringan secara konsep — keempat rumusnya sederhana dan tidak memerlukan kesetimbangan. Yang menuntut kedisiplinan adalah <b>memilih satuan yang tepat</b> dan <b>tidak melupakan faktor i</b>.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Tahap 1 · Satuan kepekatan (1 hari)</div>
+      <ul class="tick">
+        <li>Latih menghitung molalitas, molaritas, dan fraksi mol dari data massa.</li>
+        <li>Pastikan Anda hafal rumus mana memakai satuan mana.</li>
+        <li>Latih soal yang memberi "massa larutan", bukan "massa pelarut".</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 2 · Empat sifat dasar (1 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan 20 soal nonelektrolit untuk keempat sifat.</li>
+        <li>Biasakan menjawab dengan T-nya, bukan hanya ΔT-nya.</li>
+        <li>Pahami diagram P–T dan letak ΔT<sub>b</sub> serta ΔT<sub>f</sub> padanya.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 3 · Faktor van 't Hoff (1 hari)</div>
+      <ul class="tick">
+        <li>Latih menentukan n untuk 20 rumus elektrolit yang berbeda.</li>
+        <li>Kerjakan 20 soal elektrolit, sepertiganya elektrolit lemah.</li>
+        <li>Latih khusus tekanan uap elektrolit, tempat i masuk secara berbeda.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 4 · Soal terbalik dan perbandingan (1 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan 10 soal penentuan M<sub>r</sub> dan derajat ionisasi.</li>
+        <li>Latih 10 soal membandingkan beberapa larutan sekaligus.</li>
+        <li>Kerjakan soal terapan: antibeku, infus, dan pengawetan.</li>
+        <li>Kerjakan Final Chapter Test dengan batas waktu 40 menit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Kebiasaan yang paling menyelamatkan nilai di bab ini</div>
+    <p><b>Tulis jenis zatnya sebelum menghitung.</b> Satu kata saja — "nonelektrolit" atau "elektrolit kuat, i = 2" — di sisi kertas. Kebiasaan ini menutup jebakan nomor satu dan dua sekaligus, dan memakan tiga detik.</p>
+    <p><b>Tuliskan persamaan ionisasinya untuk menghitung n.</b> Jangan menghitung dari jumlah jenis ion; koefisiennya ikut dihitung. CaCl<sub>2</sub> bernilai 3, dan Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> bernilai 5.</p>
+    <p><b>Periksa satuan pada setiap langkah.</b> Massa pelarut dalam <b>kilogram</b>, suhu dalam <b>kelvin</b>, volume larutan dalam <b>liter</b>. Ketiganya memberi kesalahan besar yang hasilnya tetap terlihat wajar, sehingga tidak tertangkap oleh kewajaran bentuk jawaban.</p>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 14</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pada setiap soal, <b>tuliskan jenis zatnya</b> — nonelektrolit atau elektrolit — sebelum menghitung apa pun.</p>
+  <p style="font-size:14.5px">Tetapan yang dipakai: K<sub>b</sub> air = 0,52 · K<sub>f</sub> air = 1,86 · R = 0,082.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji pemahaman satuan kepekatan, arah perubahan, dan gagasan jumlah partikel.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Sifat koligatif larutan bergantung pada ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> jenis zat terlarutnya</li>
+      <li><span class="l">B.</span> massa molekul zat terlarut</li>
+      <li><span class="l">C.</span> kekuatan ikatan zat terlarut</li>
+      <li><span class="l">D.</span> jumlah partikel zat terlarut</li>
+      <li><span class="l">E.</span> warna larutannya</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Kata "koligatif" sendiri berarti <b>bergantung pada jumlah</b>. Gula, garam, dan urea memberi pengaruh yang sama persis asalkan jumlah partikelnya sama.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Jenis zat hanya berpengaruh lewat <b>berapa banyak partikel</b> yang dihasilkannya, bukan lewat sifatnya sendiri.</li>
+        <li><b>B, C, E.</b> Tidak berpengaruh sama sekali terhadap keempat sifat koligatif.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A halus dan sering dipilih. Elektrolit memang memberi pengaruh lebih besar, tetapi <b>bukan</b> karena jenisnya — melainkan karena ia terurai menjadi lebih banyak partikel.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Rumus yang memakai <b>molaritas</b>, bukan molalitas, adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> ΔT<sub>b</sub> = K<sub>b</sub> · m</li>
+      <li><span class="l">B.</span> π = M · R · T</li>
+      <li><span class="l">C.</span> ΔT<sub>f</sub> = K<sub>f</sub> · m</li>
+      <li><span class="l">D.</span> ΔP = X<sub>terlarut</sub> · P°</li>
+      <li><span class="l">E.</span> semuanya memakai molaritas</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Tekanan osmotik adalah satu-satunya rumus di bab ini yang memakai <b>molaritas</b>. ΔT<sub>b</sub> dan ΔT<sub>f</sub> memakai molalitas; ΔP memakai fraksi mol.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, C.</b> Memakai <b>molalitas</b>, karena percobaannya melibatkan perubahan suhu sehingga volume larutan tidak dapat diandalkan.</li>
+        <li><b>D.</b> Memakai <b>fraksi mol</b>.</li>
+        <li><b>E.</b> Ketiga satuan berbeda muncul di bab ini.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> alasannya layak diingat — molalitas dipakai untuk ΔT karena massa <b>tidak berubah oleh suhu</b>, sedangkan volume larutan memuai dan menyusut.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Dibandingkan pelarut murninya, larutan memiliki ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> titik didih lebih tinggi dan titik beku lebih rendah</li>
+      <li><span class="l">B.</span> titik didih lebih rendah dan titik beku lebih tinggi</li>
+      <li><span class="l">C.</span> titik didih dan titik beku sama-sama lebih tinggi</li>
+      <li><span class="l">D.</span> titik didih dan titik beku sama-sama lebih rendah</li>
+      <li><span class="l">E.</span> titik didih dan titik beku tidak berubah</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Partikel terlarut <b>menghalangi</b> pelarut menguap maupun membeku. Akibatnya larutan harus dipanaskan lebih tinggi agar mendidih, dan didinginkan lebih rendah agar membeku.</p>
+      <p>Pada diagram P–T, kurva larutan berada di bawah kurva pelarut murni — inilah yang menggeser kedua titik ke arah berlawanan.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Arah keduanya terbalik.</li>
+        <li><b>C, D.</b> Kedua titik bergerak ke arah <b>berlawanan</b>, tidak searah.</li>
+        <li><b>E.</b> Justru perubahan inilah inti bab ini.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> cara mengingatnya lewat penerapan sehari-hari — garam di jalan bersalju <b>menurunkan</b> titik beku, dan antibeku radiator juga <b>menaikkan</b> titik didih sekaligus.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Nilai faktor van 't Hoff untuk larutan glukosa adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 0</li><li><span class="l">D.</span> 6</li><li><span class="l">E.</span> 1</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Glukosa adalah <b>nonelektrolit</b> — ia larut sebagai molekul utuh dan tidak terurai menjadi ion. Satu molekul menghasilkan satu partikel, sehingga i = 1.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B.</b> Nilai untuk elektrolit kuat biner dan terner.</li>
+        <li><b>D.</b> Mungkin terpikir dari jumlah atom karbonnya — tidak ada hubungannya.</li>
+        <li><b>C.</b> Nilai i tidak pernah nol; setiap zat terlarut menyumbang minimal satu partikel.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> i = 1 berarti rumusnya <b>tidak berubah</b> — mengalikan dengan 1 tidak mengubah apa pun. Tetapi tetap biasakan menuliskannya, agar kebiasaan memeriksa jenis zat terbentuk.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Sel darah merah yang dimasukkan ke dalam larutan <b>hipertonik</b> akan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> menggembung lalu pecah</li>
+      <li><span class="l">B.</span> tetap normal</li>
+      <li><span class="l">C.</span> mengerut karena air keluar dari sel</li>
+      <li><span class="l">D.</span> berubah warna</li>
+      <li><span class="l">E.</span> membelah diri</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Larutan <b>hipertonik</b> punya tekanan osmotik <b>lebih besar</b> daripada cairan sel. Akibatnya air mengalir <b>keluar</b> dari sel, dan sel mengerut.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini yang terjadi pada larutan <b>hipotonik</b>, yang tekanan osmotiknya lebih kecil.</li>
+        <li><b>B.</b> Ini yang terjadi pada larutan <b>isotonik</b>.</li>
+        <li><b>D, E.</b> Tidak berhubungan dengan tekanan osmotik.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> inilah sebabnya sayuran yang direndam air garam menjadi layu, dan mengapa cairan infus wajib dibuat <b>isotonik</b> dengan darah.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menerapkan keempat rumus pada larutan nonelektrolit dan menentukan faktor i.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Sebanyak 9 gram glukosa (M<sub>r</sub> = 180) dilarutkan dalam 250 gram air. Molalitas larutannya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,05 molal</li><li><span class="l">B.</span> 0,2 molal</li><li><span class="l">C.</span> 0,5 molal</li><li><span class="l">D.</span> 0,02 molal</li><li><span class="l">E.</span> 2 molal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> mol glukosa = 9 ÷ 180 = <b>0,05 mol</b></p>
+      <p><b>Langkah 2.</b> massa pelarut = 250 gram = <b>0,25 kg</b></p>
+      <p><b>Langkah 3.</b> m = 0,05 ÷ 0,25 = <b>0,2 molal</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Berhenti di langkah 1 — itu jumlah molnya, bukan molalitasnya.</li>
+        <li><b>D.</b> Lupa mengubah gram menjadi kilogram.</li>
+        <li><b>C, E.</b> Kesalahan pada pembagian.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan D adalah jebakan satuan yang menghasilkan angka seribu kali terlalu kecil. Periksa selalu bahwa massa pelarutnya sudah dalam <b>kilogram</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Titik didih larutan glukosa 0,25 molal dalam air adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,13 °C</li><li><span class="l">B.</span> 100,00 °C</li><li><span class="l">C.</span> 99,87 °C</li><li><span class="l">D.</span> 100,13 °C</li><li><span class="l">E.</span> 100,26 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Glukosa nonelektrolit → <b>i = 1</b></p>
+      <p><b>Langkah 2.</b> ΔT<sub>b</sub> = 0,52 × 0,25 = <b>0,13 °C</b></p>
+      <p><b>Langkah 3.</b> T<sub>b</sub> = 100 + 0,13 = <b>100,13 °C</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menjawab dengan ΔT<sub>b</sub>, padahal yang diminta titik didihnya.</li>
+        <li><b>C.</b> Mengurangkan alih-alih menambahkan.</li>
+        <li><b>E.</b> Mengalikan dengan i = 2, padahal glukosa nonelektrolit.</li>
+        <li><b>B.</b> Mengira larutan mendidih pada suhu yang sama dengan air murni.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan membaca yang paling laris di bab ini. <b>Bacalah pertanyaannya</b>: yang diminta ΔT<sub>b</sub> atau T<sub>b</sub>?</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Titik beku larutan urea 0,4 molal dalam air adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> −0,744 °C</li><li><span class="l">B.</span> +0,744 °C</li><li><span class="l">C.</span> −0,208 °C</li><li><span class="l">D.</span> −1,488 °C</li><li><span class="l">E.</span> 0 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Urea nonelektrolit → <b>i = 1</b></p>
+      <p><b>Langkah 2.</b> ΔT<sub>f</sub> = 1,86 × 0,4 = <b>0,744 °C</b></p>
+      <p><b>Langkah 3.</b> T<sub>f</sub> = 0 − 0,744 = <b>−0,744 °C</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Lupa tanda minus — titik beku larutan <b>selalu di bawah</b> titik beku pelarutnya.</li>
+        <li><b>D.</b> Mengalikan dengan i = 2, padahal urea nonelektrolit.</li>
+        <li><b>C.</b> Memakai K<sub>b</sub> alih-alih K<sub>f</sub>.</li>
+        <li><b>E.</b> Mengira titik bekunya tidak berubah.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> urea sering disangka elektrolit karena namanya terdengar seperti garam. Ia <b>nonelektrolit</b>, sama seperti glukosa, sukrosa, dan gliserol.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Tekanan osmotik larutan glukosa 0,2 M pada suhu 27 °C adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,44 atm</li><li><span class="l">B.</span> 2,46 atm</li><li><span class="l">C.</span> 4,92 atm</li><li><span class="l">D.</span> 9,84 atm</li><li><span class="l">E.</span> 49,2 atm</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Ubah suhu: 27 + 273 = <b>300 K</b></p>
+      <p><b>Langkah 2.</b> π = 0,2 × 0,082 × 300 × 1 = <b>4,92 atm</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Memakai 27 °C langsung tanpa mengubah ke kelvin.</li>
+        <li><b>B.</b> Nilai untuk molaritas 0,1 M.</li>
+        <li><b>D.</b> Mengalikan dengan i = 2, padahal glukosa nonelektrolit.</li>
+        <li><b>E.</b> Kesalahan penempatan koma desimal.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A menghasilkan angka yang masih terlihat wajar sebagai sebuah tekanan, sehingga kesalahan kelvin ini tidak memicu kecurigaan. Periksa satuan suhu sebelum menghitung.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Tekanan uap air murni 40 mmHg. Bila fraksi mol zat terlarut 0,25, tekanan uap larutannya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 40 mmHg</li><li><span class="l">B.</span> 10 mmHg</li><li><span class="l">C.</span> 50 mmHg</li><li><span class="l">D.</span> 20 mmHg</li><li><span class="l">E.</span> 30 mmHg</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> X<sub>pelarut</sub> = 1 − 0,25 = <b>0,75</b></p>
+      <p><b>Langkah 2.</b> P<sub>larutan</sub> = 0,75 × 40 = <b>30 mmHg</b></p>
+      <p><b>Periksa:</b> ΔP = 0,25 × 40 = 10 mmHg → 30 + 10 = 40 ✔</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ini nilai ΔP, bukan tekanan uap larutannya.</li>
+        <li><b>C.</b> Menambahkan alih-alih menurunkan — tekanan uap larutan <b>selalu lebih kecil</b>.</li>
+        <li><b>A.</b> Mengira tekanan uapnya tidak berubah.</li>
+        <li><b>D.</b> Kesalahan pada perkalian.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pemeriksa gratisnya — P larutan ditambah ΔP harus kembali ke P pelarut murni. Sepuluh detik, dan menangkap tertukarnya kedua fraksi mol seketika.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Faktor van 't Hoff untuk larutan Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> yang terion sempurna adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 6</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Tuliskan ionisasinya.</b> Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> → <b>2</b>Al<sup>3+</sup> + <b>3</b>SO<sub>4</sub><sup>2−</sup></p>
+      <p><b>Langkah 2 — Hitung n.</b> 2 + 3 = <b>5</b></p>
+      <p><b>Langkah 3.</b> Terion sempurna → α = 1 → i = n = <b>5</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menghitung <b>jenis</b> ionnya, bukan jumlahnya.</li>
+        <li><b>C, D.</b> Kesalahan pada penjumlahan koefisien.</li>
+        <li><b>E.</b> Mungkin dari mengalikan 2 × 3 alih-alih menjumlahkan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> n adalah <b>jumlah ion</b>, jadi koefisien dijumlahkan — bukan dikalikan, dan bukan dihitung dari jenisnya. Menuliskan persamaan ionisasinya lebih dulu menutup ketiga kesalahan ini sekaligus.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menuntut penanganan faktor van 't Hoff dan pemilihan satuan yang tepat. Target waktu: 2 menit per soal.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12</div>
+    <div class="qs">Titik beku larutan NaCl 0,3 molal dalam air adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> −0,558 °C</li><li><span class="l">B.</span> −0,156 °C</li><li><span class="l">C.</span> −1,116 °C</li><li><span class="l">D.</span> +1,116 °C</li><li><span class="l">E.</span> −1,674 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> NaCl → Na<sup>+</sup> + Cl<sup>−</sup> → <b>i = 2</b></p>
+      <p><b>Langkah 2.</b> ΔT<sub>f</sub> = 1,86 × 0,3 × <b>2</b> = <b>1,116 °C</b></p>
+      <p><b>Langkah 3.</b> T<sub>f</sub> = 0 − 1,116 = <b>−1,116 °C</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Melupakan faktor i — hasilnya tepat separuh jawaban benar.</li>
+        <li><b>E.</b> Memakai i = 3, padahal NaCl hanya melepas dua ion.</li>
+        <li><b>D.</b> Lupa tanda minus.</li>
+        <li><b>B.</b> Memakai K<sub>b</sub> alih-alih K<sub>f</sub>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A menampung kesalahan nomor satu bab ini. Tuliskan "elektrolit, i = 2" di sisi kertas sebelum menghitung, dan jebakan ini tertutup.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Titik didih larutan CaCl<sub>2</sub> 0,2 molal dalam air adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 100,312 °C</li><li><span class="l">B.</span> 100,104 °C</li><li><span class="l">C.</span> 100,208 °C</li><li><span class="l">D.</span> 99,688 °C</li><li><span class="l">E.</span> 101,116 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> CaCl<sub>2</sub> → Ca<sup>2+</sup> + <b>2</b>Cl<sup>−</sup> → n = 3 → <b>i = 3</b></p>
+      <p><b>Langkah 2.</b> ΔT<sub>b</sub> = 0,52 × 0,2 × <b>3</b> = <b>0,312 °C</b></p>
+      <p><b>Langkah 3.</b> T<sub>b</sub> = 100 + 0,312 = <b>100,312 °C</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Melupakan faktor i sama sekali.</li>
+        <li><b>C.</b> Memakai i = 2 karena menghitung <b>jenis</b> ionnya, bukan jumlahnya.</li>
+        <li><b>D.</b> Mengurangkan alih-alih menambahkan.</li>
+        <li><b>E.</b> Memakai K<sub>f</sub> alih-alih K<sub>b</sub>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C adalah jebakan paling halus di soal ini. CaCl<sub>2</sub> punya <b>dua jenis</b> ion tetapi melepas <b>tiga</b> ion, karena koefisien Cl<sup>−</sup> adalah 2.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14</div>
+    <div class="qs">Tekanan osmotik larutan CaCl<sub>2</sub> 0,1 M pada 27 °C adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2,46 atm</li><li><span class="l">B.</span> 4,92 atm</li><li><span class="l">C.</span> 0,738 atm</li><li><span class="l">D.</span> 7,38 atm</li><li><span class="l">E.</span> 12,3 atm</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> CaCl<sub>2</sub> → i = <b>3</b></p>
+      <p><b>Langkah 2.</b> T = 27 + 273 = <b>300 K</b></p>
+      <p><b>Langkah 3.</b> π = 0,1 × 0,082 × 300 × <b>3</b> = <b>7,38 atm</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Melupakan faktor i.</li>
+        <li><b>B.</b> Memakai i = 2.</li>
+        <li><b>C.</b> Memakai suhu celsius langsung.</li>
+        <li><b>E.</b> Memakai i = 5.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> faktor i berlaku untuk tekanan osmotik juga — banyak yang mengira ia hanya untuk titik didih dan titik beku. Ia berlaku untuk <b>keempat</b> sifat koligatif tanpa kecuali.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Larutan suatu elektrolit lemah biner 0,5 molal memiliki derajat ionisasi 0,4. Penurunan titik bekunya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,930 °C</li><li><span class="l">B.</span> 1,860 °C</li><li><span class="l">C.</span> 0,372 °C</li><li><span class="l">D.</span> 2,604 °C</li><li><span class="l">E.</span> 1,302 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Hitung i.</b> Biner berarti n = 2 → i = 1 + (2 − 1) × 0,4 = <b>1,4</b></p>
+      <p><b>Langkah 2 — Hitung ΔT<sub>f</sub>.</b> 1,86 × 0,5 × 1,4 = <b>1,302 °C</b></p>
+      <p><b>Periksa:</b> nilai i = 1,4 berada antara 1 dan n = 2 ✔ sesuai ciri elektrolit lemah</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Memakai i = 1, mengabaikan ionisasinya sama sekali.</li>
+        <li><b>B.</b> Memakai i = 2, seolah terion sempurna.</li>
+        <li><b>D.</b> Memakai i = 2,8 — mengalikan alih-alih memakai rumus lengkap.</li>
+        <li><b>C.</b> Kesalahan pada molalitasnya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> <b>bila nilai α disebutkan di soal, zatnya pasti elektrolit lemah</b> dan rumus lengkap i = 1 + (n − 1)α wajib dipakai. Pintasan i = n hanya sah bila α = 1.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16</div>
+    <div class="qs">Sebanyak 3 gram zat nonelektrolit dilarutkan dalam 250 gram air, dan titik didihnya menjadi 100,104 °C. M<sub>r</sub> zat tersebut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 30</li><li><span class="l">B.</span> 120</li><li><span class="l">C.</span> 60</li><li><span class="l">D.</span> 180</li><li><span class="l">E.</span> 15</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Hitung ΔT<sub>b</sub>.</b> 100,104 − 100 = <b>0,104 °C</b></p>
+      <p><b>Langkah 2 — Hitung molalitas.</b> 0,104 ÷ 0,52 = <b>0,2 molal</b></p>
+      <p><b>Langkah 3 — Hitung mol.</b> 0,2 × <b>0,25 kg</b> = <b>0,05 mol</b></p>
+      <p><b>Langkah 4 — Hitung M<sub>r</sub>.</b> 3 ÷ 0,05 = <b>60</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Memakai i = 2, padahal zatnya nonelektrolit.</li>
+        <li><b>B.</b> Memakai massa pelarut 0,125 kg.</li>
+        <li><b>D, E.</b> Kesalahan pada pembagian.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> langkah 1 sering terlewat — soal memberi <b>titik didih</b>, sedangkan rumus memerlukan <b>selisihnya</b>. Nilai 60 cocok dengan urea, zat nonelektrolit yang sering dipakai di soal jenis ini.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17</div>
+    <div class="qs">Urutkan titik beku ketiga larutan berikut dari yang <b>terendah</b>: (1) glukosa 0,2 m; (2) NaCl 0,15 m; (3) CaCl<sub>2</sub> 0,05 m.</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> (1) &lt; (2) &lt; (3)</li>
+      <li><span class="l">B.</span> (2) &lt; (1) &lt; (3)</li>
+      <li><span class="l">C.</span> (3) &lt; (2) &lt; (1)</li>
+      <li><span class="l">D.</span> (1) &lt; (3) &lt; (2)</li>
+      <li><span class="l">E.</span> ketiganya sama</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Bandingkan hasil kali m × i saja</b> — K<sub>f</sub> sama untuk ketiganya:</p>
+      <p>(1) 0,2 × 1 = <b>0,20</b> → T<sub>f</sub> = −0,372 °C</p>
+      <p>(2) 0,15 × 2 = <b>0,30</b> → T<sub>f</sub> = −0,558 °C</p>
+      <p>(3) 0,05 × 3 = <b>0,15</b> → T<sub>f</sub> = −0,279 °C</p>
+      <p>Makin besar m × i, makin <b>rendah</b> titik bekunya → dari terendah: <b>(2) &lt; (1) &lt; (3)</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Membalik arahnya — ini urutan dari yang tertinggi.</li>
+        <li><b>A, D.</b> Mengurutkan dari molalitas atau dari i saja, bukan hasil kalinya.</li>
+        <li><b>E.</b> Ketiganya jelas berbeda.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> CaCl<sub>2</sub> punya i terbesar tetapi titik bekunya justru <b>tertinggi</b>, karena molalitasnya paling kecil. Yang menentukan adalah <b>hasil kali</b> m × i, bukan salah satunya saja.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Soal arah balik, penentuan derajat ionisasi, dan perancangan larutan.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Berapa gram urea (M<sub>r</sub> = 60) yang harus dilarutkan dalam 500 gram air agar titik didihnya menjadi 100,13 °C?</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 3,0 gram</li><li><span class="l">B.</span> 15,0 gram</li><li><span class="l">C.</span> 1,5 gram</li><li><span class="l">D.</span> 7,5 gram</li><li><span class="l">E.</span> 30,0 gram</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Hitung ΔT<sub>b</sub>.</b> 100,13 − 100 = <b>0,13 °C</b></p>
+      <p><b>Langkah 2 — Hitung molalitas.</b> 0,13 ÷ 0,52 = <b>0,25 molal</b></p>
+      <p><b>Langkah 3 — Hitung mol.</b> 0,25 × <b>0,5 kg</b> = <b>0,125 mol</b></p>
+      <p><b>Langkah 4 — Hitung massa.</b> 0,125 × 60 = <b>7,5 gram</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Memakai massa pelarut 1 kg alih-alih 0,5 kg.</li>
+        <li><b>C.</b> Memakai i = 2, padahal urea nonelektrolit.</li>
+        <li><b>A, E.</b> Kesalahan pada perhitungan mol.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> soal arah balik menempuh alur yang sama tetapi terbalik — dari ΔT ke molalitas ke mol ke massa. Yang sering terlewat adalah langkah 1: soal memberi titik didihnya, bukan selisihnya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Larutan asam lemah biner 0,1 molal membeku pada −0,2604 °C. Derajat ionisasi asam tersebut adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,4</li><li><span class="l">B.</span> 1,4</li><li><span class="l">C.</span> 0,2</li><li><span class="l">D.</span> 0,7</li><li><span class="l">E.</span> 1,0</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Hitung i dari data.</b> i = ΔT<sub>f</sub> ÷ (K<sub>f</sub> × m) = 0,2604 ÷ (1,86 × 0,1) = 0,2604 ÷ 0,186 = <b>1,4</b></p>
+      <p><b>Langkah 2 — Susun ulang rumus.</b> α = (i − 1) ÷ (n − 1) = (1,4 − 1) ÷ (2 − 1) = <b>0,4</b></p>
+      <p><b>Periksa:</b> α berada antara 0 dan 1 ✔ dan i = 1,4 berada antara 1 dan 2 ✔</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Menjawab dengan nilai i, bukan α.</li>
+        <li><b>E.</b> α = 1 berarti terion sempurna, yang bertentangan dengan i = 1,4.</li>
+        <li><b>C, D.</b> Kesalahan pada penyusunan ulang rumus.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan B adalah jebakan yang paling laris — berhenti di langkah 1. Nilai α <b>tidak pernah melebihi 1</b>, sehingga jawaban 1,4 langsung gugur tanpa perlu menghitung.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Berapa molaritas larutan CaCl<sub>2</sub> agar isotonik dengan larutan urea 0,6 M pada suhu yang sama?</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,6 M</li><li><span class="l">B.</span> 1,8 M</li><li><span class="l">C.</span> 0,3 M</li><li><span class="l">D.</span> 0,1 M</li><li><span class="l">E.</span> 0,2 M</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Syarat isotonik.</b> Tekanan osmotiknya sama → M × i sama, karena R dan T saling meniadakan</p>
+      <p><b>Langkah 2 — Susun persamaan.</b> 0,6 × 1 = M × <b>3</b></p>
+      <p><b>Langkah 3 — Hitung.</b> M = 0,6 ÷ 3 = <b>0,2 M</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Memakai i = 2 untuk CaCl<sub>2</sub>.</li>
+        <li><b>B.</b> Mengalikan alih-alih membagi.</li>
+        <li><b>A.</b> Mengabaikan faktor i sama sekali.</li>
+        <li><b>D.</b> Memakai i = 6.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> hasilnya masuk akal — CaCl<sub>2</sub> hanya perlu <b>sepertiga</b> molaritas urea karena tiap satuan rumusnya menyumbang tiga partikel. Inilah dasar peracikan cairan infus dan tetes mata.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21</div>
+    <div class="qs">Perhatikan larutan glukosa 0,5 molal dalam air. Pernyataan yang <b>benar</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> titik bekunya +0,93 °C</li>
+      <li><span class="l">B.</span> titik didihnya 100,93 °C</li>
+      <li><span class="l">C.</span> titik didihnya 100,26 °C dan titik bekunya −0,93 °C</li>
+      <li><span class="l">D.</span> penurunan titik bekunya sama besar dengan kenaikan titik didihnya</li>
+      <li><span class="l">E.</span> faktor van 't Hoff-nya 2</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Jenis zat.</b> Glukosa <b>nonelektrolit</b> → i = 1. Ini menggugurkan E.</p>
+      <p><b>Titik didih.</b> ΔT<sub>b</sub> = 0,52 × 0,5 = 0,26 → T<sub>b</sub> = <b>100,26 °C</b>. Ini menggugurkan B, yang keliru memakai K<sub>f</sub>.</p>
+      <p><b>Titik beku.</b> ΔT<sub>f</sub> = 1,86 × 0,5 = 0,93 → T<sub>f</sub> = <b>−0,93 °C</b> ✔ Pernyataan C benar seluruhnya, dan sekaligus menggugurkan A yang lupa tanda minus.</p>
+      <p><b>Periksa D.</b> 0,93 berbanding 0,26 adalah <b>3,58 : 1</b>, jelas tidak sama besar.</p>
+      <div class="insight"><b>Exam Insight:</b> perbandingan 3,58 pada pilihan D berlaku untuk <b>semua</b> larutan berpelarut air, karena ia tidak lain adalah K<sub>f</sub> ÷ K<sub>b</sub>. Molalitas dan faktor i muncul di pembilang maupun penyebut lalu saling meniadakan.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>14.13 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 14</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      yang menentukan adalah <b>JUMLAH PARTIKEL</b>, bukan jenis zatnya<br>
+      keempat sifat memakai faktor i yang sama · tiga satuan kepekatan yang berbeda
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">EMPAT RUMUS INTI</div>
+        <ul>
+          <li><b>ΔP = X<sub>terlarut</sub> · P°</b> — fraksi mol</li>
+          <li><b>ΔT<sub>b</sub> = K<sub>b</sub> · m · i</b> — molalitas · <b>ditambah</b></li>
+          <li><b>ΔT<sub>f</sub> = K<sub>f</sub> · m · i</b> — molalitas · <b>dikurangi</b></li>
+          <li><b>π = M · R · T · i</b> — molaritas · suhu <b>kelvin</b></li>
+          <li>K<sub>b</sub> air = 0,52 · K<sub>f</sub> air = 1,86</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">FAKTOR VAN 'T HOFF</div>
+        <ul>
+          <li><b>i = 1 + (n − 1)α</b></li>
+          <li>Nonelektrolit → <b>i = 1</b> (glukosa, urea, sukrosa)</li>
+          <li>Elektrolit kuat → <b>i = n</b> (α = 1)</li>
+          <li>Elektrolit lemah → <b>1 &lt; i &lt; n</b> (α disebut di soal)</li>
+          <li>n = jumlah ion, <b>koefisien dijumlahkan</b>: CaCl₂ → 3</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">SATUAN DAN ARAH</div>
+        <ul>
+          <li>Molalitas: mol ÷ massa <b>pelarut (kg)</b></li>
+          <li>Molaritas: mol ÷ volume <b>larutan (L)</b></li>
+          <li>Titik didih <b>naik</b>, titik beku <b>turun</b></li>
+          <li>Tekanan uap larutan selalu <b>lebih kecil</b></li>
+          <li>ΔT<sub>f</sub> selalu <b>3,58 kali</b> ΔT<sub>b</sub> (pelarut air)</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">KESALAHAN YANG HARUS DIHINDARI</div>
+        <ul>
+          <li>Melupakan faktor i untuk elektrolit.</li>
+          <li>Memakai i = n untuk elektrolit lemah.</li>
+          <li>Menghitung n dari jenis ion, bukan jumlahnya.</li>
+          <li>Menjawab dengan ΔT, bukan titik didih/bekunya.</li>
+          <li>Memakai celsius pada rumus tekanan osmotik.</li>
+          <li>Tertukar massa pelarut dengan massa larutan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat untuk seluruh Bab 14</div>
+    <p><b>Partikel terlarut menghalangi molekul pelarut untuk menguap dan untuk membeku, dan besarnya halangan hanya bergantung pada banyaknya partikel.</b> Karena itu larutan yang partikelnya dua kali lebih banyak memberi pengaruh dua kali lebih besar pada keempat sifat sekaligus.</p>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>14.14 &nbsp;Formula Sheet Bab 14</h2>
+  <p>Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Rumus / Aturan</th><th>Satuan kepekatan</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="eq">m = mol ÷ massa pelarut (kg)</td><td>—</td><td>Sebelum ΔT<sub>b</sub> dan ΔT<sub>f</sub></td><td>Pembaginya <b>pelarut</b>, dalam kg</td></tr>
+      <tr><td class="eq">X = mol zat ÷ mol total</td><td>—</td><td>Sebelum hukum Raoult</td><td>X terlarut + X pelarut = 1</td></tr>
+      <tr class="hi"><td class="eq">P<sub>larutan</sub> = X<sub>pelarut</sub> · P°</td><td>fraksi mol</td><td>Tekanan uap larutan</td><td>Selalu lebih kecil dari P°</td></tr>
+      <tr class="hi"><td class="eq">ΔP = X<sub>terlarut</sub> · P°</td><td>fraksi mol</td><td>Penurunan tekanan uap</td><td>i masuk lewat <b>jumlah mol partikel</b></td></tr>
+      <tr><td class="eq">ΔT<sub>b</sub> = K<sub>b</sub> · m · i</td><td><b>molalitas</b></td><td>Kenaikan titik didih</td><td>T<sub>b</sub> = 100 <b>+</b> ΔT<sub>b</sub> untuk air</td></tr>
+      <tr><td class="eq">ΔT<sub>f</sub> = K<sub>f</sub> · m · i</td><td><b>molalitas</b></td><td>Penurunan titik beku</td><td>T<sub>f</sub> = 0 <b>−</b> ΔT<sub>f</sub> untuk air</td></tr>
+      <tr class="hi"><td class="eq">π = M · R · T · i</td><td><b>molaritas</b></td><td>Tekanan osmotik</td><td>T dalam <b>kelvin</b>, R = 0,082</td></tr>
+      <tr><td class="eq">i = 1 + (n − 1)α</td><td>—</td><td>Setiap larutan elektrolit</td><td>Berlaku untuk <b>keempat</b> rumus</td></tr>
+      <tr class="hi"><td class="eq">M<sub>r</sub> = massa ÷ mol</td><td>—</td><td>Soal penentuan M<sub>r</sub></td><td>Alurnya berjalan mundur dari ΔT</td></tr>
+      <tr><td class="eq">α = (i − 1) ÷ (n − 1)</td><td>—</td><td>Soal penentuan derajat ionisasi</td><td>Hasilnya wajib antara 0 dan 1</td></tr>
+      <tr class="hi"><td class="eq">isotonik → M · i sama</td><td>molaritas</td><td>Merancang larutan setara</td><td>R dan T saling meniadakan</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">ALUR EMPAT LANGKAH SETIAP SOAL SIFAT KOLIGATIF</div>
+    <div class="main-eq" style="font-size:15px; line-height:2">
+      1. Tentukan <b>jenis zatnya</b> — nonelektrolit, elektrolit kuat, atau lemah<br>
+      2. Hitung <b>faktor i</b> dari persamaan ionisasinya<br>
+      3. Hitung <b>kepekatan</b> dengan satuan yang dituntut rumus tersebut<br>
+      4. Masukkan ke rumus, lalu periksa apakah yang diminta ΔT atau T-nya
+    </div>
+    <div class="note">Langkah 1 memakan tiga detik dan menutup jebakan nomor satu di bab ini. Langkah 3 memuat pembeda yang sering luput: <b>ΔT<sub>b</sub> dan ΔT<sub>f</sub> memakai molalitas</b> (massa pelarut dalam kg), sedangkan <b>tekanan osmotik memakai molaritas</b> (volume larutan dalam liter). Ketiga satuan berbeda muncul di bab ini, dan memilih yang salah membuat jawaban meleset meski seluruh langkah lain sudah benar.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>14.15 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. <strong>Waktu yang disarankan: 40 menit.</strong> Tetapan: K<sub>b</sub> air = 0,52 · K<sub>f</sub> air = 1,86 · R = 0,082.</p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Besaran yang menentukan besarnya sifat koligatif suatu larutan adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> jenis zat terlarut</li><li><span class="l">B.</span> massa molekul relatif zat terlarut</li><li><span class="l">C.</span> jumlah partikel zat terlarut</li><li><span class="l">D.</span> kekuatan ikatan dalam zat terlarut</li><li><span class="l">E.</span> volume zat terlarut</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Kata "koligatif" berarti <b>bergantung pada jumlah</b>. Gula, garam, dan urea memberi pengaruh yang sama asalkan jumlah partikelnya sama.</p>
+      <p>Pilihan A halus dan sering dipilih: elektrolit memang berpengaruh lebih besar, tetapi <b>bukan</b> karena jenisnya — melainkan karena ia terurai menjadi lebih banyak partikel.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Rumus yang memakai <b>fraksi mol</b> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> ΔT<sub>b</sub> = K<sub>b</sub> · m</li><li><span class="l">B.</span> π = M · R · T</li><li><span class="l">C.</span> ΔT<sub>f</sub> = K<sub>f</sub> · m</li><li><span class="l">D.</span> ΔP = X<sub>terlarut</sub> · P°</li><li><span class="l">E.</span> i = 1 + (n − 1)α</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Penurunan tekanan uap memakai <b>fraksi mol</b>; ΔT<sub>b</sub> dan ΔT<sub>f</sub> memakai <b>molalitas</b>; tekanan osmotik memakai <b>molaritas</b>.</p>
+      <p>Tiga satuan kepekatan berbeda muncul di bab ini, dan inilah sumber kesalahan yang paling sering.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Bila suatu zat dilarutkan ke dalam air, maka ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tekanan uapnya naik</li><li><span class="l">B.</span> titik didihnya turun</li><li><span class="l">C.</span> titik bekunya naik</li><li><span class="l">D.</span> tekanan uapnya turun dan titik bekunya turun</li><li><span class="l">E.</span> tidak ada perubahan apa pun</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Partikel terlarut <b>menghalangi</b> pelarut menguap dan membeku: tekanan uap <b>turun</b>, titik beku <b>turun</b>, titik didih <b>naik</b>, dan muncul tekanan osmotik.</p>
+      <p>Perhatikan bahwa tekanan uap dan titik beku bergerak searah (sama-sama turun), sedangkan titik didih bergerak berlawanan.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Faktor van 't Hoff untuk larutan K<sub>3</sub>PO<sub>4</sub> yang terion sempurna adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 5</li><li><span class="l">E.</span> 1</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>K<sub>3</sub>PO<sub>4</sub> → <b>3</b>K<sup>+</sup> + PO<sub>4</sub><sup>3−</sup> → n = 3 + 1 = <b>4</b></p>
+      <p>Terion sempurna berarti α = 1, sehingga i = n = 4. Pilihan B menghitung <b>jenis</b> ionnya, bukan jumlahnya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Sebanyak 12 gram urea (M<sub>r</sub> = 60) dilarutkan dalam 400 gram air. Molalitas larutannya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,2 molal</li><li><span class="l">B.</span> 0,05 molal</li><li><span class="l">C.</span> 5,0 molal</li><li><span class="l">D.</span> 0,0005 molal</li><li><span class="l">E.</span> 0,5 molal</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>mol urea:</b> 12 ÷ 60 = 0,2 mol · <b>massa pelarut:</b> 400 g = 0,4 kg</p>
+      <p><b>m</b> = 0,2 ÷ 0,4 = <b>0,5 molal</b></p>
+      <p>Pilihan D lupa mengubah gram menjadi kilogram.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Titik didih larutan glukosa 0,5 molal dalam air adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,26 °C</li><li><span class="l">B.</span> 100,26 °C</li><li><span class="l">C.</span> 99,74 °C</li><li><span class="l">D.</span> 100,93 °C</li><li><span class="l">E.</span> 100,52 °C</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Glukosa nonelektrolit → i = 1 → ΔT<sub>b</sub> = 0,52 × 0,5 = <b>0,26 °C</b> → T<sub>b</sub> = <b>100,26 °C</b></p>
+      <p>Pilihan A menjawab dengan ΔT<sub>b</sub>; pilihan D memakai K<sub>f</sub>; pilihan E mengalikan dengan i = 2.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Titik beku larutan urea 0,2 molal dalam air adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> +0,372 °C</li><li><span class="l">B.</span> −0,104 °C</li><li><span class="l">C.</span> −0,744 °C</li><li><span class="l">D.</span> −0,372 °C</li><li><span class="l">E.</span> 0 °C</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Urea <b>nonelektrolit</b> → i = 1 → ΔT<sub>f</sub> = 1,86 × 0,2 = 0,372 → T<sub>f</sub> = <b>−0,372 °C</b></p>
+      <p>Pilihan A lupa tanda minus; pilihan C mengalikan dengan i = 2, padahal urea tidak terion.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Tekanan osmotik larutan glukosa 0,25 M pada 27 °C adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,55 atm</li><li><span class="l">B.</span> 2,46 atm</li><li><span class="l">C.</span> 6,15 atm</li><li><span class="l">D.</span> 12,3 atm</li><li><span class="l">E.</span> 61,5 atm</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>T = 27 + 273 = <b>300 K</b> → π = 0,25 × 0,082 × 300 × 1 = <b>6,15 atm</b></p>
+      <p>Pilihan A memakai 27 °C langsung; pilihan D mengalikan dengan i = 2.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Tekanan uap air murni 50 mmHg. Bila fraksi mol zat terlarut 0,2, tekanan uap larutannya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 40 mmHg</li><li><span class="l">B.</span> 10 mmHg</li><li><span class="l">C.</span> 60 mmHg</li><li><span class="l">D.</span> 50 mmHg</li><li><span class="l">E.</span> 25 mmHg</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>X<sub>pelarut</sub> = 1 − 0,2 = 0,8 → P = 0,8 × 50 = <b>40 mmHg</b></p>
+      <p><b>Periksa:</b> ΔP = 0,2 × 50 = 10 → 40 + 10 = 50 ✔ Pilihan B menjawab dengan ΔP.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Faktor van 't Hoff untuk larutan CaCl<sub>2</sub> yang terion sempurna adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>CaCl<sub>2</sub> → Ca<sup>2+</sup> + <b>2</b>Cl<sup>−</sup> → n = 1 + 2 = <b>3</b></p>
+      <p>Pilihan B adalah jebakan paling laris: CaCl<sub>2</sub> punya <b>dua jenis</b> ion tetapi melepas <b>tiga</b> ion.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11 — gaya UTBK</div>
+    <div class="qs">Titik beku larutan NaCl 0,25 molal dalam air adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> −0,465 °C</li><li><span class="l">B.</span> −0,130 °C</li><li><span class="l">C.</span> +0,930 °C</li><li><span class="l">D.</span> −1,395 °C</li><li><span class="l">E.</span> −0,930 °C</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>NaCl → i = <b>2</b> → ΔT<sub>f</sub> = 1,86 × 0,25 × 2 = 0,930 → T<sub>f</sub> = <b>−0,930 °C</b></p>
+      <p>Pilihan A melupakan faktor i — hasilnya tepat separuh. Pilihan D memakai i = 3.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12 — gaya UTBK</div>
+    <div class="qs">Titik didih larutan CaCl<sub>2</sub> 0,4 molal dalam air adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 100,624 °C</li><li><span class="l">B.</span> 100,208 °C</li><li><span class="l">C.</span> 100,416 °C</li><li><span class="l">D.</span> 99,376 °C</li><li><span class="l">E.</span> 102,232 °C</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>CaCl<sub>2</sub> → i = <b>3</b> → ΔT<sub>b</sub> = 0,52 × 0,4 × 3 = <b>0,624 °C</b> → T<sub>b</sub> = <b>100,624 °C</b></p>
+      <p>Pilihan B melupakan faktor i; pilihan C memakai i = 2; pilihan E memakai K<sub>f</sub>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13 — gaya UTBK</div>
+    <div class="qs">Tekanan osmotik larutan NaCl 0,2 M pada 27 °C adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 9,84 atm</li><li><span class="l">B.</span> 4,92 atm</li><li><span class="l">C.</span> 14,76 atm</li><li><span class="l">D.</span> 0,89 atm</li><li><span class="l">E.</span> 2,46 atm</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>NaCl → i = <b>2</b> → π = 0,2 × 0,082 × 300 × 2 = <b>9,84 atm</b></p>
+      <p>Pilihan B melupakan faktor i; pilihan C memakai i = 3; pilihan D memakai suhu celsius.</p>
+      <div class="insight"><b>Exam Insight:</b> faktor i berlaku untuk tekanan osmotik juga — untuk <b>keempat</b> sifat koligatif tanpa kecuali.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14 — gaya UTBK</div>
+    <div class="qs">Larutan elektrolit lemah biner 0,2 molal memiliki derajat ionisasi 0,5. Penurunan titik bekunya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,372 °C</li><li><span class="l">B.</span> 0,744 °C</li><li><span class="l">C.</span> 0,558 °C</li><li><span class="l">D.</span> 0,186 °C</li><li><span class="l">E.</span> 1,116 °C</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>i</b> = 1 + (2 − 1) × 0,5 = <b>1,5</b></p>
+      <p><b>ΔT<sub>f</sub></b> = 1,86 × 0,2 × 1,5 = <b>0,558 °C</b></p>
+      <p>Pilihan A memakai i = 1; pilihan B memakai i = 2, seolah terion sempurna.</p>
+      <div class="insight"><b>Exam Insight:</b> bila nilai α disebutkan, zatnya pasti elektrolit <b>lemah</b> dan rumus lengkapnya wajib dipakai.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — gaya UTBK</div>
+    <div class="qs">Sebanyak 2,4 gram zat nonelektrolit dilarutkan dalam 200 gram air, dan titik bekunya −0,372 °C. M<sub>r</sub> zat tersebut adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 30</li><li><span class="l">B.</span> 60</li><li><span class="l">C.</span> 120</li><li><span class="l">D.</span> 180</li><li><span class="l">E.</span> 12</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Molalitas:</b> 0,372 ÷ 1,86 = <b>0,2 molal</b></p>
+      <p><b>Mol:</b> 0,2 × <b>0,2 kg</b> = 0,04 mol</p>
+      <p><b>M<sub>r</sub>:</b> 2,4 ÷ 0,04 = <b>60</b> — cocok dengan urea</p>
+      <p>Pilihan A memakai i = 2, padahal soal menyebut nonelektrolit.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16 — HOTS</div>
+    <div class="qs">Urutkan titik beku ketiga larutan berikut dari yang <b>terendah</b>: (1) glukosa 0,3 m; (2) NaCl 0,2 m; (3) CaCl<sub>2</sub> 0,05 m.</div>
+    <ol class="opt"><li><span class="l">A.</span> (1) &lt; (2) &lt; (3)</li><li><span class="l">B.</span> (2) &lt; (1) &lt; (3)</li><li><span class="l">C.</span> (3) &lt; (1) &lt; (2)</li><li><span class="l">D.</span> (3) &lt; (2) &lt; (1)</li><li><span class="l">E.</span> ketiganya sama</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Bandingkan m × i saja:</b></p>
+      <p>(1) 0,3 × 1 = <b>0,30</b> → −0,558 °C · (2) 0,2 × 2 = <b>0,40</b> → −0,744 °C · (3) 0,05 × 3 = <b>0,15</b> → −0,279 °C</p>
+      <p>Makin besar m × i, makin rendah titik bekunya → dari terendah: <b>(2) &lt; (1) &lt; (3)</b></p>
+      <div class="insight"><b>Exam Insight:</b> CaCl<sub>2</sub> punya i terbesar tetapi titik bekunya justru <b>tertinggi</b>, karena molalitasnya paling kecil. Yang menentukan adalah <b>hasil kali</b>.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Berapa gram NaCl (M<sub>r</sub> = 58,5) yang harus dilarutkan dalam 1 kg air agar titik bekunya menjadi −1,86 °C?</div>
+    <ol class="opt"><li><span class="l">A.</span> 58,5 gram</li><li><span class="l">B.</span> 117,0 gram</li><li><span class="l">C.</span> 14,6 gram</li><li><span class="l">D.</span> 29,25 gram</li><li><span class="l">E.</span> 5,85 gram</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Langkah 1:</b> ΔT<sub>f</sub> = 1,86 °C → m × i = 1,86 ÷ 1,86 = <b>1</b></p>
+      <p><b>Langkah 2:</b> NaCl → i = 2 → m = 1 ÷ 2 = <b>0,5 molal</b></p>
+      <p><b>Langkah 3:</b> mol = 0,5 × 1 kg = 0,5 mol → massa = 0,5 × 58,5 = <b>29,25 gram</b></p>
+      <p>Pilihan A melupakan faktor i pada langkah 2 — hasilnya dua kali terlalu besar.</p>
+      <div class="insight"><b>Exam Insight:</b> pada soal arah balik, faktor i <b>dibagikan</b>, bukan dikalikan. Periksa arahnya: karena NaCl melepas dua partikel, jumlah yang diperlukan tentu <b>lebih sedikit</b>.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Larutan asam lemah biner 0,4 molal membeku pada −1,116 °C. Derajat ionisasinya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1,5</li><li><span class="l">B.</span> 0,5</li><li><span class="l">C.</span> 0,75</li><li><span class="l">D.</span> 0,25</li><li><span class="l">E.</span> 1,0</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>i dari data:</b> 1,116 ÷ (1,86 × 0,4) = 1,116 ÷ 0,744 = <b>1,5</b></p>
+      <p><b>α:</b> (1,5 − 1) ÷ (2 − 1) = <b>0,5</b></p>
+      <p><b>Periksa:</b> α antara 0 dan 1 ✔ Pilihan A berhenti di langkah pertama dan menjawab dengan nilai i — dan 1,5 langsung gugur karena α tidak pernah melebihi 1.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Berapa molaritas larutan NaCl agar isotonik dengan larutan glukosa 0,4 M pada suhu yang sama?</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,4 M</li><li><span class="l">B.</span> 0,8 M</li><li><span class="l">C.</span> 0,13 M</li><li><span class="l">D.</span> 1,2 M</li><li><span class="l">E.</span> 0,2 M</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Syarat isotonik:</b> M × i sama, karena R dan T saling meniadakan</p>
+      <p>0,4 × 1 = M × <b>2</b> → M = <b>0,2 M</b></p>
+      <p>Masuk akal: NaCl hanya perlu <b>separuh</b> molaritas glukosa karena tiap satuan rumusnya menyumbang dua partikel.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Perhatikan larutan yang dibuat dari 11,7 gram NaCl (M<sub>r</sub> = 58,5) dalam 500 gram air. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> molalitasnya 0,2 dan titik bekunya −0,744 °C</li>
+      <li><span class="l">B.</span> faktor van 't Hoff-nya 1</li>
+      <li><span class="l">C.</span> titik bekunya +1,488 °C</li>
+      <li><span class="l">D.</span> titik didihnya 100,208 °C</li>
+      <li><span class="l">E.</span> molalitasnya 0,4 dan titik bekunya −1,488 °C</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Molalitas.</b> mol = 11,7 ÷ 58,5 = 0,2 → m = 0,2 ÷ <b>0,5 kg</b> = <b>0,4 molal</b>. Ini menggugurkan A.</p>
+      <p><b>Faktor i.</b> NaCl elektrolit kuat biner → <b>i = 2</b>. Ini menggugurkan B.</p>
+      <p><b>Titik beku.</b> ΔT<sub>f</sub> = 1,86 × 0,4 × 2 = 1,488 → T<sub>f</sub> = <b>−1,488 °C</b> ✔ Pernyataan E benar seluruhnya, dan sekaligus menggugurkan C yang lupa tanda minus.</p>
+      <p><b>Periksa D.</b> ΔT<sub>b</sub> = 0,52 × 0,4 × 2 = 0,416 → T<sub>b</sub> = <b>100,416 °C</b>, bukan 100,208.</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab — konversi massa ke molalitas, faktor i, arah perubahan kedua titik, dan tanda minus.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. C &nbsp; 2. D &nbsp; 3. D &nbsp; 4. A &nbsp; 5. E &nbsp; 6. B &nbsp; 7. D &nbsp; 8. C &nbsp; 9. A &nbsp; 10. C<br>
+      11. E &nbsp; 12. A &nbsp; 13. A &nbsp; 14. C &nbsp; 15. B &nbsp; 16. B &nbsp; 17. D &nbsp; 18. B &nbsp; 19. E &nbsp; 20. E
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti Bab 14 sudah tuntas dan Anda siap melanjutkan ke Reaksi Redoks; 14–17 benar berarti ulangi bagian faktor van 't Hoff dan pemilihan satuan; di bawah 14 berarti kerjakan ulang seluruh Worked Example sambil menuliskan jenis zat pada setiap soal.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 14 tersedia lengkap dalam berkas ini; Bab 1 sampai Bab 13 tersedia dalam berkas terpisah. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas ini</div></div>
+    <div class="rm"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">Bilangan oksidasi, penyetaraan setengah reaksi &amp; PBO</div></div>
+    <div class="rm"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">Sel volta, potensial sel, elektrolisis, hukum Faraday, korosi</div></div>
+    <div class="rm"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">Golongan utama, unsur transisi, pembuatan dan kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">Alkohol, eter, aldehida, keton, asam karboksilat, ester</div></div>
+    <div class="rm"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">Resonansi, substitusi, tata nama, kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">Adisi, kondensasi, karbohidrat, protein, lemak</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 14: Sifat Koligatif Larutan · 20 worked example · 21 soal latihan · 20 soal tes akhir bab</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>

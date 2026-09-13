@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+/* ============ TAMBAHAN BAB 2 ============ */
+.phen{
+  background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet);
+  border-radius:var(--radius); padding:18px 20px; margin:22px 0;
+}
+.phen .pt{font-size:12px; letter-spacing:.1em; font-weight:750; color:var(--violet); margin-bottom:9px}
+.phen p:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0}
+.card{background:#fff; border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px}
+.card .ct{font-size:14px; font-weight:750; color:var(--navy); margin-bottom:8px; padding-bottom:7px; border-bottom:2px solid var(--cyan-bg)}
+.card p{font-size:15px; margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.card .ex{font-family:var(--mono); font-size:13.5px; background:var(--paper-2); border-radius:6px; padding:6px 9px; color:var(--navy-2)}
+.tick{list-style:none; padding-left:0; font-size:15px; margin-bottom:0}
+.tick li{padding-left:20px; position:relative; margin-bottom:7px; color:var(--ink-2)}
+.tick li::before{content:"▸"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+.tick li:last-child{margin-bottom:0}
+
+.fx{
+  font-family:var(--mono); font-size:16px; text-align:center; margin-top:12px;
+  background:rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:#EAF4FA;
+}
+.box.short .fx, .box.exam .fx, .box.recall .fx{
+  background:#fff; color:var(--navy-2); border:1px solid var(--line-2);
+}
+table.mini{width:100%; border-collapse:collapse; font-size:13.5px; margin:6px 0 10px; background:#fff}
+table.mini th{background:var(--paper-3); color:var(--navy); text-align:left; padding:6px 9px; border:1px solid var(--line-2); white-space:nowrap; font-weight:700}
+table.mini td{padding:6px 9px; border:1px solid var(--line-2); text-align:center; color:var(--ink-2)}
+
+.shape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin:20px 0}
+.shape{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:10px 10px 12px; text-align:center}
+.shape svg{width:100%; height:auto; display:block; margin-bottom:4px; border:0; background:transparent}
+.shape .sn{font-size:12px; font-weight:750; color:var(--cyan); letter-spacing:.05em}
+.shape .sb{font-size:14.5px; font-weight:700; color:var(--navy); margin:4px 0 2px}
+.shape .sa{font-size:12.5px; color:var(--muted)}
+
+@media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 19 — BENZENA</div>
+  <a href="#cover" class="on"><span class="num">19.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">19.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">19.2</span>Concept Map</a>
+  <a href="#why"><span class="num">19.3</span>Why This Matters</a>
+  <a href="#struktur"><span class="num">19.4</span>Struktur Benzena</a>
+  <a href="#sifat"><span class="num">19.5</span>Sifat Benzena</a>
+  <a href="#tatanama"><span class="num">19.6</span>Tata Nama Turunan</a>
+  <a href="#isomer"><span class="num">19.7</span>Isomer Orto, Meta, Para</a>
+  <a href="#reaksi"><span class="num">19.8</span>Reaksi Substitusi</a>
+  <a href="#kegunaan"><span class="num">19.9</span>Kegunaan dan Dampak</a>
+  <a href="#focus"><span class="num">19.10</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">19.11</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 19</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">19.12</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">19.13</span>Formula Sheet</a>
+  <a href="#test"><span class="num">19.14</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 19 &nbsp;·&nbsp; KELAS XII &nbsp;·&nbsp; SENYAWA AROMATIK</div>
+  <h1>Benzena dan Turunannya</h1>
+  <p class="sub">Mengapa benzena punya tiga ikatan rangkap tetapi tidak mau beradisi seperti alkena? Dan mengapa turunannya yang bergugus dua selalu tepat tiga macam?</p>
+  <div class="meta">
+    <span class="chip">Struktur &amp; resonansi</span>
+    <span class="chip">Sifat aromatik</span>
+    <span class="chip">Tata nama turunan</span>
+    <span class="chip">Orto, meta, para</span>
+    <span class="chip">Reaksi substitusi</span>
+    <span class="chip">Kegunaan &amp; dampak</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>19.1&nbsp; Learning Objectives</h2>
+  <p class="lead">Benzena melanggar hampir semua dugaan yang Anda bawa dari Bab 6. Ia punya tiga ikatan rangkap, tetapi berperilaku seperti senyawa jenuh — dan alasannya satu: <b>resonansi</b>.</p>
+  <div class="box obj"><div class="bt">Target penguasaan Bab 19</div>
+  <ul>
+    <li>Menjelaskan struktur benzena dan gagasan resonansi.</li>
+    <li>Menjelaskan mengapa keenam ikatan C–C benzena sama panjang.</li>
+    <li>Menjelaskan mengapa benzena bersubstitusi, bukan beradisi.</li>
+    <li>Menghitung derajat ketidakjenuhan turunan benzena.</li>
+    <li>Menuliskan nama turunan benzena monosubstitusi.</li>
+    <li>Menggunakan awalan orto, meta, dan para dengan benar.</li>
+    <li>Menentukan jumlah isomer posisi turunan benzena.</li>
+    <li>Menuliskan reaksi halogenasi, nitrasi, sulfonasi, dan alkilasi.</li>
+    <li>Menjelaskan pengaruh gugus terhadap letak substitusi berikutnya.</li>
+    <li>Menyebutkan nama lazim turunan benzena yang penting.</li>
+    <li>Menjelaskan kegunaan turunan benzena dalam kehidupan sehari-hari.</li>
+    <li>Menjelaskan dampak benzena bagi kesehatan dan lingkungan.</li>
+  </ul>
+  </div>
+  <div class="box short">
+    <div class="bt">⚡ Satu gagasan yang menjelaskan seluruh bab</div>
+    <p><b>Benzena sangat stabil, dan ia akan menempuh jalan apa pun untuk tetap stabil.</b> Adisi akan merusak cincin resonansinya, sehingga benzena menolaknya; substitusi mempertahankan cincin itu utuh, sehingga itulah jalur yang ditempuhnya.</p>
+    <p><b>Jumlah isomer di bab ini dihitung</b>, bukan dihafal — dengan mencacah seluruh susunan pada enam posisi cincin lalu membuang yang sama karena simetrinya. Hasilnya: dua gugus memberi tepat <b>3</b> isomer, dan tiga gugus juga tepat <b>3</b>.</p>
+  </div>
+</section>
+
+<!-- ==================== WHY THIS MATTERS ==================== -->
+<section class="page" id="why">
+  <h2>19.3&nbsp; Why This Matters</h2>
+  <div class="phen">
+    <div class="pt">FENOMENA</div>
+    <p>Obat pereda nyeri yang Anda minum, pengawet makanan pada minuman kemasan, pewarna pakaian, bahan peledak TNT, dan bola kamper di lemari — seluruhnya turunan benzena.</p>
+    <p>Bensin beroktan tinggi mengandung senyawa aromatik. Asap rokok juga. Yang pertama menghasilkan tenaga, yang kedua menyebabkan kanker — dan keduanya berbahan dasar cincin enam karbon yang sama.</p>
+    <p>Dan ada teka-teki lama: benzena berumus C<sub>6</sub>H<sub>6</sub>, jauh lebih sedikit hidrogennya daripada sikloheksana C<sub>6</sub>H<sub>12</sub>. Secara hitungan ia sangat tak jenuh, tetapi ia <b>tidak mau</b> memudarkan air bromin seperti yang dilakukan alkena.</p>
+  </div>
+  <p class="lead">Teka-teki itu memakan waktu puluhan tahun untuk dipecahkan, dan jawabannya — <b>resonansi</b> — menjadi salah satu gagasan terpenting dalam kimia organik.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Di kehidupan sehari-hari</div>
+      <ul class="tick">
+        <li><b>Asam salisilat</b> — bahan baku aspirin dan obat kulit.</li>
+        <li><b>Natrium benzoat</b> — pengawet makanan dan minuman.</li>
+        <li><b>Fenol</b> — desinfektan dan bahan baku plastik.</li>
+        <li><b>Naftalena</b> — bola kamper pengusir ngengat.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Di soal UTBK</div>
+      <ul class="tick">
+        <li>Soal <b>orto-meta-para</b> hampir pasti muncul.</li>
+        <li>Soal nama lazim menguji hafalan langsung.</li>
+        <li>Soal substitusi vs adisi menjebak yang mengira benzena seperti alkena.</li>
+        <li>Soal jumlah isomer menuntut ketelitian, bukan tebakan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>19.2&nbsp; Concept Map</h2>
+  <p class="lead">Satu sifat — <b>kestabilan resonansi</b> — menjelaskan hampir seluruh perilaku benzena.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 720 434" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep benzena dan turunannya">
+    <defs>
+      <marker id="cm19Arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+        <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1A8FBF"/>
+      </marker>
+    </defs>
+    <g stroke="#1A8FBF" stroke-width="2" fill="none">
+      <path d="M360,74 L360,98"/>
+      <path d="M128,98 L592,98"/>
+      <path d="M128,98 L128,124" marker-end="url(#cm19Arrow)"/>
+      <path d="M360,98 L360,124" marker-end="url(#cm19Arrow)"/>
+      <path d="M592,98 L592,124" marker-end="url(#cm19Arrow)"/>
+    </g>
+
+    <rect x="166" y="10" width="388" height="64" rx="8" fill="#0B2E4F"/>
+    <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">KESTABILAN RESONANSI</text>
+    <text x="360" y="51" text-anchor="middle" fill="#BBD4E8" font-size="10.5">enam elektron tersebar merata ke seluruh cincin, bukan terpaku di tiga ikatan</text>
+    <text x="360" y="67" text-anchor="middle" fill="#7FA8C9" font-size="9.5">akibatnya keenam ikatan C–C sama panjang, dan cincin jadi sangat stabil</text>
+
+    <rect x="18" y="124" width="220" height="120" rx="9" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+    <text x="128" y="145" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">SUBSTITUSI, BUKAN ADISI</text>
+    <text x="36" y="167" font-size="10" fill="#3A4C5C">adisi merusak cincin resonansi</text>
+    <text x="36" y="185" font-size="10" fill="#3A4C5C">substitusi mempertahankannya</text>
+    <text x="36" y="203" font-size="10" fill="#3A4C5C">TIDAK memudarkan air bromin</text>
+    <text x="128" y="224" text-anchor="middle" fill="#186F45" font-size="10" font-weight="700" font-family="monospace">DBE tetap 4</text>
+    <text x="128" y="238" text-anchor="middle" fill="#69798A" font-size="9">inilah pembedanya dari alkena</text>
+
+    <rect x="250" y="124" width="220" height="120" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.8"/>
+    <text x="360" y="145" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">EMPAT REAKSI SUBSTITUSI</text>
+    <text x="268" y="167" font-size="10" fill="#3A4C5C"><tspan font-weight="700">Halogenasi</tspan> &#8594; C₆H₅Cl</text>
+    <text x="268" y="185" font-size="10" fill="#3A4C5C"><tspan font-weight="700">Nitrasi</tspan> &#8594; C₆H₅NO₂</text>
+    <text x="268" y="203" font-size="10" fill="#3A4C5C"><tspan font-weight="700">Sulfonasi</tspan> &#8594; C₆H₅SO₃H</text>
+    <text x="268" y="221" font-size="10" fill="#3A4C5C"><tspan font-weight="700">Alkilasi</tspan> &#8594; C₆H₅R</text>
+    <text x="360" y="238" text-anchor="middle" fill="#C77400" font-size="9">semuanya mengganti satu atom H</text>
+
+    <rect x="482" y="124" width="220" height="120" rx="9" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+    <text x="592" y="145" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">ISOMER POSISI</text>
+    <text x="500" y="167" font-size="10" fill="#3A4C5C"><tspan font-weight="700">ORTO</tspan> &#8212; posisi 1,2 (bersebelahan)</text>
+    <text x="500" y="185" font-size="10" fill="#3A4C5C"><tspan font-weight="700">META</tspan> &#8212; posisi 1,3 (berselang satu)</text>
+    <text x="500" y="203" font-size="10" fill="#3A4C5C"><tspan font-weight="700">PARA</tspan> &#8212; posisi 1,4 (berseberangan)</text>
+    <text x="592" y="224" text-anchor="middle" fill="#186F45" font-size="10" font-weight="700">dua gugus &#8594; TEPAT 3 isomer</text>
+    <text x="592" y="238" text-anchor="middle" fill="#69798A" font-size="9">tiga gugus juga tepat 3</text>
+
+    <rect x="18" y="258" width="684" height="70" rx="9" fill="#fff" stroke="#DCE4EB" stroke-width="1.6"/>
+    <text x="360" y="278" text-anchor="middle" fill="#0B2E4F" font-size="12" font-weight="700">NAMA LAZIM YANG WAJIB DIHAFAL</text>
+    <text x="360" y="299" text-anchor="middle" fill="#3A4C5C" font-size="10.5">C₆H₅–CH₃ <tspan font-weight="700">toluena</tspan> &#160;·&#160; C₆H₅–OH <tspan font-weight="700">fenol</tspan> &#160;·&#160; C₆H₅–NH₂ <tspan font-weight="700">anilina</tspan></text>
+    <text x="360" y="318" text-anchor="middle" fill="#3A4C5C" font-size="10.5">C₆H₅–COOH <tspan font-weight="700">asam benzoat</tspan> &#160;·&#160; C₆H₅–CHO <tspan font-weight="700">benzaldehida</tspan> &#160;·&#160; C₆H₄(OH)₂ <tspan font-weight="700">hidrokuinon</tspan></text>
+
+    <rect x="18" y="338" width="684" height="44" rx="6" fill="#FCEDEB" stroke="#B23A2C"/>
+    <text x="360" y="356" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B23A2C">GUGUS YANG SUDAH ADA MENENTUKAN LETAK SUBSTITUSI BERIKUTNYA</text>
+    <text x="360" y="374" text-anchor="middle" font-size="10.5" fill="#3A4C5C">gugus <tspan font-weight="700">pengarah orto-para</tspan>: –OH, –NH₂, –CH₃, halogen &#160;·&#160; gugus <tspan font-weight="700">pengarah meta</tspan>: –NO₂, –COOH, –SO₃H</text>
+
+    <rect x="18" y="390" width="684" height="36" rx="6" fill="#E9F5FB" stroke="#3FB0DC"/>
+    <text x="360" y="413" text-anchor="middle" font-size="11" font-weight="700" fill="#0B2E4F">Setiap turunan benzena berinti tunggal SELALU ber-DBE 4 — pemeriksa tercepat di bab ini</text>
+  </svg>
+  <figcaption><b>Gambar 19.1.</b> Peta Konsep Bab 19. Seluruh isi ketiga kotak tengah mengalir dari kotak biru tua di puncak — kestabilan resonansi. Angka "tepat 3 isomer" pada kotak hijau <b>dihitung</b> dengan mencacah seluruh susunan pada enam posisi cincin dan membuang yang sama karena simetrinya, bukan dikutip. Dua baris terbawah memuat bagian yang benar-benar menuntut hafalan.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara membaca peta ini</div>
+    <p>Setiap kali Anda ragu pada soal bab ini, kembalilah ke kotak puncak dan tanyakan: <b>apakah jawaban ini mempertahankan cincin resonansinya?</b> Benzena hampir selalu memilih jalan yang mempertahankan kestabilannya.</p>
+    <p>Itulah sebabnya ia bersubstitusi bukan beradisi, itulah sebabnya ia tidak memudarkan air bromin, dan itulah sebabnya ia jauh lebih sukar bereaksi daripada alkena meski sama-sama punya ikatan rangkap.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.4 STRUKTUR BENZENA ==================== -->
+<section class="page" id="struktur">
+  <h2>19.4&nbsp; Struktur Benzena <span class="star">★★★</span></h2>
+  <p class="lead">Benzena berumus C<sub>6</sub>H<sub>6</sub> — sangat sedikit hidrogennya. Secara hitungan ia sangat tak jenuh, tetapi perilakunya sama sekali tidak seperti alkena.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Struktur benzena dan resonansinya">
+<rect x="1" y="1" width="718" height="382" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">STRUKTUR BENZENA — MENGAPA KEENAM IKATANNYA SAMA</text>
+<rect x="12" y="36" width="696" height="236" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<path d="M136.0,102.0 L184.5,130.0 L184.5,186.0 L136.0,214.0 L87.5,186.0 L87.5,130.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.4"/>
+<path d="M138.3,116.0 L171.2,135.0" stroke="#B23A2C" stroke-width="2.2"/>
+<path d="M171.2,181.0 L138.3,200.0" stroke="#B23A2C" stroke-width="2.2"/>
+<path d="M98.5,177.0 L98.5,139.0" stroke="#B23A2C" stroke-width="2.2"/>
+<text x="136" y="244" text-anchor="middle" font-size="10.5" font-weight="700" fill="#B23A2C">bentuk Kekulé I</text>
+<path d="M360.0,102.0 L408.5,130.0 L408.5,186.0 L360.0,214.0 L311.5,186.0 L311.5,130.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.4"/>
+<path d="M397.5,139.0 L397.5,177.0" stroke="#B23A2C" stroke-width="2.2"/>
+<path d="M357.7,200.0 L324.8,181.0" stroke="#B23A2C" stroke-width="2.2"/>
+<path d="M324.8,135.0 L357.7,116.0" stroke="#B23A2C" stroke-width="2.2"/>
+<text x="360" y="244" text-anchor="middle" font-size="10.5" font-weight="700" fill="#B23A2C">bentuk Kekulé II</text>
+<path d="M584.0,102.0 L632.5,130.0 L632.5,186.0 L584.0,214.0 L535.5,186.0 L535.5,130.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.4"/>
+<circle cx="584" cy="158" r="31.4" fill="none" stroke="#186F45" stroke-width="2.6"/>
+<text x="584" y="244" text-anchor="middle" font-size="10.5" font-weight="700" fill="#186F45">hibrida resonansi</text>
+<text x="248" y="164" text-anchor="middle" font-size="20" fill="#B23A2C">&#8596;</text>
+<text x="248" y="184" text-anchor="middle" font-size="8.5" fill="#69798A">resonansi</text>
+<path d="M456,158 L500,158" stroke="#186F45" stroke-width="2.2"/>
+<path d="M494,153 L504,158 L494,163 z" fill="#186F45"/>
+<text x="478" y="180" text-anchor="middle" font-size="8.5" fill="#69798A">sebenarnya</text>
+<text x="136" y="72" text-anchor="middle" font-size="9.5" fill="#69798A">tiga rangkap di sisi ganjil</text>
+<text x="360" y="72" text-anchor="middle" font-size="9.5" fill="#69798A">tiga rangkap di sisi genap</text>
+<text x="584" y="72" text-anchor="middle" font-size="9.5" fill="#186F45" font-weight="700">elektron tersebar merata</text>
+<rect x="12" y="282" width="696" height="94" rx="8" fill="#E8F5EE" stroke="#186F45"/>
+<text x="360" y="301" text-anchor="middle" font-size="11.5" font-weight="700" fill="#186F45">Benzena BUKAN bergantian antara dua bentuk — ia selalu berada di bentuk ketiga</text>
+<text x="360" y="320" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Kedua bentuk Kekulé hanyalah cara menggambar di atas kertas; kenyataannya keenam elektron <tspan font-weight="700">tersebar merata</tspan></text>
+<text x="360" y="338" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Akibatnya <tspan font-weight="700">keenam ikatan C–C sama panjang</tspan> — di antara panjang ikatan tunggal dan rangkap</text>
+<text x="360" y="356" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Cincinnya segi enam beraturan dengan sudut <tspan font-weight="700">120°</tspan>, cocok dengan hibridisasi <tspan font-weight="700">sp²</tspan> setiap atom karbonnya</text>
+<text x="360" y="371" text-anchor="middle" font-size="9" fill="#69798A">koordinat keenam sudut dihitung, dan kesamaan panjang sisinya diperiksa</text>
+</svg>  <figcaption><b>Gambar 19.2.</b> Struktur benzena. Kedua bentuk Kekulé di sebelah kiri adalah cara menggambar di atas kertas; kenyataannya benzena selalu berada dalam bentuk ketiga, yaitu <b>hibrida resonansi</b>. Koordinat keenam sudut dihitung dan kesamaan panjang sisinya diperiksa — cincinnya memang segi enam beraturan bersudut 120°, cocok dengan hibridisasi sp² setiap atom karbonnya.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Apa arti resonansi</div>
+    <p>Friedrich August Kekulé mengusulkan cincin enam karbon dengan tiga ikatan rangkap berselang-seling. Usulan itu <b>hampir</b> benar, tetapi menyisakan satu masalah besar.</p>
+    <p><b>Masalahnya:</b> bila benar ada tiga ikatan tunggal dan tiga ikatan rangkap, seharusnya panjangnya berbeda — ikatan rangkap lebih pendek. Pengukuran menunjukkan <b>keenamnya sama panjang</b>, tepat di antara panjang ikatan tunggal dan rangkap.</p>
+    <p><b>Jawabannya resonansi.</b> Keenam elektron yang seharusnya terpaku pada tiga ikatan rangkap justru <b>tersebar merata</b> ke seluruh cincin. Benzena tidak bergantian antara dua bentuk Kekulé — ia selalu berada dalam satu bentuk tunggal yang merupakan gabungan keduanya.</p>
+    <p><b>Karena itu benzena digambar dengan lingkaran</b> di dalam segi enamnya. Lingkaran itu melambangkan elektron yang tersebar, bukan ikatan tertentu.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Derajat ketidakjenuhan benzena</div>
+    <p>DBE benzena = (2×6 + 2 − 6) ÷ 2 = <b>4</b>, yang berasal dari <b>1 cincin + 3 ikatan rangkap</b>.</p>
+    <p>Bandingkan dengan sikloheksana C<sub>6</sub>H<sub>12</sub> yang ber-DBE <b>1</b> — hanya cincinnya saja.</p>
+    <p><b>Pemeriksa cepat yang sangat berguna:</b> setiap turunan benzena berinti tunggal <b>selalu ber-DBE 4</b>, berapa pun gugus yang menempel padanya. Toluena C<sub>7</sub>H<sub>8</sub> ber-DBE 4; fenol C<sub>6</sub>H<sub>6</sub>O juga 4. Bila hitungan Anda memberi angka lain, ada yang keliru pada rumusnya.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.5 SIFAT BENZENA ==================== -->
+<section class="page" id="sifat">
+  <h2>19.5&nbsp; Sifat Benzena <span class="star">★★★</span></h2>
+  <p class="lead">Inilah bagian yang paling sering dijebak: benzena punya ikatan rangkap, tetapi <b>tidak berperilaku seperti alkena</b>.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pembeda</th><th>Alkena</th><th>Benzena</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Reaksi khasnya</td><td><b>Adisi</b></td><td><b>Substitusi</b></td></tr>
+      <tr><td>Dengan air bromin</td><td><b>Memudarkan</b> warnanya</td><td><b>Tidak</b> memudarkan</td></tr>
+      <tr class="hi"><td>Dengan KMnO<sub>4</sub></td><td>Bereaksi, warna hilang</td><td><b>Tidak</b> bereaksi</td></tr>
+      <tr><td>Kestabilan</td><td>Relatif reaktif</td><td><b>Sangat stabil</b></td></tr>
+      <tr class="hi"><td>Panjang ikatan C–C</td><td>Berbeda-beda</td><td><b>Seluruhnya sama</b></td></tr>
+      <tr><td>Kelarutan dalam air</td><td>Sukar larut</td><td><b>Sukar larut</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Mengapa benzena bersubstitusi, bukan beradisi</div>
+    <p>Bandingkan kedua kemungkinan lewat derajat ketidakjenuhannya:</p>
+    <p class="eq">Bila <b>beradisi</b>: C₆H₆ + 3H₂ → C₆H₁₂ &nbsp;· DBE turun dari <b>4</b> menjadi <b>1</b><br>
+    Bila <b>bersubstitusi</b>: C₆H₆ + Br₂ → C₆H₅Br + HBr &nbsp;· DBE tetap <b>4</b></p>
+    <p style="margin-top:12px"><b>Adisi merusak cincin resonansinya</b> — dan bersamanya hilang pula kestabilan yang membuat benzena begitu tahan. Reaksi itu merugikan secara energi, sehingga benzena menolaknya pada keadaan biasa.</p>
+    <p><b>Substitusi mempertahankan cincin utuh</b> — hanya satu atom H yang diganti, dan resonansinya tetap ada. Inilah jalur yang ditempuh benzena.</p>
+    <p>Kedua perhitungan DBE di atas diperiksa secara terprogram, dan hasilnya konsisten: <b>substitusi mempertahankan DBE 4, adisi merusaknya</b>.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira benzena memudarkan air bromin</div>
+    <p>Ini jebakan paling sering di bab ini. Air bromin dipakai untuk <b>menguji ikatan rangkap</b> pada alkena — dan benzena memang punya ikatan rangkap pada gambarnya.</p>
+    <p>Tetapi benzena <b>tidak memudarkan</b> air bromin, karena elektronnya sudah tersebar dan tidak tersedia untuk adisi. Justru inilah cara paling sederhana <b>membedakan benzena dari alkena</b> di laboratorium.</p>
+    <p><b>Benzena baru bereaksi dengan bromin</b> bila ada katalis FeBr<sub>3</sub> — dan reaksinya <b>substitusi</b>, bukan adisi, sehingga menghasilkan HBr sebagai hasil sampingnya.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.6 TATA NAMA ==================== -->
+<section class="page" id="tatanama">
+  <h2>19.6&nbsp; Tata Nama Turunan Benzena <span class="star">★★★</span></h2>
+  <p class="lead">Banyak turunan benzena lebih dikenal lewat <b>nama lazimnya</b> daripada nama IUPAC-nya — dan nama lazim itulah yang dipakai di soal.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Rumus</th><th>Gugus</th><th>Nama lazim</th><th>Nama IUPAC</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>C<sub>6</sub>H<sub>5</sub>–CH<sub>3</sub></td><td>–CH<sub>3</sub></td><td><b>Toluena</b></td><td>metilbenzena</td></tr>
+      <tr><td>C<sub>6</sub>H<sub>5</sub>–OH</td><td>–OH</td><td><b>Fenol</b></td><td>hidroksibenzena</td></tr>
+      <tr class="hi"><td>C<sub>6</sub>H<sub>5</sub>–NH<sub>2</sub></td><td>–NH<sub>2</sub></td><td><b>Anilina</b></td><td>aminobenzena</td></tr>
+      <tr><td>C<sub>6</sub>H<sub>5</sub>–COOH</td><td>–COOH</td><td><b>Asam benzoat</b></td><td>asam benzenakarboksilat</td></tr>
+      <tr class="hi"><td>C<sub>6</sub>H<sub>5</sub>–CHO</td><td>–CHO</td><td><b>Benzaldehida</b></td><td>benzenakarbaldehida</td></tr>
+      <tr><td>C<sub>6</sub>H<sub>5</sub>–NO<sub>2</sub></td><td>–NO<sub>2</sub></td><td><b>Nitrobenzena</b></td><td>nitrobenzena</td></tr>
+      <tr class="hi"><td>C<sub>6</sub>H<sub>5</sub>–SO<sub>3</sub>H</td><td>–SO<sub>3</sub>H</td><td><b>Asam benzenasulfonat</b></td><td>asam benzenasulfonat</td></tr>
+      <tr><td>C<sub>6</sub>H<sub>5</sub>–</td><td>—</td><td><b>Gugus fenil</b></td><td>fenil</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Empat nama lazim yang paling sering keluar:</b> toluena, fenol, anilina, dan asam benzoat. Keempatnya tidak dapat ditebak dari rumusnya — harus dihafal.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Membedakan fenol dari alkohol</div>
+    <p>Keduanya bergugus –OH, tetapi <b>fenol bukan alkohol</b>. Yang membedakan adalah tempat gugus itu menempel: pada fenol, –OH terikat <b>langsung pada cincin benzena</b>; pada alkohol, ia terikat pada karbon rantai terbuka.</p>
+    <p><b>Akibatnya:</b> fenol bersifat <b>asam lemah</b> dan dapat memerahkan lakmus, sedangkan alkohol bersifat netral. Cincin benzena menarik elektron sehingga atom H pada –OH menjadi lebih mudah lepas.</p>
+    <p>Perbedaan lainnya: <b>fenol tidak dapat dioksidasi</b> menjadi aldehid atau keton seperti alkohol, dan <b>fenol bereaksi dengan NaOH</b> sedangkan alkohol tidak.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — menyamakan benzil dengan fenil</div>
+    <p><b>Fenil</b> adalah C<sub>6</sub>H<sub>5</sub>– , yaitu cincin benzena yang kehilangan satu atom H. <b>Benzil</b> adalah C<sub>6</sub>H<sub>5</sub>–CH<sub>2</sub>– , yaitu fenil ditambah satu gugus CH<sub>2</sub>.</p>
+    <p>Keduanya berbeda satu atom karbon, dan soal sering memanfaatkan kemiripan namanya. <b>Fenil menempel langsung pada cincin; benzil punya satu karbon perantara.</b></p>
+  </div>
+</section>
+
+<!-- ==================== 19.7 ISOMER ORTO META PARA ==================== -->
+<section class="page" id="isomer">
+  <h2>19.7&nbsp; Isomer Orto, Meta, dan Para <span class="star">★★★</span></h2>
+  <p class="lead">Bila dua gugus menempel pada cincin benzena, hanya ada <b>tiga</b> susunan yang mungkin — dan angka tiga itu dapat dibuktikan, bukan dihafal.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tiga isomer posisi turunan benzena: orto, meta, para">
+<rect x="1" y="1" width="718" height="378" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">TIGA ISOMER POSISI — HASIL ENUMERASI, BUKAN HAFALAN</text>
+<rect x="12" y="36" width="696" height="234" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<path d="M136.0,100.0 L181.0,126.0 L181.0,178.0 L136.0,204.0 L91.0,178.0 L91.0,126.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.2"/>
+<circle cx="136" cy="152" r="28.1" fill="none" stroke="#B7C3CE" stroke-width="2"/>
+<circle cx="136.0" cy="100.0" r="7" fill="#B23A2C"/>
+<text x="136.0" y="85.0" text-anchor="middle" font-size="11" font-weight="700" fill="#B23A2C">X</text>
+<text x="136.0" y="116.4" text-anchor="middle" font-size="8" fill="#69798A">1</text>
+<circle cx="181.0" cy="126.0" r="7" fill="#B23A2C"/>
+<text x="197.5" y="120.5" text-anchor="middle" font-size="11" font-weight="700" fill="#B23A2C">X</text>
+<text x="169.8" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">2</text>
+<circle cx="181.0" cy="178.0" r="3.4" fill="#DCE4EB"/>
+<text x="169.8" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">3</text>
+<circle cx="136.0" cy="204.0" r="3.4" fill="#DCE4EB"/>
+<text x="136.0" y="194.4" text-anchor="middle" font-size="8" fill="#69798A">4</text>
+<circle cx="91.0" cy="178.0" r="3.4" fill="#DCE4EB"/>
+<text x="102.2" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">5</text>
+<circle cx="91.0" cy="126.0" r="3.4" fill="#DCE4EB"/>
+<text x="102.2" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">6</text>
+<text x="136" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="#B23A2C">ORTO</text>
+<text x="136" y="260" text-anchor="middle" font-size="10" fill="#3A4C5C">posisi 1,2 &#8212; bersebelahan</text>
+<path d="M360.0,100.0 L405.0,126.0 L405.0,178.0 L360.0,204.0 L315.0,178.0 L315.0,126.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.2"/>
+<circle cx="360" cy="152" r="28.1" fill="none" stroke="#B7C3CE" stroke-width="2"/>
+<circle cx="360.0" cy="100.0" r="7" fill="#E89A1C"/>
+<text x="360.0" y="85.0" text-anchor="middle" font-size="11" font-weight="700" fill="#E89A1C">X</text>
+<text x="360.0" y="116.4" text-anchor="middle" font-size="8" fill="#69798A">1</text>
+<circle cx="405.0" cy="126.0" r="3.4" fill="#DCE4EB"/>
+<text x="393.8" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">2</text>
+<circle cx="405.0" cy="178.0" r="7" fill="#E89A1C"/>
+<text x="421.5" y="191.5" text-anchor="middle" font-size="11" font-weight="700" fill="#E89A1C">X</text>
+<text x="393.8" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">3</text>
+<circle cx="360.0" cy="204.0" r="3.4" fill="#DCE4EB"/>
+<text x="360.0" y="194.4" text-anchor="middle" font-size="8" fill="#69798A">4</text>
+<circle cx="315.0" cy="178.0" r="3.4" fill="#DCE4EB"/>
+<text x="326.2" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">5</text>
+<circle cx="315.0" cy="126.0" r="3.4" fill="#DCE4EB"/>
+<text x="326.2" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">6</text>
+<text x="360" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="#E89A1C">META</text>
+<text x="360" y="260" text-anchor="middle" font-size="10" fill="#3A4C5C">posisi 1,3 &#8212; berselang satu</text>
+<path d="M584.0,100.0 L629.0,126.0 L629.0,178.0 L584.0,204.0 L539.0,178.0 L539.0,126.0 Z" fill="none" stroke="#0B2E4F" stroke-width="2.2"/>
+<circle cx="584" cy="152" r="28.1" fill="none" stroke="#B7C3CE" stroke-width="2"/>
+<circle cx="584.0" cy="100.0" r="7" fill="#186F45"/>
+<text x="584.0" y="85.0" text-anchor="middle" font-size="11" font-weight="700" fill="#186F45">X</text>
+<text x="584.0" y="116.4" text-anchor="middle" font-size="8" fill="#69798A">1</text>
+<circle cx="629.0" cy="126.0" r="3.4" fill="#DCE4EB"/>
+<text x="617.8" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">2</text>
+<circle cx="629.0" cy="178.0" r="3.4" fill="#DCE4EB"/>
+<text x="617.8" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">3</text>
+<circle cx="584.0" cy="204.0" r="7" fill="#186F45"/>
+<text x="584.0" y="227.0" text-anchor="middle" font-size="11" font-weight="700" fill="#186F45">X</text>
+<text x="584.0" y="194.4" text-anchor="middle" font-size="8" fill="#69798A">4</text>
+<circle cx="539.0" cy="178.0" r="3.4" fill="#DCE4EB"/>
+<text x="550.2" y="174.9" text-anchor="middle" font-size="8" fill="#69798A">5</text>
+<circle cx="539.0" cy="126.0" r="3.4" fill="#DCE4EB"/>
+<text x="550.2" y="135.9" text-anchor="middle" font-size="8" fill="#69798A">6</text>
+<text x="584" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="#186F45">PARA</text>
+<text x="584" y="260" text-anchor="middle" font-size="10" fill="#3A4C5C">posisi 1,4 &#8212; berseberangan</text>
+<rect x="12" y="280" width="696" height="90" rx="8" fill="#E9F5FB" stroke="#3FB0DC"/>
+<text x="360" y="299" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">Mengapa tepat tiga, tidak lebih dan tidak kurang</text>
+<text x="360" y="318" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Seluruh <tspan font-weight="700">15 cara</tspan> menaruh dua gugus pada enam posisi dicacah, lalu yang sama karena putaran dan pencerminan dibuang</text>
+<text x="360" y="336" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Yang tersisa hanya <tspan font-weight="700">tiga</tspan> — karena yang menentukan hanyalah <tspan font-weight="700">jarak</tspan> antarkedua gugus, dan jaraknya cuma bisa 1, 2, atau 3</text>
+<text x="360" y="356" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Hasil yang sama berlaku untuk <tspan font-weight="700">dua gugus berbeda</tspan> (X dan Y) — juga tepat tiga isomer</text>
+<text x="360" y="368" text-anchor="middle" font-size="9" fill="#69798A">lingkaran abu di dalam cincin melambangkan elektron resonansi</text>
+</svg>  <figcaption><b>Gambar 19.3.</b> Tiga isomer posisi. Ketiganya <b>dihasilkan dari enumerasi</b>: seluruh 15 cara menaruh dua gugus pada enam posisi dicacah, lalu susunan yang sebenarnya sama karena putaran atau pencerminan cincin dibuang. Yang tersisa tepat tiga — karena yang menentukan hanyalah <b>jarak</b> antarkedua gugus, dan jarak itu hanya bisa bernilai 1, 2, atau 3.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Tiga awalan posisi</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Awalan</th><th>Posisi</th><th>Letak</th><th>Singkatan</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Orto</b></td><td>1,2</td><td>Bersebelahan</td><td><b>o-</b></td></tr>
+        <tr><td><b>Meta</b></td><td>1,3</td><td>Berselang satu posisi</td><td><b>m-</b></td></tr>
+        <tr class="hi"><td><b>Para</b></td><td>1,4</td><td>Berseberangan</td><td><b>p-</b></td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Contoh:</b> C<sub>6</sub>H<sub>4</sub>(CH<sub>3</sub>)<sub>2</sub> memberi <b>o-xilena</b>, <b>m-xilena</b>, dan <b>p-xilena</b> — tepat tiga, tidak lebih.</p>
+    <p><b>Mengapa tidak ada posisi 1,5 dan 1,6:</b> posisi 1,5 sebenarnya sama dengan 1,3 bila cincinnya diputar, dan 1,6 sama dengan 1,2. Cincin benzena dapat diputar dan dicerminkan tanpa mengubah senyawanya — itulah yang membuat pilihannya menyusut dari 15 menjadi 3.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Jumlah isomer untuk berbagai jumlah gugus</div>
+    <div class="tw"><table class="mini">
+      <tr><th>1 gugus (C₆H₅X)</th><td><b>1</b> isomer — semua posisi setara</td></tr>
+      <tr><th>2 gugus (C₆H₄X₂)</th><td><b>3</b> isomer — orto, meta, para</td></tr>
+      <tr><th>3 gugus (C₆H₃X₃)</th><td><b>3</b> isomer — 1,2,3 · 1,2,4 · 1,3,5</td></tr>
+      <tr><th>4 gugus (C₆H₂X₄)</th><td><b>3</b> isomer</td></tr>
+      <tr><th>5 gugus (C₆HX₅)</th><td><b>1</b> isomer</td></tr>
+      <tr><th>6 gugus (C₆X₆)</th><td><b>1</b> isomer</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Perhatikan polanya: 1-3-3-3-1-1 setangkup.</b> Ini bukan kebetulan — menaruh <b>k</b> gugus X sama saja dengan menaruh <b>(6−k)</b> atom H yang tersisa, sehingga jumlah isomernya pasti sama untuk k dan 6−k.</p>
+    <p>Seluruh angka di atas <b>dihitung dengan enumerasi</b>, dan pola setangkupnya menjadi pemeriksa yang bagus: bila hitungan Anda untuk 4 gugus tidak sama dengan hitungan untuk 2 gugus, ada yang terlewat.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira dua gugus berbeda memberi lebih banyak isomer</div>
+    <p>Bila kedua gugusnya <b>berbeda</b> — misalnya satu –CH<sub>3</sub> dan satu –NO<sub>2</sub> — jumlah isomernya tetap <b>tiga</b>, bukan enam.</p>
+    <p><b>Sebabnya:</b> yang menentukan hanyalah <b>jarak</b> antarkedua gugus di cincin. Menukar mana yang di posisi 1 dan mana yang di posisi 2 menghasilkan senyawa yang sama, karena cincinnya dapat diputar.</p>
+    <p>Hal ini diperiksa secara terprogram dengan mencacah seluruh pasangan posisi untuk dua gugus berbeda, dan hasilnya memang <b>tepat tiga</b> — sama persis dengan kasus dua gugus sejenis.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.8 REAKSI SUBSTITUSI ==================== -->
+<section class="page" id="reaksi">
+  <h2>19.8&nbsp; Reaksi Substitusi <span class="star">★★★</span></h2>
+  <p class="lead">Keempat reaksi ini punya pola yang sama: <b>satu atom H diganti</b>, cincin tetap utuh, dan hasil sampingnya adalah zat kecil yang terlepas.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Reaksi</th><th>Pereaksi</th><th>Katalis</th><th>Hasil</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Halogenasi</b></td><td>Cl<sub>2</sub> atau Br<sub>2</sub></td><td>FeCl<sub>3</sub> atau FeBr<sub>3</sub></td><td>Klorobenzena / bromobenzena</td></tr>
+      <tr><td><b>Nitrasi</b></td><td>HNO<sub>3</sub> pekat</td><td>H<sub>2</sub>SO<sub>4</sub> pekat</td><td><b>Nitrobenzena</b></td></tr>
+      <tr class="hi"><td><b>Sulfonasi</b></td><td>H<sub>2</sub>SO<sub>4</sub> berasap</td><td>—</td><td>Asam benzenasulfonat</td></tr>
+      <tr><td><b>Alkilasi</b></td><td>R–Cl</td><td>AlCl<sub>3</sub></td><td>Alkilbenzena (misalnya toluena)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Keempat persamaan reaksinya</div>
+    <p class="eq">
+    C₆H₆ + Cl₂ &#8594; C₆H₅Cl + HCl &nbsp;(katalis FeCl₃)<br>
+    C₆H₆ + HNO₃ &#8594; C₆H₅NO₂ + H₂O &nbsp;(katalis H₂SO₄)<br>
+    C₆H₆ + H₂SO₄ &#8594; C₆H₅SO₃H + H₂O<br>
+    C₆H₆ + CH₃Cl &#8594; C₆H₅CH₃ + HCl &nbsp;(katalis AlCl₃)
+    </p>
+    <p style="margin-top:12px"><b>Perhatikan polanya.</b> Pada setiap reaksi, ruas kanan memuat <b>satu zat kecil</b> — HCl atau H<sub>2</sub>O — yang berisi atom H yang tergusur dari cincin. Inilah tanda bahwa reaksinya substitusi: ada sesuatu yang <b>keluar</b>.</p>
+    <p><b>Bandingkan dengan adisi</b> pada alkena, yang hanya punya <b>satu</b> zat di ruas kanan karena tidak ada yang terlepas. Perbedaan ini menjadi cara tercepat mengenali jenis reaksinya dari persamaannya saja.</p>
+  </div>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Gugus pengarah</div>
+    <p>Bila cincin sudah membawa satu gugus, gugus itu <b>menentukan ke mana</b> gugus berikutnya akan masuk.</p>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Jenis pengarah</th><th>Gugusnya</th><th>Mengarahkan ke</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Orto-para</b></td><td>–OH, –NH<sub>2</sub>, –CH<sub>3</sub>, –OR, halogen</td><td>Posisi <b>1,2</b> dan <b>1,4</b></td></tr>
+        <tr><td><b>Meta</b></td><td>–NO<sub>2</sub>, –COOH, –SO<sub>3</sub>H, –CHO, –CN</td><td>Posisi <b>1,3</b></td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Cara mengingatnya:</b> gugus pengarah <b>meta</b> hampir semuanya mengandung <b>ikatan rangkap ke atom yang sangat elektronegatif</b> — perhatikan N=O pada nitro, C=O pada karboksil dan aldehida, S=O pada sulfonat. Gugus pengarah orto-para tidak punya ciri itu.</p>
+    <p><b>Contoh penerapan:</b> nitrasi toluena menghasilkan campuran <b>o-nitrotoluena</b> dan <b>p-nitrotoluena</b>, karena –CH<sub>3</sub> adalah pengarah orto-para. Sebaliknya, nitrasi nitrobenzena menghasilkan <b>m-dinitrobenzena</b>, karena –NO<sub>2</sub> adalah pengarah meta.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.9 KEGUNAAN DAN DAMPAK ==================== -->
+<section class="page" id="kegunaan">
+  <h2>19.9&nbsp; Kegunaan dan Dampak</h2>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Senyawa</th><th>Kegunaan</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Benzena</b></td><td>Pelarut, bahan baku industri</td><td><b>Bersifat karsinogenik</b></td></tr>
+      <tr><td><b>Toluena</b></td><td>Pelarut cat, bahan baku TNT</td><td>Lebih aman daripada benzena</td></tr>
+      <tr class="hi"><td><b>Fenol</b></td><td>Desinfektan, bahan baku plastik</td><td>Merusak kulit bila pekat</td></tr>
+      <tr><td><b>Anilina</b></td><td>Bahan baku zat warna</td><td>Beracun</td></tr>
+      <tr class="hi"><td><b>Asam benzoat</b></td><td>Bahan baku pengawet</td><td>Bentuk garamnya lebih larut</td></tr>
+      <tr><td><b>Natrium benzoat</b></td><td><b>Pengawet makanan</b> dan minuman</td><td>Menghambat pertumbuhan jamur</td></tr>
+      <tr class="hi"><td><b>Asam salisilat</b></td><td>Obat kulit, bahan baku aspirin</td><td>Turunan fenol berbagi cincin</td></tr>
+      <tr><td><b>Asam asetilsalisilat</b></td><td><b>Aspirin</b> — pereda nyeri</td><td>Termasuk ester</td></tr>
+      <tr class="hi"><td><b>Parasetamol</b></td><td>Pereda nyeri dan penurun demam</td><td>Turunan fenol</td></tr>
+      <tr><td><b>TNT</b></td><td>Bahan peledak</td><td>Trinitrotoluena</td></tr>
+      <tr class="hi"><td><b>Naftalena</b></td><td>Bola kamper pengusir ngengat</td><td>Dua cincin benzena bergabung</td></tr>
+      <tr><td><b>Stirena</b></td><td>Bahan baku polistirena</td><td>Lihat Bab 20</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa natrium benzoat dipakai, bukan asam benzoatnya</div>
+    <p>Keduanya sama-sama dapat mengawetkan, tetapi <b>natrium benzoat jauh lebih mudah larut</b> dalam air. Karena makanan dan minuman berbasis air, bentuk garamnya yang dipakai agar tersebar merata.</p>
+    <p>Menariknya, <b>di dalam makanan yang asam</b> natrium benzoat berubah kembali menjadi asam benzoat — dan bentuk asam itulah yang sebenarnya membunuh jamur. Itulah sebabnya pengawet ini paling ampuh pada minuman yang asam seperti sari buah dan minuman bersoda.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Dampak benzena bagi kesehatan</div>
+    <p><b>Benzena bersifat karsinogenik</b> — paparan jangka panjang dikaitkan dengan leukemia. Karena itu penggunaannya sebagai pelarut di laboratorium sekolah sudah banyak digantikan toluena, yang jauh lebih aman meski tidak sepenuhnya tanpa risiko.</p>
+    <p>Benzena juga terdapat pada <b>asap rokok</b> dan asap kendaraan, dan inilah salah satu penyebab kaitan antara merokok dan kanker darah.</p>
+    <p><b>Yang perlu dipahami:</b> berbahaya tidaknya senyawa aromatik <b>tidak ditentukan oleh cincinnya</b>. Parasetamol dan aspirin sama-sama berinti benzena dan justru menyembuhkan, sedangkan benzena murni berbahaya. <b>Gugus yang menempel padanyalah</b> yang menentukan.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1-7 ==================== -->
+<section class="page">
+  <h2>Worked Example — Struktur, Sifat, dan Tata Nama</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Derajat ketidakjenuhan benzena</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Hitung DBE untuk (a) benzena C<sub>6</sub>H<sub>6</sub>; (b) sikloheksana C<sub>6</sub>H<sub>12</sub>; (c) toluena C<sub>7</sub>H<sub>8</sub>. Apa artinya?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>DBE ketiganya dan artinya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>DBE = (2C + 2 − H) ÷ 2.</div></div>
+      <div class="step"><b>(a) Benzena</b>(12 + 2 − 6) ÷ 2 = <span class="eq">4</span> → 1 cincin + 3 ikatan rangkap</div>
+      <div class="step"><b>(b) Sikloheksana</b>(12 + 2 − 12) ÷ 2 = <span class="eq">1</span> → hanya cincinnya saja</div>
+      <div class="step"><b>(c) Toluena</b>(14 + 2 − 8) ÷ 2 = <span class="eq">4</span> → sama dengan benzena</div>
+      <div class="ansbar">Jawaban: (a) 4; (b) 1; (c) 4</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (c) memperlihatkan pemeriksa yang sangat berguna: <b>setiap turunan benzena berinti tunggal selalu ber-DBE 4</b>, berapa pun gugus yang menempel. Menambahkan gugus –CH<sub>3</sub> menambah satu karbon <b>dan</b> dua hidrogen sekaligus, sehingga DBE-nya tidak berubah. Bila hitungan Anda memberi angka lain untuk sebuah turunan benzena, hampir pasti rumusnya salah tulis.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Mengapa keenam ikatan sama panjang</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Struktur Kekulé menggambarkan tiga ikatan tunggal dan tiga ikatan rangkap. Mengapa pengukuran justru menunjukkan keenamnya sama panjang?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Penjelasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan dugaan dari struktur Kekulé dengan kenyataannya.</div></div>
+      <div class="step"><b>Langkah 1 — Dugaan Kekulé</b>Ikatan rangkap lebih pendek daripada tunggal → seharusnya <b>dua</b> panjang berbeda</div>
+      <div class="step"><b>Langkah 2 — Kenyataannya</b>Keenamnya <span class="eq">sama panjang</span>, tepat di antara panjang tunggal dan rangkap</div>
+      <div class="step"><b>Langkah 3 — Sebabnya</b>Elektron tidak terpaku pada tiga ikatan, melainkan <span class="eq">tersebar merata</span> ke seluruh cincin</div>
+      <div class="step"><b>Langkah 4 — Namanya</b>Keadaan ini disebut <span class="eq">resonansi</span>, dan digambar dengan lingkaran di dalam cincin</div>
+      <div class="ansbar">Jawaban: karena elektronnya mengalami resonansi — tersebar merata, bukan terpaku pada ikatan tertentu</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 penting untuk dikerjakan lebih dulu — memperlihatkan <b>apa yang seharusnya terjadi</b> membuat kejutan di langkah 2 terasa dan gagasan resonansi menjadi masuk akal. Perhatikan pula bahwa benzena <b>tidak bergantian</b> antara dua bentuk Kekulé; ia selalu berada dalam satu bentuk tunggal yang merupakan gabungan keduanya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Membedakan benzena dari alkena</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Dua cairan tak berlabel: satu benzena, satu sikloheksena. Bagaimana membedakannya dengan satu percobaan sederhana?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Cara membedakannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pakai uji yang hasilnya bertolak belakang untuk keduanya.</div></div>
+      <div class="step"><b>Langkah 1 — Pilih ujinya</b>Teteskan <span class="eq">air bromin</span> ke masing-masing</div>
+      <div class="step"><b>Langkah 2 — Sikloheksena</b>Beradisi → warna bromin <span class="eq">memudar</span></div>
+      <div class="step"><b>Langkah 3 — Benzena</b>Tidak beradisi → warna bromin <span class="eq">tetap</span></div>
+      <div class="step"><b>Langkah 4 — Sebabnya</b>Elektron benzena sudah tersebar dalam resonansi, tidak tersedia untuk adisi</div>
+      <div class="ansbar">Jawaban: teteskan air bromin — yang memudarkan warnanya adalah sikloheksena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Inilah percobaan pembeda paling sederhana dan paling sering ditanyakan. Perhatikan bahwa <b>benzena punya ikatan rangkap pada gambarnya</b> tetapi tetap tidak bereaksi — dan di situlah letak jebakannya. Larutan KMnO<sub>4</sub> memberi hasil yang serupa: alkena bereaksi, benzena tidak.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Nama lazim turunan benzena</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Sebutkan nama lazim untuk (a) C<sub>6</sub>H<sub>5</sub>–CH<sub>3</sub>; (b) C<sub>6</sub>H<sub>5</sub>–OH; (c) C<sub>6</sub>H<sub>5</sub>–NH<sub>2</sub>; (d) C<sub>6</sub>H<sub>5</sub>–COOH.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat nama lazim</div></div>
+      <div class="step"><b>(a)</b><span class="eq">Toluena</span> — nama IUPAC-nya metilbenzena</div>
+      <div class="step"><b>(b)</b><span class="eq">Fenol</span> — bukan "fenil alkohol"</div>
+      <div class="step"><b>(c)</b><span class="eq">Anilina</span> — nama IUPAC-nya aminobenzena</div>
+      <div class="step"><b>(d)</b><span class="eq">Asam benzoat</span></div>
+      <div class="ansbar">Jawaban: (a) toluena; (b) fenol; (c) anilina; (d) asam benzoat</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Keempat nama ini <b>tidak dapat diturunkan</b> dari rumusnya — harus dihafal, dan keempatnyalah yang paling sering muncul. Perhatikan bagian (b): <b>fenol bukan alkohol</b>, meski bergugus –OH. Karena gugus itu menempel langsung pada cincin, sifatnya berubah menjadi <b>asam lemah</b> dan ia dapat memerahkan lakmus — sesuatu yang tidak dilakukan alkohol.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Menamai isomer posisi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Sebuah senyawa berumus C<sub>6</sub>H<sub>4</sub>(CH<sub>3</sub>)<sub>2</sub> memiliki kedua gugus metil pada posisi 1 dan 4. Apa namanya, dan berapa isomer lain yang mungkin?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nama dan jumlah isomer</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tentukan awalan posisinya, lalu cacah kemungkinan lainnya.</div></div>
+      <div class="step"><b>Langkah 1 — Posisi 1,4</b>Kedua gugus <b>berseberangan</b> → awalan <span class="eq">para</span></div>
+      <div class="step"><b>Langkah 2 — Namanya</b><span class="eq">p-xilena</span> (atau 1,4-dimetilbenzena)</div>
+      <div class="step"><b>Langkah 3 — Isomer lainnya</b>Posisi 1,2 → <b>o-xilena</b>; posisi 1,3 → <b>m-xilena</b></div>
+      <div class="step"><b>Langkah 4 — Totalnya</b>Hanya <span class="eq">3 isomer</span>, tidak lebih</div>
+      <div class="ansbar">Jawaban: p-xilena; ada 2 isomer lain, yaitu o-xilena dan m-xilena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Mengapa tidak ada posisi 1,5 dan 1,6? Karena cincin benzena dapat <b>diputar dan dicerminkan</b> tanpa mengubah senyawanya — posisi 1,5 sama dengan 1,3 setelah diputar, dan 1,6 sama dengan 1,2. Seluruh 15 cara menaruh dua gugus pada enam posisi dicacah secara terprogram, dan setelah yang sama dibuang, tersisa <b>tepat tiga</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Reaksi nitrasi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan reaksi nitrasi benzena beserta katalisnya, dan jelaskan mengapa reaksinya tergolong substitusi.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Nitrasi mengganti satu atom H dengan gugus –NO<sub>2</sub>.</div></div>
+      <div class="step"><b>Langkah 1 — Persamaan</b><span class="eq">C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O</span> (katalis H₂SO₄ pekat)</div>
+      <div class="step"><b>Langkah 2 — Nama hasilnya</b><span class="eq">Nitrobenzena</span></div>
+      <div class="step"><b>Langkah 3 — Mengapa substitusi</b>Satu atom H <b>tergusur</b> dan keluar sebagai bagian dari H₂O</div>
+      <div class="step"><b>Langkah 4 — Periksa DBE</b>C₆H₆ ber-DBE 4; C₆H₅NO₂ juga <span class="eq">4</span> → cincin dan resonansinya <b>utuh</b></div>
+      <div class="ansbar">Jawaban: C<sub>6</sub>H<sub>6</sub> + HNO<sub>3</sub> → C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub> + H<sub>2</sub>O; substitusi karena satu atom H tergusur dan cincinnya tetap utuh</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memberi cara tercepat mengenali jenis reaksi dari persamaannya saja: <b>bila ada zat kecil di ruas kanan</b> — HCl, H<sub>2</sub>O — reaksinya substitusi, karena ada sesuatu yang keluar. Adisi hanya punya <b>satu</b> zat di ruas kanan. Langkah 4 memperkuatnya lewat DBE yang tidak berubah.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Fenol versus alkohol</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Fenol dan sikloheksanol sama-sama bergugus –OH. Sebutkan tiga perbedaan sifatnya beserta alasannya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Tiga perbedaan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Perhatikan tempat gugus –OH menempel.</div></div>
+      <div class="step"><b>Perbedaan 1 — Sifat asam</b>Fenol <b>asam lemah</b>, memerahkan lakmus; sikloheksanol <span class="eq">netral</span></div>
+      <div class="step"><b>Perbedaan 2 — Dengan NaOH</b>Fenol <b>bereaksi</b> membentuk garam; alkohol <span class="eq">tidak bereaksi</span></div>
+      <div class="step"><b>Perbedaan 3 — Oksidasi</b>Alkohol dapat dioksidasi menjadi keton; fenol <span class="eq">tidak</span></div>
+      <div class="step"><b>Sebab ketiganya</b>Pada fenol, –OH terikat <b>langsung pada cincin</b>; cincin menarik elektron sehingga atom H-nya lebih mudah lepas</div>
+      <div class="ansbar">Jawaban: fenol bersifat asam, bereaksi dengan NaOH, dan tidak dapat dioksidasi — semuanya karena –OH terikat langsung pada cincin benzena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Ketiga perbedaan itu <b>bersumber pada satu sebab yang sama</b>, dan memahami sebabnya membuat ketiganya tidak perlu dihafal terpisah. Inilah pula alasan mengapa <b>fenol tidak digolongkan sebagai alkohol</b> meski bergugus –OH — perilakunya terlalu berbeda. Perhatikan bahwa keduanya sama-sama bereaksi dengan logam Na, sehingga uji natrium <b>tidak</b> dapat membedakannya; yang membedakan adalah lakmus atau NaOH.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa DBE benzena, dan dari mana asalnya?</li>
+      <li>Apakah benzena memudarkan air bromin?</li>
+      <li>Apa nama lazim untuk C<sub>6</sub>H<sub>5</sub>–NH<sub>2</sub>?</li>
+      <li>Berapa isomer yang mungkin untuk C<sub>6</sub>H<sub>4</sub>(CH<sub>3</sub>)<sub>2</sub>?</li>
+      <li>Bagaimana mengenali reaksi substitusi dari persamaannya saja?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>4</b>, dari 1 cincin + 3 ikatan rangkap; (2) <b>tidak</b> — elektronnya tersebar dalam resonansi sehingga tidak tersedia untuk adisi; (3) <b>anilina</b>; (4) <b>3</b> — orto, meta, para; (5) ada <b>zat kecil</b> di ruas kanan (HCl atau H<sub>2</sub>O) yang membawa atom H yang tergusur.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 8-14 ==================== -->
+<section class="page">
+  <h2>Worked Example — Isomer, Gugus Pengarah, dan Reaksi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Isomer dua gugus berbeda</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa isomer yang mungkin untuk senyawa berinti benzena yang membawa satu gugus –CH<sub>3</sub> dan satu gugus –NO<sub>2</sub>? Sebutkan namanya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah dan nama isomernya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Yang menentukan hanyalah <b>jarak</b> antarkedua gugus.</div></div>
+      <div class="step"><b>Langkah 1 — Kemungkinan jaraknya</b>Pada cincin enam, jarak antardua posisi hanya bisa <span class="eq">1, 2, atau 3</span></div>
+      <div class="step"><b>Langkah 2 — Ketiga isomernya</b>Jarak 1 → <b>o-nitrotoluena</b>; jarak 2 → <b>m-nitrotoluena</b>; jarak 3 → <b>p-nitrotoluena</b></div>
+      <div class="step"><b>Langkah 3 — Jumlahnya</b><span class="eq">3 isomer</span></div>
+      <div class="ansbar">Jawaban: 3 isomer — o-, m-, dan p-nitrotoluena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Jebakan yang sering terjadi adalah mengira gugus <b>berbeda</b> memberi lebih banyak isomer daripada gugus sejenis — misalnya enam, karena kedua gugus dapat ditukar. Itu keliru: menukar mana yang di posisi 1 dan mana yang di posisi 2 menghasilkan <b>senyawa yang sama</b>, karena cincinnya dapat diputar. Hal ini diperiksa secara terprogram untuk seluruh pasangan posisi, dan hasilnya memang tetap <b>tiga</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Isomer tiga gugus sejenis</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa isomer yang mungkin untuk C<sub>6</sub>H<sub>3</sub>Cl<sub>3</sub>? Sebutkan posisinya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah dan posisi isomernya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Cacah susunan yang benar-benar berbeda setelah cincinnya diputar.</div></div>
+      <div class="step"><b>Susunan 1</b>Ketiganya berdampingan → <span class="eq">1,2,3</span></div>
+      <div class="step"><b>Susunan 2</b>Dua berdampingan, satu terpisah → <span class="eq">1,2,4</span></div>
+      <div class="step"><b>Susunan 3</b>Ketiganya berselang-seling → <span class="eq">1,3,5</span></div>
+      <div class="step"><b>Jumlahnya</b><span class="eq">3 isomer</span></div>
+      <div class="ansbar">Jawaban: 3 isomer — 1,2,3 · 1,2,4 · 1,3,5</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Mengelompokkan menurut <b>pola kedekatannya</b> — semua berdampingan, sebagian berdampingan, atau tidak ada yang berdampingan — memastikan tidak ada yang terlewat. Terverifikasi dengan enumerasi: jumlahnya memang tepat <b>3</b>. Perhatikan pola menarik: jumlah isomer untuk 1 sampai 6 gugus adalah <b>1-3-3-3-1-1</b>, setangkup — karena menaruh k gugus sama saja dengan menaruh (6−k) atom H yang tersisa.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Reaksi halogenasi dan alkilasi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan reaksi benzena dengan (a) Cl<sub>2</sub>; (b) CH<sub>3</sub>Cl, beserta katalis dan nama hasilnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Dua persamaan lengkap</div></div>
+      <div class="step"><b>(a) Halogenasi</b><span class="eq">C₆H₆ + Cl₂ → C₆H₅Cl + HCl</span> · katalis <b>FeCl₃</b> · hasilnya <b>klorobenzena</b></div>
+      <div class="step"><b>(b) Alkilasi</b><span class="eq">C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl</span> · katalis <b>AlCl₃</b> · hasilnya <b>toluena</b></div>
+      <div class="step"><b>Pola bersama</b>Keduanya menghasilkan <span class="eq">HCl</span> sebagai hasil sampingnya → tanda substitusi</div>
+      <div class="ansbar">Jawaban: (a) klorobenzena dengan katalis FeCl<sub>3</sub>; (b) toluena dengan katalis AlCl<sub>3</sub></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa katalisnya <b>berbeda</b> meski reaksinya mirip — FeCl<sub>3</sub> untuk halogenasi, AlCl<sub>3</sub> untuk alkilasi. Ini yang sering tertukar. Jembatan ingatan: <b>Fe untuk halogen</b> (keduanya bersuku kata pendek), <b>Al untuk alkil</b> (keduanya berawalan "al"). Perhatikan pula bahwa alkilasi adalah cara membuat toluena <b>dari</b> benzena.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Gugus pengarah</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Ramalkan hasil nitrasi (a) toluena; (b) nitrobenzena. Jelaskan perbedaannya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Hasil dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tentukan jenis pengarah gugus yang sudah ada.</div></div>
+      <div class="step"><b>(a) Toluena</b>Gugus –CH₃ adalah pengarah <b>orto-para</b> → hasilnya campuran <span class="eq">o-nitrotoluena dan p-nitrotoluena</span></div>
+      <div class="step"><b>(b) Nitrobenzena</b>Gugus –NO₂ adalah pengarah <b>meta</b> → hasilnya <span class="eq">m-dinitrobenzena</span></div>
+      <div class="step"><b>Sebab perbedaannya</b>Gugus pengarah meta mengandung <b>ikatan rangkap ke atom sangat elektronegatif</b> (N=O); pengarah orto-para tidak</div>
+      <div class="ansbar">Jawaban: (a) o- dan p-nitrotoluena; (b) m-dinitrobenzena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Daftar gugus pengarah tidak perlu dihafal satu per satu bila Anda memperhatikan cirinya: <b>pengarah meta hampir semuanya mengandung ikatan rangkap ke atom elektronegatif</b> — N=O pada nitro, C=O pada karboksil dan aldehida, S=O pada sulfonat. Sisanya — –OH, –NH<sub>2</sub>, –CH<sub>3</sub>, halogen — adalah pengarah orto-para. Satu ciri membedakan kedua daftar itu.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Membandingkan sifat asam</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Urutkan dari yang paling asam: etanol, fenol, dan asam benzoat. Jelaskan dasarnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Urutan dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Makin mudah H<sup>+</sup> lepas, makin asam.</div></div>
+      <div class="step"><b>Asam benzoat</b>Bergugus <b>–COOH</b>, asam karboksilat sejati → <span class="eq">paling asam</span></div>
+      <div class="step"><b>Fenol</b>Bergugus –OH pada cincin; cincin menarik elektron → <span class="eq">asam sangat lemah</span></div>
+      <div class="step"><b>Etanol</b>Bergugus –OH pada rantai terbuka, tanpa penarik elektron → <span class="eq">netral</span></div>
+      <div class="step"><b>Urutannya</b><span class="eq">asam benzoat &gt; fenol &gt; etanol</span></div>
+      <div class="ansbar">Jawaban: asam benzoat &gt; fenol &gt; etanol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Ketiganya bergugus –OH, tetapi keasamannya sangat berbeda — dan yang menentukan adalah <b>apa yang ada di sebelah gugus itu</b>. Makin kuat lingkungannya menarik elektron, makin mudah H<sup>+</sup> terlepas. Perhatikan letak fenol yang <b>di tengah</b>: ia terlalu asam untuk disebut alkohol, tetapi jauh lebih lemah daripada asam karboksilat. Inilah sebabnya fenol memerahkan lakmus tetapi tidak bereaksi dengan natrium karbonat, sedangkan asam benzoat bereaksi.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Menelusuri rangkaian reaksi</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Benzena direaksikan dengan CH<sub>3</sub>Cl berkatalis AlCl<sub>3</sub> menghasilkan P. Senyawa P kemudian dinitrasi menghasilkan Q. Tentukan P dan Q.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Kedua senyawa</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Kerjakan berurutan; hasil tahap pertama menentukan letak substitusi tahap kedua.</div></div>
+      <div class="step"><b>Langkah 1 — P</b>Alkilasi benzena → <span class="eq">toluena, C₆H₅CH₃</span></div>
+      <div class="step"><b>Langkah 2 — Jenis pengarah P</b>Gugus –CH₃ adalah pengarah <b>orto-para</b></div>
+      <div class="step"><b>Langkah 3 — Q</b>Nitrasi masuk ke posisi orto atau para → <span class="eq">campuran o- dan p-nitrotoluena</span></div>
+      <div class="step"><b>Catatan</b>Bila dilanjutkan tiga kali, hasilnya <b>2,4,6-trinitrotoluena</b> alias <b>TNT</b></div>
+      <div class="ansbar">Jawaban: P adalah toluena; Q adalah campuran o-nitrotoluena dan p-nitrotoluena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 2 sering dilewati, padahal itulah penentunya — tanpa menentukan jenis pengarah P, letak gugus nitro tidak dapat diramalkan. Catatan di akhir layak diingat: <b>TNT dibuat dengan menitrasi toluena tiga kali</b>, dan letak ketiga gugus nitronya — 2, 4, dan 6 — adalah tepat posisi orto dan para terhadap gugus metilnya. Nama bahan peledak paling terkenal di dunia itu ternyata mengikuti aturan gugus pengarah.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Mengenali jenis reaksi dari persamaannya</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jenis reaksi berikut: (a) C<sub>6</sub>H<sub>6</sub> + Br<sub>2</sub> → C<sub>6</sub>H<sub>5</sub>Br + HBr; (b) C<sub>2</sub>H<sub>4</sub> + Br<sub>2</sub> → C<sub>2</sub>H<sub>4</sub>Br<sub>2</sub>.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jenis kedua reaksi</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung jumlah zat di ruas kanan.</div></div>
+      <div class="step"><b>(a) Ruas kanan</b><b>Dua</b> zat — ada HBr yang keluar → <span class="eq">SUBSTITUSI</span></div>
+      <div class="step"><b>(b) Ruas kanan</b><b>Satu</b> zat — tidak ada yang keluar → <span class="eq">ADISI</span></div>
+      <div class="step"><b>Periksa dengan DBE (a)</b>C₆H₆ 4 → C₆H₅Br <span class="eq">4</span>, tetap ✔</div>
+      <div class="step"><b>Periksa dengan DBE (b)</b>C₂H₄ 1 → C₂H₄Br₂ <span class="eq">0</span>, berkurang ✔</div>
+      <div class="ansbar">Jawaban: (a) substitusi; (b) adisi</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Dua pemeriksa yang saling menguatkan. Yang pertama — <b>menghitung zat di ruas kanan</b> — dapat dikerjakan sekilas tanpa hitungan sama sekali. Yang kedua — <b>membandingkan DBE</b> — lebih pasti dan berguna bila persamaannya rumit. Perhatikan bahwa pereaksinya <b>sama-sama Br<sub>2</sub></b>, namun hasilnya berbeda jenis; yang menentukan adalah senyawa karbonnya, bukan pereaksinya.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 15-20 ==================== -->
+<section class="page">
+  <h2>Worked Example — Penalaran Gabungan dan Penerapan</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Menentukan senyawa dari rangkaian petunjuk</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Senyawa X berumus C<sub>7</sub>H<sub>8</sub>O. X <b>memerahkan lakmus biru</b> dan bereaksi dengan NaOH. Tentukan golongan X.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>C<sub>7</sub>H<sub>8</sub>O; asam; bereaksi dengan NaOH</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Golongan X</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>DBE dulu, lalu gunakan sifat asamnya.</div></div>
+      <div class="step"><b>Langkah 1 — DBE</b>(14 + 2 − 8) ÷ 2 = <span class="eq">4</span> → ada inti benzena</div>
+      <div class="step"><b>Langkah 2 — Sifat asam</b>Memerahkan lakmus dan bereaksi dengan NaOH → bukan alkohol biasa</div>
+      <div class="step"><b>Langkah 3 — Simpulkan</b>Gugus –OH terikat <b>langsung pada cincin</b> → golongan <span class="eq">fenol</span></div>
+      <div class="step"><b>Langkah 4 — Kemungkinannya</b>Kresol — o-, m-, atau p-kresol, yaitu metilfenol</div>
+      <div class="ansbar">Jawaban: X tergolong fenol, yaitu salah satu isomer kresol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 langsung menyisihkan seluruh senyawa rantai terbuka: DBE 4 hampir pasti berarti ada inti benzena. Langkah 2 lalu memisahkan fenol dari <b>benzil alkohol</b> yang juga berumus C<sub>7</sub>H<sub>8</sub>O tetapi bersifat <b>netral</b>, karena –OH-nya terikat pada karbon perantara, bukan langsung pada cincin. Satu uji lakmus memisahkan keduanya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Mengapa benzena lebih stabil</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Jelaskan dengan perhitungan DBE mengapa benzena memilih bersubstitusi daripada beradisi.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Penjelasan berbasis DBE</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan DBE sebelum dan sesudah kedua jalur.</div></div>
+      <div class="step"><b>Jalur adisi</b>C₆H₆ + 3H₂ → C₆H₁₂ · DBE turun dari <b>4</b> menjadi <span class="eq">1</span></div>
+      <div class="step"><b>Artinya</b>Ketiga ikatan rangkap hilang → <b>cincin resonansi rusak</b> → kestabilannya hilang</div>
+      <div class="step"><b>Jalur substitusi</b>C₆H₆ + Br₂ → C₆H₅Br + HBr · DBE tetap <span class="eq">4</span></div>
+      <div class="step"><b>Artinya</b>Cincin dan resonansinya <b>utuh</b> → kestabilannya terjaga</div>
+      <div class="step"><b>Simpulkan</b>Benzena menempuh jalur yang <span class="eq">mempertahankan kestabilannya</span></div>
+      <div class="ansbar">Jawaban: adisi merusak resonansi sehingga merugikan; substitusi mempertahankannya sehingga itulah jalur yang ditempuh</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhitungan DBE mengubah penjelasan yang terdengar seperti hafalan menjadi sesuatu yang <b>terlihat angkanya</b>. Kedua perhitungan diperiksa secara terprogram dan hasilnya konsisten: substitusi mempertahankan DBE 4, adisi menurunkannya menjadi 1. Perhatikan bahwa benzena <b>bisa</b> beradisi bila dipaksa dengan katalis dan tekanan tinggi — yang dikatakan di sini adalah bahwa ia tidak melakukannya pada keadaan biasa.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Membedakan tiga senyawa aromatik</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Tiga cairan: benzena, fenol, dan asam benzoat. Rancang percobaan untuk mengenali ketiganya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Rancangan percobaan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Mulai dari uji yang memisahkan paling banyak sekaligus.</div></div>
+      <div class="step"><b>Uji 1 — Lakmus biru</b>Yang <b>tidak</b> memerahkan adalah <span class="eq">benzena</span> (netral)</div>
+      <div class="step"><b>Uji 2 — Na₂CO₃ pada dua sisanya</b>Yang mengeluarkan gas CO₂ adalah <span class="eq">asam benzoat</span></div>
+      <div class="step"><b>Uji 3 — Sisanya</b>Yang tersisa adalah <span class="eq">fenol</span> — asam terlalu lemah untuk membebaskan CO₂</div>
+      <div class="step"><b>Pemeriksa tambahan</b>Benzena juga <b>tidak</b> memudarkan air bromin, berbeda dari alkena</div>
+      <div class="ansbar">Jawaban: lakmus memisahkan benzena; natrium karbonat memisahkan asam benzoat dari fenol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Urutan ujinya memanfaatkan <b>tiga tingkat keasaman</b> yang berbeda: benzena netral, fenol asam sangat lemah, asam benzoat asam lemah tetapi jauh lebih kuat. Uji 2 bekerja tepat karena celah itu — asam benzoat cukup kuat untuk membebaskan CO<sub>2</sub> dari karbonat, sedangkan fenol tidak. Merancang percobaan seperti ini menuntut pemahaman <b>seberapa besar</b> perbedaan sifatnya, bukan sekadar tahu bahwa ada perbedaan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Menghitung isomer turunan dua gugus</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa senyawa berbeda yang mungkin untuk C<sub>6</sub>H<sub>4</sub>BrCl? Jelaskan mengapa jumlahnya demikian.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah dan alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Dua gugus berbeda pada cincin enam.</div></div>
+      <div class="step"><b>Langkah 1 — Kemungkinan letaknya</b>Yang menentukan hanyalah <b>jarak</b> antara Br dan Cl</div>
+      <div class="step"><b>Langkah 2 — Jarak yang mungkin</b>Hanya <span class="eq">1, 2, atau 3</span> — jarak 4 sama dengan 2, jarak 5 sama dengan 1</div>
+      <div class="step"><b>Langkah 3 — Ketiganya</b>o-bromoklorobenzena, m-bromoklorobenzena, p-bromoklorobenzena</div>
+      <div class="step"><b>Jumlahnya</b><span class="eq">3 senyawa</span></div>
+      <div class="ansbar">Jawaban: 3 senyawa — orto, meta, dan para</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 2 memuat inti persoalannya: pada cincin <b>enam</b>, jarak 4 dan jarak 2 sebenarnya sama, karena cincin dapat diputar dan jarak selalu diukur lewat jalur terpendek. Itulah sebabnya pilihannya hanya tiga dan bukan lima. Terverifikasi dengan enumerasi seluruh 30 pasangan posisi untuk dua gugus berbeda, dan setelah yang sama dibuang, tersisa <b>tepat tiga</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Turunan benzena dalam kehidupan</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Mengapa yang dipakai sebagai pengawet minuman adalah natrium benzoat, bukan asam benzoat?</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Alasannya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan kelarutan keduanya dalam air.</div></div>
+      <div class="step"><b>Langkah 1 — Asam benzoat</b>Berinti benzena yang nonpolar → <span class="eq">sukar larut</span> dalam air</div>
+      <div class="step"><b>Langkah 2 — Natrium benzoat</b>Berupa <b>garam</b> → <span class="eq">jauh lebih mudah larut</span></div>
+      <div class="step"><b>Langkah 3 — Mengapa penting</b>Makanan dan minuman berbasis air → pengawet harus tersebar merata</div>
+      <div class="step"><b>Langkah 4 — Yang terjadi di dalamnya</b>Pada makanan yang <b>asam</b>, natrium benzoat berubah kembali menjadi asam benzoat — dan bentuk asam itulah yang membunuh jamur</div>
+      <div class="ansbar">Jawaban: karena natrium benzoat jauh lebih mudah larut, sehingga dapat tersebar merata dalam minuman</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 4 menjelaskan sesuatu yang sering luput: pengawet ini <b>paling ampuh pada minuman yang asam</b> seperti sari buah dan minuman bersoda, karena di situlah ia berubah menjadi bentuk aktifnya. Pada makanan yang netral, keampuhannya jauh berkurang. Ini contoh bagus bahwa kegunaan sebuah senyawa ditentukan oleh sifat kimianya, bukan hanya oleh namanya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Analisis lengkap satu senyawa</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Untuk toluena, tentukan (a) rumus molekul dan DBE-nya; (b) apakah ia memudarkan air bromin; (c) jenis gugus pengarahnya; (d) hasil nitrasinya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat hal berantai</div></div>
+      <div class="step"><b>(a) Rumus dan DBE</b>C₇H₈; DBE = (14 + 2 − 8) ÷ 2 = <span class="eq">4</span> → berinti benzena</div>
+      <div class="step"><b>(b) Air bromin</b><span class="eq">Tidak memudarkan</span> — sama seperti benzena, karena cincinnya beresonansi</div>
+      <div class="step"><b>(c) Gugus pengarah</b>–CH₃ tergolong pengarah <span class="eq">orto-para</span></div>
+      <div class="step"><b>(d) Hasil nitrasi</b>Campuran <span class="eq">o-nitrotoluena dan p-nitrotoluena</span></div>
+      <div class="ansbar">Jawaban: (a) C<sub>7</sub>H<sub>8</sub>, DBE 4; (b) tidak; (c) orto-para; (d) o- dan p-nitrotoluena</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (b) adalah jebakannya — toluena punya gugus metil <b>dan</b> cincin, sehingga sebagian orang mengira sifatnya berubah. Tidak: gugus metil tidak mengubah kenyataan bahwa cincinnya beresonansi, sehingga toluena tetap <b>tidak</b> memudarkan air bromin. Perhatikan pula hubungan (c) dan (d): jenis pengarah menentukan hasil nitrasinya, dan menitrasi toluena tiga kali menghasilkan <b>TNT</b>.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa isomer untuk dua gugus berbeda pada cincin benzena?</li>
+      <li>Gugus apa saja yang tergolong pengarah meta?</li>
+      <li>Bagaimana membedakan fenol dari asam benzoat?</li>
+      <li>Katalis apa yang dipakai pada alkilasi benzena?</li>
+      <li>Apa yang terjadi pada DBE bila benzena beradisi dengan 3H<sub>2</sub>?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>3</b> — sama seperti dua gugus sejenis, karena yang menentukan hanyalah jaraknya; (2) <b>–NO<sub>2</sub>, –COOH, –SO<sub>3</sub>H, –CHO</b> — semuanya mengandung ikatan rangkap ke atom elektronegatif; (3) dengan <b>natrium karbonat</b> — hanya asam benzoat yang membebaskan CO<sub>2</sub>; (4) <b>AlCl<sub>3</sub></b>; (5) turun dari <b>4 menjadi 1</b>, dan kestabilan resonansinya hilang.</p>
+  </div>
+</section>
+
+<!-- ==================== 19.10 EXAM FOCUS ==================== -->
+<section class="page" id="focus">
+  <h2>19.10&nbsp; ★ UTBK / Exam Focus — Ringkasan Bab</h2>
+  <p class="lead">Satu pertanyaan menyelesaikan sebagian besar soal bab ini: <b>apakah jawaban ini mempertahankan cincin resonansinya?</b></p>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 1 — "Benzena versus alkena"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Reaksi khasnya</th><td>benzena <b>substitusi</b> · alkena <b>adisi</b></td></tr>
+      <tr><th>Air bromin</th><td>benzena <b>tidak</b> memudarkan · alkena memudarkan</td></tr>
+      <tr><th>KMnO<sub>4</sub></th><td>benzena <b>tidak</b> bereaksi · alkena bereaksi</td></tr>
+    </table></div>
+    <p style="margin-top:10px">Sebabnya elektron benzena sudah tersebar dalam resonansi sehingga tidak tersedia untuk adisi.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 2 — "Berapa isomernya"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>1 gugus</th><td><b>1</b> — semua posisi setara</td></tr>
+      <tr><th>2 gugus (sejenis atau berbeda)</th><td><b>3</b> — orto, meta, para</td></tr>
+      <tr><th>3 gugus</th><td><b>3</b> — 1,2,3 · 1,2,4 · 1,3,5</td></tr>
+      <tr><th>4 gugus</th><td><b>3</b> · <b>5 gugus</b> 1 · <b>6 gugus</b> 1</td></tr>
+    </table></div>
+    <p style="margin-top:10px">Polanya <b>1-3-3-3-1-1</b> setangkup, karena menaruh k gugus sama dengan menaruh (6−k) atom H.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 3 — "Tuliskan reaksi substitusi"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Halogenasi</th><td>Cl<sub>2</sub>, katalis <b>FeCl<sub>3</sub></b> → klorobenzena + HCl</td></tr>
+      <tr><th>Nitrasi</th><td>HNO<sub>3</sub>, katalis <b>H<sub>2</sub>SO<sub>4</sub></b> → nitrobenzena + H<sub>2</sub>O</td></tr>
+      <tr><th>Sulfonasi</th><td>H<sub>2</sub>SO<sub>4</sub> berasap → asam benzenasulfonat + H<sub>2</sub>O</td></tr>
+      <tr><th>Alkilasi</th><td>R–Cl, katalis <b>AlCl<sub>3</sub></b> → alkilbenzena + HCl</td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 4 — "Ke mana gugus berikutnya masuk"</div>
+    <p><b>Pengarah orto-para:</b> –OH, –NH<sub>2</sub>, –CH<sub>3</sub>, –OR, halogen</p>
+    <p><b>Pengarah meta:</b> –NO<sub>2</sub>, –COOH, –SO<sub>3</sub>H, –CHO, –CN</p>
+    <p><b>Cirinya:</b> pengarah meta hampir semuanya mengandung <b>ikatan rangkap ke atom sangat elektronegatif</b> — N=O, C=O, S=O.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 5 — "Nama lazim"</div>
+    <p>Toluena (C<sub>6</sub>H<sub>5</sub>CH<sub>3</sub>) · fenol (C<sub>6</sub>H<sub>5</sub>OH) · anilina (C<sub>6</sub>H<sub>5</sub>NH<sub>2</sub>) · asam benzoat (C<sub>6</sub>H<sub>5</sub>COOH) · benzaldehida (C<sub>6</sub>H<sub>5</sub>CHO) · nitrobenzena (C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub>).</p>
+    <p><b>Fenil</b> adalah C<sub>6</sub>H<sub>5</sub>– ; <b>benzil</b> adalah C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>– . Keduanya berbeda satu atom karbon.</p>
+  </div>
+
+  <div class="box trap">
+    <div class="bt">⚠ Delapan jebakan paling sering dipakai penyusun soal</div>
+    <ol class="step">
+      <li><b>Mengira benzena memudarkan air bromin</b> — tidak, karena elektronnya beresonansi.</li>
+      <li><b>Menyebut reaksi benzena sebagai adisi</b> — yang benar substitusi.</li>
+      <li><b>Mengira dua gugus berbeda memberi 6 isomer</b> — tetap 3.</li>
+      <li><b>Menganggap posisi 1,5 dan 1,6 sebagai isomer baru</b> — keduanya sama dengan 1,3 dan 1,2.</li>
+      <li><b>Menggolongkan fenol sebagai alkohol</b> — fenol bersifat asam.</li>
+      <li><b>Menyamakan fenil dengan benzil</b> — berbeda satu atom karbon.</li>
+      <li><b>Tertukar katalis FeCl<sub>3</sub> dan AlCl<sub>3</sub></b> — Fe untuk halogenasi, Al untuk alkilasi.</li>
+      <li><b>Mengira toluena berperilaku seperti alkena</b> karena punya gugus metil — tidak, cincinnya tetap aromatik.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 19.11 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>19.11&nbsp; How to Master This Chapter</h2>
+  <p class="lead">Bab ini pendek tetapi padat hafalan. Kabar baiknya, sebagian besarnya mengalir dari <b>satu gagasan</b> — dan hanya tiga daftar yang benar-benar wajib dihafal.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Tahap 1 · Struktur dan sifat (1 hari)</div>
+      <ul class="tick">
+        <li>Pahami gagasan resonansi dan mengapa ikatannya sama panjang.</li>
+        <li>Pahami mengapa benzena bersubstitusi, bukan beradisi.</li>
+        <li>Latih menghitung DBE untuk 10 turunan benzena.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 2 · Tata nama (1 hari)</div>
+      <ul class="tick">
+        <li>Hafalkan enam nama lazim yang paling sering muncul.</li>
+        <li>Latih membedakan fenol dari alkohol, dan fenil dari benzil.</li>
+        <li>Latih menamai isomer dengan awalan o-, m-, p-.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 3 · Isomer (setengah hari)</div>
+      <ul class="tick">
+        <li>Pahami mengapa dua gugus memberi <b>tepat tiga</b> isomer.</li>
+        <li>Hafalkan pola 1-3-3-3-1-1 beserta alasan setangkupnya.</li>
+        <li>Latih menggambar ketiga isomer tanpa melihat.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 4 · Reaksi dan kegunaan (1 hari)</div>
+      <ul class="tick">
+        <li>Hafalkan empat reaksi substitusi beserta katalis dan hasilnya.</li>
+        <li>Hafalkan dua daftar gugus pengarah beserta cirinya.</li>
+        <li>Hafalkan kegunaan enam turunan benzena yang penting.</li>
+        <li>Kerjakan Final Chapter Test dengan batas waktu 40 menit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Kebiasaan yang paling menyelamatkan nilai di bab ini</div>
+    <p><b>Setiap kali ragu, tanyakan: apakah jawaban ini mempertahankan cincin resonansinya?</b> Benzena hampir selalu memilih jalan yang menjaga kestabilannya, dan pertanyaan itu menyelesaikan sebagian besar soal sifat dan reaksi.</p>
+    <p><b>Hitung DBE pada setiap soal yang memberi rumus molekul.</b> Angka <b>4</b> hampir pasti berarti ada inti benzena, dan itu langsung menyisihkan seluruh senyawa rantai terbuka dari pertimbangan.</p>
+    <p><b>Untuk gugus pengarah, cari ikatan rangkapnya.</b> Gugus yang mengandung ikatan rangkap ke atom sangat elektronegatif — N=O, C=O, S=O — adalah pengarah meta; sisanya orto-para. Satu ciri menggantikan dua daftar hafalan.</p>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 19</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pada soal yang memberi rumus molekul, <b>hitung DBE lebih dulu</b>.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji pengenalan struktur, nama lazim, dan sifat dasar benzena.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Rumus molekul benzena adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> C<sub>6</sub>H<sub>12</sub></li><li><span class="l">B.</span> C<sub>6</sub>H<sub>10</sub></li><li><span class="l">C.</span> C<sub>6</sub>H<sub>14</sub></li><li><span class="l">D.</span> C<sub>6</sub>H<sub>6</sub></li><li><span class="l">E.</span> C<sub>7</sub>H<sub>8</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Benzena berumus <b>C<sub>6</sub>H<sub>6</sub></b> — enam karbon membentuk cincin, masing-masing mengikat satu atom H.</p>
+      <p>DBE-nya = (12 + 2 − 6) ÷ 2 = <b>4</b>, yang berasal dari 1 cincin dan 3 ikatan rangkap.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> C<sub>6</sub>H<sub>12</sub> adalah <b>sikloheksana</b>, ber-DBE 1.</li>
+        <li><b>B.</b> C<sub>6</sub>H<sub>10</sub> adalah sikloheksena.</li>
+        <li><b>C.</b> C<sub>6</sub>H<sub>14</sub> adalah heksana, rantai terbuka.</li>
+        <li><b>E.</b> C<sub>7</sub>H<sub>8</sub> adalah <b>toluena</b>, turunan benzena.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A dan D sering dipasangkan untuk menguji apakah Anda paham bedanya benzena dan sikloheksana. Keduanya bercincin enam, tetapi DBE-nya 4 dan 1.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Nama lazim untuk C<sub>6</sub>H<sub>5</sub>–OH adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> anilina</li><li><span class="l">B.</span> fenol</li><li><span class="l">C.</span> toluena</li><li><span class="l">D.</span> benzil alkohol</li><li><span class="l">E.</span> asam benzoat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Fenol</b> adalah gugus –OH yang terikat <b>langsung</b> pada cincin benzena. Nama IUPAC-nya hidroksibenzena, tetapi nama lazimnyalah yang dipakai.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Anilina adalah C<sub>6</sub>H<sub>5</sub>–NH<sub>2</sub>.</li>
+        <li><b>C.</b> Toluena adalah C<sub>6</sub>H<sub>5</sub>–CH<sub>3</sub>.</li>
+        <li><b>D.</b> Benzil alkohol adalah C<sub>6</sub>H<sub>5</sub>–CH<sub>2</sub>–OH, dengan satu karbon perantara.</li>
+        <li><b>E.</b> Asam benzoat adalah C<sub>6</sub>H<sub>5</sub>–COOH.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan D adalah jebakan terbaiknya — benzil alkohol juga bergugus –OH, tetapi <b>tidak</b> terikat langsung pada cincin, sehingga ia alkohol biasa yang bersifat netral.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Reaksi khas benzena adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> substitusi</li><li><span class="l">B.</span> eliminasi</li><li><span class="l">C.</span> adisi</li><li><span class="l">D.</span> polimerisasi</li><li><span class="l">E.</span> hidrolisis</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Benzena menempuh <b>substitusi</b> — satu atom H diganti, cincin tetap utuh.</p>
+      <p><b>Sebabnya:</b> adisi akan merusak cincin resonansinya sehingga DBE turun dari 4 menjadi 1, dan kestabilan yang membuat benzena begitu tahan akan hilang.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Adisi adalah reaksi khas <b>alkena</b> dan alkuna.</li>
+        <li><b>B, D, E.</b> Ketiganya bukan reaksi khas benzena.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C menjebak yang melihat tiga ikatan rangkap pada gambar benzena lalu menyimpulkan sifatnya seperti alkena.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Awalan <b>para</b> menunjukkan kedua gugus berada pada posisi ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 1,2</li><li><span class="l">B.</span> 1,3</li><li><span class="l">C.</span> 1,5</li><li><span class="l">D.</span> 1,6</li><li><span class="l">E.</span> 1,4</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Orto</b> 1,2 (bersebelahan) · <b>meta</b> 1,3 (berselang satu) · <b>para</b> 1,4 (<b>berseberangan</b>).</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini orto.</li>
+        <li><b>B.</b> Ini meta.</li>
+        <li><b>C.</b> Posisi 1,5 sebenarnya <b>sama</b> dengan 1,3 setelah cincinnya diputar.</li>
+        <li><b>D.</b> Posisi 1,6 sebenarnya <b>sama</b> dengan 1,2.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C dan D bukan sekadar salah — keduanya bukan susunan baru sama sekali. Itulah sebabnya hanya ada <b>tiga</b> isomer, bukan lima.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Senyawa yang dipakai sebagai <b>pengawet makanan</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> anilina</li><li><span class="l">B.</span> nitrobenzena</li><li><span class="l">C.</span> natrium benzoat</li><li><span class="l">D.</span> toluena</li><li><span class="l">E.</span> naftalena</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Natrium benzoat</b> dipakai sebagai pengawet makanan dan minuman karena menghambat pertumbuhan jamur.</p>
+      <p>Bentuk garamnya dipilih karena <b>jauh lebih mudah larut</b> dalam air daripada asam benzoatnya.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Anilina adalah bahan baku <b>zat warna</b>, dan beracun.</li>
+        <li><b>B.</b> Nitrobenzena bukan bahan pangan.</li>
+        <li><b>D.</b> Toluena adalah pelarut cat dan bahan baku TNT.</li>
+        <li><b>E.</b> Naftalena adalah <b>bola kamper</b> pengusir ngengat.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pada makanan yang <b>asam</b>, natrium benzoat berubah kembali menjadi asam benzoat — dan bentuk asam itulah yang sebenarnya membunuh jamur.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menerapkan aturan isomer posisi, mengenali reaksi, dan membandingkan sifat.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Jumlah isomer untuk C<sub>6</sub>H<sub>4</sub>Cl<sub>2</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 5</li><li><span class="l">E.</span> 6</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Dua gugus Cl pada cincin enam. Yang menentukan hanyalah <b>jarak</b> antarkeduanya, dan jarak itu hanya bisa 1, 2, atau 3.</p>
+      <p><b>Ketiganya:</b> o-diklorobenzena (1,2) · m-diklorobenzena (1,3) · p-diklorobenzena (1,4)</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>D, E.</b> Menghitung posisi 1,5 dan 1,6 sebagai isomer baru — padahal keduanya sama dengan 1,3 dan 1,2 setelah cincinnya diputar.</li>
+        <li><b>A, C.</b> Melewatkan atau melebihkan satu susunan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> seluruh 15 cara menaruh dua gugus pada enam posisi dicacah, lalu yang sama karena putaran dan pencerminan dibuang — tersisa tepat <b>3</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Katalis yang dipakai pada nitrasi benzena adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> AlCl<sub>3</sub></li><li><span class="l">B.</span> FeCl<sub>3</sub></li><li><span class="l">C.</span> Ni</li><li><span class="l">D.</span> H<sub>2</sub>SO<sub>4</sub> pekat</li><li><span class="l">E.</span> V<sub>2</sub>O<sub>5</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Nitrasi memakai HNO<sub>3</sub> pekat dengan katalis <b>H<sub>2</sub>SO<sub>4</sub> pekat</b>:</p>
+      <p class="eq">C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> AlCl<sub>3</sub> adalah katalis <b>alkilasi</b>.</li>
+        <li><b>B.</b> FeCl<sub>3</sub> adalah katalis <b>halogenasi</b>.</li>
+        <li><b>C.</b> Nikel adalah katalis penghidrogenan.</li>
+        <li><b>E.</b> V<sub>2</sub>O<sub>5</sub> adalah katalis proses kontak (Bab 17).</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ketiga katalis benzena layak dihafal berpasangan — <b>Fe</b> untuk halogenasi, <b>Al</b> untuk alkilasi, <b>H<sub>2</sub>SO<sub>4</sub></b> untuk nitrasi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Benzena <b>tidak</b> memudarkan warna air bromin karena ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> elektronnya tersebar dalam resonansi sehingga tidak tersedia untuk adisi</li>
+      <li><span class="l">B.</span> benzena tidak punya ikatan rangkap</li>
+      <li><span class="l">C.</span> benzena tidak larut dalam air</li>
+      <li><span class="l">D.</span> bromin terlalu lemah sebagai oksidator</li>
+      <li><span class="l">E.</span> benzena berwujud padat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Keenam elektron yang pada gambar Kekulé tampak sebagai tiga ikatan rangkap sebenarnya <b>tersebar merata</b> ke seluruh cincin.</p>
+      <p>Karena tidak terpaku pada ikatan tertentu, elektron itu <b>tidak tersedia</b> untuk reaksi adisi — sehingga warna bromin tidak memudar.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Keliru — benzena <b>punya</b> ikatan rangkap pada gambarnya; masalahnya elektronnya beresonansi.</li>
+        <li><b>C, E.</b> Kelarutan dan wujud tidak menentukan hasil uji ini.</li>
+        <li><b>D.</b> Bromin cukup kuat untuk beradisi dengan alkena.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan B menampung kesalahan yang paling sering — mengira benzena tidak bereaksi karena tidak punya ikatan rangkap. Justru ia punya, tetapi elektronnya sudah "terkunci" dalam resonansi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Senyawa C<sub>6</sub>H<sub>5</sub>–CH<sub>3</sub> dikenal dengan nama ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> fenol</li><li><span class="l">B.</span> benzil</li><li><span class="l">C.</span> toluena</li><li><span class="l">D.</span> anilina</li><li><span class="l">E.</span> stirena</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Toluena</b> adalah metilbenzena, C<sub>7</sub>H<sub>8</sub>. Ia bahan baku TNT dan pelarut cat yang lebih aman daripada benzena.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Benzil adalah <b>gugus</b> C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>–, bukan senyawa utuh.</li>
+        <li><b>A, D.</b> Fenol bergugus –OH; anilina bergugus –NH<sub>2</sub>.</li>
+        <li><b>E.</b> Stirena adalah C<sub>6</sub>H<sub>5</sub>–CH=CH<sub>2</sub>, bahan baku polistirena.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan bedanya <b>toluena</b> (senyawa utuh, C<sub>6</sub>H<sub>5</sub>CH<sub>3</sub>) dan <b>benzil</b> (gugus, C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>–). Keduanya sering tertukar.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Perbedaan fenol dan alkohol adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> fenol tidak bergugus –OH</li>
+      <li><span class="l">B.</span> fenol tidak bereaksi dengan logam Na</li>
+      <li><span class="l">C.</span> alkohol bercincin benzena</li>
+      <li><span class="l">D.</span> fenol berwujud gas</li>
+      <li><span class="l">E.</span> fenol bersifat asam lemah, alkohol netral</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Pada fenol, gugus –OH terikat <b>langsung pada cincin benzena</b>. Cincin itu menarik elektron sehingga atom H pada –OH lebih mudah lepas.</p>
+      <p>Akibatnya fenol bersifat <b>asam lemah</b> dan memerahkan lakmus, sedangkan alkohol bersifat <b>netral</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Fenol justru bergugus –OH.</li>
+        <li><b>B.</b> Keliru — fenol <b>bereaksi</b> dengan Na, sama seperti alkohol. Uji natrium tidak dapat membedakan keduanya.</li>
+        <li><b>C.</b> Terbalik.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan B layak diperhatikan. Karena keduanya bereaksi dengan Na, pembedanya harus <b>lakmus</b> atau <b>NaOH</b> — hanya fenol yang bereaksi dengan NaOH.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Reaksi C<sub>6</sub>H<sub>6</sub> + Cl<sub>2</sub> → C<sub>6</sub>H<sub>5</sub>Cl + HCl tergolong reaksi ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> adisi</li><li><span class="l">B.</span> substitusi</li><li><span class="l">C.</span> eliminasi</li><li><span class="l">D.</span> oksidasi</li><li><span class="l">E.</span> polimerisasi</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Petunjuk 1.</b> Ruas kanan memuat <b>dua</b> zat — ada HCl yang keluar, membawa atom H yang tergusur dari cincin.</p>
+      <p><b>Petunjuk 2.</b> DBE tidak berubah: C<sub>6</sub>H<sub>6</sub> ber-DBE 4, C<sub>6</sub>H<sub>5</sub>Cl juga 4 → cincin tetap utuh.</p>
+      <p>Keduanya menunjuk pada <b>substitusi</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Pada adisi, ruas kanan hanya berisi <b>satu</b> zat dan DBE <b>berkurang</b>.</li>
+        <li><b>C, D, E.</b> Tidak sesuai dengan bentuk persamaannya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> cara tercepat mengenali substitusi adalah <b>menghitung zat di ruas kanan</b>. Bila ada zat kecil yang keluar — HCl atau H<sub>2</sub>O — reaksinya substitusi.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Gugus pengarah, penalaran berantai, dan perbandingan sifat lintas golongan.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12</div>
+    <div class="qs">Nitrasi toluena menghasilkan campuran ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> m-nitrotoluena saja</li>
+      <li><span class="l">B.</span> hanya p-nitrotoluena</li>
+      <li><span class="l">C.</span> o-nitrotoluena dan p-nitrotoluena</li>
+      <li><span class="l">D.</span> nitrobenzena dan metana</li>
+      <li><span class="l">E.</span> benzena dan asam nitrat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Gugus yang sudah ada pada toluena adalah <b>–CH<sub>3</sub></b>.</p>
+      <p><b>Langkah 2.</b> Gugus –CH<sub>3</sub> tergolong pengarah <b>orto-para</b>.</p>
+      <p><b>Langkah 3.</b> Gugus nitro masuk ke posisi 1,2 atau 1,4 → campuran <b>o-</b> dan <b>p-nitrotoluena</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini hasil bila gugusnya pengarah <b>meta</b> — misalnya pada nitrobenzena.</li>
+        <li><b>B.</b> Keduanya terbentuk, bukan hanya para.</li>
+        <li><b>D, E.</b> Nitrasi tidak memutus rantai maupun membalik reaksinya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> bila nitrasi ini diulang tiga kali, hasilnya <b>2,4,6-trinitrotoluena</b> alias TNT — dan letak ketiga gugus nitronya persis posisi orto dan para terhadap gugus metilnya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Gugus yang tergolong pengarah <b>meta</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> –NO<sub>2</sub></li><li><span class="l">B.</span> –OH</li><li><span class="l">C.</span> –CH<sub>3</sub></li><li><span class="l">D.</span> –NH<sub>2</sub></li><li><span class="l">E.</span> –Cl</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Gugus <b>–NO<sub>2</sub></b> mengandung ikatan rangkap <b>N=O</b> ke atom yang sangat elektronegatif — inilah ciri pengarah meta.</p>
+      <p>Pengarah meta lainnya: –COOH, –SO<sub>3</sub>H, –CHO, –CN. Perhatikan bahwa semuanya punya ciri yang sama.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B, C, D, E.</b> Keempatnya pengarah <b>orto-para</b>, dan tidak satu pun punya ikatan rangkap ke atom elektronegatif.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> kedua daftar gugus pengarah tidak perlu dihafal satu per satu — cukup cari <b>ikatan rangkap ke atom elektronegatif</b>. Ada berarti meta; tidak ada berarti orto-para.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14</div>
+    <div class="qs">Senyawa berumus C<sub>7</sub>H<sub>8</sub>O yang <b>memerahkan lakmus biru</b> kemungkinan adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> benzil alkohol</li><li><span class="l">B.</span> anisol</li><li><span class="l">C.</span> toluena</li><li><span class="l">D.</span> kresol</li><li><span class="l">E.</span> benzaldehida</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> DBE = (14 + 2 − 8) ÷ 2 = <b>4</b> → berinti benzena.</p>
+      <p><b>Langkah 2.</b> Memerahkan lakmus → bersifat <b>asam</b> → gugus –OH terikat <b>langsung pada cincin</b> → golongan <b>fenol</b>.</p>
+      <p><b>Langkah 3.</b> Fenol berumus C<sub>7</sub>H<sub>8</sub>O adalah <b>kresol</b> (metilfenol), yang punya tiga isomer: o-, m-, dan p-kresol.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Benzil alkohol juga C<sub>7</sub>H<sub>8</sub>O, tetapi –OH-nya terikat pada karbon perantara → bersifat <b>netral</b>.</li>
+        <li><b>B.</b> Anisol (metoksibenzena) juga C<sub>7</sub>H<sub>8</sub>O, tetapi berupa <b>eter</b> yang netral.</li>
+        <li><b>C, E.</b> Toluena berumus C<sub>7</sub>H<sub>8</sub>; benzaldehida C<sub>7</sub>H<sub>6</sub>O.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> tiga pilihan pertama sama-sama berumus C<sub>7</sub>H<sub>8</sub>O — yang membedakannya hanya <b>sifat asamnya</b>, dan itulah gunanya uji lakmus.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Jumlah isomer untuk C<sub>6</sub>H<sub>3</sub>Br<sub>3</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 4</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 5</li><li><span class="l">E.</span> 3</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Kelompokkan menurut pola kedekatan ketiga gugusnya:</p>
+      <p><b>Semua berdampingan:</b> 1,2,3 · <b>Dua berdampingan:</b> 1,2,4 · <b>Tidak ada yang berdampingan:</b> 1,3,5</p>
+      <p>Totalnya <b>3 isomer</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C, D.</b> Menghitung susunan yang sebenarnya sama setelah cincinnya diputar.</li>
+        <li><b>A, B.</b> Melewatkan atau melebihkan satu susunan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pola jumlah isomer untuk 1 sampai 6 gugus adalah <b>1-3-3-3-1-1</b>, setangkup — karena menaruh k gugus sama dengan menaruh (6−k) atom H yang tersisa.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16</div>
+    <div class="qs">Urutan keasaman dari yang <b>paling asam</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etanol &gt; fenol &gt; asam benzoat</li>
+      <li><span class="l">B.</span> fenol &gt; asam benzoat &gt; etanol</li>
+      <li><span class="l">C.</span> asam benzoat &gt; fenol &gt; etanol</li>
+      <li><span class="l">D.</span> ketiganya sama</li>
+      <li><span class="l">E.</span> etanol &gt; asam benzoat &gt; fenol</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Asam benzoat</b> bergugus –COOH, asam karboksilat sejati → paling asam.</p>
+      <p><b>Fenol</b> bergugus –OH pada cincin; cincin menarik elektron → asam sangat lemah, memerahkan lakmus.</p>
+      <p><b>Etanol</b> bergugus –OH pada rantai terbuka tanpa penarik elektron → <b>netral</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, E.</b> Menempatkan etanol sebagai yang paling asam — padahal ia netral.</li>
+        <li><b>B.</b> Menempatkan fenol di atas asam benzoat.</li>
+        <li><b>D.</b> Ketiganya berselisih jauh.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ketiganya bergugus –OH, tetapi <b>lingkungan di sekitarnyalah</b> yang menentukan keasaman. Makin kuat penarikan elektronnya, makin mudah H<sup>+</sup> lepas.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17</div>
+    <div class="qs">Pernyataan yang <b>benar</b> tentang benzena adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> keenam ikatan C–C-nya berbeda panjang</li>
+      <li><span class="l">B.</span> keenam ikatan C–C-nya sama panjang karena resonansi</li>
+      <li><span class="l">C.</span> bereaksi adisi dengan air bromin</li>
+      <li><span class="l">D.</span> DBE-nya sama dengan sikloheksana</li>
+      <li><span class="l">E.</span> berumus C<sub>6</sub>H<sub>12</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Elektron benzena <b>tersebar merata</b> ke seluruh cincin, bukan terpaku pada tiga ikatan rangkap. Akibatnya keenam ikatan C–C sama panjang, tepat di antara panjang ikatan tunggal dan rangkap.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Inilah yang <b>diduga</b> dari struktur Kekulé, tetapi pengukuran membantahnya.</li>
+        <li><b>C.</b> Benzena <b>tidak</b> beradisi dengan air bromin.</li>
+        <li><b>D.</b> DBE benzena <b>4</b>, sikloheksana <b>1</b>.</li>
+        <li><b>E.</b> C<sub>6</sub>H<sub>12</sub> adalah sikloheksana.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah dugaan yang masuk akal dan justru karena itu menjebak. Ketidakcocokan antara dugaan itu dan hasil pengukuranlah yang melahirkan gagasan resonansi.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Penalaran berbasis DBE, rangkaian reaksi, dan rancangan percobaan.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Alasan paling tepat mengapa benzena bersubstitusi dan bukan beradisi adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> adisi memerlukan katalis yang mahal</li>
+      <li><span class="l">B.</span> benzena tidak punya ikatan rangkap</li>
+      <li><span class="l">C.</span> benzena terlalu besar untuk beradisi</li>
+      <li><span class="l">D.</span> adisi merusak cincin resonansi sehingga kestabilannya hilang</li>
+      <li><span class="l">E.</span> benzena tidak larut dalam air</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Bandingkan kedua jalur lewat DBE:</p>
+      <p class="eq">Adisi: C₆H₆ + 3H₂ → C₆H₁₂ · DBE <b>4 → 1</b> · resonansi <b>rusak</b><br>
+      Substitusi: C₆H₆ + Br₂ → C₆H₅Br + HBr · DBE <b>4 → 4</b> · resonansi <b>utuh</b></p>
+      <p>Benzena menempuh jalur yang <b>mempertahankan kestabilannya</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Benzena <b>punya</b> ikatan rangkap pada gambarnya; masalahnya elektronnya beresonansi.</li>
+        <li><b>A, C, E.</b> Biaya katalis, ukuran, dan kelarutan tidak menentukan jalur reaksinya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhitungan DBE mengubah penjelasan ini dari hafalan menjadi sesuatu yang terlihat angkanya — substitusi mempertahankan 4, adisi menurunkannya menjadi 1.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Benzena direaksikan dengan CH<sub>3</sub>Cl berkatalis AlCl<sub>3</sub> menghasilkan P; P lalu dinitrasi tiga kali menghasilkan Q. Senyawa Q adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2,4,6-trinitrotoluena</li><li><span class="l">B.</span> m-dinitrobenzena</li><li><span class="l">C.</span> fenol</li><li><span class="l">D.</span> nitrobenzena</li><li><span class="l">E.</span> asam benzoat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>P.</b> Alkilasi benzena dengan CH<sub>3</sub>Cl → <b>toluena</b>.</p>
+      <p><b>Jenis pengarah P.</b> Gugus –CH<sub>3</sub> adalah pengarah <b>orto-para</b>, yaitu posisi 2, 4, dan 6.</p>
+      <p><b>Q.</b> Nitrasi tiga kali mengisi ketiga posisi itu → <b>2,4,6-trinitrotoluena</b>, yang dikenal sebagai <b>TNT</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B, D.</b> Keduanya hasil nitrasi <b>benzena</b>, bukan toluena.</li>
+        <li><b>C, E.</b> Tidak dihasilkan lewat alkilasi maupun nitrasi.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan bahwa nomor 2, 4, dan 6 pada nama TNT bukan kebetulan — ketiganya adalah posisi orto dan para terhadap gugus metil, persis seperti yang diramalkan aturan gugus pengarah.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Untuk membedakan fenol dari asam benzoat, pereaksi yang paling tepat adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> logam natrium</li><li><span class="l">B.</span> lakmus biru</li><li><span class="l">C.</span> air bromin</li><li><span class="l">D.</span> pereaksi Fehling</li><li><span class="l">E.</span> larutan natrium karbonat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Keduanya bersifat asam, tetapi <b>kekuatannya jauh berbeda</b>.</p>
+      <p><b>Asam benzoat</b> cukup kuat untuk membebaskan CO<sub>2</sub> dari natrium karbonat — muncul gelembung gas.</p>
+      <p><b>Fenol</b> terlalu lemah untuk itu — tidak ada gelembung.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> <b>Keduanya</b> bereaksi dengan Na — tidak membedakan.</li>
+        <li><b>B.</b> <b>Keduanya</b> memerahkan lakmus — tidak membedakan.</li>
+        <li><b>C, D.</b> Tidak relevan untuk kedua senyawa ini.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A dan B menjebak karena keduanya <b>memang bereaksi</b> — tetapi bereaksi pada <b>kedua</b> senyawa, sehingga tidak membedakan apa pun. Pereaksi pembeda harus memberi hasil yang <b>bertolak belakang</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21</div>
+    <div class="qs">Perhatikan senyawa toluena. Pernyataan yang <b>benar</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> memudarkan air bromin seperti alkena</li>
+      <li><span class="l">B.</span> DBE-nya 1</li>
+      <li><span class="l">C.</span> gugus –CH<sub>3</sub>-nya adalah pengarah orto-para, sehingga nitrasinya memberi campuran o- dan p-nitrotoluena</li>
+      <li><span class="l">D.</span> bersifat asam dan memerahkan lakmus</li>
+      <li><span class="l">E.</span> berumus C<sub>6</sub>H<sub>6</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Periksa E.</b> Toluena berumus <b>C<sub>7</sub>H<sub>8</sub></b>, bukan C<sub>6</sub>H<sub>6</sub>.</p>
+      <p><b>Periksa B.</b> DBE = (14 + 2 − 8) ÷ 2 = <b>4</b>, bukan 1.</p>
+      <p><b>Periksa A.</b> Cincinnya tetap beresonansi meski ada gugus metil → <b>tidak</b> memudarkan air bromin.</p>
+      <p><b>Periksa D.</b> Gugus –CH<sub>3</sub> tidak bersifat asam; toluena <b>netral</b>.</p>
+      <p>Pernyataan C benar pada kedua bagiannya ✔</p>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan utamanya — sebagian orang mengira gugus metil mengubah sifat aromatik cincinnya. Tidak: cincin tetap beresonansi, dan toluena tetap berperilaku aromatik.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>19.12 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 19</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      <b>KESTABILAN RESONANSI</b> menjelaskan hampir seluruh bab<br>
+      benzena selalu memilih jalan yang <b>mempertahankan cincinnya utuh</b>
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">STRUKTUR DAN SIFAT</div>
+        <ul>
+          <li>C₆H₆ · <b>DBE 4</b> = 1 cincin + 3 rangkap</li>
+          <li>Keenam ikatan C–C <b>sama panjang</b></li>
+          <li>Cincin segi enam beraturan, sudut <b>120°</b>, sp²</li>
+          <li>Reaksi khasnya <b>SUBSTITUSI</b></li>
+          <li><b>Tidak</b> memudarkan air bromin</li>
+          <li><b>Tidak</b> bereaksi dengan KMnO₄</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">NAMA LAZIM</div>
+        <ul>
+          <li>C₆H₅CH₃ <b>toluena</b></li>
+          <li>C₆H₅OH <b>fenol</b> — bersifat asam</li>
+          <li>C₆H₅NH₂ <b>anilina</b></li>
+          <li>C₆H₅COOH <b>asam benzoat</b></li>
+          <li>C₆H₅CHO <b>benzaldehida</b></li>
+          <li><b>Fenil</b> C₆H₅– · <b>benzil</b> C₆H₅CH₂–</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">ISOMER POSISI (TERVERIFIKASI)</div>
+        <ul>
+          <li><b>Orto</b> 1,2 · <b>meta</b> 1,3 · <b>para</b> 1,4</li>
+          <li>1 gugus → <b>1</b> isomer</li>
+          <li>2 gugus → <b>3</b> (sejenis maupun berbeda)</li>
+          <li>3 gugus → <b>3</b> (1,2,3 · 1,2,4 · 1,3,5)</li>
+          <li>4 gugus → <b>3</b> · 5 gugus → 1 · 6 gugus → 1</li>
+          <li>Pola <b>1-3-3-3-1-1</b> setangkup</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">REAKSI DAN GUGUS PENGARAH</div>
+        <ul>
+          <li><b>Halogenasi</b> Cl₂ · katalis FeCl₃</li>
+          <li><b>Nitrasi</b> HNO₃ · katalis H₂SO₄</li>
+          <li><b>Sulfonasi</b> H₂SO₄ berasap</li>
+          <li><b>Alkilasi</b> R–Cl · katalis AlCl₃</li>
+          <li><b>Orto-para:</b> –OH, –NH₂, –CH₃, halogen</li>
+          <li><b>Meta:</b> –NO₂, –COOH, –SO₃H, –CHO</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat untuk seluruh Bab 19</div>
+    <p><b>Benzena punya ikatan rangkap tetapi tidak berperilaku seperti alkena</b> — karena elektronnya sudah tersebar dalam resonansi, dan benzena tidak akan merusak kestabilan itu demi sebuah reaksi adisi.</p>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>19.13 &nbsp;Formula Sheet Bab 19</h2>
+  <p>Bab ini sedikit rumusnya; yang perlu dikuasai adalah <b>pola dan daftar hafalan</b>. Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Aturan / Pola</th><th>Isinya</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="eq">DBE = (2C + 2 − H) ÷ 2</td><td>Menentukan ada tidaknya inti benzena</td><td>Setiap soal berumus molekul</td><td>DBE <b>4</b> → hampir pasti aromatik</td></tr>
+      <tr><td class="eq">turunan benzena selalu DBE 4</td><td>Pemeriksa cepat</td><td>Setelah menghitung DBE</td><td>Berapa pun gugus yang menempel</td></tr>
+      <tr class="hi"><td class="eq">benzena → SUBSTITUSI</td><td>Jenis reaksi khas</td><td>Soal reaksi</td><td>Alkena → adisi</td></tr>
+      <tr><td class="eq">dua zat di ruas kanan → substitusi</td><td>Mengenali jenis reaksi</td><td>Diberi persamaan</td><td>Adisi hanya satu zat</td></tr>
+      <tr class="hi"><td class="eq">orto 1,2 · meta 1,3 · para 1,4</td><td>Awalan posisi</td><td>Soal tata nama</td><td>1,5 = 1,3 dan 1,6 = 1,2</td></tr>
+      <tr><td class="eq">2 gugus → 3 isomer</td><td>Jumlah isomer</td><td>Soal isomer</td><td>Sejenis <b>maupun</b> berbeda</td></tr>
+      <tr class="hi"><td class="eq">pola 1-3-3-3-1-1</td><td>Isomer untuk 1–6 gugus</td><td>Soal isomer lanjut</td><td>Setangkup: k setara dengan 6−k</td></tr>
+      <tr><td class="eq">halogenasi · FeCl₃</td><td>C₆H₆ + Cl₂ → C₆H₅Cl + HCl</td><td>Soal reaksi</td><td><b>Fe</b> untuk halogen</td></tr>
+      <tr class="hi"><td class="eq">nitrasi · H₂SO₄</td><td>C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O</td><td>Soal reaksi</td><td>Hasilnya nitrobenzena</td></tr>
+      <tr><td class="eq">alkilasi · AlCl₃</td><td>C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl</td><td>Soal reaksi</td><td><b>Al</b> untuk alkil</td></tr>
+      <tr class="hi"><td class="eq">pengarah meta: ada C=O, N=O, S=O</td><td>Meramalkan letak substitusi</td><td>Soal substitusi kedua</td><td>Sisanya orto-para</td></tr>
+      <tr><td class="eq">asam benzoat &gt; fenol &gt; alkohol</td><td>Urutan keasaman</td><td>Soal perbandingan sifat</td><td>Fenol memerahkan lakmus</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">TIGA PERTANYAAN YANG MENYELESAIKAN HAMPIR SEMUA SOAL BAB INI</div>
+    <div class="main-eq" style="font-size:15px; line-height:2">
+      1. Berapa <b>DBE</b>-nya? &nbsp;→&nbsp; 4 berarti ada inti benzena<br>
+      2. Apakah jawaban ini <b>mempertahankan cincin resonansinya</b>?<br>
+      3. Gugus yang sudah ada <b>pengarah apa</b>? &nbsp;→&nbsp; cari ikatan rangkap ke atom elektronegatif
+    </div>
+    <div class="note">Pertanyaan kedua adalah yang paling ampuh. Benzena hampir selalu memilih jalan yang menjaga kestabilannya — itulah sebabnya ia bersubstitusi bukan beradisi, tidak memudarkan air bromin, dan jauh lebih sukar bereaksi daripada alkena meski sama-sama punya ikatan rangkap. Pertanyaan ketiga menggantikan dua daftar hafalan sekaligus: gugus yang mengandung N=O, C=O, atau S=O adalah pengarah meta, dan sisanya orto-para. Yang benar-benar tersisa untuk dihafal hanya <b>nama lazim</b> dan <b>pasangan katalis</b>.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>19.14 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. <strong>Waktu yang disarankan: 40 menit.</strong></p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Derajat ketidakjenuhan benzena adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 4</li><li><span class="l">C.</span> 1</li><li><span class="l">D.</span> 6</li><li><span class="l">E.</span> 2</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>DBE = (2×6 + 2 − 6) ÷ 2 = <b>4</b>, yang berasal dari <b>1 cincin + 3 ikatan rangkap</b>.</p>
+      <p>Pilihan A menghitung ikatan rangkapnya saja tanpa cincinnya; pilihan C adalah DBE sikloheksana.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Nama lazim untuk C<sub>6</sub>H<sub>5</sub>–NH<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> anilina</li><li><span class="l">B.</span> fenol</li><li><span class="l">C.</span> toluena</li><li><span class="l">D.</span> benzaldehida</li><li><span class="l">E.</span> asam benzoat</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Anilina</b> adalah aminobenzena, bahan baku zat warna. Senyawa ini beracun.</p>
+      <p>Fenol bergugus –OH, toluena bergugus –CH<sub>3</sub>, benzaldehida bergugus –CHO, asam benzoat bergugus –COOH.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Awalan <b>meta</b> menunjukkan posisi ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1,2</li><li><span class="l">B.</span> 1,4</li><li><span class="l">C.</span> 1,3</li><li><span class="l">D.</span> 1,5</li><li><span class="l">E.</span> 1,6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Meta</b> berarti kedua gugus berselang satu posisi, yaitu <b>1,3</b>.</p>
+      <p>Pilihan D sebenarnya sama dengan 1,3 setelah cincinnya diputar — bukan susunan baru. Begitu pula E yang sama dengan 1,2.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Benzena berbeda dari alkena karena benzena ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tidak punya ikatan rangkap</li><li><span class="l">B.</span> berwujud padat</li><li><span class="l">C.</span> larut dalam air</li><li><span class="l">D.</span> mengalami substitusi, bukan adisi</li><li><span class="l">E.</span> tidak mengandung karbon</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Benzena menempuh <b>substitusi</b>; alkena menempuh <b>adisi</b>.</p>
+      <p>Pilihan A keliru — benzena <b>punya</b> ikatan rangkap pada gambarnya, tetapi elektronnya tersebar dalam resonansi sehingga tidak tersedia untuk adisi.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Jumlah isomer untuk C<sub>6</sub>H<sub>4</sub>(NO<sub>2</sub>)<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Dua gugus sejenis pada cincin enam memberi <b>tepat 3</b> isomer: orto (1,2), meta (1,3), dan para (1,4).</p>
+      <p>Pilihan B dan E menghitung posisi 1,5 dan 1,6 sebagai isomer baru — padahal keduanya sama dengan 1,3 dan 1,2 setelah cincinnya diputar.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Katalis yang dipakai pada alkilasi benzena adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> H<sub>2</sub>SO<sub>4</sub></li><li><span class="l">B.</span> FeCl<sub>3</sub></li><li><span class="l">C.</span> Ni</li><li><span class="l">D.</span> V<sub>2</sub>O<sub>5</sub></li><li><span class="l">E.</span> AlCl<sub>3</sub></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Alkilasi memakai R–Cl dengan katalis <b>AlCl<sub>3</sub></b>:</p>
+      <p class="eq">C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl</p>
+      <p>Jembatan ingatan: <b>Al</b> untuk <b>al</b>kilasi, <b>Fe</b> untuk halogenasi, <b>H₂SO₄</b> untuk nitrasi.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Senyawa yang berbeda dari fenol karena bersifat <b>netral</b> meski berumus sama C<sub>7</sub>H<sub>8</sub>O adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> o-kresol</li><li><span class="l">B.</span> m-kresol</li><li><span class="l">C.</span> p-kresol</li><li><span class="l">D.</span> asam benzoat</li><li><span class="l">E.</span> benzil alkohol</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Benzil alkohol</b> adalah C<sub>6</sub>H<sub>5</sub>–CH<sub>2</sub>–OH. Gugus –OH-nya terikat pada karbon <b>perantara</b>, bukan langsung pada cincin, sehingga ia alkohol biasa yang bersifat <b>netral</b>.</p>
+      <p>Ketiga kresol adalah fenol yang bersifat asam. Asam benzoat berumus C<sub>7</sub>H<sub>6</sub>O<sub>2</sub>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Gugus pengarah <b>orto-para</b> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> –NO<sub>2</sub></li><li><span class="l">B.</span> –COOH</li><li><span class="l">C.</span> –CH<sub>3</sub></li><li><span class="l">D.</span> –SO<sub>3</sub>H</li><li><span class="l">E.</span> –CHO</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Gugus <b>–CH<sub>3</sub></b> tidak mengandung ikatan rangkap ke atom elektronegatif → tergolong pengarah <b>orto-para</b>.</p>
+      <p>Keempat pilihan lain semuanya punya ikatan rangkap semacam itu — N=O, C=O, atau S=O — sehingga keempatnya pengarah <b>meta</b>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Senyawa yang dipakai sebagai bola kamper pengusir ngengat adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> fenol</li><li><span class="l">B.</span> toluena</li><li><span class="l">C.</span> anilina</li><li><span class="l">D.</span> naftalena</li><li><span class="l">E.</span> nitrobenzena</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Naftalena</b> terdiri atas dua cincin benzena yang bergabung. Ia menyublim pada suhu kamar, dan uapnya itulah yang mengusir ngengat.</p>
+      <p>Fenol dipakai sebagai desinfektan; toluena sebagai pelarut cat; anilina sebagai bahan baku zat warna.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Reaksi C<sub>6</sub>H<sub>6</sub> + HNO<sub>3</sub> → C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub> + H<sub>2</sub>O disebut ….</div>
+    <ol class="opt"><li><span class="l">A.</span> sulfonasi</li><li><span class="l">B.</span> nitrasi</li><li><span class="l">C.</span> alkilasi</li><li><span class="l">D.</span> halogenasi</li><li><span class="l">E.</span> adisi</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Nitrasi</b> mengganti satu atom H dengan gugus –NO<sub>2</sub>, menghasilkan nitrobenzena. Katalisnya H<sub>2</sub>SO<sub>4</sub> pekat.</p>
+      <p>Perhatikan adanya H<sub>2</sub>O di ruas kanan — tanda bahwa reaksinya <b>substitusi</b>, bukan adisi.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11 — gaya UTBK</div>
+    <div class="qs">Jumlah isomer untuk C<sub>6</sub>H<sub>3</sub>(CH<sub>3</sub>)<sub>3</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 2</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Tiga gugus sejenis pada cincin enam memberi <b>3</b> isomer, dikelompokkan menurut pola kedekatannya:</p>
+      <p><b>1,2,3</b> (semua berdampingan) · <b>1,2,4</b> (dua berdampingan) · <b>1,3,5</b> (berselang-seling)</p>
+      <div class="insight"><b>Exam Insight:</b> pola jumlah isomer untuk 1–6 gugus adalah <b>1-3-3-3-1-1</b>, setangkup — menaruh k gugus sama dengan menaruh (6−k) atom H yang tersisa.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12 — gaya UTBK</div>
+    <div class="qs">Senyawa berumus C<sub>6</sub>H<sub>4</sub>BrCl memiliki isomer sebanyak ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 6</li><li><span class="l">C.</span> 2</li><li><span class="l">D.</span> 12</li><li><span class="l">E.</span> 4</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Meski kedua gugusnya <b>berbeda</b>, jumlah isomernya tetap <b>3</b> — orto, meta, para.</p>
+      <p>Sebabnya yang menentukan hanyalah <b>jarak</b> antarkedua gugus. Menukar mana yang di posisi 1 dan mana yang di posisi 2 menghasilkan senyawa yang sama, karena cincinnya dapat diputar.</p>
+      <div class="insight"><b>Exam Insight:</b> pilihan B menjebak yang mengira gugus berbeda melipatduakan jumlah isomernya.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13 — gaya UTBK</div>
+    <div class="qs">Hasil nitrasi nitrobenzena adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> o-dinitrobenzena</li><li><span class="l">B.</span> p-dinitrobenzena</li><li><span class="l">C.</span> campuran o- dan p-dinitrobenzena</li><li><span class="l">D.</span> m-dinitrobenzena</li><li><span class="l">E.</span> benzena</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Gugus <b>–NO<sub>2</sub></b> yang sudah ada tergolong pengarah <b>meta</b>, karena mengandung ikatan rangkap N=O ke atom yang sangat elektronegatif.</p>
+      <p>Gugus nitro berikutnya karena itu masuk ke posisi <b>1,3</b> → <b>m-dinitrobenzena</b>.</p>
+      <p>Pilihan C adalah hasil bila gugusnya pengarah orto-para — misalnya pada toluena.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14 — gaya UTBK</div>
+    <div class="qs">Untuk membedakan benzena dari sikloheksena, pereaksi yang tepat adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> air bromin</li><li><span class="l">B.</span> logam natrium</li><li><span class="l">C.</span> pereaksi Tollens</li><li><span class="l">D.</span> lakmus biru</li><li><span class="l">E.</span> larutan NaOH</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Sikloheksena</b> beradisi dengan bromin sehingga warnanya <b>memudar</b>. <b>Benzena</b> tidak — elektronnya sudah tersebar dalam resonansi dan tidak tersedia untuk adisi.</p>
+      <p>Keempat pereaksi lain tidak bereaksi dengan <b>keduanya</b>, sehingga tidak membedakan apa pun.</p>
+      <div class="insight"><b>Exam Insight:</b> pereaksi pembeda harus memberi hasil yang <b>bertolak belakang</b> — bukan sekadar bereaksi.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — gaya UTBK</div>
+    <div class="qs">Pernyataan yang <b>benar</b> tentang fenol adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tergolong alkohol</li><li><span class="l">B.</span> bersifat asam lemah dan memerahkan lakmus</li><li><span class="l">C.</span> tidak bereaksi dengan logam Na</li><li><span class="l">D.</span> dapat dioksidasi menjadi keton</li><li><span class="l">E.</span> tidak bereaksi dengan NaOH</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Gugus –OH fenol terikat <b>langsung pada cincin benzena</b>. Cincin menarik elektron sehingga atom H-nya lebih mudah lepas → fenol bersifat <b>asam lemah</b>.</p>
+      <p>Pilihan A keliru karena perilakunya terlalu berbeda dari alkohol. Pilihan C keliru — fenol <b>bereaksi</b> dengan Na. Pilihan E keliru — fenol justru <b>bereaksi</b> dengan NaOH, berbeda dari alkohol.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16 — HOTS</div>
+    <div class="qs">Alasan benzena tidak memudarkan air bromin adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> benzena tidak punya ikatan rangkap</li><li><span class="l">B.</span> bromin terlalu lemah</li><li><span class="l">C.</span> benzena berwujud padat</li><li><span class="l">D.</span> elektronnya tersebar dalam resonansi sehingga tidak tersedia untuk adisi</li><li><span class="l">E.</span> benzena tidak larut dalam air</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Keenam elektron yang pada gambar Kekulé tampak sebagai tiga ikatan rangkap sebenarnya <b>tersebar merata</b> ke seluruh cincin dan tidak terpaku pada ikatan tertentu.</p>
+      <p>Karena itu elektronnya tidak tersedia untuk adisi, dan warna bromin tidak memudar.</p>
+      <div class="insight"><b>Exam Insight:</b> pilihan A menampung kesalahan paling sering — benzena justru <b>punya</b> ikatan rangkap; masalahnya elektronnya sudah "terkunci" dalam resonansi.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Bila benzena beradisi dengan 3H<sub>2</sub> menjadi sikloheksana, DBE-nya berubah dari ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1 menjadi 4</li><li><span class="l">B.</span> 4 menjadi 0</li><li><span class="l">C.</span> 3 menjadi 1</li><li><span class="l">D.</span> 6 menjadi 3</li><li><span class="l">E.</span> 4 menjadi 1</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Benzena C<sub>6</sub>H<sub>6</sub> → DBE (12 + 2 − 6) ÷ 2 = <b>4</b></p>
+      <p>Sikloheksana C<sub>6</sub>H<sub>12</sub> → DBE (12 + 2 − 12) ÷ 2 = <b>1</b></p>
+      <p>Ketiga ikatan rangkap hilang, tetapi <b>cincinnya tetap ada</b> — itulah sebabnya DBE tidak turun menjadi 0. Pilihan B menjebak yang lupa menghitung cincinnya.</p>
+      <div class="insight"><b>Exam Insight:</b> turunnya DBE dari 4 ke 1 berarti resonansinya <b>rusak</b> — dan itulah sebabnya benzena tidak menempuh jalur ini pada keadaan biasa.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Toluena dinitrasi tiga kali. Senyawa yang dihasilkan adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1,2,3-trinitrotoluena</li><li><span class="l">B.</span> m-dinitrobenzena</li><li><span class="l">C.</span> nitrobenzena</li><li><span class="l">D.</span> asam benzoat</li><li><span class="l">E.</span> 2,4,6-trinitrotoluena</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Gugus –CH<sub>3</sub> adalah pengarah <b>orto-para</b>, yaitu posisi <b>2, 4, dan 6</b> terhadap gugus metilnya.</p>
+      <p>Nitrasi tiga kali mengisi ketiga posisi itu → <b>2,4,6-trinitrotoluena</b>, yang dikenal sebagai <b>TNT</b>.</p>
+      <p>Pilihan A keliru karena posisi 1,2,3 tidak sesuai arah pengarahnya.</p>
+      <div class="insight"><b>Exam Insight:</b> nomor 2, 4, dan 6 pada nama TNT bukan kebetulan — ketiganya diramalkan langsung oleh aturan gugus pengarah.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Untuk membedakan fenol dari asam benzoat, pereaksi yang tepat adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> lakmus biru</li><li><span class="l">B.</span> logam natrium</li><li><span class="l">C.</span> larutan natrium karbonat</li><li><span class="l">D.</span> air bromin</li><li><span class="l">E.</span> pereaksi Fehling</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Asam benzoat</b> cukup kuat untuk membebaskan CO<sub>2</sub> dari natrium karbonat — muncul gelembung gas. <b>Fenol</b> terlalu lemah untuk itu.</p>
+      <p>Pilihan A dan B menjebak karena <b>keduanya bereaksi</b> pada kedua senyawa: keduanya memerahkan lakmus dan keduanya bereaksi dengan Na. Pereaksi yang tidak membedakan tidak berguna di sini.</p>
+      <div class="insight"><b>Exam Insight:</b> soal ini menguji pemahaman <b>seberapa besar</b> perbedaan keasamannya, bukan sekadar tahu bahwa keduanya asam.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Perhatikan senyawa nitrobenzena. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> memudarkan air bromin</li>
+      <li><span class="l">B.</span> gugus –NO<sub>2</sub>-nya pengarah meta, sehingga nitrasi berikutnya memberi m-dinitrobenzena</li>
+      <li><span class="l">C.</span> DBE-nya 1</li>
+      <li><span class="l">D.</span> dibuat dengan katalis AlCl<sub>3</sub></li>
+      <li><span class="l">E.</span> bersifat basa kuat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Periksa C.</b> Nitrobenzena C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub> berinti benzena → DBE <b>4</b>, bukan 1.</p>
+      <p><b>Periksa A.</b> Cincinnya beresonansi → <b>tidak</b> memudarkan air bromin.</p>
+      <p><b>Periksa D.</b> Nitrobenzena dibuat lewat <b>nitrasi</b> dengan katalis <b>H<sub>2</sub>SO<sub>4</sub></b>, bukan AlCl<sub>3</sub>.</p>
+      <p><b>Periksa E.</b> Gugus –NO<sub>2</sub> tidak bersifat basa.</p>
+      <p>Pernyataan B benar pada kedua bagiannya ✔</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab — DBE, sifat aromatik, katalis, dan gugus pengarah.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. B &nbsp; 2. A &nbsp; 3. C &nbsp; 4. D &nbsp; 5. C &nbsp; 6. E &nbsp; 7. E &nbsp; 8. C &nbsp; 9. D &nbsp; 10. B<br>
+      11. A &nbsp; 12. A &nbsp; 13. D &nbsp; 14. A &nbsp; 15. B &nbsp; 16. D &nbsp; 17. E &nbsp; 18. E &nbsp; 19. C &nbsp; 20. B
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti Bab 19 sudah tuntas dan Anda siap melanjutkan ke Polimer dan Makromolekul; 14–17 benar berarti ulangi bagian gugus pengarah dan cara menghitung isomer; di bawah 14 berarti hafalkan ulang nama lazim dan pasangan katalisnya, lalu kerjakan ulang seluruh Worked Example.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 19 tersedia lengkap dalam berkas ini; Bab 1 sampai Bab 18 tersedia dalam berkas terpisah. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">✓ Tersedia lengkap — berkas ini</div></div>
+    <div class="rm"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">Adisi, kondensasi, karbohidrat, protein, lemak</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 19: Benzena dan Turunannya · 20 worked example · 21 soal latihan · 20 soal tes akhir bab</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>

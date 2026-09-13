@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handbook Kimia SMA — Indeks Lengkap 20 Bab</title>
+<style>
+:root{
+  --nav:#0B2E4F; --nav2:#123E68; --biru:#1A8FBF; --biru-mu:#E9F5FB; --biru-te:#3FB0DC;
+  --hijau:#186F45; --hijau-mu:#E8F5EE; --merah:#B23A2C; --merah-mu:#FCEDEB;
+  --kuning:#E89A1C; --kuning-mu:#FFF6E6; --oranye:#C77400;
+  --teks:#1B2A37; --teks2:#3A4C5C; --redup:#69798A;
+  --garis:#DCE4EB; --latar:#F6F8FA; --putih:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--latar);color:var(--teks);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%}
+.bungkus{max-width:1080px;margin:0 auto;padding:0 18px 64px}
+
+header.hero{background:linear-gradient(135deg,var(--nav) 0%,var(--nav2) 100%);color:#fff;
+  padding:44px 18px 40px;margin-bottom:28px}
+.hero-in{max-width:1080px;margin:0 auto}
+.kick{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7FA8C9;font-weight:700}
+h1{margin:10px 0 8px;font-size:31px;line-height:1.2;letter-spacing:-.01em}
+.sub{color:#BBD4E8;font-size:15.5px;max-width:680px;margin:0 0 20px}
+.stat{display:flex;flex-wrap:wrap;gap:10px}
+.stat div{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+  border-radius:8px;padding:9px 14px;min-width:88px}
+.stat b{display:block;font-size:20px;line-height:1.25}
+.stat span{display:block;font-size:11px;color:#BBD4E8;letter-spacing:.05em;text-transform:uppercase;overflow-wrap:break-word}
+
+.cari-bar{position:sticky;top:0;z-index:20;background:var(--latar);
+  padding:14px 0 12px;border-bottom:1px solid var(--garis);margin-bottom:22px}
+.cari-in{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+#cari{flex:1;min-width:200px;padding:12px 15px;font-size:15.5px;border:1.8px solid var(--garis);
+  border-radius:9px;background:var(--putih);color:var(--teks);font-family:inherit}
+#cari:focus{outline:none;border-color:var(--biru);box-shadow:0 0 0 3px rgba(26,143,191,.14)}
+.tapis{display:flex;gap:7px;flex-wrap:wrap}
+.tapis button{padding:9px 13px;font-size:13px;font-weight:600;border:1.6px solid var(--garis);
+  background:var(--putih);color:var(--teks2);border-radius:8px;cursor:pointer;font-family:inherit}
+.tapis button:hover{border-color:var(--biru-te)}
+.tapis button.aktif{background:var(--nav);border-color:var(--nav);color:#fff}
+#hitung{font-size:13px;color:var(--redup);margin-top:9px}
+
+h2.judul{font-size:19px;margin:32px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--nav);
+  letter-spacing:-.01em}
+p.ket{color:var(--teks2);font-size:14.5px;margin:0 0 18px}
+
+.kisi{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.kartu{background:var(--putih);border:1.6px solid var(--garis);border-radius:11px;
+  overflow:hidden;display:flex;flex-direction:column;transition:border-color .13s,transform .13s}
+.kartu:hover{border-color:var(--biru-te);transform:translateY(-1px)}
+.kartu.penting{border-left:4px solid var(--kuning)}
+.k-atas{padding:14px 16px 12px;border-bottom:1px solid var(--garis)}
+.k-baris{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.k-no{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--biru);text-transform:uppercase}
+.k-bintang{font-size:11px;color:var(--kuning);font-weight:700;white-space:nowrap}
+.k-judul{font-size:16.5px;font-weight:700;margin:5px 0 6px;line-height:1.3;letter-spacing:-.01em}
+.k-meta{font-size:12px;color:var(--redup)}
+.k-isi{padding:11px 16px 13px;flex:1}
+.k-isi ul{margin:0;padding-left:17px;font-size:13px;color:var(--teks2);line-height:1.72}
+.k-isi li{margin:0}
+.k-isi mark{background:#FFF1B8;color:inherit;padding:0 1px;border-radius:2px}
+.k-bawah{padding:11px 16px 14px;border-top:1px solid var(--garis);background:#FBFCFD}
+.k-bawah a{display:block;text-align:center;background:var(--nav);color:#fff;text-decoration:none;
+  padding:10px;border-radius:8px;font-size:14px;font-weight:600}
+.k-bawah a:hover{background:var(--biru)}
+
+.kotak{border:1.6px solid var(--garis);border-left-width:4px;border-radius:9px;
+  padding:15px 17px;margin:18px 0;background:var(--putih);font-size:14.5px}
+.kotak .bt{font-weight:700;font-size:13.5px;margin-bottom:7px;letter-spacing:.01em}
+.kotak p{margin:7px 0}
+.kotak.tips{border-left-color:var(--biru);background:var(--biru-mu)}
+.kotak.tips .bt{color:var(--biru)}
+.kotak.urut{border-left-color:var(--hijau);background:var(--hijau-mu)}
+.kotak.urut .bt{color:var(--hijau)}
+.kotak.awas{border-left-color:var(--merah);background:var(--merah-mu)}
+.kotak.awas .bt{color:var(--merah)}
+
+.rantai{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.rantai a{background:var(--putih);border:1.5px solid var(--hijau);color:var(--hijau);
+  text-decoration:none;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:7px}
+.rantai a:hover{background:var(--hijau);color:#fff}
+.rantai span{color:var(--redup);align-self:center;font-size:12px}
+
+#kosong{display:none;text-align:center;padding:44px 20px;color:var(--redup);font-size:15px}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--garis);
+  color:var(--redup);font-size:12.5px;text-align:center;line-height:1.8}
+@media(max-width:600px){
+  h1{font-size:25px} .hero{padding:32px 16px 30px}
+  .kisi{grid-template-columns:1fr}
+  .stat div{flex:1;min-width:72px;padding:8px 10px} .stat b{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="hero-in">
+  <div class="kick">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  <h1>Handbook Kimia SMA</h1>
+  <p class="sub">Dua puluh berkas mandiri yang mencakup seluruh 81 topik Kimia SMA. Setiap bab dapat dibuka tanpa sambungan internet, lengkap dengan daftar isi, gambar, dan soal berpembahasan.</p>
+  <div class="stat">
+    <div><b>20</b><span>Bab</span></div>
+    <div><b>81</b><span>Topik</span></div>
+    <div><b>400</b><span>Worked example</span></div>
+    <div><b>820</b><span>Soal latihan &amp; tes</span></div>
+    <div><b>3.7 MB</b><span>Total ukuran</span></div>
+  </div>
+</div></header>
+
+<div class="bungkus">
+
+<div class="cari-bar">
+  <div class="cari-in">
+    <input id="cari" type="search" placeholder="Cari topik — misalnya: titrasi, entalpi, isomer, elektrolisis…" autocomplete="off">
+    <div class="tapis">
+      <button data-t="semua" class="aktif">Semua</button>
+      <button data-t="penting">★ Prioritas UTBK</button>
+      <button data-t="x">Kelas X</button>
+      <button data-t="xi">Kelas XI</button>
+      <button data-t="xii">Kelas XII</button>
+    </div>
+  </div>
+  <div id="hitung"></div>
+</div>
+
+<div class="kotak tips">
+  <div class="bt">⚡ Cara memakai halaman ini</div>
+  <p>Ketik kata kunci di kolom pencarian untuk menemukan bab yang membahasnya — pencarian menjangkau <b>seluruh 204 subbagian</b>, bukan hanya judul babnya. Hasil yang cocok akan langsung membuka bab pada bagian yang tepat.</p>
+  <p>Tanda <b>★ Prioritas UTBK</b> menandai bab yang paling sering keluar di ujian masuk. Bila waktu Anda terbatas, dahulukan keempat belas bab bertanda itu.</p>
+</div>
+
+<div class="kotak urut">
+  <div class="bt">Urutan belajar yang disarankan</div>
+  <p>Nomor bab <b>tidak sama</b> dengan urutan belajarnya. Bab 3 memuat topik 1 dan 2, sehingga ia yang pertama dibaca. Setelah itu urutannya mengikuti nomor topik:</p>
+  <div class="rantai" id="rantai"></div>
+</div>
+
+<h2 class="judul">Daftar Bab</h2>
+<p class="ket">Klik tombol pada tiap kartu untuk membuka berkasnya. Simpan seluruh berkas dalam satu folder agar tautannya berfungsi.</p>
+<div class="kisi" id="kisi"></div>
+<div id="kosong">Tidak ada bab yang cocok dengan pencarian Anda.<br><span style="font-size:13.5px">Coba kata kunci yang lebih umum, misalnya "asam", "reaksi", atau "larutan".</span></div>
+
+<div class="kotak awas">
+  <div class="bt">⚠ Agar tautan berfungsi</div>
+  <p>Halaman ini menautkan berkas bab lewat <b>nama berkasnya</b>. Simpan berkas indeks ini <b>satu folder</b> dengan kedua puluh berkas bab, dan jangan mengubah nama berkasnya.</p>
+  <p>Bila sebuah tautan tidak terbuka, periksa apakah berkas bab yang bersangkutan sudah diunduh dan berada di folder yang sama.</p>
+</div>
+
+<footer>
+  Handbook Kimia SMA · 20 bab · 81 topik · 1.220 soal dan contoh berpembahasan<br>
+  Setiap berkas bersifat mandiri dan dapat dibuka tanpa sambungan internet
+</footer>
+</div>
+
+<script>
+const BAB = [{"no":1,"topik":"3–8","judul":"Struktur Atom & Sistem Periodik","penting":true,"ukuran":175,"sub":[{"a":"partikel","n":"1.4","t":"Partikel Penyusun Atom"},{"a":"notasi","n":"1.5","t":"Notasi Atom, Isotop & Ion"},{"a":"ar","n":"1.6","t":"Massa Atom Relatif"},{"a":"model","n":"1.7","t":"Perkembangan Model Atom"},{"a":"konfig","n":"1.8","t":"Konfigurasi Elektron"},{"a":"kuantum","n":"1.9","t":"Bilangan Kuantum"},{"a":"focus","n":"1.10","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"1.13","t":"Formula Sheet"},{"a":"test","n":"1.14","t":"Final Chapter Test"}]},{"no":2,"topik":"9–15","judul":"Ikatan Kimia & Bentuk Molekul","penting":true,"ukuran":265,"sub":[{"a":"oktet","n":"2.4","t":"Kestabilan & Aturan Oktet"},{"a":"ion","n":"2.5","t":"Ikatan Ion"},{"a":"kovalen","n":"2.6","t":"Ikatan Kovalen"},{"a":"koordinasi","n":"2.7","t":"Kovalen Koordinasi"},{"a":"simpang","n":"2.8","t":"Penyimpangan Oktet"},{"a":"polar","n":"2.9","t":"Kepolaran Ikatan & Molekul"},{"a":"logam","n":"2.10","t":"Ikatan Logam"},{"a":"vsepr","n":"2.11","t":"Bentuk Molekul (VSEPR)"},{"a":"hibrid","n":"2.12","t":"Hibridisasi"},{"a":"antar","n":"2.13","t":"Gaya Antarmolekul"},{"a":"focus","n":"2.14","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"2.17","t":"Formula Sheet"},{"a":"test","n":"2.18","t":"Final Chapter Test"}]},{"no":3,"topik":"1–2","judul":"Hakikat Ilmu Kimia & Metode Ilmiah","penting":false,"ukuran":219,"sub":[{"a":"hakikat","n":"3.4","t":"Hakikat Ilmu Kimia"},{"a":"materi","n":"3.5","t":"Klasifikasi Materi"},{"a":"perubahan","n":"3.6","t":"Perubahan Fisika & Kimia"},{"a":"metode","n":"3.7","t":"Metode Ilmiah & Variabel"},{"a":"ukur","n":"3.8","t":"Pengukuran & Satuan SI"},{"a":"ap","n":"3.9","t":"Angka Penting"},{"a":"notasi","n":"3.10","t":"Notasi Ilmiah"},{"a":"presisi","n":"3.11","t":"Ketelitian & Ketepatan"},{"a":"lab","n":"3.12","t":"Keselamatan Laboratorium"},{"a":"focus","n":"3.13","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"3.16","t":"Formula Sheet"},{"a":"test","n":"3.17","t":"Final Chapter Test"}]},{"no":4,"topik":"16–17","judul":"Tata Nama Senyawa & Persamaan Reaksi","penting":false,"ukuran":205,"sub":[{"a":"ion","n":"4.4","t":"Ion & Bilangan Oksidasi"},{"a":"namaion","n":"4.5","t":"Tata Nama Senyawa Ion"},{"a":"namakov","n":"4.6","t":"Tata Nama Senyawa Kovalen"},{"a":"asambasa","n":"4.7","t":"Tata Nama Asam & Basa"},{"a":"persamaan","n":"4.8","t":"Persamaan Reaksi"},{"a":"setara","n":"4.9","t":"Menyetarakan Reaksi"},{"a":"jenis","n":"4.10","t":"Jenis-jenis Reaksi"},{"a":"focus","n":"4.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"4.14","t":"Formula Sheet"},{"a":"test","n":"4.15","t":"Final Chapter Test"}]},{"no":5,"topik":"18–20","judul":"Hukum Dasar Kimia & Stoikiometri","penting":true,"ukuran":195,"sub":[{"a":"hukum","n":"5.4","t":"Hukum Dasar Kimia"},{"a":"armr","n":"5.5","t":"Massa Atom & Molekul Relatif"},{"a":"mol","n":"5.6","t":"Konsep Mol"},{"a":"konversi","n":"5.7","t":"Peta Konversi Mol"},{"a":"rumus","n":"5.8","t":"Rumus Empiris & Molekul"},{"a":"kadar","n":"5.9","t":"Kadar Zat & Air Kristal"},{"a":"stoik","n":"5.10","t":"Stoikiometri Reaksi"},{"a":"pembatas","n":"5.11","t":"Pereaksi Pembatas"},{"a":"focus","n":"5.12","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"5.15","t":"Formula Sheet"},{"a":"test","n":"5.16","t":"Final Chapter Test"}]},{"no":6,"topik":"21–26","judul":"Hidrokarbon & Minyak Bumi","penting":false,"ukuran":204,"sub":[{"a":"karbon","n":"6.4","t":"Kekhasan Atom Karbon"},{"a":"alkana","n":"6.5","t":"Alkana"},{"a":"alkenauna","n":"6.6","t":"Alkena & Alkuna"},{"a":"isomer","n":"6.7","t":"Keisomeran"},{"a":"sifat","n":"6.8","t":"Sifat Fisis"},{"a":"reaksi","n":"6.9","t":"Reaksi Hidrokarbon"},{"a":"minyak","n":"6.10","t":"Minyak Bumi"},{"a":"focus","n":"6.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"6.14","t":"Formula Sheet"},{"a":"test","n":"6.15","t":"Final Chapter Test"}]},{"no":7,"topik":"27–30","judul":"Termokimia","penting":true,"ukuran":195,"sub":[{"a":"sistem","n":"7.4","t":"Sistem dan Lingkungan"},{"a":"eksoendo","n":"7.5","t":"Eksoterm & Endoterm"},{"a":"entalpi","n":"7.6","t":"Entalpi dan ΔH"},{"a":"jenis","n":"7.7","t":"Jenis-jenis ΔH Standar"},{"a":"hess","n":"7.8","t":"Hukum Hess"},{"a":"pembentukan","n":"7.9","t":"ΔH dari Data ΔHf°"},{"a":"ikatan","n":"7.10","t":"Energi Ikatan"},{"a":"kalorimetri","n":"7.11","t":"Kalorimetri"},{"a":"focus","n":"7.12","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"7.15","t":"Formula Sheet"},{"a":"test","n":"7.16","t":"Final Chapter Test"}]},{"no":8,"topik":"31–34","judul":"Laju Reaksi","penting":true,"ukuran":180,"sub":[{"a":"laju","n":"8.4","t":"Konsep Laju Reaksi"},{"a":"tumbukan","n":"8.5","t":"Teori Tumbukan"},{"a":"faktor","n":"8.6","t":"Faktor Penentu Laju"},{"a":"orde","n":"8.7","t":"Persamaan Laju & Orde"},{"a":"data","n":"8.8","t":"Orde dari Data Percobaan"},{"a":"grafik","n":"8.9","t":"Grafik Orde Reaksi"},{"a":"terapan","n":"8.10","t":"Suhu, Waktu Paruh, Terapan"},{"a":"focus","n":"8.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"8.14","t":"Formula Sheet"},{"a":"test","n":"8.15","t":"Final Chapter Test"}]},{"no":9,"topik":"35–39","judul":"Kesetimbangan Kimia","penting":true,"ukuran":187,"sub":[{"a":"dinamis","n":"9.4","t":"Kesetimbangan Dinamis"},{"a":"kc","n":"9.5","t":"Tetapan Kesetimbangan Kc"},{"a":"manipulasi","n":"9.6","t":"Manipulasi Nilai K"},{"a":"kp","n":"9.7","t":"Kp dan Hubungannya"},{"a":"disosiasi","n":"9.8","t":"Derajat Disosiasi"},{"a":"lechatelier","n":"9.9","t":"Pergeseran Kesetimbangan"},{"a":"industri","n":"9.10","t":"Penerapan di Industri"},{"a":"focus","n":"9.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"9.14","t":"Formula Sheet"},{"a":"test","n":"9.15","t":"Final Chapter Test"}]},{"no":10,"topik":"40–45","judul":"Asam Basa","penting":true,"ukuran":189,"sub":[{"a":"teori","n":"10.4","t":"Tiga Teori Asam Basa"},{"a":"kekuatan","n":"10.5","t":"Kekuatan Asam & Basa"},{"a":"ph","n":"10.6","t":"Konsep pH dan Kw"},{"a":"kuat","n":"10.7","t":"pH Asam & Basa Kuat"},{"a":"lemah","n":"10.8","t":"pH Asam & Basa Lemah"},{"a":"indikator","n":"10.9","t":"Indikator dan Trayek pH"},{"a":"terapan","n":"10.10","t":"Penerapan Asam Basa"},{"a":"focus","n":"10.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"10.14","t":"Formula Sheet"},{"a":"test","n":"10.15","t":"Final Chapter Test"}]},{"no":11,"topik":"46–47","judul":"Hidrolisis & Larutan Penyangga","penting":true,"ukuran":190,"sub":[{"a":"garam","n":"11.4","t":"Jenis Garam"},{"a":"hidrolisis","n":"11.5","t":"Hidrolisis Garam"},{"a":"phgaram","n":"11.6","t":"Menghitung pH Garam"},{"a":"buffer","n":"11.7","t":"Konsep Larutan Penyangga"},{"a":"phbuffer","n":"11.8","t":"Menghitung pH Penyangga"},{"a":"membuat","n":"11.9","t":"Membuat Penyangga"},{"a":"terapan","n":"11.10","t":"Penyangga dalam Tubuh"},{"a":"focus","n":"11.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"11.14","t":"Formula Sheet"},{"a":"test","n":"11.15","t":"Final Chapter Test"}]},{"no":12,"topik":"48","judul":"Titrasi Asam Basa","penting":true,"ukuran":199,"sub":[{"a":"prinsip","n":"12.4","t":"Prinsip dan Alat Titrasi"},{"a":"hitungan","n":"12.5","t":"Perhitungan Titrasi"},{"a":"kurva","n":"12.6","t":"Kurva Titrasi"},{"a":"ekivalen","n":"12.7","t":"Titik Ekivalen & Titik Akhir"},{"a":"indikator","n":"12.8","t":"Pemilihan Indikator"},{"a":"kadar","n":"12.9","t":"Menentukan Kadar Zat"},{"a":"terapan","n":"12.10","t":"Penerapan Titrasi"},{"a":"focus","n":"12.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"12.14","t":"Formula Sheet"},{"a":"test","n":"12.15","t":"Final Chapter Test"}]},{"no":13,"topik":"49–50","judul":"Kelarutan & Ksp","penting":true,"ukuran":183,"sub":[{"a":"kelarutan","n":"13.4","t":"Kelarutan & Larutan Jenuh"},{"a":"ksp","n":"13.5","t":"Tetapan Hasil Kali Kelarutan"},{"a":"hubungan","n":"13.6","t":"Hubungan s dan Ksp"},{"a":"ionsenama","n":"13.7","t":"Pengaruh Ion Senama"},{"a":"pengaruhph","n":"13.8","t":"Pengaruh pH"},{"a":"endapan","n":"13.9","t":"Meramalkan Endapan"},{"a":"terapan","n":"13.10","t":"Penerapan Ksp"},{"a":"focus","n":"13.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"13.14","t":"Formula Sheet"},{"a":"test","n":"13.15","t":"Final Chapter Test"}]},{"no":14,"topik":"51–56","judul":"Sifat Koligatif Larutan","penting":true,"ukuran":173,"sub":[{"a":"konsentrasi","n":"14.4","t":"Molalitas & Fraksi Mol"},{"a":"tekananuap","n":"14.5","t":"Penurunan Tekanan Uap"},{"a":"titikdidih","n":"14.6","t":"Kenaikan Titik Didih"},{"a":"titikbeku","n":"14.7","t":"Penurunan Titik Beku"},{"a":"osmotik","n":"14.8","t":"Tekanan Osmotik"},{"a":"vanthoff","n":"14.9","t":"Larutan Elektrolit"},{"a":"terapan","n":"14.10","t":"Penerapan Sifat Koligatif"},{"a":"focus","n":"14.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"14.14","t":"Formula Sheet"},{"a":"test","n":"14.15","t":"Final Chapter Test"}]},{"no":15,"topik":"57–59","judul":"Reaksi Redoks","penting":true,"ukuran":173,"sub":[{"a":"biloks","n":"15.4","t":"Mengulang Bilangan Oksidasi"},{"a":"oksidator","n":"15.5","t":"Oksidator dan Reduktor"},{"a":"metodebiloks","n":"15.6","t":"Metode Bilangan Oksidasi"},{"a":"setengah","n":"15.7","t":"Metode Setengah Reaksi"},{"a":"suasana","n":"15.8","t":"Suasana Asam dan Basa"},{"a":"autoredoks","n":"15.9","t":"Reaksi Autoredoks"},{"a":"terapan","n":"15.10","t":"Penerapan Redoks"},{"a":"focus","n":"15.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"15.14","t":"Formula Sheet"},{"a":"test","n":"15.15","t":"Final Chapter Test"}]},{"no":16,"topik":"60–64","judul":"Elektrokimia","penting":true,"ukuran":171,"sub":[{"a":"volta","n":"16.4","t":"Sel Volta"},{"a":"potensial","n":"16.5","t":"Potensial Sel & Deret Volta"},{"a":"notasi","n":"16.6","t":"Notasi Sel & Jenis Sel"},{"a":"elektrolisis","n":"16.7","t":"Elektrolisis"},{"a":"elektrode","n":"16.8","t":"Reaksi di Katode & Anode"},{"a":"faraday","n":"16.9","t":"Hukum Faraday"},{"a":"korosi","n":"16.10","t":"Korosi dan Pencegahannya"},{"a":"focus","n":"16.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"16.14","t":"Formula Sheet"},{"a":"test","n":"16.15","t":"Final Chapter Test"}]},{"no":17,"topik":"65–67","judul":"Kimia Unsur","penting":false,"ukuran":182,"sub":[{"a":"kelimpahan","n":"17.4","t":"Kelimpahan Unsur"},{"a":"gasmulia","n":"17.5","t":"Gas Mulia"},{"a":"halogen","n":"17.6","t":"Halogen"},{"a":"alkali","n":"17.7","t":"Alkali & Alkali Tanah"},{"a":"periode3","n":"17.8","t":"Unsur Periode 3"},{"a":"transisi","n":"17.9","t":"Unsur Transisi Periode 4"},{"a":"pembuatan","n":"17.10","t":"Pembuatan & Kegunaan"},{"a":"focus","n":"17.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"17.14","t":"Formula Sheet"},{"a":"test","n":"17.15","t":"Final Chapter Test"}]},{"no":18,"topik":"68–74","judul":"Senyawa Karbon","penting":true,"ukuran":175,"sub":[{"a":"gugus","n":"18.4","t":"Gugus Fungsi"},{"a":"alkohol","n":"18.5","t":"Alkohol dan Eter"},{"a":"aldehid","n":"18.6","t":"Aldehid dan Keton"},{"a":"asam","n":"18.7","t":"Asam Karboksilat & Ester"},{"a":"isomer","n":"18.8","t":"Keisomeran"},{"a":"identifikasi","n":"18.9","t":"Reaksi Identifikasi"},{"a":"kegunaan","n":"18.10","t":"Kegunaan Senyawa Karbon"},{"a":"focus","n":"18.11","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"18.14","t":"Formula Sheet"},{"a":"test","n":"18.15","t":"Final Chapter Test"}]},{"no":19,"topik":"75–76","judul":"Benzena & Turunannya","penting":false,"ukuran":164,"sub":[{"a":"struktur","n":"19.4","t":"Struktur Benzena"},{"a":"sifat","n":"19.5","t":"Sifat Benzena"},{"a":"tatanama","n":"19.6","t":"Tata Nama Turunan"},{"a":"isomer","n":"19.7","t":"Isomer Orto, Meta, Para"},{"a":"reaksi","n":"19.8","t":"Reaksi Substitusi"},{"a":"kegunaan","n":"19.9","t":"Kegunaan dan Dampak"},{"a":"focus","n":"19.10","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"19.13","t":"Formula Sheet"},{"a":"test","n":"19.14","t":"Final Chapter Test"}]},{"no":20,"topik":"77–81","judul":"Polimer & Makromolekul","penting":false,"ukuran":169,"sub":[{"a":"polimer","n":"20.4","t":"Polimer dan Polimerisasi"},{"a":"karbohidrat","n":"20.5","t":"Karbohidrat"},{"a":"protein","n":"20.6","t":"Protein dan Asam Amino"},{"a":"lemak","n":"20.7","t":"Lemak dan Minyak"},{"a":"uji","n":"20.8","t":"Uji Identifikasi"},{"a":"dampak","n":"20.9","t":"Polimer dan Lingkungan"},{"a":"focus","n":"20.10","t":"★ UTBK / Exam Focus"},{"a":"sheet","n":"20.13","t":"Formula Sheet"},{"a":"test","n":"20.14","t":"Final Chapter Test"}]}];
+const URUT = [3, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const KELAS = {x:[3,1,2,4,5,6], xi:[7,8,9,10,11,12,13], xii:[14,15,16,17,18,19,20]};
+
+function berkas(n){ return "Handbook_Kimia_SMA_Bab" + n + ".html"; }
+function kelasBab(n){
+  for (const k in KELAS) if (KELAS[k].includes(n)) return k;
+  return "";
+}
+function sorot(teks, q){
+  if (!q) return teks;
+  const i = teks.toLowerCase().indexOf(q);
+  if (i < 0) return teks;
+  return teks.slice(0,i) + "<mark>" + teks.slice(i, i+q.length) + "</mark>" + teks.slice(i+q.length);
+}
+
+// rantai urutan belajar
+document.getElementById("rantai").innerHTML = URUT.map(function(n, i){
+  const b = BAB.find(function(x){ return x.no === n; });
+  return (i ? '<span>&rarr;</span>' : '') +
+    '<a href="' + berkas(n) + '" title="' + b.judul + '">Bab ' + n + '</a>';
+}).join("");
+
+function gambar(q, tapis){
+  q = (q || "").trim().toLowerCase();
+  const kisi = document.getElementById("kisi");
+  let tampil = 0, cocokSub = 0;
+  kisi.innerHTML = BAB.map(function(b){
+    if (tapis === "penting" && !b.penting) return "";
+    if (["x","xi","xii"].includes(tapis) && kelasBab(b.no) !== tapis) return "";
+
+    const judulCocok = b.judul.toLowerCase().includes(q);
+    const sub = b.sub.filter(function(s){ return s.t.toLowerCase().includes(q); });
+    if (q && !judulCocok && sub.length === 0) return "";
+    tampil++;
+    cocokSub += sub.length;
+
+    // bagian yang ditampilkan: yang cocok bila mencari, selain itu enam pertama
+    const daftar = (q && sub.length) ? sub : b.sub.slice(0, 6);
+    const butir = daftar.map(function(s){
+      return '<li><a href="' + berkas(b.no) + '#' + s.a + '" style="color:inherit;text-decoration:none">' +
+             (s.n ? '<span style="color:var(--redup)">' + s.n + '</span> ' : '') +
+             sorot(s.t, q) + '</a></li>';
+    }).join("");
+    const sisa = (!q || !sub.length) && b.sub.length > 6
+      ? '<li style="color:var(--redup);list-style:none;margin-left:-17px">… dan ' + (b.sub.length - 6) + ' bagian lagi</li>' : '';
+
+    return '<article class="kartu' + (b.penting ? ' penting' : '') + '">' +
+      '<div class="k-atas"><div class="k-baris">' +
+        '<div class="k-no">Bab ' + b.no + ' &middot; Topik ' + b.topik + '</div>' +
+        (b.penting ? '<div class="k-bintang">&#9733;&#9733;&#9733; UTBK</div>' : '') +
+      '</div>' +
+      '<div class="k-judul">' + sorot(b.judul, q) + '</div>' +
+      '<div class="k-meta">' + b.sub.length + ' bagian &middot; 61 soal &amp; contoh &middot; ' + b.ukuran + ' KB</div></div>' +
+      '<div class="k-isi"><ul>' + butir + sisa + '</ul></div>' +
+      '<div class="k-bawah"><a href="' + berkas(b.no) + '">Buka Bab ' + b.no + '</a></div>' +
+      '</article>';
+  }).join("");
+
+  document.getElementById("kosong").style.display = tampil ? "none" : "block";
+  const h = document.getElementById("hitung");
+  if (q) {
+    h.textContent = "Menampilkan " + tampil + " bab" +
+      (cocokSub ? " dengan " + cocokSub + " bagian yang cocok" : "") + ' untuk "' + q + '"';
+  } else {
+    h.textContent = "Menampilkan " + tampil + " dari " + BAB.length + " bab";
+  }
+}
+
+let tapisAktif = "semua";
+document.getElementById("cari").addEventListener("input", function(e){
+  gambar(e.target.value, tapisAktif);
+});
+document.querySelectorAll(".tapis button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".tapis button").forEach(function(x){ x.classList.remove("aktif"); });
+    b.classList.add("aktif");
+    tapisAktif = b.dataset.t;
+    gambar(document.getElementById("cari").value, tapisAktif);
+  });
+});
+gambar("", "semua");
+</script>
+</body>
+</html>

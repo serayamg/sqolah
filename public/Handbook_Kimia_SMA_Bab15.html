@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+/* ============ TAMBAHAN BAB 2 ============ */
+.phen{
+  background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet);
+  border-radius:var(--radius); padding:18px 20px; margin:22px 0;
+}
+.phen .pt{font-size:12px; letter-spacing:.1em; font-weight:750; color:var(--violet); margin-bottom:9px}
+.phen p:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0}
+.card{background:#fff; border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px}
+.card .ct{font-size:14px; font-weight:750; color:var(--navy); margin-bottom:8px; padding-bottom:7px; border-bottom:2px solid var(--cyan-bg)}
+.card p{font-size:15px; margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.card .ex{font-family:var(--mono); font-size:13.5px; background:var(--paper-2); border-radius:6px; padding:6px 9px; color:var(--navy-2)}
+.tick{list-style:none; padding-left:0; font-size:15px; margin-bottom:0}
+.tick li{padding-left:20px; position:relative; margin-bottom:7px; color:var(--ink-2)}
+.tick li::before{content:"▸"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+.tick li:last-child{margin-bottom:0}
+
+.fx{
+  font-family:var(--mono); font-size:16px; text-align:center; margin-top:12px;
+  background:rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:#EAF4FA;
+}
+.box.short .fx, .box.exam .fx, .box.recall .fx{
+  background:#fff; color:var(--navy-2); border:1px solid var(--line-2);
+}
+table.mini{width:100%; border-collapse:collapse; font-size:13.5px; margin:6px 0 10px; background:#fff}
+table.mini th{background:var(--paper-3); color:var(--navy); text-align:left; padding:6px 9px; border:1px solid var(--line-2); white-space:nowrap; font-weight:700}
+table.mini td{padding:6px 9px; border:1px solid var(--line-2); text-align:center; color:var(--ink-2)}
+
+.shape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin:20px 0}
+.shape{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:10px 10px 12px; text-align:center}
+.shape svg{width:100%; height:auto; display:block; margin-bottom:4px; border:0; background:transparent}
+.shape .sn{font-size:12px; font-weight:750; color:var(--cyan); letter-spacing:.05em}
+.shape .sb{font-size:14.5px; font-weight:700; color:var(--navy); margin:4px 0 2px}
+.shape .sa{font-size:12.5px; color:var(--muted)}
+
+@media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 15 — REAKSI REDOKS</div>
+  <a href="#cover" class="on"><span class="num">15.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">15.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">15.2</span>Concept Map</a>
+  <a href="#why"><span class="num">15.3</span>Why This Matters</a>
+  <a href="#biloks"><span class="num">15.4</span>Mengulang Bilangan Oksidasi</a>
+  <a href="#oksidator"><span class="num">15.5</span>Oksidator dan Reduktor</a>
+  <a href="#metodebiloks"><span class="num">15.6</span>Metode Bilangan Oksidasi</a>
+  <a href="#setengah"><span class="num">15.7</span>Metode Setengah Reaksi</a>
+  <a href="#suasana"><span class="num">15.8</span>Suasana Asam dan Basa</a>
+  <a href="#autoredoks"><span class="num">15.9</span>Reaksi Autoredoks</a>
+  <a href="#terapan"><span class="num">15.10</span>Penerapan Redoks</a>
+  <a href="#focus"><span class="num">15.11</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">15.12</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 15</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">15.13</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">15.14</span>Formula Sheet</a>
+  <a href="#test"><span class="num">15.15</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 15 &nbsp;·&nbsp; KELAS XII &nbsp;·&nbsp; BEKAL WAJIB SEBELUM ELEKTROKIMIA</div>
+  <h1>Reaksi Redoks</h1>
+  <p class="sub">Bagaimana menyetarakan persamaan reaksi yang tidak bisa disetarakan dengan cara biasa? Dan mengapa satu zat bisa teroksidasi dan tereduksi sekaligus?</p>
+  <div class="meta">
+    <span class="chip">Bilangan oksidasi</span>
+    <span class="chip">Oksidator &amp; reduktor</span>
+    <span class="chip">Metode bilangan oksidasi</span>
+    <span class="chip">Metode setengah reaksi</span>
+    <span class="chip">Suasana asam &amp; basa</span>
+    <span class="chip">Reaksi autoredoks</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>15.1&nbsp; Learning Objectives</h2>
+  <p class="lead">Bab ini adalah <b>bab keterampilan</b>, bukan bab hafalan. Yang dituntut adalah kemampuan menyetarakan persamaan redoks dengan dua metode — dan keduanya harus dikuasai, karena masing-masing lebih cocok untuk jenis soal yang berbeda.</p>
+  <div class="box obj"><div class="bt">Target penguasaan Bab 15</div>
+  <ul>
+    <li>Menentukan bilangan oksidasi setiap unsur dalam senyawa dan ion.</li>
+    <li>Mengenali reaksi redoks dari perubahan bilangan oksidasinya.</li>
+    <li>Menentukan zat yang bertindak sebagai <b>oksidator</b> dan <b>reduktor</b>.</li>
+    <li>Menentukan hasil oksidasi dan hasil reduksi.</li>
+    <li>Menyetarakan persamaan redoks dengan <b>metode bilangan oksidasi</b>.</li>
+    <li>Menyetarakan persamaan redoks dengan <b>metode setengah reaksi</b>.</li>
+    <li>Menyetarakan reaksi redoks dalam suasana <b>asam</b>.</li>
+    <li>Menyetarakan reaksi redoks dalam suasana <b>basa</b>.</li>
+    <li>Mengenali dan menyetarakan reaksi <b>autoredoks</b>.</li>
+    <li>Memeriksa kesetaraan persamaan lewat <b>jumlah atom dan jumlah muatan</b>.</li>
+    <li>Menerapkan perhitungan stoikiometri pada reaksi redoks.</li>
+    <li>Menjelaskan peran redoks dalam perkaratan, fotosintesis, dan baterai.</li>
+  </ul>
+  </div>
+  <div class="box short">
+    <div class="bt">⚡ Pemeriksa yang membuat bab ini jauh lebih mudah</div>
+    <p>Persamaan redoks yang benar harus lolos <b>dua</b> pemeriksaan, bukan satu:</p>
+    <p><b>(1) Jumlah atom tiap unsur setara</b> di kedua ruas — seperti persamaan biasa.<br><b>(2) Jumlah muatan setara</b> di kedua ruas — inilah yang khas redoks.</p>
+    <p>Kedua pemeriksaan itu dijalankan secara terprogram pada <b>setiap</b> persamaan di bab ini. Untuk membuktikan pemeriksanya benar-benar bekerja, ia juga diuji pada persamaan yang sengaja dibuat salah — dan keduanya tertangkap: yang satu gagal di jumlah atom, yang lain gagal di jumlah muatan.</p>
+  </div>
+</section>
+
+<!-- ==================== WHY THIS MATTERS ==================== -->
+<section class="page" id="why">
+  <h2>15.3&nbsp; Why This Matters</h2>
+  <div class="phen">
+    <div class="pt">FENOMENA</div>
+    <p>Besi berkarat, apel yang dibelah berubah cokelat, dan baterai ponsel menyimpan lalu melepaskan tenaga. Ketiganya tampak tidak berhubungan, padahal semuanya adalah <b>perpindahan elektron</b>.</p>
+    <p>Tubuh Anda membakar glukosa untuk memperoleh tenaga; tumbuhan melakukan kebalikannya lewat fotosintesis. Keduanya adalah reaksi redoks dengan arah yang berlawanan.</p>
+    <p>Dan ada persamaan reaksi yang <b>tidak bisa</b> disetarakan dengan cara coba-coba biasa. Persamaan permanganat dengan besi, misalnya, menuntut koefisien 1, 5, 8, 1, 5, dan 4 — hampir mustahil ditebak tanpa metode yang tepat.</p>
+  </div>
+  <p class="lead">Yang menyatukan seluruhnya adalah <b>elektron yang berpindah</b>. Begitu Anda melacak perpindahan itu, persamaan yang tadinya mustahil disetarakan menjadi selesai dalam beberapa langkah yang rapi.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Di kehidupan sehari-hari</div>
+      <ul class="tick">
+        <li><b>Perkaratan besi</b> — besi teroksidasi oleh oksigen dan air.</li>
+        <li><b>Baterai dan aki</b> — tenaga listrik berasal dari reaksi redoks terkendali.</li>
+        <li><b>Pemutih pakaian</b> — bekerja dengan mengoksidasi zat warna.</li>
+        <li><b>Pernapasan dan fotosintesis</b> — dua redoks yang saling berkebalikan.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Di soal UTBK</div>
+      <ul class="tick">
+        <li>Soal <b>penyetaraan</b> hampir pasti muncul setiap tahun.</li>
+        <li>Soal oksidator-reduktor menguji ketelitian membaca arah perubahan.</li>
+        <li>Soal suasana basa menjebak yang hanya hafal cara suasana asam.</li>
+        <li>Soal autoredoks tergolong HOTS dan sering menyita waktu.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>15.2&nbsp; Concept Map</h2>
+  <p class="lead">Dua metode penyetaraan, satu hasil yang sama. Yang membedakan hanyalah <b>apa yang disetarakan lebih dulu</b>.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 720 428" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep reaksi redoks">
+    <defs>
+      <marker id="cm15Arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+        <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1A8FBF"/>
+      </marker>
+    </defs>
+    <g stroke="#1A8FBF" stroke-width="2" fill="none">
+      <path d="M360,78 L360,104"/>
+      <path d="M180,104 L540,104"/>
+      <path d="M180,104 L180,130" marker-end="url(#cm15Arrow)"/>
+      <path d="M540,104 L540,130" marker-end="url(#cm15Arrow)"/>
+      <path d="M180,262 L180,286"/>
+      <path d="M540,262 L540,286"/>
+      <path d="M180,286 L540,286"/>
+      <path d="M360,286 L360,310" marker-end="url(#cm15Arrow)"/>
+    </g>
+
+    <rect x="166" y="10" width="388" height="68" rx="8" fill="#0B2E4F"/>
+    <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">ELEKTRON YANG BERPINDAH</text>
+    <text x="360" y="52" text-anchor="middle" fill="#BBD4E8" font-size="10.5">OKSIDASI: biloks NAIK, melepas elektron &#8212; zatnya REDUKTOR</text>
+    <text x="360" y="70" text-anchor="middle" fill="#BBD4E8" font-size="10.5">REDUKSI: biloks TURUN, menerima elektron &#8212; zatnya OKSIDATOR</text>
+
+    <rect x="22" y="130" width="316" height="132" rx="9" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+    <text x="180" y="152" text-anchor="middle" fill="#186F45" font-size="12.5" font-weight="700">METODE BILANGAN OKSIDASI</text>
+    <text x="42" y="174" font-size="10.5" fill="#3A4C5C">1. Tentukan biloks, cari yang berubah</text>
+    <text x="42" y="194" font-size="10.5" fill="#3A4C5C">2. Hitung kenaikan dan penurunannya</text>
+    <text x="42" y="214" font-size="10.5" fill="#3A4C5C">3. Samakan dengan mengalikan silang</text>
+    <text x="42" y="234" font-size="10.5" fill="#3A4C5C">4. Setarakan muatan (H⁺ atau OH⁻), lalu H₂O</text>
+    <text x="180" y="254" text-anchor="middle" fill="#186F45" font-size="10.5" font-weight="700">lebih cepat untuk persamaan molekul</text>
+
+    <rect x="382" y="130" width="316" height="132" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.8"/>
+    <text x="540" y="152" text-anchor="middle" fill="#C77400" font-size="12.5" font-weight="700">METODE SETENGAH REAKSI</text>
+    <text x="402" y="174" font-size="10.5" fill="#3A4C5C">1. Pisahkan menjadi dua setengah reaksi</text>
+    <text x="402" y="194" font-size="10.5" fill="#3A4C5C">2. Setarakan atom selain O dan H</text>
+    <text x="402" y="214" font-size="10.5" fill="#3A4C5C">3. Setarakan O dengan H₂O, H dengan H⁺</text>
+    <text x="402" y="234" font-size="10.5" fill="#3A4C5C">4. Setarakan muatan dengan elektron, lalu jumlahkan</text>
+    <text x="540" y="254" text-anchor="middle" fill="#C77400" font-size="10.5" font-weight="700">lebih aman untuk persamaan ion</text>
+
+    <rect x="150" y="310" width="420" height="56" rx="9" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="2"/>
+    <text x="360" y="331" text-anchor="middle" fill="#0B2E4F" font-size="12" font-weight="700">DUA PEMERIKSA WAJIB</text>
+    <text x="360" y="350" text-anchor="middle" fill="#3A4C5C" font-size="10.5">jumlah ATOM tiap unsur setara &#160;·&#160; jumlah MUATAN setara</text>
+    <text x="360" y="362" text-anchor="middle" fill="#69798A" font-size="9.5">pemeriksa kedua inilah yang khas redoks dan sering terlewat</text>
+
+    <rect x="22" y="378" width="676" height="38" rx="6" fill="#FCEDEB" stroke="#B23A2C"/>
+    <text x="360" y="394" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B23A2C">Suasana menentukan zat penyetara: ASAM pakai H⁺ dan H₂O &#160;·&#160; BASA pakai OH⁻ dan H₂O</text>
+    <text x="360" y="409" text-anchor="middle" font-size="10.5" fill="#3A4C5C">bila satu unsur NAIK dan TURUN sekaligus dari biloks yang sama, itu reaksi AUTOREDOKS</text>
+  </svg>
+  <figcaption><b>Gambar 15.1.</b> Peta Konsep Bab 15. Kedua metode di baris tengah memberi <b>hasil yang sama persis</b> — yang berbeda hanyalah urutan kerjanya. Kotak biru memuat dua pemeriksaan yang wajib dijalankan pada setiap jawaban; pemeriksa <b>muatan</b> adalah yang khas redoks dan paling sering terlewat.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara membaca peta ini</div>
+    <p>Perhatikan baris terakhir kedua kotak metode. <b>Metode bilangan oksidasi</b> lebih cepat bila persamaannya ditulis dalam bentuk molekul lengkap, karena Anda tidak perlu memecahnya. <b>Metode setengah reaksi</b> lebih aman bila persamaannya berbentuk ion, terutama di suasana basa, karena setiap langkahnya memeriksa muatan dengan sendirinya.</p>
+    <p>Soal UTBK memakai keduanya. Menguasai satu saja berarti ada jenis soal yang akan terasa jauh lebih berat daripada seharusnya.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.4 MENGULANG BILANGAN OKSIDASI ==================== -->
+<section class="page" id="biloks">
+  <h2>15.4&nbsp; Mengulang Bilangan Oksidasi</h2>
+  <p class="lead">Seluruh bab ini bertumpu pada kemampuan menentukan biloks dengan cepat dan benar. Bagian ini merangkum aturannya dari Bab 4.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Aturan bilangan oksidasi</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Aturan</th><th>Nilai</th><th>Contoh</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Unsur bebas</td><td><b>0</b></td><td>Fe, O<sub>2</sub>, Cl<sub>2</sub>, S<sub>8</sub></td></tr>
+        <tr><td>Ion tunggal</td><td>= <b>muatannya</b></td><td>Na<sup>+</sup> = +1; Fe<sup>3+</sup> = +3; Cl<sup>−</sup> = −1</td></tr>
+        <tr class="hi"><td>Hidrogen</td><td>umumnya <b>+1</b></td><td>kecuali pada hidrida logam (NaH) = −1</td></tr>
+        <tr><td>Oksigen</td><td>umumnya <b>−2</b></td><td>kecuali peroksida (H<sub>2</sub>O<sub>2</sub>) = −1</td></tr>
+        <tr class="hi"><td>Logam golongan IA</td><td><b>+1</b></td><td>Na, K, Li</td></tr>
+        <tr><td>Logam golongan IIA</td><td><b>+2</b></td><td>Mg, Ca, Ba</td></tr>
+        <tr class="hi"><td>Jumlah dalam senyawa netral</td><td><b>0</b></td><td>H<sub>2</sub>SO<sub>4</sub>: 2(+1) + S + 4(−2) = 0</td></tr>
+        <tr><td>Jumlah dalam ion poliatom</td><td>= <b>muatan ion</b></td><td>SO<sub>4</sub><sup>2−</sup>: S + 4(−2) = −2</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Spesi</th><th>Unsur</th><th>Biloks</th><th>Spesi</th><th>Unsur</th><th>Biloks</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>MnO<sub>4</sub><sup>−</sup></td><td>Mn</td><td><b>+7</b></td><td>NO<sub>3</sub><sup>−</sup></td><td>N</td><td><b>+5</b></td></tr>
+      <tr><td>MnO<sub>2</sub></td><td>Mn</td><td>+4</td><td>NO</td><td>N</td><td>+2</td></tr>
+      <tr class="hi"><td>Mn<sup>2+</sup></td><td>Mn</td><td>+2</td><td>NH<sub>3</sub></td><td>N</td><td>−3</td></tr>
+      <tr><td>Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup></td><td>Cr</td><td><b>+6</b></td><td>SO<sub>4</sub><sup>2−</sup></td><td>S</td><td><b>+6</b></td></tr>
+      <tr class="hi"><td>Cr<sup>3+</sup></td><td>Cr</td><td>+3</td><td>H<sub>2</sub>S</td><td>S</td><td>−2</td></tr>
+      <tr><td>ClO<sub>3</sub><sup>−</sup></td><td>Cl</td><td>+5</td><td>H<sub>2</sub>O<sub>2</sub></td><td>O</td><td><b>−1</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px">Seluruh nilai pada tabel ini dihitung ulang secara terprogram dengan penerapan aturan di atas, bukan disalin dari hafalan. Perhatikan dua baris tercetak tebal yang paling sering muncul di soal: <b>Mn dalam permanganat = +7</b> dan <b>Cr dalam dikromat = +6</b>.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Chemistry Shortcut — biloks dalam ion poliatom</div>
+    <p>Untuk ion seperti Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>, kerjakan mundur dari muatannya:</p>
+    <p class="eq">2(Cr) + 7(−2) = −2 → 2(Cr) = −2 + 14 = +12 → Cr = <b>+6</b></p>
+    <p style="margin-top:12px"><b>Kesalahan yang sering terjadi:</b> lupa mengalikan biloks Cr dengan indeksnya. Ada <b>dua</b> atom Cr, sehingga hasil akhirnya harus dibagi dua.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.5 OKSIDATOR DAN REDUKTOR ==================== -->
+<section class="page" id="oksidator">
+  <h2>15.5&nbsp; Oksidator, Reduktor, dan Hasilnya <span class="star">★★★</span></h2>
+  <p class="lead">Empat istilah yang terdengar mirip dan sering tertukar. Kuncinya: <b>oksidator adalah zat yang mengalami reduksi</b>, bukan yang mengalami oksidasi.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Empat istilah dan cara membedakannya</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Istilah</th><th>Definisi</th><th>Biloksnya</th><th>Elektron</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Oksidasi</b></td><td>Peristiwa kenaikan biloks</td><td><b>NAIK</b></td><td>melepas</td></tr>
+        <tr><td><b>Reduksi</b></td><td>Peristiwa penurunan biloks</td><td><b>TURUN</b></td><td>menerima</td></tr>
+        <tr class="hi"><td><b>Reduktor</b></td><td>Zat yang <b>mengalami oksidasi</b></td><td>NAIK</td><td>melepas</td></tr>
+        <tr><td><b>Oksidator</b></td><td>Zat yang <b>mengalami reduksi</b></td><td>TURUN</td><td>menerima</td></tr>
+        <tr class="hi"><td><b>Hasil oksidasi</b></td><td>Produk dari zat yang teroksidasi</td><td>—</td><td>—</td></tr>
+        <tr><td><b>Hasil reduksi</b></td><td>Produk dari zat yang tereduksi</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Cara mengingat yang tidak pernah gagal:</b> oksidator <b>meng</b>oksidasi zat lain, sehingga dirinya sendiri justru <b>ter</b>eduksi. Ia memberi kesempatan zat lain naik biloksnya dengan cara menurunkan biloksnya sendiri.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Contoh terverifikasi — menentukan keempatnya sekaligus</div>
+    <p class="eq" style="text-align:center; font-size:15px">MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O</p>
+    <div class="tw" style="margin-top:12px"><table class="mini">
+      <tr><th>Mn: +7 → +2</th><td><b>turun</b> 5 → mengalami <b>reduksi</b> → MnO<sub>4</sub><sup>−</sup> adalah <b>oksidator</b></td></tr>
+      <tr><th>Fe: +2 → +3</th><td><b>naik</b> 1 → mengalami <b>oksidasi</b> → Fe<sup>2+</sup> adalah <b>reduktor</b></td></tr>
+      <tr><th>Hasil reduksi</th><td><b>Mn<sup>2+</sup></b> — produk dari zat yang tereduksi</td></tr>
+      <tr><th>Hasil oksidasi</th><td><b>Fe<sup>3+</sup></b> — produk dari zat yang teroksidasi</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Perhatikan H⁺ dan H₂O:</b> biloks H tetap +1 dan biloks O tetap −2 di kedua ruas, sehingga keduanya <b>tidak terlibat</b> dalam perpindahan elektron. Mereka hanya berperan sebagai penyetara suasana.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — menukar oksidator dengan zat yang teroksidasi</div>
+    <p>Ini kesalahan paling sering di bagian ini, dan pilihan jawabannya hampir selalu tersedia berpasangan. <b>Oksidator</b> adalah zat yang biloksnya <b>TURUN</b>; zat yang <b>teroksidasi</b> adalah yang biloksnya <b>NAIK</b>.</p>
+    <p><b>Kesalahan kedua:</b> menyebut hasil reduksi sebagai oksidator. Oksidator berada di ruas <b>kiri</b> (pereaksi); hasil reduksi berada di ruas <b>kanan</b> (produk). Keduanya memuat unsur yang sama tetapi bukan zat yang sama.</p>
+    <p><b>Kebiasaan yang aman:</b> tuliskan panah perubahan biloks lengkap dengan arahnya di atas persamaan — misalnya "+7 → +2, turun" — sebelum menjawab. Lima detik, dan kedua kesalahan ini tertutup.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.6 METODE BILANGAN OKSIDASI ==================== -->
+<section class="page" id="metodebiloks">
+  <h2>15.6&nbsp; Penyetaraan dengan Metode Bilangan Oksidasi <span class="star">★★★</span></h2>
+  <p class="lead">Gagasannya sederhana: <b>jumlah kenaikan biloks harus sama dengan jumlah penurunannya</b>, karena elektron yang dilepas satu zat tepat diterima zat yang lain.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 442" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua metode penyetaraan redoks pada reaksi yang sama">
+<rect x="1" y="1" width="718" height="440" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">DUA METODE, SATU HASIL YANG SAMA</text>
+<rect x="14" y="36" width="692" height="34" rx="7" fill="#0B2E4F"/>
+<text x="360" y="52" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700" font-family="monospace">MnO₄⁻ + Fe²⁺ + H⁺ &#8594; Mn²⁺ + Fe³⁺ + H₂O</text>
+<text x="360" y="65" text-anchor="middle" fill="#BBD4E8" font-size="9.5">persamaan yang belum setara</text>
+<rect x="14" y="80" width="340" height="234" rx="9" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+<text x="184" y="100" text-anchor="middle" fill="#186F45" font-size="11.5" font-weight="700">METODE BILANGAN OKSIDASI</text>
+<circle cx="34" cy="114" r="9" fill="#186F45"/>
+<text x="34" y="118" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">1</text>
+<text x="50" y="112" font-size="10" font-weight="700" fill="#0B2E4F">Tandai biloks yang berubah</text>
+<text x="50" y="125" font-size="9.5" fill="#3A4C5C" font-family="monospace">Mn: +7 &#8594; +2  ·  Fe: +2 &#8594; +3</text>
+<circle cx="34" cy="152" r="9" fill="#186F45"/>
+<text x="34" y="156" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">2</text>
+<text x="50" y="150" font-size="10" font-weight="700" fill="#0B2E4F">Hitung selisihnya</text>
+<text x="50" y="163" font-size="9.5" fill="#3A4C5C" font-family="monospace">Mn TURUN 5  ·  Fe NAIK 1</text>
+<circle cx="34" cy="190" r="9" fill="#186F45"/>
+<text x="34" y="194" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
+<text x="50" y="188" font-size="10" font-weight="700" fill="#0B2E4F">Samakan dengan kali silang</text>
+<text x="50" y="201" font-size="9.5" fill="#3A4C5C" font-family="monospace">Mn × 1  ·  Fe × 5</text>
+<circle cx="34" cy="228" r="9" fill="#186F45"/>
+<text x="34" y="232" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
+<text x="50" y="226" font-size="10" font-weight="700" fill="#0B2E4F">Setarakan muatan dengan H⁺</text>
+<text x="50" y="239" font-size="9.5" fill="#3A4C5C" font-family="monospace">kiri −1+10 = +9, kanan +2+15 = +17</text>
+<circle cx="34" cy="266" r="9" fill="#186F45"/>
+<text x="34" y="270" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
+<text x="50" y="264" font-size="10" font-weight="700" fill="#0B2E4F">Tambahkan 8 H⁺ di kiri</text>
+<text x="50" y="277" font-size="9.5" fill="#3A4C5C" font-family="monospace">lalu 4 H₂O di kanan</text>
+<rect x="366" y="80" width="340" height="234" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.8"/>
+<text x="536" y="100" text-anchor="middle" fill="#C77400" font-size="11.5" font-weight="700">METODE SETENGAH REAKSI</text>
+<circle cx="386" cy="114" r="9" fill="#E89A1C"/>
+<text x="386" y="118" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">1</text>
+<text x="402" y="112" font-size="10" font-weight="700" fill="#0B2E4F">Pisahkan jadi dua setengah reaksi</text>
+<text x="402" y="125" font-size="9.5" fill="#3A4C5C" font-family="monospace">MnO₄⁻ &#8594; Mn²⁺   ·   Fe²⁺ &#8594; Fe³⁺</text>
+<circle cx="386" cy="152" r="9" fill="#E89A1C"/>
+<text x="386" y="156" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">2</text>
+<text x="402" y="150" font-size="10" font-weight="700" fill="#0B2E4F">Setarakan O dengan H₂O</text>
+<text x="402" y="163" font-size="9.5" fill="#3A4C5C" font-family="monospace">MnO₄⁻ &#8594; Mn²⁺ + 4H₂O</text>
+<circle cx="386" cy="190" r="9" fill="#E89A1C"/>
+<text x="386" y="194" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
+<text x="402" y="188" font-size="10" font-weight="700" fill="#0B2E4F">Setarakan H dengan H⁺</text>
+<text x="402" y="201" font-size="9.5" fill="#3A4C5C" font-family="monospace">MnO₄⁻ + 8H⁺ &#8594; Mn²⁺ + 4H₂O</text>
+<circle cx="386" cy="228" r="9" fill="#E89A1C"/>
+<text x="386" y="232" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">4</text>
+<text x="402" y="226" font-size="10" font-weight="700" fill="#0B2E4F">Setarakan muatan dengan e⁻</text>
+<text x="402" y="239" font-size="9.5" fill="#3A4C5C" font-family="monospace">+7 &#8594; +2, maka tambah 5e⁻ di kiri</text>
+<circle cx="386" cy="266" r="9" fill="#E89A1C"/>
+<text x="386" y="270" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">5</text>
+<text x="402" y="264" font-size="10" font-weight="700" fill="#0B2E4F">Kalikan lalu jumlahkan</text>
+<text x="402" y="277" font-size="9.5" fill="#3A4C5C" font-family="monospace">setengah reaksi Fe dikali 5</text>
+<path d="M184,314 L184,330 L536,330 L536,314" fill="none" stroke="#1A8FBF" stroke-width="2"/>
+<path d="M360,330 L360,344" fill="none" stroke="#1A8FBF" stroke-width="2"/>
+<path d="M355,340 L360,348 L365,340 z" fill="#1A8FBF"/>
+<rect x="14" y="350" width="692" height="40" rx="7" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+<text x="360" y="368" text-anchor="middle" fill="#0B2E4F" font-size="12" font-weight="700" font-family="monospace">MnO₄⁻ + 5Fe²⁺ + 8H⁺ &#8594; Mn²⁺ + 5Fe³⁺ + 4H₂O</text>
+<text x="360" y="383" text-anchor="middle" fill="#69798A" font-size="9.5">hasil kedua metode sama persis</text>
+<rect x="14" y="396" width="692" height="34" rx="7" fill="#fff" stroke="#DCE4EB"/>
+<text x="360" y="412" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Periksa atom: Mn 1=1 · Fe 5=5 · O 4=4 · H 8=8 &#160;✔</text>
+<text x="360" y="425" text-anchor="middle" font-size="10.5" font-weight="700" fill="#186F45">Periksa muatan: kiri +17 = kanan +17 &#160;✔</text>
+</svg>  <figcaption><b>Gambar 15.2.</b> Reaksi yang sama diselesaikan dengan kedua metode. Kedua kolom berujung pada koefisien yang <b>sama persis</b>, dan hasilnya diperiksa dengan dua pemeriksaan di baris paling bawah — jumlah atom tiap unsur dan jumlah muatan. Perhatikan bahwa metode kanan menemukan angka 5 lewat <b>jumlah elektron</b>, sedangkan metode kiri menemukannya lewat <b>selisih biloks</b>; keduanya adalah bilangan yang sama.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Enam langkah metode bilangan oksidasi</div>
+    <ol class="step">
+      <li><b>Tentukan biloks</b> setiap unsur, lalu tandai mana yang berubah.</li>
+      <li><b>Hitung kenaikan dan penurunannya</b>, ingat mengalikan dengan jumlah atomnya.</li>
+      <li><b>Samakan keduanya</b> dengan mengalikan silang.</li>
+      <li><b>Setarakan atom yang tidak berubah biloksnya</b>, selain O dan H.</li>
+      <li><b>Setarakan muatan</b> — tambahkan H<sup>+</sup> di suasana asam, atau OH<sup>−</sup> di suasana basa, pada ruas yang muatannya lebih kecil.</li>
+      <li><b>Setarakan atom H</b> dengan menambahkan H<sub>2</sub>O.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Langkah 2 sering terlewat sebagian:</b> bila ada <b>dua</b> atom Cr dalam Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>, penurunan totalnya adalah 2 × 3 = <b>6</b>, bukan 3.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Contoh terverifikasi — dikromat dengan besi</div>
+    <p class="eq" style="text-align:center">Cr₂O₇²⁻ + Fe²⁺ + H⁺ → Cr³⁺ + Fe³⁺ + H₂O</p>
+    <p style="margin-top:12px"><b>Langkah 1–2.</b> Cr: +6 → +3, turun 3 <b>per atom</b>; karena ada 2 atom, penurunan totalnya <b>6</b>. Fe: +2 → +3, naik <b>1</b>.</p>
+    <p><b>Langkah 3.</b> Agar setara, Fe dikalikan <b>6</b> dan Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> dikalikan 1.</p>
+    <p><b>Langkah 4.</b> Satu Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> memberi <b>2</b> Cr<sup>3+</sup>.</p>
+    <p><b>Langkah 5.</b> Muatan kiri = −2 + 12 = +10; kanan = +6 + 18 = +24. Selisihnya 14 → tambahkan <b>14 H<sup>+</sup></b> di kiri.</p>
+    <p><b>Langkah 6.</b> Ada 14 H di kiri → tambahkan <b>7 H<sub>2</sub>O</b> di kanan.</p>
+    <p class="eq" style="text-align:center; margin-top:12px"><b>Cr₂O₇²⁻ + 6Fe²⁺ + 14H⁺ → 2Cr³⁺ + 6Fe³⁺ + 7H₂O</b></p>
+    <p style="margin-top:12px"><b>Diperiksa secara terprogram:</b> atom Cr 2 = 2, Fe 6 = 6, O 7 = 7, H 14 = 14 ✔ dan muatan kiri <b>+24</b> = kanan <b>+24</b> ✔</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — lupa mengalikan selisih biloks dengan jumlah atom</div>
+    <p>Pada Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>, tiap atom Cr turun 3 — tetapi ada <b>dua</b> atom, sehingga penurunan totalnya 6. Memakai 3 memberi koefisien Fe sebesar 3, dan seluruh persamaan menjadi salah.</p>
+    <p><b>Pemeriksanya gratis:</b> jalankan pemeriksaan muatan di akhir. Bila koefisien Fe keliru, muatan kedua ruas tidak akan sama — dan Anda tahu ada yang salah sebelum menyerahkan jawaban.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.7 METODE SETENGAH REAKSI ==================== -->
+<section class="page" id="setengah">
+  <h2>15.7&nbsp; Penyetaraan dengan Metode Setengah Reaksi <span class="star">★★★</span></h2>
+  <p class="lead">Metode ini memecah reaksi menjadi dua bagian yang disetarakan sendiri-sendiri, lalu menggabungkannya. Lebih panjang, tetapi <b>jauh lebih sulit dibuat salah</b>.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Enam langkah metode setengah reaksi</div>
+    <ol class="step">
+      <li><b>Pisahkan</b> menjadi setengah reaksi oksidasi dan setengah reaksi reduksi.</li>
+      <li><b>Setarakan atom selain O dan H</b> pada masing-masing.</li>
+      <li><b>Setarakan O</b> dengan menambahkan <b>H<sub>2</sub>O</b> pada ruas yang kekurangan.</li>
+      <li><b>Setarakan H</b> dengan menambahkan <b>H<sup>+</sup></b>.</li>
+      <li><b>Setarakan muatan</b> dengan menambahkan <b>elektron</b> pada ruas yang muatannya lebih besar.</li>
+      <li><b>Samakan jumlah elektron</b> kedua setengah reaksi, lalu jumlahkan dan coret yang sama.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Mengapa metode ini lebih aman:</b> langkah 5 memeriksa muatan pada <b>setiap</b> setengah reaksi. Kesalahan tertangkap lebih dini, sebelum merambat ke persamaan gabungannya.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Contoh terverifikasi — permanganat dengan oksalat</div>
+    <p class="eq" style="text-align:center">MnO₄⁻ + C₂O₄²⁻ + H⁺ → Mn²⁺ + CO₂ + H₂O</p>
+    <p style="margin-top:12px"><b>Setengah reaksi reduksi:</b></p>
+    <p class="eq">MnO₄⁻ → Mn²⁺ &nbsp;&nbsp;→&nbsp;&nbsp; MnO₄⁻ → Mn²⁺ + 4H₂O &nbsp;&nbsp;→&nbsp;&nbsp; MnO₄⁻ + 8H⁺ → Mn²⁺ + 4H₂O<br>
+    muatan kiri +7, kanan +2 → tambahkan <b>5e⁻</b> di kiri</p>
+    <p style="margin-top:12px"><b>Setengah reaksi oksidasi:</b></p>
+    <p class="eq">C₂O₄²⁻ → 2CO₂ &nbsp;&nbsp;→&nbsp;&nbsp; muatan kiri −2, kanan 0 → tambahkan <b>2e⁻</b> di kanan</p>
+    <p style="margin-top:12px"><b>Samakan elektronnya:</b> reduksi × 2 (10e⁻), oksidasi × 5 (10e⁻), lalu jumlahkan:</p>
+    <p class="eq" style="text-align:center"><b>2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O</b></p>
+    <p style="margin-top:12px"><b>Diperiksa secara terprogram:</b> atom Mn 2 = 2, C 10 = 10, O 28 = 28, H 16 = 16 ✔ dan muatan kiri <b>+4</b> = kanan <b>+4</b> ✔</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Metode mana yang dipakai kapan</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Persamaan berbentuk <b>molekul</b> lengkap</th><td>Metode <b>bilangan oksidasi</b> lebih cepat — tidak perlu memecahnya</td></tr>
+      <tr><th>Persamaan berbentuk <b>ion</b></th><td>Metode <b>setengah reaksi</b> lebih aman</td></tr>
+      <tr><th>Suasana <b>basa</b></th><td>Metode <b>setengah reaksi</b> jauh lebih tertib</td></tr>
+      <tr><th>Reaksi <b>autoredoks</b></th><td>Metode <b>setengah reaksi</b>, karena satu zat memberi dua setengah reaksi</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Bila ragu, pakai setengah reaksi.</b> Ia lebih panjang beberapa baris, tetapi memeriksa dirinya sendiri di setiap langkah — dan waktu yang terbuang untuk mengulang dari awal jauh lebih besar daripada waktu tambahan menulis dua baris.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.8 SUASANA ASAM DAN BASA ==================== -->
+<section class="page" id="suasana">
+  <h2>15.8&nbsp; Suasana Asam dan Suasana Basa <span class="star">★★★</span></h2>
+  <p class="lead">Suasana reaksi menentukan <b>zat apa</b> yang boleh dipakai untuk menyetarakan. Salah memilih membuat persamaan tidak masuk akal secara kimia, meski angkanya mungkin setara.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Zat penyetara menurut suasana</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Suasana</th><th>Boleh dipakai</th><th>Tidak boleh</th><th>Petunjuk di soal</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Asam</b></td><td>H<sup>+</sup> dan H<sub>2</sub>O</td><td>OH<sup>−</sup></td><td>Ada H<sup>+</sup>, H<sub>2</sub>SO<sub>4</sub>, atau tertulis "suasana asam"</td></tr>
+        <tr><td><b>Basa</b></td><td>OH<sup>−</sup> dan H<sub>2</sub>O</td><td>H<sup>+</sup></td><td>Ada OH<sup>−</sup>, NaOH, atau tertulis "suasana basa"</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Alasannya masuk akal:</b> dalam larutan basa, ion H<sup>+</sup> praktis tidak ada — ia langsung dinetralkan oleh OH<sup>−</sup> yang berlimpah. Menuliskan H<sup>+</sup> pada persamaan suasana basa berarti menuliskan zat yang tidak ada di sana.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Chemistry Shortcut — mengubah hasil suasana asam menjadi suasana basa</div>
+    <p>Bila Anda sudah menyetarakan dalam suasana asam dan ternyata soalnya suasana basa, hasilnya dapat diubah tanpa mengulang dari awal:</p>
+    <ol class="step">
+      <li><b>Tambahkan OH<sup>−</sup></b> sebanyak jumlah H<sup>+</sup> pada <b>kedua</b> ruas.</li>
+      <li>Di ruas yang memuat H<sup>+</sup>, gabungkan H<sup>+</sup> + OH<sup>−</sup> menjadi <b>H<sub>2</sub>O</b>.</li>
+      <li><b>Coret H<sub>2</sub>O</b> yang muncul di kedua ruas.</li>
+    </ol>
+    <p style="margin-top:12px">Cara ini menghemat banyak waktu di ujian, dan hasilnya tetap lolos kedua pemeriksaan — karena yang ditambahkan sama banyak di kedua ruas, atom maupun muatannya tetap setara.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Contoh terverifikasi — suasana basa</div>
+    <p class="eq" style="text-align:center">MnO₄⁻ + SO₃²⁻ + OH⁻ → MnO₄²⁻ + SO₄²⁻ + H₂O</p>
+    <p style="margin-top:12px"><b>Perubahan biloks.</b> Mn: +7 → +6, turun <b>1</b>. S: +4 → +6, naik <b>2</b>.</p>
+    <p><b>Kali silang.</b> MnO<sub>4</sub><sup>−</sup> dikalikan 2, SO<sub>3</sub><sup>2−</sup> dikalikan 1.</p>
+    <p><b>Setarakan muatan.</b> Kiri = −2 + (−2) = −4; kanan = −4 + (−2) = −6. Selisih 2 → tambahkan <b>2 OH<sup>−</sup></b> di <b>kiri</b> (ruas yang muatannya lebih besar), karena di suasana basa.</p>
+    <p><b>Setarakan H.</b> Ada 2 H di kiri → tambahkan <b>1 H<sub>2</sub>O</b> di kanan.</p>
+    <p class="eq" style="text-align:center; margin-top:12px"><b>2MnO₄⁻ + SO₃²⁻ + 2OH⁻ → 2MnO₄²⁻ + SO₄²⁻ + H₂O</b></p>
+    <p style="margin-top:12px"><b>Diperiksa secara terprogram:</b> atom Mn 2 = 2, S 1 = 1, O 13 = 13, H 2 = 2 ✔ dan muatan kiri <b>−6</b> = kanan <b>−6</b> ✔</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — memakai H<sup>+</sup> pada suasana basa</div>
+    <p>Persamaannya mungkin tetap setara secara angka, tetapi <b>salah secara kimia</b> — dan penilai soal akan menganggapnya salah. Periksa suasana reaksinya sebelum menulis satu penyetara pun.</p>
+    <p><b>Petunjuk yang selalu ada di soal:</b> perhatikan zat yang sudah tertulis di persamaan. Bila ada OH<sup>−</sup> atau NaOH, suasananya <b>basa</b>. Bila ada H<sup>+</sup> atau asam kuat, suasananya <b>asam</b>.</p>
+    <p><b>Kesalahan kedua:</b> menambahkan penyetara pada ruas yang salah. Ingat arahnya — tambahkan pada ruas yang membuat kedua muatan menjadi <b>sama</b>, dan periksa ulang setelahnya.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.9 REAKSI AUTOREDOKS ==================== -->
+<section class="page" id="autoredoks">
+  <h2>15.9&nbsp; Reaksi Autoredoks</h2>
+  <p class="lead">Pada reaksi autoredoks — disebut juga <b>disproporsionasi</b> — satu zat yang sama mengalami oksidasi <b>dan</b> reduksi sekaligus.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Ciri reaksi autoredoks</div>
+    <p>Satu unsur berangkat dari <b>satu</b> nilai biloks, lalu berakhir pada <b>dua</b> nilai yang berbeda — satu lebih tinggi, satu lebih rendah.</p>
+    <p class="eq" style="text-align:center; margin-top:12px">3Cl₂ + 6OH⁻ → 5Cl⁻ + ClO₃⁻ + 3H₂O</p>
+    <div class="tw" style="margin-top:12px"><table class="mini">
+      <tr><th>Cl dalam Cl₂</th><td>biloks <b>0</b> — titik berangkat</td></tr>
+      <tr><th>Cl dalam Cl⁻</th><td>biloks <b>−1</b> → <b>turun</b>, mengalami reduksi</td></tr>
+      <tr><th>Cl dalam ClO₃⁻</th><td>biloks <b>+5</b> → <b>naik</b>, mengalami oksidasi</td></tr>
+    </table></div>
+    <p style="margin-top:12px">Karena itu Cl<sub>2</sub> bertindak sebagai <b>oksidator sekaligus reduktor</b> pada reaksinya sendiri. Seluruh nilai biloks di atas dihitung ulang secara terprogram, dan syarat autoredoks — naik <b>dan</b> turun dari nilai awal yang sama — diuji dengan fungsi pemeriksa.</p>
+    <p><b>Persamaan lengkapnya juga diperiksa:</b> atom Cl 6 = 6, H 6 = 6, O 6 = 6 ✔ dan muatan kiri <b>−6</b> = kanan <b>−6</b> ✔</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa unsur tertentu dapat mengalami autoredoks</div>
+    <p>Syaratnya adalah unsur itu berada pada biloks <b>di antara</b> nilai tertinggi dan terendahnya. Klorin dalam Cl<sub>2</sub> berbiloks 0, padahal ia dapat turun sampai −1 dan naik sampai +7 — sehingga kedua arah terbuka.</p>
+    <p>Sebaliknya, Cl<sup>−</sup> yang sudah berada pada biloks terendah <b>tidak bisa</b> turun lagi, dan tidak dapat mengalami autoredoks.</p>
+    <p><b>Contoh lain yang sering muncul:</b> Cl<sub>2</sub> dalam basa dingin menghasilkan Cl<sup>−</sup> (−1) dan ClO<sup>−</sup> (+1) — juga naik dan turun dari 0. Reaksi inilah yang dipakai untuk membuat pemutih pakaian.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira autoredoks bukan reaksi redoks biasa</div>
+    <p>Autoredoks tetap disetarakan dengan cara yang sama. Yang berbeda hanyalah bahwa <b>satu zat memberi dua setengah reaksi</b> — satu untuk oksidasi, satu untuk reduksi.</p>
+    <p>Karena itu <b>metode setengah reaksi lebih cocok</b> untuk soal autoredoks. Pada metode bilangan oksidasi, mudah sekali lupa bahwa zat yang sama harus dihitung dua kali dengan arah yang berlawanan.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.10 PENERAPAN ==================== -->
+<section class="page" id="terapan">
+  <h2>15.10&nbsp; Penerapan Reaksi Redoks</h2>
+  <p class="lead">Redoks bukan sekadar latihan menyetarakan. Ia adalah cara alam memindahkan tenaga.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Peristiwa</th><th>Yang teroksidasi</th><th>Yang tereduksi</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Perkaratan besi</b></td><td>Fe → Fe<sup>3+</sup></td><td>O<sub>2</sub> → O<sup>2−</sup></td><td>Memerlukan air dan oksigen sekaligus</td></tr>
+      <tr><td><b>Pernapasan sel</b></td><td>Glukosa → CO<sub>2</sub></td><td>O<sub>2</sub> → H<sub>2</sub>O</td><td>Sumber tenaga tubuh</td></tr>
+      <tr class="hi"><td><b>Fotosintesis</b></td><td>H<sub>2</sub>O → O<sub>2</sub></td><td>CO<sub>2</sub> → glukosa</td><td>Kebalikan pernapasan</td></tr>
+      <tr><td><b>Baterai dan aki</b></td><td>Logam anoda</td><td>Zat di katoda</td><td>Dibahas lengkap di Bab 16</td></tr>
+      <tr class="hi"><td><b>Pemutih pakaian</b></td><td>Zat warna kain</td><td>ClO<sup>−</sup> → Cl<sup>−</sup></td><td>Hipoklorit dari autoredoks Cl<sub>2</sub></td></tr>
+      <tr><td><b>Pengolahan bijih logam</b></td><td>Karbon → CO<sub>2</sub></td><td>Oksida logam → logam</td><td>Dasar industri baja</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa bab ini wajib dikuasai sebelum Bab 16</div>
+    <p>Seluruh elektrokimia — sel volta, elektrolisis, dan hukum Faraday — berdiri di atas dua hal dari bab ini: kemampuan <b>memisahkan setengah reaksi</b>, dan kemampuan menghitung <b>jumlah elektron yang berpindah</b>.</p>
+    <p>Pada sel volta, setengah reaksi oksidasi terjadi di anoda dan setengah reaksi reduksi di katoda — dipisahkan secara fisik, bukan hanya di atas kertas. Pada elektrolisis, jumlah elektron itulah yang dihubungkan dengan arus dan waktu lewat hukum Faraday.</p>
+    <p><b>Karena itu, jangan melanjutkan ke Bab 16 sebelum penyetaraan terasa otomatis.</b> Kesulitan di elektrokimia hampir selalu berakar pada penyetaraan yang belum lancar.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ UTBK / Exam Focus — stoikiometri pada reaksi redoks</div>
+    <p>Setelah persamaan setara, perhitungan mol berjalan seperti biasa memakai perbandingan koefisien — persis Bab 5. Alurnya:</p>
+    <ol class="step">
+      <li><b>Setarakan persamaannya</b> lebih dulu; tanpa itu, perbandingan mol tidak bermakna.</li>
+      <li><b>Hitung mol zat yang diketahui.</b></li>
+      <li><b>Pakai perbandingan koefisien</b> untuk memperoleh mol zat yang ditanya.</li>
+      <li><b>Ubah menjadi massa atau volume</b> bila diminta.</li>
+    </ol>
+    <p><b>Jebakan yang sering muncul:</b> memakai perbandingan 1 : 1 tanpa menyetarakan lebih dulu. Pada reaksi permanganat dengan besi, perbandingannya <b>1 : 5</b> — meleset lima kali lipat bila langkah 1 dilewati.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1-7 ==================== -->
+<section class="page">
+  <h2>Worked Example — Biloks, Oksidator, dan Metode Bilangan Oksidasi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Menentukan bilangan oksidasi</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan biloks (a) Mn dalam KMnO<sub>4</sub>; (b) Cr dalam K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>; (c) S dalam H<sub>2</sub>SO<sub>4</sub>.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Tiga senyawa netral</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Biloks unsur yang ditandai</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Jumlah seluruh biloks dalam senyawa netral sama dengan nol.</div></div>
+      <div class="step"><b>(a) KMnO₄</b>(+1) + Mn + 4(−2) = 0 → Mn = 8 − 1 = <span class="eq">+7</span></div>
+      <div class="step"><b>(b) K₂Cr₂O₇</b>2(+1) + 2Cr + 7(−2) = 0 → 2Cr = 14 − 2 = 12 → Cr = <span class="eq">+6</span></div>
+      <div class="step"><b>(c) H₂SO₄</b>2(+1) + S + 4(−2) = 0 → S = 8 − 2 = <span class="eq">+6</span></div>
+      <div class="ansbar">Jawaban: (a) +7; (b) +6; (c) +6</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (b) memuat langkah yang paling sering terlewat: ada <b>dua</b> atom Cr, sehingga hasil 12 masih harus <b>dibagi dua</b>. Menjawab +12 adalah kesalahan yang lazim. Kedua nilai ini — Mn +7 dan Cr +6 — layak dihafal karena permanganat dan dikromat adalah dua oksidator yang paling sering muncul di soal.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Mengenali reaksi redoks</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Manakah yang tergolong reaksi redoks? (a) NaOH + HCl → NaCl + H<sub>2</sub>O; (b) Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Dua persamaan reaksi</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Mana yang redoks</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Periksa apakah ada biloks yang <b>berubah</b>.</div></div>
+      <div class="step"><b>(a) Periksa biloksnya</b>Na +1 → +1 · O −2 → −2 · H +1 → +1 · Cl −1 → −1 → <span class="eq">tidak ada yang berubah</span></div>
+      <div class="step"><b>(a) Kesimpulan</b>Bukan redoks — ini reaksi <b>penetralan</b> biasa</div>
+      <div class="step"><b>(b) Periksa biloksnya</b>Zn: 0 → +2 (<b>naik</b>) · Cu: +2 → 0 (<b>turun</b>) → <span class="eq">ada perubahan</span></div>
+      <div class="step"><b>(b) Kesimpulan</b>Ini <b>reaksi redoks</b> — sekaligus reaksi pendesakan logam</div>
+      <div class="ansbar">Jawaban: hanya (b) yang merupakan reaksi redoks</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Reaksi asam-basa dari Bab 10 <b>tidak pernah</b> redoks, karena yang berpindah adalah ion H<sup>+</sup> — bukan elektron. Ini pembeda yang layak diingat: redoks memindahkan <b>elektron</b>, asam-basa memindahkan <b>proton</b>. Pemeriksa cepatnya: bila ada <b>unsur bebas</b> (biloks 0) di salah satu ruas, reaksinya hampir pasti redoks.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Oksidator, reduktor, dan hasilnya</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Pada reaksi Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + 6Fe<sup>2+</sup> + 14H<sup>+</sup> → 2Cr<sup>3+</sup> + 6Fe<sup>3+</sup> + 7H<sub>2</sub>O, tentukan oksidator, reduktor, hasil oksidasi, dan hasil reduksi.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan redoks yang sudah setara</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Keempat istilah</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Lacak arah perubahan biloks, lalu terapkan definisinya.</div></div>
+      <div class="step"><b>Langkah 1 — Cr</b>+6 → +3, <b>turun</b> → mengalami <b>reduksi</b></div>
+      <div class="step"><b>Langkah 2 — Fe</b>+2 → +3, <b>naik</b> → mengalami <b>oksidasi</b></div>
+      <div class="step"><b>Langkah 3 — Oksidator</b>Zat yang tereduksi, berada di ruas kiri → <span class="eq">Cr₂O₇²⁻</span></div>
+      <div class="step"><b>Langkah 4 — Reduktor</b>Zat yang teroksidasi → <span class="eq">Fe²⁺</span></div>
+      <div class="step"><b>Langkah 5 — Hasilnya</b>Hasil reduksi <b>Cr³⁺</b> · Hasil oksidasi <b>Fe³⁺</b> — keduanya di ruas kanan</div>
+      <div class="ansbar">Jawaban: oksidator Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>; reduktor Fe<sup>2+</sup>; hasil reduksi Cr<sup>3+</sup>; hasil oksidasi Fe<sup>3+</sup></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan letaknya: <b>oksidator dan reduktor selalu di ruas kiri</b> (pereaksi), sedangkan <b>hasilnya selalu di ruas kanan</b> (produk). Soal sering menyediakan Cr<sup>3+</sup> sebagai pilihan untuk pertanyaan "oksidatornya adalah" — dan itu keliru, karena Cr<sup>3+</sup> adalah <b>hasil</b> reduksi, bukan zat yang mengalaminya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Metode biloks pada persamaan molekul</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan: Cu + HNO<sub>3</sub> → Cu(NO<sub>3</sub>)<sub>2</sub> + NO + H<sub>2</sub>O</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan molekul, belum setara</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Koefisien yang benar</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bentuk molekul → metode bilangan oksidasi lebih cepat.</div></div>
+      <div class="step"><b>Langkah 1 — Tandai biloks yang berubah</b>Cu: 0 → +2 (<b>naik 2</b>) · N: +5 → +2 (<b>turun 3</b>)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>Cu × 3, NO × 2 → <span class="eq">3Cu dan 2NO</span></div>
+      <div class="step"><b>Langkah 3 — Setarakan N sisanya</b>3Cu(NO₃)₂ memuat 6 N yang <b>tidak berubah</b> biloksnya, ditambah 2 N pada NO → total <span class="eq">8 HNO₃</span></div>
+      <div class="step"><b>Langkah 4 — Setarakan H</b>8 H di kiri → <span class="eq">4 H₂O</span> di kanan</div>
+      <div class="step"><b>Langkah 5 — Periksa O</b>Kiri 8 × 3 = 24 · Kanan 3 × 6 + 2 + 4 = 24 ✔</div>
+      <div class="ansbar">Jawaban: 3Cu + 8HNO<sub>3</sub> → 3Cu(NO<sub>3</sub>)<sub>2</sub> + 2NO + 4H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memuat gagasan yang sering membingungkan: dari 8 atom N, hanya <b>2</b> yang berubah biloksnya menjadi NO; sisanya tetap +5 dan hanya ikut sebagai ion nitrat. Inilah sebabnya koefisien HNO<sub>3</sub> bukan 2 melainkan 8. Terverifikasi secara terprogram: atom dan muatan kedua ruas setara.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Metode biloks dalam suasana asam</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana asam: MnO<sub>4</sub><sup>−</sup> + Fe<sup>2+</sup> → Mn<sup>2+</sup> + Fe<sup>3+</sup></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan ion, suasana asam</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Kali silang biloks, lalu setarakan muatan dengan H<sup>+</sup>.</div></div>
+      <div class="step"><b>Langkah 1 — Perubahan biloks</b>Mn: +7 → +2 (<b>turun 5</b>) · Fe: +2 → +3 (<b>naik 1</b>)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>MnO₄⁻ × 1, Fe × <span class="eq">5</span></div>
+      <div class="step"><b>Langkah 3 — Hitung muatan</b>Kiri = −1 + 10 = <b>+9</b> · Kanan = +2 + 15 = <b>+17</b></div>
+      <div class="step"><b>Langkah 4 — Setarakan muatan</b>Selisih 8 → tambahkan <span class="eq">8 H⁺</span> di kiri (suasana asam)</div>
+      <div class="step"><b>Langkah 5 — Setarakan H</b>8 H di kiri → <span class="eq">4 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: MnO<sub>4</sub><sup>−</sup> + 5Fe<sup>2+</sup> + 8H<sup>+</sup> → Mn<sup>2+</sup> + 5Fe<sup>3+</sup> + 4H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 4 memuat aturan arah yang sering keliru: H<sup>+</sup> ditambahkan pada ruas yang muatannya <b>lebih kecil</b>, karena H<sup>+</sup> bermuatan positif dan akan menaikkannya. Di sini kiri (+9) lebih kecil daripada kanan (+17), sehingga H<sup>+</sup> masuk ke kiri. Terverifikasi: setelah penambahan, muatan kedua ruas menjadi <b>+17</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Oksidator dengan dua atom pusat</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana asam: Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + I<sup>−</sup> → Cr<sup>3+</sup> + I<sub>2</sub></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Kedua zat punya lebih dari satu atom aktif</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hati-hati: selisih biloks harus dikali <b>jumlah atomnya</b>.</div></div>
+      <div class="step"><b>Langkah 1 — Cr</b>+6 → +3, turun 3 <b>per atom</b>; ada 2 atom → penurunan total <span class="eq">6</span></div>
+      <div class="step"><b>Langkah 2 — I</b>−1 → 0, naik 1 per atom; I₂ memuat 2 atom → kenaikan total <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 3 — Kali silang</b>6 dan 2 → sederhanakan menjadi <b>1</b> dan <b>3</b> → Cr₂O₇²⁻ × 1, I₂ × <span class="eq">3</span> (yaitu 6 I⁻)</div>
+      <div class="step"><b>Langkah 4 — Hitung muatan</b>Kiri = −2 + (−6) = <b>−8</b> · Kanan = +6 + 0 = <b>+6</b> → selisih 14</div>
+      <div class="step"><b>Langkah 5 — Tambahkan H⁺ dan H₂O</b><span class="eq">14 H⁺</span> di kiri → <span class="eq">7 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + 6I<sup>−</sup> + 14H<sup>+</sup> → 2Cr<sup>3+</sup> + 3I<sub>2</sub> + 7H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Soal ini memuat <b>dua</b> jebakan indeks sekaligus: dua atom Cr di kiri, dan dua atom I dalam tiap I<sub>2</sub> di kanan. Melewatkan salah satunya membuat koefisien meleset. Terverifikasi secara terprogram: atom Cr 2 = 2, I 6 = 6, O 7 = 7, H 14 = 14, dan muatan kiri <b>+6</b> = kanan <b>+6</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Metode setengah reaksi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dengan metode setengah reaksi dalam suasana asam: MnO<sub>4</sub><sup>−</sup> + C<sub>2</sub>O<sub>4</sub><sup>2−</sup> → Mn<sup>2+</sup> + CO<sub>2</sub></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan ion, suasana asam</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Setarakan tiap setengah reaksi sampai tuntas, baru gabungkan.</div></div>
+      <div class="step"><b>Setengah reduksi — setarakan O lalu H</b>MnO₄⁻ → Mn²⁺ + 4H₂O, lalu <span class="eq">MnO₄⁻ + 8H⁺ → Mn²⁺ + 4H₂O</span></div>
+      <div class="step"><b>Setengah reduksi — setarakan muatan</b>Kiri +7, kanan +2 → tambahkan <span class="eq">5e⁻</span> di kiri</div>
+      <div class="step"><b>Setengah oksidasi</b>C₂O₄²⁻ → 2CO₂; muatan kiri −2, kanan 0 → tambahkan <span class="eq">2e⁻</span> di kanan</div>
+      <div class="step"><b>Samakan elektron</b>KPK dari 5 dan 2 adalah 10 → reduksi × 2, oksidasi × <span class="eq">5</span></div>
+      <div class="step"><b>Jumlahkan dan coret 10e⁻</b><span class="eq">2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O</span></div>
+      <div class="ansbar">Jawaban: 2MnO<sub>4</sub><sup>−</sup> + 5C<sub>2</sub>O<sub>4</sub><sup>2−</sup> + 16H<sup>+</sup> → 2Mn<sup>2+</sup> + 10CO<sub>2</sub> + 8H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan urutan pada setengah reaksi reduksi: <b>O dulu dengan H₂O, baru H dengan H⁺</b>. Membaliknya membuat jumlah H₂O keliru, karena tiap H₂O yang ditambahkan juga membawa dua atom H. Terverifikasi secara terprogram: atom Mn 2 = 2, C 10 = 10, O 28 = 28, H 16 = 16, dan muatan kiri <b>+4</b> = kanan <b>+4</b>.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa biloks Mn dalam MnO<sub>4</sub><sup>−</sup>?</li>
+      <li>Apakah reaksi penetralan asam-basa tergolong redoks?</li>
+      <li>Oksidator adalah zat yang biloksnya naik atau turun?</li>
+      <li>Pada Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> → 2Cr<sup>3+</sup>, berapa total penurunan biloksnya?</li>
+      <li>Pada metode setengah reaksi, O disetarakan dengan apa?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>+7</b>; (2) <b>bukan</b> — yang berpindah proton, bukan elektron; (3) <b>turun</b>, karena oksidator mengalami reduksi; (4) 3 per atom × 2 atom = <b>6</b>; (5) dengan <b>H<sub>2</sub>O</b>, lalu H disetarakan dengan H<sup>+</sup>.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 8-14 ==================== -->
+<section class="page">
+  <h2>Worked Example — Suasana Basa dan Reaksi Autoredoks</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Setengah reaksi dengan hasil unsur bebas</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana asam: Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + H<sub>2</sub>S → Cr<sup>3+</sup> + S</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Hasil oksidasinya berupa unsur bebas</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Setengah reaksi; perhatikan bahwa S bebas berbiloks 0.</div></div>
+      <div class="step"><b>Setengah reduksi</b>Cr₂O₇²⁻ + 14H⁺ + <b>6e⁻</b> → 2Cr³⁺ + 7H₂O &nbsp;<span class="eq">(turun 3 × 2 atom = 6)</span></div>
+      <div class="step"><b>Setengah oksidasi</b>H₂S → S + 2H⁺ + <b>2e⁻</b> &nbsp;<span class="eq">(S: −2 → 0, naik 2)</span></div>
+      <div class="step"><b>Samakan elektron</b>Oksidasi × <span class="eq">3</span> → 6e⁻ pada keduanya</div>
+      <div class="step"><b>Jumlahkan</b>Cr₂O₇²⁻ + 14H⁺ + 3H₂S → 2Cr³⁺ + 7H₂O + 3S + 6H⁺</div>
+      <div class="step"><b>Sederhanakan H⁺</b>14 − 6 = <span class="eq">8 H⁺</span> tersisa di kiri</div>
+      <div class="ansbar">Jawaban: Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + 3H<sub>2</sub>S + 8H<sup>+</sup> → 2Cr<sup>3+</sup> + 3S + 7H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah terakhir sering terlewat: H<sup>+</sup> muncul di <b>kedua</b> ruas setelah penjumlahan, dan harus disederhanakan. Jawaban yang masih menyisakan H<sup>+</sup> di kedua ruas tidak dianggap selesai. Terverifikasi secara terprogram: atom Cr 2 = 2, S 3 = 3, O 7 = 7, H 14 = 14, muatan kiri <b>+6</b> = kanan <b>+6</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Reduksi sampai biloks negatif</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana asam: Zn + NO<sub>3</sub><sup>−</sup> → Zn<sup>2+</sup> + NH<sub>4</sub><sup>+</sup></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Nitrogen tereduksi jauh, sampai biloks negatif</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung selisih biloks N dengan cermat — nilainya besar.</div></div>
+      <div class="step"><b>Langkah 1 — Biloks N</b>Dalam NO₃⁻ = <b>+5</b>; dalam NH₄⁺ = <b>−3</b> → <span class="eq">turun 8</span></div>
+      <div class="step"><b>Langkah 2 — Biloks Zn</b>0 → +2 → <span class="eq">naik 2</span></div>
+      <div class="step"><b>Langkah 3 — Kali silang</b>Zn × <span class="eq">4</span>, NO₃⁻ × 1</div>
+      <div class="step"><b>Langkah 4 — Muatan</b>Kiri = 0 + (−1) = <b>−1</b> · Kanan = +8 + 1 = <b>+9</b> → selisih 10</div>
+      <div class="step"><b>Langkah 5 — Tambahkan</b><span class="eq">10 H⁺</span> di kiri → H: 10 kiri, 4 di NH₄⁺ → sisanya <span class="eq">3 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: 4Zn + NO<sub>3</sub><sup>−</sup> + 10H<sup>+</sup> → 4Zn<sup>2+</sup> + NH<sub>4</sub><sup>+</sup> + 3H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 memuat perhitungan yang sering keliru tandanya: dari +5 ke <b>−3</b> adalah penurunan <b>8</b>, bukan 2. Menghitung selisih yang melewati nol menuntut kehati-hatian. Langkah 5 juga khas: sebagian H<sup>+</sup> masuk ke NH₄<sup>+</sup>, sehingga jumlah H₂O bukan sekadar separuh jumlah H⁺.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Penyetaraan dalam suasana basa</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana basa: MnO<sub>4</sub><sup>−</sup> + SO<sub>3</sub><sup>2−</sup> → MnO<sub>4</sub><sup>2−</sup> + SO<sub>4</sub><sup>2−</sup></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Suasana <b>basa</b> — penyetaranya OH<sup>−</sup>, bukan H<sup>+</sup></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Langkah sama, tetapi penyetara muatannya OH<sup>−</sup>.</div></div>
+      <div class="step"><b>Langkah 1 — Perubahan biloks</b>Mn: +7 → +6 (<b>turun 1</b>) · S: +4 → +6 (<b>naik 2</b>)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>MnO₄⁻ × <span class="eq">2</span>, SO₃²⁻ × 1</div>
+      <div class="step"><b>Langkah 3 — Hitung muatan</b>Kiri = −2 + (−2) = <b>−4</b> · Kanan = −4 + (−2) = <b>−6</b></div>
+      <div class="step"><b>Langkah 4 — Tambahkan OH⁻</b>Kiri lebih besar → tambahkan <span class="eq">2 OH⁻</span> di kiri agar menjadi −6</div>
+      <div class="step"><b>Langkah 5 — Setarakan H</b>2 H di kiri → <span class="eq">1 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: 2MnO<sub>4</sub><sup>−</sup> + SO<sub>3</sub><sup>2−</sup> + 2OH<sup>−</sup> → 2MnO<sub>4</sub><sup>2−</sup> + SO<sub>4</sub><sup>2−</sup> + H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan arah pada langkah 4 — <b>berlawanan</b> dengan suasana asam. Karena OH<sup>−</sup> bermuatan negatif, ia ditambahkan pada ruas yang muatannya <b>lebih besar</b> (lebih positif) agar turun. Di suasana asam, H<sup>+</sup> ditambahkan pada ruas yang muatannya lebih kecil. Membalik aturan ini adalah kesalahan yang paling sering terjadi pada soal suasana basa.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Suasana basa dengan H₂O di kiri</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana basa: MnO<sub>4</sub><sup>−</sup> + I<sup>−</sup> → MnO<sub>2</sub> + I<sub>2</sub></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Suasana basa; hasil reduksinya padatan MnO<sub>2</sub></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Kali silang dulu, lalu periksa muatannya — arah penambahan bisa berbeda.</div></div>
+      <div class="step"><b>Langkah 1 — Perubahan biloks</b>Mn: +7 → +4 (<b>turun 3</b>) · I: −1 → 0, tiap I₂ berarti <b>naik 2</b></div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>Penurunan 3 dan kenaikan 2 → MnO₄⁻ × <span class="eq">2</span>, I₂ × <span class="eq">3</span> (yaitu 6 I⁻)</div>
+      <div class="step"><b>Langkah 3 — Hitung muatan</b>Kiri = −2 + (−6) = <b>−8</b> · Kanan = 0 → selisih 8</div>
+      <div class="step"><b>Langkah 4 — Tambahkan OH⁻</b>Kanan lebih besar → tambahkan <span class="eq">8 OH⁻</span> di kanan</div>
+      <div class="step"><b>Langkah 5 — Setarakan H</b>8 H di kanan → <span class="eq">4 H₂O</span> di kiri</div>
+      <div class="ansbar">Jawaban: 2MnO<sub>4</sub><sup>−</sup> + 6I<sup>−</sup> + 4H<sub>2</sub>O → 2MnO<sub>2</sub> + 3I<sub>2</sub> + 8OH<sup>−</sup></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bandingkan dengan Contoh 10 — di sana OH<sup>−</sup> masuk ke <b>kiri</b>, di sini ke <b>kanan</b>. Arahnya tidak ditentukan oleh suasananya, melainkan oleh <b>ruas mana yang muatannya lebih besar</b>. Akibatnya H₂O pun berpindah ke ruas seberangnya. Jangan menghafal "OH⁻ selalu di kiri"; hitung muatannya setiap kali. Terverifikasi: muatan kedua ruas <b>−8</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Suasana basa dengan oksida logam</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan dalam suasana basa: Bi<sub>2</sub>O<sub>3</sub> + ClO<sup>−</sup> → BiO<sub>3</sub><sup>−</sup> + Cl<sup>−</sup></p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Bismut teroksidasi, klorin tereduksi</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Tentukan biloks Bi dalam kedua bentuknya lebih dulu.</div></div>
+      <div class="step"><b>Langkah 1 — Biloks Bi</b>Dalam Bi₂O₃: 2Bi + 3(−2) = 0 → Bi = <b>+3</b>. Dalam BiO₃⁻: Bi + 3(−2) = −1 → Bi = <b>+5</b> → <span class="eq">naik 2 per atom</span></div>
+      <div class="step"><b>Langkah 2 — Bi₂O₃ memuat 2 atom</b>Kenaikan total = 2 × 2 = <span class="eq">4</span></div>
+      <div class="step"><b>Langkah 3 — Biloks Cl</b>Dalam ClO⁻ = +1; dalam Cl⁻ = −1 → <b>turun 2</b> → ClO⁻ × <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 4 — Hitung muatan</b>Kiri = 0 + (−2) = <b>−2</b> · Kanan = −2 + (−2) = <b>−4</b> → selisih 2</div>
+      <div class="step"><b>Langkah 5 — Tambahkan OH⁻ lalu H₂O</b><span class="eq">2 OH⁻</span> di kiri → <span class="eq">1 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: Bi<sub>2</sub>O<sub>3</sub> + 2ClO<sup>−</sup> + 2OH<sup>−</sup> → 2BiO<sub>3</sub><sup>−</sup> + 2Cl<sup>−</sup> + H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 tidak dapat dilewati — biloks Bi harus dihitung dari <b>kedua</b> rumusnya, dan keduanya tidak lazim. Perhatikan pula langkah 2: satu Bi₂O₃ memberi <b>dua</b> BiO₃⁻, sehingga kenaikan totalnya 4, bukan 2. Terverifikasi: atom dan muatan setara, dengan muatan kedua ruas <b>−4</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Reaksi autoredoks</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan: Cl<sub>2</sub> + OH<sup>−</sup> → Cl<sup>−</sup> + ClO<sub>3</sub><sup>−</sup> + H<sub>2</sub>O</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Satu zat menghasilkan dua produk dengan biloks berbeda</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Perlakukan Cl<sub>2</sub> sebagai <b>dua</b> zat berbeda — satu teroksidasi, satu tereduksi.</div></div>
+      <div class="step"><b>Langkah 1 — Kenali autoredoksnya</b>Cl berangkat dari <b>0</b>, berakhir di <b>−1</b> dan <b>+5</b> → <span class="eq">turun dan naik sekaligus</span></div>
+      <div class="step"><b>Langkah 2 — Hitung kedua arah</b>Menuju Cl⁻: <b>turun 1</b> · Menuju ClO₃⁻: <b>naik 5</b></div>
+      <div class="step"><b>Langkah 3 — Kali silang</b>Cl⁻ × <span class="eq">5</span>, ClO₃⁻ × 1 → total 6 atom Cl → <span class="eq">3 Cl₂</span> di kiri</div>
+      <div class="step"><b>Langkah 4 — Hitung muatan</b>Kiri = 0 · Kanan = −5 + (−1) = <b>−6</b> → tambahkan <span class="eq">6 OH⁻</span> di kiri</div>
+      <div class="step"><b>Langkah 5 — Setarakan H</b>6 H di kiri → <span class="eq">3 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: 3Cl<sub>2</sub> + 6OH<sup>−</sup> → 5Cl<sup>−</sup> + ClO<sub>3</sub><sup>−</sup> + 3H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memuat penggabungan yang khas autoredoks: 5 atom Cl menuju Cl⁻ ditambah 1 atom menuju ClO₃⁻ berarti <b>6 atom</b>, dan karena Cl₂ memuat dua atom, koefisiennya <b>3</b>. Melewatkan pembagian dua ini adalah kesalahan yang paling sering. Terverifikasi: atom Cl 6 = 6, H 6 = 6, O 6 = 6, muatan kedua ruas <b>−6</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Autoredoks dengan hasil berbeda</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan: Br<sub>2</sub> + OH<sup>−</sup> → Br<sup>−</sup> + BrO<sup>−</sup> + H<sub>2</sub>O (basa dingin)</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Autoredoks dengan selisih biloks yang lebih kecil</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Alur sama dengan Contoh 13, tetapi kenaikannya hanya 1.</div></div>
+      <div class="step"><b>Langkah 1 — Kedua arah</b>Br: 0 → −1 (<b>turun 1</b>) dan 0 → +1 (<b>naik 1</b>)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>Karena keduanya bernilai 1 → Br⁻ × 1 dan BrO⁻ × 1 → total 2 atom → <span class="eq">1 Br₂</span></div>
+      <div class="step"><b>Langkah 3 — Muatan</b>Kiri = 0 · Kanan = −1 + (−1) = <b>−2</b> → tambahkan <span class="eq">2 OH⁻</span> di kiri</div>
+      <div class="step"><b>Langkah 4 — Setarakan H</b>2 H di kiri → <span class="eq">1 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: Br<sub>2</sub> + 2OH<sup>−</sup> → Br<sup>−</sup> + BrO<sup>−</sup> + H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bandingkan dengan Contoh 13 — reaksi yang sama jenisnya, tetapi hasilnya jauh lebih sederhana karena kedua selisih biloksnya sama besar. Perbedaan hasil ini ditentukan oleh <b>suhu</b>: basa dingin memberi hipohalit (+1), basa panas memberi halat (+5). Inilah reaksi yang dipakai untuk membuat pemutih pakaian.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 15-20 ==================== -->
+<section class="page">
+  <h2>Worked Example — Persamaan Molekul, Stoikiometri, dan Integrasi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Persamaan molekul lengkap</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan: KMnO<sub>4</sub> + HCl → KCl + MnCl<sub>2</sub> + Cl<sub>2</sub> + H<sub>2</sub>O</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan molekul; klorin muncul di dua produk</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hanya sebagian Cl yang berubah biloks — sisanya ikut sebagai ion.</div></div>
+      <div class="step"><b>Langkah 1 — Biloks yang berubah</b>Mn: +7 → +2 (<b>turun 5</b>) · Cl: −1 → 0 dalam Cl₂ (<b>naik 1</b> per atom)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>KMnO₄ × <span class="eq">2</span>, atom Cl yang teroksidasi × <span class="eq">10</span> → yaitu <b>5 Cl₂</b></div>
+      <div class="step"><b>Langkah 3 — Hitung Cl seluruhnya</b>10 untuk Cl₂ + 2 untuk KCl + 4 untuk 2MnCl₂ = <span class="eq">16 HCl</span></div>
+      <div class="step"><b>Langkah 4 — Setarakan H</b>16 H di kiri → <span class="eq">8 H₂O</span> di kanan</div>
+      <div class="step"><b>Langkah 5 — Periksa O</b>Kiri 2 × 4 = 8 · Kanan 8 ✔</div>
+      <div class="ansbar">Jawaban: 2KMnO<sub>4</sub> + 16HCl → 2KCl + 2MnCl<sub>2</sub> + 5Cl<sub>2</sub> + 8H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memuat gagasan yang paling sering membingungkan pada persamaan molekul: dari 16 atom Cl, hanya <b>10</b> yang teroksidasi menjadi Cl₂; enam sisanya tetap berbiloks −1 dan hanya ikut sebagai ion pendamping. Inilah alasan metode bilangan oksidasi lebih cocok di sini — memecahnya menjadi setengah reaksi justru memerlukan langkah tambahan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Stoikiometri pada reaksi redoks</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa mol Fe<sup>2+</sup> yang dapat dioksidasi oleh 0,02 mol MnO<sub>4</sub><sup>−</sup> dalam suasana asam?</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>0,02 mol MnO<sub>4</sub><sup>−</sup></div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Mol Fe<sup>2+</sup></div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Setarakan persamaannya lebih dulu, baru pakai perbandingan koefisien.</div></div>
+      <div class="step"><b>Langkah 1 — Persamaan setara</b><span class="eq">MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O</span></div>
+      <div class="step"><b>Langkah 2 — Baca perbandingannya</b>MnO₄⁻ : Fe²⁺ = <span class="eq">1 : 5</span></div>
+      <div class="step"><b>Langkah 3 — Hitung</b>0,02 × 5 = <span class="eq">0,1 mol</span></div>
+      <div class="ansbar">Jawaban: 0,1 mol Fe<sup>2+</sup></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 1 tidak boleh dilewati. Mengira perbandingannya 1 : 1 memberi 0,02 mol — <b>meleset lima kali lipat</b>. Perbandingan 1 : 5 itu sendiri berasal dari jumlah elektron: satu MnO₄⁻ menerima 5 elektron, dan tiap Fe²⁺ hanya melepas 1. Inilah cara cepat memeriksa perbandingan koefisien tanpa menyetarakan penuh.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Titrasi redoks</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Sebanyak 25 mL larutan Fe<sup>2+</sup> tepat dititrasi oleh 20 mL KMnO<sub>4</sub> 0,1 M dalam suasana asam. Hitung kepekatan Fe<sup>2+</sup>.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>V Fe<sup>2+</sup> = 25 mL; V KMnO<sub>4</sub> = 20 mL, 0,1 M</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Kepekatan Fe<sup>2+</sup></div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Gabungan Bab 12 dan bab ini — perbandingannya <b>bukan</b> 1 : 1.</div></div>
+      <div class="step"><b>Langkah 1 — Mol MnO₄⁻</b>0,1 × 0,020 = <span class="eq">0,002 mol</span></div>
+      <div class="step"><b>Langkah 2 — Mol Fe²⁺</b>Perbandingan 1 : 5 → 0,002 × 5 = <span class="eq">0,01 mol</span></div>
+      <div class="step"><b>Langkah 3 — Hitung kepekatan</b>0,01 ÷ 0,025 L = <span class="eq">0,4 M</span></div>
+      <div class="ansbar">Jawaban: kepekatan Fe<sup>2+</sup> = 0,4 M</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Titrasi redoks berjalan seperti titrasi asam-basa di Bab 12, hanya perbandingan molnya <b>tidak 1 : 1</b> melainkan mengikuti koefisien persamaan setaranya. Keuntungan praktis titrasi permanganat: ia <b>tidak memerlukan indikator</b>, karena MnO₄⁻ sendiri berwarna ungu dan Mn²⁺ tidak berwarna — setetes berlebih langsung memberi warna merah muda.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Memeriksa persamaan yang keliru</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Periksa apakah persamaan berikut sudah setara: MnO<sub>4</sub><sup>−</sup> + 4Fe<sup>2+</sup> + 8H<sup>+</sup> → Mn<sup>2+</sup> + 4Fe<sup>3+</sup> + 4H<sub>2</sub>O</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Persamaan yang tampak rapi</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Setara atau tidak</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Jalankan <b>kedua</b> pemeriksaan — atom dan muatan.</div></div>
+      <div class="step"><b>Langkah 1 — Periksa atom</b>Mn 1 = 1 · Fe 4 = 4 · O 4 = 4 · H 8 = 8 → <span class="eq">semua setara</span></div>
+      <div class="step"><b>Langkah 2 — Periksa muatan kiri</b>(−1) + 4(+2) + 8(+1) = −1 + 8 + 8 = <span class="eq">+15</span></div>
+      <div class="step"><b>Langkah 3 — Periksa muatan kanan</b>(+2) + 4(+3) = 2 + 12 = <span class="eq">+14</span></div>
+      <div class="step"><b>Langkah 4 — Kesimpulan</b>+15 ≠ +14 → <span class="eq">TIDAK setara</span>, meski seluruh atomnya cocok</div>
+      <div class="step"><b>Langkah 5 — Perbaiki</b>Koefisien Fe seharusnya <b>5</b>, bukan 4</div>
+      <div class="ansbar">Jawaban: tidak setara — muatannya berselisih 1; koefisien Fe seharusnya 5</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Inilah alasan pemeriksaan muatan tidak boleh dilewati. Persamaan ini <b>lolos</b> pemeriksaan atom sepenuhnya, dan tampak meyakinkan — hanya pemeriksaan muatan yang menangkapnya. Kedua contoh yang sengaja dibuat salah diuji dengan pemeriksa terprogram di bab ini, dan tertangkap: yang satu gagal di jumlah atom, yang lain — persis seperti soal ini — gagal di jumlah muatan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Autoredoks dengan iodin</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Setarakan: I<sub>2</sub> + OH<sup>−</sup> → I<sup>−</sup> + IO<sub>3</sub><sup>−</sup> + H<sub>2</sub>O</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Autoredoks iodin dalam basa</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan setara</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Pola sama dengan Contoh 13, hanya unsurnya berbeda.</div></div>
+      <div class="step"><b>Langkah 1 — Kedua arah</b>I: 0 → −1 (<b>turun 1</b>) dan 0 → +5 (<b>naik 5</b>)</div>
+      <div class="step"><b>Langkah 2 — Kali silang</b>I⁻ × <span class="eq">5</span>, IO₃⁻ × 1 → total 6 atom I → <span class="eq">3 I₂</span></div>
+      <div class="step"><b>Langkah 3 — Muatan</b>Kiri = 0 · Kanan = −5 + (−1) = <b>−6</b> → tambahkan <span class="eq">6 OH⁻</span> di kiri</div>
+      <div class="step"><b>Langkah 4 — Setarakan H</b>6 H di kiri → <span class="eq">3 H₂O</span> di kanan</div>
+      <div class="ansbar">Jawaban: 3I<sub>2</sub> + 6OH<sup>−</sup> → 5I<sup>−</sup> + IO<sub>3</sub><sup>−</sup> + 3H<sub>2</sub>O</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa koefisiennya <b>sama persis</b> dengan Contoh 13 pada klorin — 3, 6, 5, 1, 3. Ini bukan kebetulan: kedua reaksi punya pola perubahan biloks yang identik (turun 1, naik 5), sehingga penyetaraannya juga identik. Mengenali pola seperti ini menghemat banyak waktu di ujian.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Analisis lengkap satu reaksi</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Untuk reaksi Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + Fe<sup>2+</sup> → Cr<sup>3+</sup> + Fe<sup>3+</sup> dalam suasana asam, tentukan (a) persamaan setara; (b) oksidatornya; (c) jumlah elektron yang berpindah; (d) mol Fe<sup>2+</sup> yang dioksidasi oleh 0,05 mol dikromat.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Reaksi dikromat dengan besi, suasana asam</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat hal sekaligus</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hasil (a) diperlukan oleh ketiga bagian berikutnya.</div></div>
+      <div class="step"><b>(a) Setarakan</b>Cr turun 3 × 2 atom = 6; Fe naik 1 → Fe × 6 → <span class="eq">Cr₂O₇²⁻ + 6Fe²⁺ + 14H⁺ → 2Cr³⁺ + 6Fe³⁺ + 7H₂O</span></div>
+      <div class="step"><b>(b) Oksidator</b>Zat yang biloksnya turun → <span class="eq">Cr₂O₇²⁻</span></div>
+      <div class="step"><b>(c) Elektron yang berpindah</b>Sama dengan total penurunan biloks Cr = <span class="eq">6 elektron</span></div>
+      <div class="step"><b>(d) Stoikiometri</b>Perbandingan 1 : 6 → 0,05 × 6 = <span class="eq">0,3 mol Fe²⁺</span></div>
+      <div class="ansbar">Jawaban: (a) koefisien 1, 6, 14, 2, 6, 7; (b) Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>; (c) 6 elektron; (d) 0,3 mol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (c) memperlihatkan hubungan yang layak disadari: <b>jumlah elektron yang berpindah selalu sama dengan angka hasil kali silang</b>. Itulah bilangan yang sama yang muncul sebagai koefisien Fe pada bagian (a) dan sebagai perbandingan pada bagian (d). Satu bilangan, tiga kegunaan — dan inilah bilangan yang nanti dipakai pada hukum Faraday di Bab 16.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Pada suasana basa, OH<sup>−</sup> ditambahkan ke ruas yang muatannya lebih besar atau lebih kecil?</li>
+      <li>Apa ciri reaksi autoredoks?</li>
+      <li>Berapa perbandingan mol MnO<sub>4</sub><sup>−</sup> terhadap Fe<sup>2+</sup> dalam suasana asam?</li>
+      <li>Persamaan yang atomnya setara pasti sudah benar — betul atau salah?</li>
+      <li>Mengapa titrasi permanganat tidak memerlukan indikator?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) yang <b>lebih besar</b> (lebih positif), agar muatannya turun; (2) satu unsur <b>naik dan turun</b> dari biloks awal yang sama; (3) <b>1 : 5</b>; (4) <b>salah</b> — muatannya masih harus diperiksa; (5) karena MnO<sub>4</sub><sup>−</sup> berwarna <b>ungu</b> dan Mn<sup>2+</sup> tidak berwarna.</p>
+  </div>
+</section>
+
+<!-- ==================== 15.11 EXAM FOCUS ==================== -->
+<section class="page" id="focus">
+  <h2>15.11&nbsp; ★ UTBK / Exam Focus — Ringkasan Bab</h2>
+  <p class="lead">Dua pertanyaan yang wajib dijawab sebelum menyetarakan: <b>apa suasananya?</b> dan <b>metode mana yang lebih cocok?</b></p>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 1 — "Tentukan biloks"</div>
+    <p>Jumlah biloks dalam senyawa netral = 0; dalam ion poliatom = muatan ionnya.</p>
+    <p><b>Jangan lupa mengalikan dengan indeksnya:</b> pada Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup>, hasil 12 masih harus dibagi <b>dua</b> karena ada dua atom Cr.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 2 — "Tentukan oksidator dan reduktor"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Biloks NAIK</th><td>oksidasi → zatnya <b>reduktor</b></td></tr>
+      <tr><th>Biloks TURUN</th><td>reduksi → zatnya <b>oksidator</b></td></tr>
+    </table></div>
+    <p style="margin-top:10px">Oksidator dan reduktor selalu di ruas <b>kiri</b>; hasil oksidasi dan hasil reduksi selalu di ruas <b>kanan</b>.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 3 — "Setarakan dalam suasana asam"</div>
+    <p>Kali silang selisih biloks → hitung muatan kedua ruas → tambahkan <b>H<sup>+</sup></b> pada ruas yang muatannya <b>lebih kecil</b> → setarakan H dengan <b>H<sub>2</sub>O</b>.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 4 — "Setarakan dalam suasana basa"</div>
+    <p>Alur sama, tetapi penyetaranya <b>OH<sup>−</sup></b>, dan ia ditambahkan pada ruas yang muatannya <b>lebih besar</b>.</p>
+    <p><b>Jangan menghafal "OH<sup>−</sup> selalu di kiri"</b> — hitung muatannya setiap kali, karena arahnya bisa berbeda dari satu soal ke soal lain.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 5 — "Stoikiometri dan titrasi redoks"</div>
+    <p>Setarakan persamaannya <b>lebih dulu</b>, lalu pakai perbandingan koefisien seperti biasa.</p>
+    <p><b>Pintasan:</b> perbandingan mol kedua zat sama dengan kebalikan perbandingan elektronnya. MnO<sub>4</sub><sup>−</sup> menerima 5e⁻ dan Fe<sup>2+</sup> melepas 1e⁻, sehingga perbandingannya <b>1 : 5</b>.</p>
+  </div>
+
+  <div class="box trap">
+    <div class="bt">⚠ Delapan jebakan paling sering dipakai penyusun soal</div>
+    <ol class="step">
+      <li><b>Lupa mengalikan selisih biloks dengan jumlah atom</b> — Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> turun 6, bukan 3.</li>
+      <li><b>Menukar oksidator dengan zat yang teroksidasi.</b></li>
+      <li><b>Menyebut hasil reduksi sebagai oksidator</b> — beda ruas.</li>
+      <li><b>Memakai H<sup>+</sup> pada suasana basa.</b></li>
+      <li><b>Membalik arah penambahan penyetara</b> — periksa muatan kedua ruas lebih dulu.</li>
+      <li><b>Melewatkan pemeriksaan muatan</b> — persamaan bisa lolos atom tetapi tetap salah.</li>
+      <li><b>Lupa menyederhanakan H<sup>+</sup> atau H<sub>2</sub>O</b> yang muncul di kedua ruas.</li>
+      <li><b>Memakai perbandingan 1 : 1</b> pada stoikiometri tanpa menyetarakan lebih dulu.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 15.12 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>15.12&nbsp; How to Master This Chapter</h2>
+  <p class="lead">Bab ini tidak dapat dikuasai dengan membaca. Penyetaraan redoks adalah <b>keterampilan tangan</b> — ia hanya menjadi otomatis setelah puluhan soal dikerjakan sendiri.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Tahap 1 · Biloks dan istilah (1 hari)</div>
+      <ul class="tick">
+        <li>Latih menentukan biloks 30 spesi berbeda sampai otomatis.</li>
+        <li>Hafalkan Mn +7 dalam permanganat dan Cr +6 dalam dikromat.</li>
+        <li>Latih membedakan oksidator, reduktor, dan kedua hasilnya.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 2 · Metode bilangan oksidasi (2 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan 20 soal suasana asam sampai enam langkahnya hafal.</li>
+        <li>Latih khusus oksidator dengan dua atom pusat.</li>
+        <li>Biasakan menjalankan pemeriksaan muatan di akhir setiap soal.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 3 · Metode setengah reaksi (2 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan 20 soal yang sama dengan metode ini, lalu bandingkan hasilnya.</li>
+        <li>Latih urutannya: atom lain → O dengan H<sub>2</sub>O → H dengan H<sup>+</sup> → muatan dengan e<sup>−</sup>.</li>
+        <li>Kerjakan 10 soal suasana basa.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 4 · Autoredoks dan stoikiometri (1 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan 8 soal autoredoks dengan halogen yang berbeda.</li>
+        <li>Latih 10 soal stoikiometri dan titrasi redoks.</li>
+        <li>Latih memeriksa persamaan yang sengaja dibuat salah.</li>
+        <li>Kerjakan Final Chapter Test dengan batas waktu 45 menit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Kebiasaan yang paling menyelamatkan nilai di bab ini</div>
+    <p><b>Tuliskan biloks di atas setiap unsur yang berubah, lengkap dengan arah panahnya.</b> Misalnya "+7 → +2, turun 5". Satu baris itu menjawab pertanyaan oksidator, reduktor, dan angka kali silang sekaligus.</p>
+    <p><b>Selalu jalankan pemeriksaan muatan.</b> Ini pemeriksa yang khas redoks dan yang paling sering dilewati. Persamaan bisa lolos pemeriksaan atom sepenuhnya dan tetap salah — Contoh 18 di bab ini memperlihatkannya dengan jelas.</p>
+    <p><b>Kuasai kedua metode, jangan salah satu saja.</b> Metode bilangan oksidasi lebih cepat untuk persamaan molekul; metode setengah reaksi lebih aman untuk persamaan ion dan suasana basa. Soal UTBK memakai keduanya.</p>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 15</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pada setiap soal penyetaraan, <b>jalankan pemeriksaan muatan</b> sebelum menyerahkan jawaban.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji penentuan biloks, pengenalan redoks, dan pembedaan keempat istilah.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Bilangan oksidasi Cl dalam KClO<sub>3</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> −1</li><li><span class="l">B.</span> +1</li><li><span class="l">C.</span> +3</li><li><span class="l">D.</span> +5</li><li><span class="l">E.</span> +7</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>KClO<sub>3</sub> adalah senyawa <b>netral</b>, sehingga jumlah biloksnya nol:</p>
+      <p class="eq">(+1) + Cl + 3(−2) = 0 → Cl = 6 − 1 = <b>+5</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Nilai Cl dalam KCl, bukan KClO<sub>3</sub>.</li>
+        <li><b>B.</b> Nilai Cl dalam KClO (hipoklorit).</li>
+        <li><b>E.</b> Nilai Cl dalam KClO<sub>4</sub> (perklorat).</li>
+        <li><b>C.</b> Nilai Cl dalam KClO<sub>2</sub>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> keempat pengecoh ini adalah biloks Cl pada senyawa oksi lainnya. Jumlah atom O-lah yang membedakan — hitung, jangan menebak dari kemiripan nama.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Reaksi berikut yang <b>bukan</b> reaksi redoks adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub></li>
+      <li><span class="l">B.</span> NaOH + HCl → NaCl + H<sub>2</sub>O</li>
+      <li><span class="l">C.</span> 2Na + Cl<sub>2</sub> → 2NaCl</li>
+      <li><span class="l">D.</span> Fe<sub>2</sub>O<sub>3</sub> + 3CO → 2Fe + 3CO<sub>2</sub></li>
+      <li><span class="l">E.</span> 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Pada pilihan B, periksa setiap unsur: Na tetap +1, O tetap −2, H tetap +1, Cl tetap −1. <b>Tidak ada yang berubah</b> → bukan redoks, melainkan reaksi penetralan.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Zn: 0 → +2 dan H: +1 → 0 — keduanya berubah.</li>
+        <li><b>C, E.</b> Ada <b>unsur bebas</b> di ruas kiri yang berbiloks 0 — tanda pasti reaksi redoks.</li>
+        <li><b>D.</b> Fe: +3 → 0 dan C: +2 → +4.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pemeriksa cepatnya — bila ada <b>unsur bebas</b> (biloks 0) di salah satu ruas, reaksinya hampir pasti redoks. Reaksi asam-basa <b>tidak pernah</b> redoks.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Oksidator adalah zat yang ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> mengalami reduksi dan biloksnya turun</li>
+      <li><span class="l">B.</span> mengalami oksidasi dan biloksnya naik</li>
+      <li><span class="l">C.</span> melepaskan elektron</li>
+      <li><span class="l">D.</span> biloksnya tidak berubah</li>
+      <li><span class="l">E.</span> selalu berupa unsur bebas</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Oksidator <b>meng</b>oksidasi zat lain, sehingga dirinya sendiri justru <b>ter</b>eduksi — biloksnya turun, dan ia <b>menerima</b> elektron.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ini definisi <b>reduktor</b>.</li>
+        <li><b>C.</b> Melepaskan elektron adalah ciri reduktor; oksidator justru menerimanya.</li>
+        <li><b>D.</b> Bila biloksnya tidak berubah, zatnya tidak terlibat redoks sama sekali.</li>
+        <li><b>E.</b> Oksidator bisa berupa ion poliatom seperti MnO<sub>4</sub><sup>−</sup>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan B tersedia di hampir setiap soal jenis ini. Cara mengingat: <b>oksidator mengoksidasi orang lain, dirinya tereduksi</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Pada reaksi Cl<sub>2</sub> + 2OH<sup>−</sup> → Cl<sup>−</sup> + ClO<sup>−</sup> + H<sub>2</sub>O, Cl<sub>2</sub> berperan sebagai ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> oksidator saja</li>
+      <li><span class="l">B.</span> reduktor saja</li>
+      <li><span class="l">C.</span> tidak terlibat redoks</li>
+      <li><span class="l">D.</span> katalis</li>
+      <li><span class="l">E.</span> oksidator sekaligus reduktor</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Cl dalam Cl<sub>2</sub> berbiloks <b>0</b>.</p>
+      <p><b>Langkah 2.</b> Menuju Cl<sup>−</sup>: biloks <b>−1</b>, turun → mengalami reduksi.</p>
+      <p><b>Langkah 3.</b> Menuju ClO<sup>−</sup>: biloks <b>+1</b>, naik → mengalami oksidasi.</p>
+      <p><b>Kesimpulan:</b> satu zat naik dan turun sekaligus → ini reaksi <b>autoredoks</b>, dan Cl<sub>2</sub> berperan ganda.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B.</b> Masing-masing hanya menyebut separuh perannya.</li>
+        <li><b>C.</b> Biloksnya jelas berubah ke dua arah.</li>
+        <li><b>D.</b> Katalis tidak ikut bereaksi; Cl<sub>2</sub> justru habis.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ciri autoredoks selalu terlihat dari <b>satu unsur yang muncul dua kali</b> di ruas kanan dengan biloks berbeda. Bila melihat pola itu, jawabannya hampir pasti "oksidator sekaligus reduktor".</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Persamaan redoks disebut setara apabila ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> jumlah atomnya saja setara</li>
+      <li><span class="l">B.</span> jumlah muatannya saja setara</li>
+      <li><span class="l">C.</span> jumlah atom <b>dan</b> jumlah muatannya setara</li>
+      <li><span class="l">D.</span> jumlah molekul kedua ruas sama</li>
+      <li><span class="l">E.</span> koefisiennya berupa bilangan bulat terkecil</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Persamaan redoks harus lolos <b>dua</b> pemeriksaan. Pemeriksaan atom berlaku untuk semua persamaan; pemeriksaan <b>muatan</b> adalah yang khas redoks.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Persamaan bisa lolos pemeriksaan atom dan tetap salah muatannya — inilah jebakan yang paling sering.</li>
+        <li><b>B.</b> Muatan setara tetapi atom tidak setara juga salah.</li>
+        <li><b>D.</b> Jumlah molekul tidak perlu sama; yang harus sama adalah jumlah <b>atom</b>.</li>
+        <li><b>E.</b> Benar sebagai kebiasaan penulisan, tetapi bukan syarat kesetaraan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A menampung kelalaian yang paling sering terjadi. Contoh 18 di bab ini memperlihatkan persamaan yang seluruh atomnya cocok tetapi muatannya berselisih satu.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menentukan biloks, oksidator-reduktor, dan menyetarakan reaksi sederhana.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Bilangan oksidasi S dalam Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> +6</li><li><span class="l">B.</span> +2</li><li><span class="l">C.</span> +4</li><li><span class="l">D.</span> −2</li><li><span class="l">E.</span> +3</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p class="eq">2(+1) + 2S + 3(−2) = 0 → 2S = 6 − 2 = 4 → S = <b>+2</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Lupa membagi dua — ada <b>dua</b> atom S.</li>
+        <li><b>A.</b> Nilai S dalam sulfat, bukan tiosulfat.</li>
+        <li><b>D, E.</b> Kesalahan pada penjumlahan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C adalah jebakan indeks yang paling laris. Setiap kali ada angka di belakang lambang unsur yang dicari, hasil akhirnya <b>wajib</b> dibagi dengan angka itu.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Pada reaksi MnO<sub>2</sub> + 4HCl → MnCl<sub>2</sub> + Cl<sub>2</sub> + 2H<sub>2</sub>O, yang bertindak sebagai reduktor adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> MnO<sub>2</sub></li><li><span class="l">B.</span> MnCl<sub>2</sub></li><li><span class="l">C.</span> H<sub>2</sub>O</li><li><span class="l">D.</span> HCl</li><li><span class="l">E.</span> Cl<sub>2</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Mn: +4 → +2, <b>turun</b> → MnO<sub>2</sub> adalah oksidator.</p>
+      <p><b>Langkah 2.</b> Cl: −1 (dalam HCl) → 0 (dalam Cl<sub>2</sub>), <b>naik</b> → HCl adalah <b>reduktor</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini oksidatornya, bukan reduktor.</li>
+        <li><b>B, E.</b> Keduanya <b>hasil</b> reaksi di ruas kanan, bukan pereaksi.</li>
+        <li><b>C.</b> Biloks H dan O di dalamnya tidak berubah.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan bahwa hanya <b>sebagian</b> Cl yang teroksidasi — dari 4 atom Cl, dua menjadi Cl<sub>2</sub> dan dua tetap sebagai ion dalam MnCl<sub>2</sub>. HCl tetap disebut reduktor karena ia yang menyumbang atom yang naik biloksnya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Pada penyetaraan Cu + NO<sub>3</sub><sup>−</sup> + H<sup>+</sup> → Cu<sup>2+</sup> + NO<sub>2</sub> + H<sub>2</sub>O, koefisien NO<sub>3</sub><sup>−</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 1</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 6</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Cu: 0 → +2, <b>naik 2</b> · N: +5 → +4, <b>turun 1</b></p>
+      <p><b>Langkah 2.</b> Kali silang → Cu × 1, NO<sub>3</sub><sup>−</sup> × <b>2</b></p>
+      <p><b>Langkah 3.</b> Muatan kiri = −2; kanan = +2 → tambahkan <b>4 H<sup>+</sup></b> di kiri → 2 H<sub>2</sub>O di kanan</p>
+      <p class="eq">Cu + 2NO₃⁻ + 4H⁺ → Cu²⁺ + 2NO₂ + 2H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Melupakan kali silang sama sekali.</li>
+        <li><b>C, D, E.</b> Kesalahan pada perhitungan selisih biloks.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan bahwa N turun hanya <b>1</b> di sini (menjadi NO<sub>2</sub>), berbeda dari reaksi yang menghasilkan NO yang turun 3. Produk nitrogen menentukan seluruh koefisiennya — baca produknya dengan cermat.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Pada reaksi Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + Sn<sup>2+</sup> + H<sup>+</sup> → Cr<sup>3+</sup> + Sn<sup>4+</sup> + H<sub>2</sub>O, koefisien Sn<sup>2+</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 6</li><li><span class="l">C.</span> 3</li><li><span class="l">D.</span> 1</li><li><span class="l">E.</span> 14</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Cr: +6 → +3, turun 3 <b>per atom</b>; ada 2 atom → penurunan total <b>6</b></p>
+      <p><b>Langkah 2.</b> Sn: +2 → +4, <b>naik 2</b></p>
+      <p><b>Langkah 3.</b> 6 ÷ 2 = <b>3</b> → koefisien Sn<sup>2+</sup> adalah 3</p>
+      <p class="eq">Cr₂O₇²⁻ + 3Sn²⁺ + 14H⁺ → 2Cr³⁺ + 3Sn⁴⁺ + 7H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Memakai penurunan 6 tetapi lupa bahwa Sn naik <b>2</b>, bukan 1.</li>
+        <li><b>A.</b> Memakai penurunan 3 saja — lupa mengalikan dengan dua atom Cr.</li>
+        <li><b>D.</b> Melupakan kali silang sama sekali.</li>
+        <li><b>E.</b> Ini koefisien H<sup>+</sup>, bukan Sn<sup>2+</sup>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> soal ini memuat <b>dua</b> pengali sekaligus — dua atom Cr di satu sisi, dan kenaikan 2 pada Sn di sisi lain. Melewatkan salah satunya memberi jawaban yang tersedia sebagai pengecoh.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Pada reaksi ClO<sub>3</sub><sup>−</sup> + I<sup>−</sup> + H<sup>+</sup> → Cl<sup>−</sup> + I<sub>2</sub> + H<sub>2</sub>O, koefisien I<sup>−</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 1</li><li><span class="l">D.</span> 12</li><li><span class="l">E.</span> 6</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Cl: +5 → −1, <b>turun 6</b></p>
+      <p><b>Langkah 2.</b> I: −1 → 0, naik 1 per atom → tiap I<sub>2</sub> berarti naik <b>2</b></p>
+      <p><b>Langkah 3.</b> 6 ÷ 2 = 3 → I<sub>2</sub> × 3 → berarti <b>6</b> ion I<sup>−</sup></p>
+      <p class="eq">ClO₃⁻ + 6I⁻ + 6H⁺ → Cl⁻ + 3I₂ + 3H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ini koefisien I<sub>2</sub>, bukan I<sup>−</sup>.</li>
+        <li><b>A.</b> Salah menghitung penurunan biloks Cl.</li>
+        <li><b>D.</b> Mengalikan dua kali.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan B adalah jebakan membaca — soal menanyakan koefisien <b>I<sup>−</sup></b>, bukan I<sub>2</sub>. Karena tiap I<sub>2</sub> memuat dua atom, keduanya berselisih dua kali lipat.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Penyetaraan dalam suasana <b>basa</b> memakai zat penyetara ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> H<sup>+</sup> dan H<sub>2</sub>O</li>
+      <li><span class="l">B.</span> OH<sup>−</sup> dan H<sub>2</sub>O</li>
+      <li><span class="l">C.</span> H<sup>+</sup> dan OH<sup>−</sup></li>
+      <li><span class="l">D.</span> hanya H<sub>2</sub>O</li>
+      <li><span class="l">E.</span> O<sub>2</sub> dan H<sub>2</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Dalam larutan basa, ion H<sup>+</sup> praktis <b>tidak ada</b> — ia langsung dinetralkan oleh OH<sup>−</sup> yang berlimpah. Menuliskannya berarti menuliskan zat yang tidak ada di sana.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini untuk suasana <b>asam</b>.</li>
+        <li><b>C.</b> Keduanya tidak dapat berada bersama dalam jumlah berarti — mereka saling menetralkan.</li>
+        <li><b>D.</b> H<sub>2</sub>O saja tidak dapat menyetarakan muatan.</li>
+        <li><b>E.</b> Bukan zat penyetara pada penyetaraan redoks.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> petunjuk suasananya selalu ada di soal — bila persamaan memuat OH<sup>−</sup> atau NaOH, suasananya basa; bila memuat H<sup>+</sup> atau asam kuat, suasananya asam.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Penyetaraan lengkap, suasana basa, dan autoredoks. Target waktu: 3 menit per soal.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12</div>
+    <div class="qs">Pada reaksi MnO<sub>4</sub><sup>−</sup> + H<sub>2</sub>O<sub>2</sub> + H<sup>+</sup> → Mn<sup>2+</sup> + O<sub>2</sub> + H<sub>2</sub>O, koefisien H<sup>+</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 16</li><li><span class="l">B.</span> 8</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 10</li><li><span class="l">E.</span> 5</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Mn: +7 → +2, <b>turun 5</b> · O dalam H<sub>2</sub>O<sub>2</sub>: <b>−1</b> → 0 dalam O<sub>2</sub>, naik 1 per atom → tiap H<sub>2</sub>O<sub>2</sub> naik <b>2</b></p>
+      <p><b>Langkah 2.</b> Kali silang → MnO<sub>4</sub><sup>−</sup> × 2, H<sub>2</sub>O<sub>2</sub> × <b>5</b></p>
+      <p><b>Langkah 3.</b> Muatan kiri = −2; kanan = +4 → selisih 6 → <b>6 H<sup>+</sup></b> di kiri</p>
+      <p class="eq">2MnO₄⁻ + 5H₂O₂ + 6H⁺ → 2Mn²⁺ + 5O₂ + 8H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ini koefisien H<sub>2</sub>O, bukan H<sup>+</sup>.</li>
+        <li><b>A, D.</b> Kesalahan pada perhitungan muatan.</li>
+        <li><b>E.</b> Ini koefisien H<sub>2</sub>O<sub>2</sub>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> soal ini memuat jebakan biloks yang halus — oksigen dalam <b>peroksida</b> berbiloks <b>−1</b>, bukan −2. Memakai −2 membuat seluruh perhitungan meleset sejak langkah pertama.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Pada reaksi I<sub>2</sub> + OH<sup>−</sup> → I<sup>−</sup> + IO<sub>3</sub><sup>−</sup> + H<sub>2</sub>O, koefisien I<sup>−</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 5</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 1</li><li><span class="l">D.</span> 6</li><li><span class="l">E.</span> 2</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Kenali autoredoksnya.</b> I berangkat dari <b>0</b>, berakhir di <b>−1</b> dan <b>+5</b>.</p>
+      <p><b>Langkah 2.</b> Menuju I<sup>−</sup>: turun 1 · Menuju IO<sub>3</sub><sup>−</sup>: naik 5</p>
+      <p><b>Langkah 3 — Kali silang.</b> I<sup>−</sup> × <b>5</b>, IO<sub>3</sub><sup>−</sup> × 1 → total 6 atom I → <b>3 I<sub>2</sub></b></p>
+      <p class="eq">3I₂ + 6OH⁻ → 5I⁻ + IO₃⁻ + 3H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Ini koefisien I<sub>2</sub> maupun H<sub>2</sub>O, bukan I<sup>−</sup>.</li>
+        <li><b>D.</b> Ini koefisien OH<sup>−</sup>.</li>
+        <li><b>C, E.</b> Kesalahan pada kali silang.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> koefisiennya <b>sama persis</b> dengan autoredoks klorin — 3, 6, 5, 1, 3 — karena pola perubahan biloksnya identik (turun 1, naik 5). Mengenali pola ini menghemat banyak waktu.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14</div>
+    <div class="qs">Pada reaksi MnO<sub>4</sub><sup>−</sup> + I<sup>−</sup> + H<sub>2</sub>O → MnO<sub>2</sub> + I<sub>2</sub> + OH<sup>−</sup>, koefisien OH<sup>−</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 8</li><li><span class="l">E.</span> 3</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Mn: +7 → +4, <b>turun 3</b> · I: −1 → 0, tiap I<sub>2</sub> <b>naik 2</b></p>
+      <p><b>Langkah 2 — Kali silang.</b> MnO<sub>4</sub><sup>−</sup> × <b>2</b>, I<sub>2</sub> × <b>3</b> (yaitu 6 I<sup>−</sup>)</p>
+      <p><b>Langkah 3.</b> Muatan kiri = −2 + (−6) = <b>−8</b>; kanan = 0 → tambahkan <b>8 OH<sup>−</sup></b> di kanan</p>
+      <p><b>Langkah 4.</b> 8 H di kanan → <b>4 H<sub>2</sub>O</b> di kiri</p>
+      <p class="eq">2MnO₄⁻ + 6I⁻ + 4H₂O → 2MnO₂ + 3I₂ + 8OH⁻</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini koefisien H<sub>2</sub>O.</li>
+        <li><b>C.</b> Ini koefisien I<sup>−</sup>.</li>
+        <li><b>B, E.</b> Kesalahan pada perhitungan muatan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan bahwa di sini OH<sup>−</sup> masuk ke ruas <b>kanan</b> dan H<sub>2</sub>O ke <b>kiri</b> — kebalikan dari soal suasana basa yang lain. Arahnya ditentukan oleh <b>ruas mana yang muatannya lebih besar</b>, bukan oleh hafalan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Pada reaksi Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + 6Fe<sup>2+</sup> + 14H<sup>+</sup> → 2Cr<sup>3+</sup> + 6Fe<sup>3+</sup> + 7H<sub>2</sub>O, jumlah elektron yang berpindah adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 14</li><li><span class="l">D.</span> 1</li><li><span class="l">E.</span> 6</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Dari sisi Cr:</b> turun 3 per atom × 2 atom = <b>6 elektron diterima</b></p>
+      <p><b>Dari sisi Fe:</b> naik 1 per atom × 6 atom = <b>6 elektron dilepas</b></p>
+      <p>Keduanya cocok — dan memang harus, karena elektron yang dilepas tepat sama dengan yang diterima.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Penurunan biloks <b>per atom</b> Cr, belum dikali jumlah atomnya.</li>
+        <li><b>D.</b> Kenaikan biloks per atom Fe.</li>
+        <li><b>C.</b> Ini koefisien H<sup>+</sup>.</li>
+        <li><b>A.</b> Ini koefisien Cr<sup>3+</sup>.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> jumlah elektron yang berpindah sama dengan <b>angka hasil kali silang</b> — bilangan yang sama yang muncul sebagai koefisien Fe. Bilangan inilah yang nanti dipakai pada hukum Faraday di Bab 16.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16</div>
+    <div class="qs">Berapa mol Fe<sup>2+</sup> yang dapat dioksidasi oleh 0,04 mol MnO<sub>4</sub><sup>−</sup> dalam suasana asam?</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,04 mol</li><li><span class="l">B.</span> 0,008 mol</li><li><span class="l">C.</span> 0,2 mol</li><li><span class="l">D.</span> 0,24 mol</li><li><span class="l">E.</span> 0,02 mol</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Setarakan dulu.</b> MnO<sub>4</sub><sup>−</sup> + 5Fe<sup>2+</sup> + 8H<sup>+</sup> → Mn<sup>2+</sup> + 5Fe<sup>3+</sup> + 4H<sub>2</sub>O</p>
+      <p><b>Langkah 2 — Perbandingan.</b> MnO<sub>4</sub><sup>−</sup> : Fe<sup>2+</sup> = <b>1 : 5</b></p>
+      <p><b>Langkah 3.</b> 0,04 × 5 = <b>0,2 mol</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Memakai perbandingan 1 : 1 tanpa menyetarakan.</li>
+        <li><b>B.</b> Membagi alih-alih mengalikan.</li>
+        <li><b>D.</b> Memakai perbandingan 1 : 6, yaitu perbandingan untuk dikromat.</li>
+        <li><b>E.</b> Kesalahan pada perhitungan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan yang paling merugikan — meleset <b>lima kali lipat</b>. Setarakan persamaannya lebih dulu; tanpa itu, perbandingan mol tidak bermakna.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17</div>
+    <div class="qs">Persamaan MnO<sub>4</sub><sup>−</sup> + 4Fe<sup>2+</sup> + 8H<sup>+</sup> → Mn<sup>2+</sup> + 4Fe<sup>3+</sup> + 4H<sub>2</sub>O ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> sudah setara sepenuhnya</li>
+      <li><span class="l">B.</span> tidak setara — muatannya berselisih 1</li>
+      <li><span class="l">C.</span> tidak setara — jumlah atom O berbeda</li>
+      <li><span class="l">D.</span> tidak setara — jumlah atom H berbeda</li>
+      <li><span class="l">E.</span> bukan reaksi redoks</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Periksa atom:</b> Mn 1 = 1 · Fe 4 = 4 · O 4 = 4 · H 8 = 8 → <b>semuanya setara</b></p>
+      <p><b>Periksa muatan kiri:</b> (−1) + 4(+2) + 8(+1) = <b>+15</b></p>
+      <p><b>Periksa muatan kanan:</b> (+2) + 4(+3) = <b>+14</b></p>
+      <p>Berselisih <b>1</b> → tidak setara. Koefisien Fe seharusnya <b>5</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Lolos pemeriksaan atom tidak berarti setara — inilah jebakannya.</li>
+        <li><b>C, D.</b> Keduanya sudah diperiksa dan setara.</li>
+        <li><b>E.</b> Biloks Mn dan Fe jelas berubah.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> soal jenis ini menguji apakah Anda benar-benar menjalankan <b>kedua</b> pemeriksaan. Persamaan ini sengaja dibuat lolos pemeriksaan atom agar yang hanya memeriksa atom terjebak memilih A.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Persamaan molekul lengkap, titrasi redoks, dan penalaran gabungan.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Pada reaksi 2KMnO<sub>4</sub> + 16HCl → 2KCl + 2MnCl<sub>2</sub> + 5Cl<sub>2</sub> + 8H<sub>2</sub>O, berapa atom Cl yang benar-benar <b>teroksidasi</b>?</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 16</li><li><span class="l">B.</span> 6</li><li><span class="l">C.</span> 5</li><li><span class="l">D.</span> 10</li><li><span class="l">E.</span> 2</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Dari 16 atom Cl di kiri, periksa nasibnya di kanan.</p>
+      <p><b>Langkah 2.</b> Yang menjadi Cl<sub>2</sub>: 5 × 2 = <b>10 atom</b> → biloks −1 → 0, <b>teroksidasi</b></p>
+      <p><b>Langkah 3.</b> Yang menjadi KCl dan MnCl<sub>2</sub>: 2 + 4 = <b>6 atom</b> → biloks tetap −1, <b>tidak berubah</b></p>
+      <p><b>Periksa:</b> 10 + 6 = 16 ✔ cocok dengan jumlah HCl</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Mengira seluruh Cl teroksidasi.</li>
+        <li><b>B.</b> Ini justru jumlah yang <b>tidak</b> berubah.</li>
+        <li><b>C.</b> Ini koefisien Cl<sub>2</sub>, bukan jumlah atomnya.</li>
+        <li><b>E.</b> Kesalahan pada penghitungan.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> inilah gagasan tersulit pada persamaan molekul — satu zat dapat berperan <b>ganda</b>: sebagian sebagai reduktor, sebagian hanya sebagai penyumbang ion pendamping. Pilihan C menjebak yang membaca koefisien tanpa mengalikannya dengan indeks.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Sebanyak 20 mL larutan Fe<sup>2+</sup> tepat dititrasi oleh 25 mL KMnO<sub>4</sub> 0,1 M dalam suasana asam. Kepekatan Fe<sup>2+</sup> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 0,625 M</li><li><span class="l">B.</span> 0,125 M</li><li><span class="l">C.</span> 0,025 M</li><li><span class="l">D.</span> 0,1 M</li><li><span class="l">E.</span> 0,5 M</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Mol MnO<sub>4</sub><sup>−</sup>.</b> 0,1 × 0,025 = <b>0,0025 mol</b></p>
+      <p><b>Langkah 2 — Mol Fe<sup>2+</sup>.</b> Perbandingan 1 : 5 → 0,0025 × 5 = <b>0,0125 mol</b></p>
+      <p><b>Langkah 3 — Kepekatan.</b> 0,0125 ÷ 0,020 L = <b>0,625 M</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Memakai perbandingan 1 : 1.</li>
+        <li><b>C.</b> Berhenti di jumlah mol, belum dibagi volume.</li>
+        <li><b>D, E.</b> Kesalahan pada pembagian volume.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> titrasi redoks berjalan seperti titrasi asam-basa di Bab 12, hanya perbandingan molnya mengikuti koefisien persamaan setaranya — <b>bukan 1 : 1</b>. Inilah pembeda utamanya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Unsur berikut yang <b>tidak dapat</b> mengalami reaksi autoredoks adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Cl dalam Cl<sub>2</sub></li>
+      <li><span class="l">B.</span> Br dalam Br<sub>2</sub></li>
+      <li><span class="l">C.</span> I dalam I<sub>2</sub></li>
+      <li><span class="l">D.</span> S dalam S<sub>8</sub></li>
+      <li><span class="l">E.</span> Cl dalam Cl<sup>−</sup></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Syarat autoredoks: unsurnya berada pada biloks <b>di antara</b> nilai tertinggi dan terendahnya, sehingga kedua arah terbuka.</p>
+      <p>Cl dalam Cl<sup>−</sup> sudah berada pada biloks <b>terendah</b> (−1) → <b>tidak dapat turun lagi</b> → tidak dapat mengalami autoredoks.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B, C.</b> Ketiganya berbiloks 0 dalam bentuk unsur bebas — dapat turun ke −1 maupun naik ke +1 atau +5.</li>
+        <li><b>D.</b> S dalam S<sub>8</sub> juga berbiloks 0, dan dapat turun ke −2 maupun naik ke +4.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pemeriksa cepatnya — unsur dalam bentuk <b>bebas</b> (biloks 0) hampir selalu dapat mengalami autoredoks. Unsur yang sudah berada di ujung rentang biloksnya tidak bisa.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21</div>
+    <div class="qs">Perhatikan reaksi 4Zn + NO<sub>3</sub><sup>−</sup> + 10H<sup>+</sup> → 4Zn<sup>2+</sup> + NH<sub>4</sub><sup>+</sup> + 3H<sub>2</sub>O. Pernyataan yang <b>benar</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Zn adalah oksidatornya</li>
+      <li><span class="l">B.</span> biloks N naik dari +5 menjadi −3</li>
+      <li><span class="l">C.</span> NO<sub>3</sub><sup>−</sup> adalah oksidator, dan 8 elektron berpindah</li>
+      <li><span class="l">D.</span> muatan kedua ruas berselisih 1</li>
+      <li><span class="l">E.</span> reaksi ini tergolong autoredoks</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Biloks N.</b> Dalam NO<sub>3</sub><sup>−</sup> = +5; dalam NH<sub>4</sub><sup>+</sup> = −3 → <b>turun 8</b>. Ini menggugurkan B, yang menyebutnya naik.</p>
+      <p><b>Peran.</b> Karena biloks N turun, NO<sub>3</sub><sup>−</sup> mengalami reduksi → ia adalah <b>oksidator</b>. Ini menggugurkan A.</p>
+      <p><b>Elektron.</b> Penurunan 8 pada N = kenaikan 2 × 4 atom Zn = <b>8 elektron</b> ✔ Pernyataan C benar seluruhnya.</p>
+      <p><b>Periksa D.</b> Muatan kiri = 0 + (−1) + 10 = <b>+9</b>; kanan = +8 + 1 = <b>+9</b> → setara, tidak berselisih.</p>
+      <p><b>Periksa E.</b> Autoredoks menuntut <b>satu</b> unsur naik dan turun sekaligus; di sini Zn naik dan N turun — dua unsur berbeda.</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab sekaligus — biloks tak lazim, pembedaan oksidator, penghitungan elektron, pemeriksaan muatan, dan pengenalan autoredoks.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>15.13 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 15</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      OKSIDASI: biloks <b>NAIK</b>, melepas elektron, zatnya <b>REDUKTOR</b><br>
+      REDUKSI: biloks <b>TURUN</b>, menerima elektron, zatnya <b>OKSIDATOR</b>
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">METODE BILANGAN OKSIDASI</div>
+        <ul>
+          <li>Tandai biloks yang berubah</li>
+          <li>Hitung selisihnya × <b>jumlah atom</b></li>
+          <li>Samakan dengan kali silang</li>
+          <li>Setarakan muatan: <b>H⁺</b> (asam) atau <b>OH⁻</b> (basa)</li>
+          <li>Setarakan H dengan <b>H₂O</b></li>
+          <li>Lebih cepat untuk persamaan <b>molekul</b></li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">METODE SETENGAH REAKSI</div>
+        <ul>
+          <li>Pisahkan jadi dua setengah reaksi</li>
+          <li>Setarakan atom selain O dan H</li>
+          <li>Setarakan <b>O dengan H₂O</b>, lalu <b>H dengan H⁺</b></li>
+          <li>Setarakan muatan dengan <b>elektron</b></li>
+          <li>Samakan elektron, jumlahkan, coret yang sama</li>
+          <li>Lebih aman untuk persamaan <b>ion</b> dan suasana basa</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">SUASANA DAN AUTOREDOKS</div>
+        <ul>
+          <li><b>Asam:</b> H⁺ ke ruas yang muatannya lebih <b>kecil</b></li>
+          <li><b>Basa:</b> OH⁻ ke ruas yang muatannya lebih <b>besar</b></li>
+          <li>Jangan hafalkan arahnya — hitung muatannya</li>
+          <li><b>Autoredoks:</b> satu unsur naik <b>dan</b> turun dari biloks awal yang sama</li>
+          <li>Syaratnya: biloks awal berada di antara nilai tertinggi dan terendahnya</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">KESALAHAN YANG HARUS DIHINDARI</div>
+        <ul>
+          <li>Lupa mengalikan selisih biloks dengan jumlah atom.</li>
+          <li>Menukar oksidator dengan zat yang teroksidasi.</li>
+          <li>Menyebut hasil reduksi sebagai oksidator.</li>
+          <li>Memakai H⁺ pada suasana basa.</li>
+          <li>Melewatkan pemeriksaan <b>muatan</b>.</li>
+          <li>Memakai perbandingan 1 : 1 tanpa menyetarakan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat untuk seluruh Bab 15</div>
+    <p><b>Jumlah elektron yang dilepas satu zat tepat sama dengan jumlah yang diterima zat lain</b> — dan seluruh penyetaraan redoks tidak lain adalah cara memastikan kesamaan itu, baik lewat selisih biloks maupun lewat elektron yang dituliskan terang-terangan.</p>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>15.14 &nbsp;Formula Sheet Bab 15</h2>
+  <p>Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Aturan / Langkah</th><th>Fungsi</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="eq">jumlah biloks senyawa netral = 0</td><td>Menentukan biloks</td><td>Langkah pertama setiap soal</td><td>Bagi dengan indeks unsurnya</td></tr>
+      <tr><td class="eq">jumlah biloks ion = muatan ion</td><td>Menentukan biloks</td><td>Ion poliatom</td><td>Cr₂O₇²⁻ → Cr = +6</td></tr>
+      <tr class="hi"><td class="eq">biloks NAIK → oksidasi → reduktor</td><td>Menentukan peran</td><td>Soal oksidator-reduktor</td><td>Selalu di ruas <b>kiri</b></td></tr>
+      <tr class="hi"><td class="eq">biloks TURUN → reduksi → oksidator</td><td>Menentukan peran</td><td>Soal oksidator-reduktor</td><td>Hasilnya di ruas <b>kanan</b></td></tr>
+      <tr><td class="eq">selisih biloks × jumlah atom</td><td>Menghitung kali silang</td><td>Metode bilangan oksidasi</td><td>Jangan lupa mengalikan indeks</td></tr>
+      <tr><td class="eq">O dengan H₂O, H dengan H⁺</td><td>Menyetarakan setengah reaksi</td><td>Metode setengah reaksi</td><td>Urutannya <b>O dulu</b>, baru H</td></tr>
+      <tr class="hi"><td class="eq">tambah e⁻ pada ruas bermuatan lebih besar</td><td>Menyetarakan muatan</td><td>Metode setengah reaksi</td><td>Jumlah e⁻ = selisih muatan</td></tr>
+      <tr><td class="eq">suasana asam → H⁺ ke ruas muatan lebih kecil</td><td>Menyetarakan muatan</td><td>Ada H⁺ atau asam kuat</td><td>Lalu H₂O untuk atom H</td></tr>
+      <tr><td class="eq">suasana basa → OH⁻ ke ruas muatan lebih besar</td><td>Menyetarakan muatan</td><td>Ada OH⁻ atau basa</td><td>Arahnya bisa berbeda tiap soal</td></tr>
+      <tr class="hi"><td class="eq">jumlah atom setara <b>dan</b> muatan setara</td><td>Pemeriksaan akhir</td><td><b>Setiap</b> soal penyetaraan</td><td>Pemeriksa muatan yang khas redoks</td></tr>
+      <tr><td class="eq">mol A : mol B = koefisien A : koefisien B</td><td>Stoikiometri redoks</td><td>Soal mol dan titrasi</td><td>Setarakan lebih dulu</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">ALUR EMPAT LANGKAH SETIAP SOAL PENYETARAAN</div>
+    <div class="main-eq" style="font-size:15px; line-height:2">
+      1. Tuliskan <b>biloks</b> di atas unsur yang berubah, lengkap arah dan selisihnya<br>
+      2. Periksa <b>suasananya</b> — asam atau basa<br>
+      3. Pilih <b>metodenya</b> — biloks untuk persamaan molekul, setengah reaksi untuk persamaan ion<br>
+      4. Jalankan <b>kedua pemeriksaan</b>: jumlah atom dan jumlah muatan
+    </div>
+    <div class="note">Langkah 4 adalah yang paling sering dilewati dan yang paling banyak menyelamatkan. Sebuah persamaan dapat lolos pemeriksaan atom sepenuhnya dan tetap salah — Contoh 18 dan Soal 17 di bab ini keduanya memperlihatkan kasus seperti itu, dengan seluruh atom cocok tetapi muatan berselisih satu. Sepuluh detik untuk menjumlahkan muatan kedua ruas menutup jebakan yang paling laris di seluruh bab.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>15.15 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. <strong>Waktu yang disarankan: 45 menit.</strong> Jalankan pemeriksaan muatan pada setiap soal penyetaraan.</p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Bilangan oksidasi N dalam HNO<sub>3</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> +3</li><li><span class="l">B.</span> +5</li><li><span class="l">C.</span> −3</li><li><span class="l">D.</span> +2</li><li><span class="l">E.</span> +4</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>(+1) + N + 3(−2) = 0 → N = 6 − 1 = <b>+5</b></p>
+      <p>Pilihan D dan E adalah biloks N dalam NO dan NO<sub>2</sub>; pilihan C adalah biloks N dalam NH<sub>3</sub>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Reaksi yang <b>bukan</b> reaksi redoks adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> Mg + 2HCl → MgCl<sub>2</sub> + H<sub>2</sub></li><li><span class="l">B.</span> 2Fe + 3Cl<sub>2</sub> → 2FeCl<sub>3</sub></li><li><span class="l">C.</span> AgNO<sub>3</sub> + NaCl → AgCl + NaNO<sub>3</sub></li><li><span class="l">D.</span> C + O<sub>2</sub> → CO<sub>2</sub></li><li><span class="l">E.</span> Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Pada pilihan C, semua biloks tetap: Ag +1, N +5, O −2, Na +1, Cl −1. Ini reaksi <b>pengendapan</b>, bukan redoks.</p>
+      <p>Keempat pilihan lainnya memuat <b>unsur bebas</b> berbiloks 0 di salah satu ruas — tanda pasti reaksi redoks.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Reduktor adalah zat yang ….</div>
+    <ol class="opt"><li><span class="l">A.</span> menerima elektron</li><li><span class="l">B.</span> biloksnya turun</li><li><span class="l">C.</span> mengalami oksidasi dan melepaskan elektron</li><li><span class="l">D.</span> berada di ruas kanan persamaan</li><li><span class="l">E.</span> biloksnya tetap</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Reduktor <b>me</b>reduksi zat lain, sehingga dirinya sendiri <b>ter</b>oksidasi — biloksnya naik dan ia melepaskan elektron.</p>
+      <p>Pilihan A dan B menggambarkan <b>oksidator</b>. Pilihan D keliru: reduktor adalah pereaksi, selalu di ruas kiri.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Pada reaksi Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu, hasil oksidasinya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> ZnSO<sub>4</sub></li><li><span class="l">B.</span> Cu</li><li><span class="l">C.</span> Zn</li><li><span class="l">D.</span> CuSO<sub>4</sub></li><li><span class="l">E.</span> SO<sub>4</sub><sup>2−</sup></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Zn: 0 → +2, <b>naik</b> → Zn teroksidasi → <b>hasil oksidasinya ZnSO<sub>4</sub></b>, di ruas kanan.</p>
+      <p>Pilihan C adalah zat yang teroksidasi (reduktor), bukan hasilnya. Pilihan B adalah hasil <b>reduksi</b>.</p>
+      <div class="insight"><b>Exam Insight:</b> hasil selalu di ruas <b>kanan</b>; oksidator dan reduktor selalu di ruas <b>kiri</b>.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Bilangan oksidasi Cr dalam K<sub>2</sub>CrO<sub>4</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> +3</li><li><span class="l">B.</span> +2</li><li><span class="l">C.</span> +12</li><li><span class="l">D.</span> +4</li><li><span class="l">E.</span> +6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>2(+1) + Cr + 4(−2) = 0 → Cr = 8 − 2 = <b>+6</b></p>
+      <p>Perhatikan: hanya ada <b>satu</b> atom Cr di sini, berbeda dari K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub> yang punya dua. Nilainya kebetulan sama-sama +6.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Bilangan oksidasi Mn dalam K<sub>2</sub>MnO<sub>4</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> +7</li><li><span class="l">B.</span> +2</li><li><span class="l">C.</span> +4</li><li><span class="l">D.</span> +5</li><li><span class="l">E.</span> +6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>2(+1) + Mn + 4(−2) = 0 → Mn = 8 − 2 = <b>+6</b></p>
+      <p>Pilihan A adalah biloks Mn dalam KMnO<sub>4</sub> — bedanya hanya <b>satu atom K</b>, tetapi nilainya berubah dari +7 menjadi +6.</p>
+      <div class="insight"><b>Exam Insight:</b> pasangan KMnO<sub>4</sub> dan K<sub>2</sub>MnO<sub>4</sub> sering disandingkan di soal justru karena mirip. Hitung, jangan menebak dari kemiripan rumus.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Pada persamaan setara a Cu + b HNO<sub>3</sub> → c Cu(NO<sub>3</sub>)<sub>2</sub> + d NO + e H<sub>2</sub>O, nilai b adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 8</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Biloks.</b> Cu: 0 → +2 (naik 2) · N: +5 → +2 (turun 3) → kali silang: Cu × 3, NO × 2</p>
+      <p><b>Hitung N seluruhnya.</b> 3Cu(NO<sub>3</sub>)<sub>2</sub> memuat 6 N yang tidak berubah, ditambah 2 N pada NO → <b>8 HNO<sub>3</sub></b></p>
+      <p class="eq">3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O</p>
+      <p>Pilihan B menghitung hanya N yang berubah biloksnya, melupakan yang ikut sebagai ion nitrat.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Pada penyetaraan MnO<sub>4</sub><sup>−</sup> + Fe<sup>2+</sup> + H<sup>+</sup> → Mn<sup>2+</sup> + Fe<sup>3+</sup> + H<sub>2</sub>O, koefisien H<sup>+</sup> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 16</li><li><span class="l">D.</span> 8</li><li><span class="l">E.</span> 14</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Kali silang.</b> Mn turun 5, Fe naik 1 → Fe × 5</p>
+      <p><b>Muatan.</b> Kiri = −1 + 10 = +9; kanan = +2 + 15 = +17 → selisih <b>8</b> → 8 H<sup>+</sup> di kiri</p>
+      <p class="eq">MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O</p>
+      <p>Pilihan A adalah koefisien H<sub>2</sub>O; pilihan B koefisien Fe; pilihan E koefisien H<sup>+</sup> pada reaksi dikromat.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Pada penyetaraan Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + I<sup>−</sup> + H<sup>+</sup> → Cr<sup>3+</sup> + I<sub>2</sub> + H<sub>2</sub>O, koefisien I<sup>−</sup> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 14</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 6</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>Cr.</b> +6 → +3, turun 3 <b>per atom</b> × 2 atom = <b>6</b></p>
+      <p><b>I.</b> −1 → 0, naik 1 per atom → tiap I<sub>2</sub> naik 2 → I<sub>2</sub> × 3 → berarti <b>6 I<sup>−</sup></b></p>
+      <p class="eq">Cr₂O₇²⁻ + 6I⁻ + 14H⁺ → 2Cr³⁺ + 3I₂ + 7H₂O</p>
+      <p>Pilihan B adalah koefisien I<sub>2</sub>, bukan I<sup>−</sup>; pilihan C koefisien H<sup>+</sup>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Pada penyetaraan dalam suasana basa, zat yang ditambahkan untuk menyetarakan muatan adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> H<sup>+</sup></li><li><span class="l">B.</span> H<sub>2</sub></li><li><span class="l">C.</span> OH<sup>−</sup></li><li><span class="l">D.</span> O<sub>2</sub></li><li><span class="l">E.</span> H<sub>2</sub>O saja</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Dalam larutan basa, H<sup>+</sup> praktis tidak ada — ia langsung dinetralkan oleh OH<sup>−</sup> yang berlimpah.</p>
+      <p>H<sub>2</sub>O dipakai setelahnya untuk menyetarakan atom H, tetapi <b>tidak dapat</b> menyetarakan muatan karena ia netral.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11 — gaya UTBK</div>
+    <div class="qs">Pada penyetaraan MnO<sub>4</sub><sup>−</sup> + C<sub>2</sub>O<sub>4</sub><sup>2−</sup> + H<sup>+</sup> → Mn<sup>2+</sup> + CO<sub>2</sub> + H<sub>2</sub>O, koefisien CO<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 10</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 2</li><li><span class="l">D.</span> 16</li><li><span class="l">E.</span> 8</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Setengah reduksi.</b> MnO<sub>4</sub><sup>−</sup> + 8H<sup>+</sup> + 5e<sup>−</sup> → Mn<sup>2+</sup> + 4H<sub>2</sub>O</p>
+      <p><b>Setengah oksidasi.</b> C<sub>2</sub>O<sub>4</sub><sup>2−</sup> → 2CO<sub>2</sub> + 2e<sup>−</sup></p>
+      <p><b>Samakan elektron.</b> Reduksi × 2, oksidasi × 5 → 5 C<sub>2</sub>O<sub>4</sub><sup>2−</sup> menghasilkan <b>10 CO<sub>2</sub></b></p>
+      <p class="eq">2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O</p>
+      <p>Pilihan B menjawab koefisien C<sub>2</sub>O<sub>4</sub><sup>2−</sup>, lupa bahwa tiap ion oksalat memberi <b>dua</b> CO<sub>2</sub>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12 — gaya UTBK</div>
+    <div class="qs">Pada reaksi Cl<sub>2</sub> + OH<sup>−</sup> → Cl<sup>−</sup> + ClO<sub>3</sub><sup>−</sup> + H<sub>2</sub>O, koefisien Cl<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 6</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 5</li><li><span class="l">D.</span> 1</li><li><span class="l">E.</span> 2</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Autoredoks.</b> Cl dari 0 menjadi −1 (turun 1) dan +5 (naik 5)</p>
+      <p><b>Kali silang.</b> Cl<sup>−</sup> × 5, ClO<sub>3</sub><sup>−</sup> × 1 → total <b>6 atom Cl</b> → karena Cl<sub>2</sub> memuat dua atom, koefisiennya <b>3</b></p>
+      <p class="eq">3Cl₂ + 6OH⁻ → 5Cl⁻ + ClO₃⁻ + 3H₂O</p>
+      <p>Pilihan A menjawab jumlah <b>atom</b> Cl, lupa membaginya dua; pilihan C koefisien Cl<sup>−</sup>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13 — gaya UTBK</div>
+    <div class="qs">Pada reaksi MnO<sub>4</sub><sup>−</sup> + 5Fe<sup>2+</sup> + 8H<sup>+</sup> → Mn<sup>2+</sup> + 5Fe<sup>3+</sup> + 4H<sub>2</sub>O, jumlah elektron yang berpindah adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1</li><li><span class="l">B.</span> 5</li><li><span class="l">C.</span> 8</li><li><span class="l">D.</span> 4</li><li><span class="l">E.</span> 10</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Dari sisi Mn:</b> +7 → +2, turun 5 → <b>5 elektron diterima</b></p>
+      <p><b>Dari sisi Fe:</b> naik 1 × 5 atom → <b>5 elektron dilepas</b> — cocok</p>
+      <p>Pilihan A adalah kenaikan biloks <b>per atom</b> Fe; pilihan C koefisien H<sup>+</sup>.</p>
+      <div class="insight"><b>Exam Insight:</b> jumlah elektron yang berpindah selalu sama dengan angka hasil kali silang — bilangan yang sama yang muncul sebagai koefisien Fe.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14 — gaya UTBK</div>
+    <div class="qs">Pada reaksi MnO<sub>4</sub><sup>−</sup> + SO<sub>3</sub><sup>2−</sup> + OH<sup>−</sup> → MnO<sub>4</sub><sup>2−</sup> + SO<sub>4</sub><sup>2−</sup> + H<sub>2</sub>O, koefisien MnO<sub>4</sub><sup>−</sup> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 1</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 3</li><li><span class="l">E.</span> 5</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Biloks.</b> Mn: +7 → +6, <b>turun 1</b> · S: +4 → +6, <b>naik 2</b></p>
+      <p><b>Kali silang.</b> MnO<sub>4</sub><sup>−</sup> × <b>2</b>, SO<sub>3</sub><sup>2−</sup> × 1</p>
+      <p class="eq">2MnO₄⁻ + SO₃²⁻ + 2OH⁻ → 2MnO₄²⁻ + SO₄²⁻ + H₂O</p>
+      <p>Pilihan B melupakan kali silang sama sekali. Perhatikan bahwa Mn di sini turun hanya <b>1</b> — jauh berbeda dari reaksi suasana asam yang turun 5.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — gaya UTBK</div>
+    <div class="qs">Berapa mol Fe<sup>2+</sup> yang dapat dioksidasi oleh 0,03 mol MnO<sub>4</sub><sup>−</sup> dalam suasana asam?</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,03 mol</li><li><span class="l">B.</span> 0,006 mol</li><li><span class="l">C.</span> 0,18 mol</li><li><span class="l">D.</span> 0,15 mol</li><li><span class="l">E.</span> 0,015 mol</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Perbandingan</b> MnO<sub>4</sub><sup>−</sup> : Fe<sup>2+</sup> = <b>1 : 5</b></p>
+      <p>0,03 × 5 = <b>0,15 mol</b></p>
+      <p>Pilihan A memakai perbandingan 1 : 1; pilihan C memakai 1 : 6, yaitu perbandingan untuk dikromat.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16 — HOTS</div>
+    <div class="qs">Sebanyak 25 mL larutan Fe<sup>2+</sup> tepat dititrasi oleh 30 mL KMnO<sub>4</sub> 0,1 M dalam suasana asam. Kepekatan Fe<sup>2+</sup> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 0,12 M</li><li><span class="l">B.</span> 0,60 M</li><li><span class="l">C.</span> 0,015 M</li><li><span class="l">D.</span> 0,10 M</li><li><span class="l">E.</span> 0,50 M</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Mol MnO<sub>4</sub><sup>−</sup>:</b> 0,1 × 0,030 = 0,003 mol</p>
+      <p><b>Mol Fe<sup>2+</sup>:</b> 0,003 × 5 = <b>0,015 mol</b></p>
+      <p><b>Kepekatan:</b> 0,015 ÷ 0,025 L = <b>0,60 M</b></p>
+      <p>Pilihan A memakai perbandingan 1 : 1; pilihan C berhenti di jumlah mol.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Persamaan Cr<sub>2</sub>O<sub>7</sub><sup>2−</sup> + 3Fe<sup>2+</sup> + 14H<sup>+</sup> → 2Cr<sup>3+</sup> + 3Fe<sup>3+</sup> + 7H<sub>2</sub>O ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tidak setara — muatannya berselisih 3</li><li><span class="l">B.</span> sudah setara</li><li><span class="l">C.</span> tidak setara — atom O berbeda</li><li><span class="l">D.</span> tidak setara — atom H berbeda</li><li><span class="l">E.</span> bukan reaksi redoks</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p><b>Periksa atom:</b> Cr 2 = 2 · Fe 3 = 3 · O 7 = 7 · H 14 = 14 → <b>semuanya setara</b></p>
+      <p><b>Periksa muatan kiri:</b> (−2) + 3(+2) + 14(+1) = −2 + 6 + 14 = <b>+18</b></p>
+      <p><b>Periksa muatan kanan:</b> 2(+3) + 3(+3) = 6 + 9 = <b>+15</b></p>
+      <p>Berselisih <b>3</b> → koefisien Fe seharusnya <b>6</b>, bukan 3.</p>
+      <div class="insight"><b>Exam Insight:</b> lagi-lagi persamaan yang lolos pemeriksaan atom tetapi gagal di muatan. Penyebabnya: Cr turun 3 <b>per atom</b> × 2 atom = 6, bukan 3.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Pada reaksi 2KMnO<sub>4</sub> + 16HCl → 2KCl + 2MnCl<sub>2</sub> + 5Cl<sub>2</sub> + 8H<sub>2</sub>O, jumlah atom Cl yang <b>tidak</b> berubah biloksnya adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 10</li><li><span class="l">B.</span> 16</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 2</li><li><span class="l">E.</span> 4</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Yang teroksidasi:</b> menjadi Cl<sub>2</sub> → 5 × 2 = <b>10 atom</b> (biloks −1 → 0)</p>
+      <p><b>Yang tetap:</b> dalam 2KCl (2 atom) dan 2MnCl<sub>2</sub> (4 atom) = <b>6 atom</b> (biloks tetap −1)</p>
+      <p><b>Periksa:</b> 10 + 6 = 16 ✔ cocok dengan jumlah HCl</p>
+      <p>Pilihan A adalah jumlah yang <b>berubah</b>; pilihan D dan E hanya menghitung sebagian.</p>
+      <div class="insight"><b>Exam Insight:</b> pada persamaan molekul, satu zat dapat berperan <b>ganda</b> — sebagian sebagai reduktor, sebagian hanya sebagai ion pendamping.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Spesi yang <b>tidak mungkin</b> mengalami reaksi autoredoks adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> Cl<sub>2</sub></li><li><span class="l">B.</span> I<sub>2</sub></li><li><span class="l">C.</span> Br<sub>2</sub></li><li><span class="l">D.</span> S</li><li><span class="l">E.</span> F<sup>−</sup></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Syarat autoredoks: biloks awalnya berada <b>di antara</b> nilai tertinggi dan terendah unsurnya.</p>
+      <p>F<sup>−</sup> sudah berada pada biloks <b>−1</b>, yaitu nilai terendah fluorin — dan fluorin bahkan tidak pernah bernilai positif karena keelektronegatifannya tertinggi. Kedua arah tertutup.</p>
+      <p>Pilihan A sampai D semuanya berupa unsur bebas berbiloks <b>0</b>, sehingga dapat naik maupun turun.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Perhatikan reaksi 4Zn + NO<sub>3</sub><sup>−</sup> + 10H<sup>+</sup> → 4Zn<sup>2+</sup> + NH<sub>4</sub><sup>+</sup> + 3H<sub>2</sub>O. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> Zn adalah oksidatornya</li>
+      <li><span class="l">B.</span> biloks N turun dari +5 menjadi +3</li>
+      <li><span class="l">C.</span> muatan kedua ruas tidak setara</li>
+      <li><span class="l">D.</span> NO<sub>3</sub><sup>−</sup> adalah oksidator dan 8 elektron berpindah</li>
+      <li><span class="l">E.</span> reaksi ini tergolong autoredoks</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p><b>Biloks N.</b> Dalam NO<sub>3</sub><sup>−</sup> = +5; dalam NH<sub>4</sub><sup>+</sup> = <b>−3</b> → turun <b>8</b>. Ini menggugurkan B.</p>
+      <p><b>Peran.</b> N turun → NO<sub>3</sub><sup>−</sup> tereduksi → ia <b>oksidator</b>. Ini menggugurkan A.</p>
+      <p><b>Elektron.</b> Penurunan 8 pada N = kenaikan 2 × 4 atom Zn = <b>8 elektron</b> ✔ Pernyataan D benar seluruhnya.</p>
+      <p><b>Periksa C.</b> Muatan kiri = 0 + (−1) + 10 = <b>+9</b>; kanan = +8 + 1 = <b>+9</b> → setara.</p>
+      <p><b>Periksa E.</b> Autoredoks menuntut <b>satu</b> unsur naik dan turun; di sini Zn naik dan N turun — dua unsur berbeda.</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab — biloks yang melewati nol, pembedaan oksidator, penghitungan elektron, pemeriksaan muatan, dan pengenalan autoredoks.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. B &nbsp; 2. C &nbsp; 3. C &nbsp; 4. A &nbsp; 5. E &nbsp; 6. E &nbsp; 7. D &nbsp; 8. D &nbsp; 9. E &nbsp; 10. C<br>
+      11. A &nbsp; 12. B &nbsp; 13. B &nbsp; 14. A &nbsp; 15. D &nbsp; 16. B &nbsp; 17. A &nbsp; 18. C &nbsp; 19. E &nbsp; 20. D
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti Bab 15 sudah tuntas dan Anda siap melanjutkan ke Elektrokimia; 14–17 benar berarti ulangi bagian penyetaraan suasana basa dan perkalian selisih biloks; di bawah 14 berarti kerjakan ulang seluruh Worked Example sambil menuliskan biloks di atas setiap unsur yang berubah.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 15 tersedia lengkap dalam berkas ini; Bab 1 sampai Bab 14 tersedia dalam berkas terpisah. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas ini</div></div>
+    <div class="rm"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">Sel volta, potensial sel, elektrolisis, hukum Faraday, korosi</div></div>
+    <div class="rm"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">Golongan utama, unsur transisi, pembuatan dan kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">Alkohol, eter, aldehida, keton, asam karboksilat, ester</div></div>
+    <div class="rm"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">Resonansi, substitusi, tata nama, kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">Adisi, kondensasi, karbohidrat, protein, lemak</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 15: Reaksi Redoks · 20 worked example · 21 soal latihan · 20 soal tes akhir bab</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>

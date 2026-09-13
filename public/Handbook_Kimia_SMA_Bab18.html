@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Handbook Kimia SMA — Visual Study Guide &amp; UTBK Preparation</title>
+<style>
+:root{
+  --navy:#0B2E4F; --navy-2:#123E67; --navy-3:#1B5286;
+  --cyan:#1A8FBF; --cyan-2:#3FB0DC; --cyan-bg:#E9F5FB;
+  --amber:#C77400; --amber-2:#E89A1C; --amber-bg:#FFF6E6;
+  --red:#B23A2C; --red-bg:#FCEDEB;
+  --green:#186F45; --green-bg:#E8F5EE;
+  --violet:#5B4B9E; --violet-bg:#F0EDFA;
+  --paper:#FFFFFF; --paper-2:#F6F8FA; --paper-3:#EDF1F5;
+  --ink:#11212E; --ink-2:#3A4C5C; --muted:#69798A;
+  --line:#DCE4EB; --line-2:#C3D0DB;
+  --radius:10px;
+  --font:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper-2); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.72;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+
+/* ============ LAYOUT ============ */
+.shell{display:flex; align-items:flex-start}
+.sidebar{
+  position:sticky; top:0; height:100vh; width:288px; flex:0 0 288px;
+  background:var(--navy); color:#D8E6F2; overflow-y:auto;
+  padding:22px 0 40px; border-right:1px solid #08243E;
+}
+.sb-brand{padding:0 20px 16px; border-bottom:1px solid rgba(255,255,255,.13); margin-bottom:14px}
+.sb-brand .t{font-size:19px; font-weight:750; color:#fff; letter-spacing:-.01em; line-height:1.3}
+.sb-brand .s{font-size:12.5px; color:#8FB4D2; margin-top:4px; line-height:1.5}
+.sb-sec{padding:14px 20px 6px; font-size:11.5px; font-weight:700; color:#6E97BA; letter-spacing:.06em}
+.sidebar a{
+  display:block; padding:7px 20px 7px 20px; color:#C7DAEA; text-decoration:none;
+  font-size:14px; border-left:3px solid transparent; line-height:1.45;
+}
+.sidebar a:hover{background:rgba(255,255,255,.07); color:#fff}
+.sidebar a.on{background:rgba(63,176,220,.16); border-left-color:var(--cyan-2); color:#fff; font-weight:600}
+.sidebar a .num{color:#6E97BA; font-variant-numeric:tabular-nums; margin-right:7px; font-size:12.5px}
+.sidebar a.soon{opacity:.5}
+
+.main{flex:1 1 auto; min-width:0; padding:0 0 90px}
+.page{
+  max-width:var(--maxw); margin:0 auto; background:var(--paper);
+  padding:44px 46px; border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.page + .page{border-top:1px solid var(--line)}
+
+.topbar{display:none}
+/* Agar judul tidak tertutup topbar saat melompat lewat daftar isi */
+.page,.cover{scroll-margin-top:12px}
+
+@media (max-width:980px){
+  body{font-size:16.5px}
+  .page,.cover{scroll-margin-top:64px}
+  .sidebar{
+    position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%);
+    transition:transform .22s ease; width:284px; padding-top:calc(18px + env(safe-area-inset-top));
+  }
+  .sidebar.open{transform:none; box-shadow:0 0 40px rgba(0,0,0,.4)}
+  .topbar{
+    display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50;
+    background:var(--navy); color:#fff; padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  }
+  .topbar b{font-size:15px; font-weight:650}
+  .burger{
+    background:rgba(255,255,255,.12); border:0; color:#fff; font-size:19px;
+    width:38px; height:38px; border-radius:8px; cursor:pointer; line-height:1;
+  }
+  .scrim{position:fixed; inset:0; background:rgba(6,22,36,.5); z-index:55; display:none}
+  .scrim.on{display:block}
+  .page{padding:30px 20px; border-left:0; border-right:0}
+}
+
+/* ============ TIPOGRAFI ============ */
+h1,h2,h3,h4{color:var(--navy); letter-spacing:-.015em; line-height:1.25}
+h1{font-size:34px; font-weight:800; margin:0 0 10px}
+h2{font-size:25px; font-weight:750; margin:0 0 14px; padding-bottom:9px; border-bottom:2px solid var(--line-2)}
+h3{font-size:19.5px; font-weight:700; margin:30px 0 10px}
+h4{font-size:17px; font-weight:700; margin:22px 0 7px; color:var(--navy-3)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px; padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:680; color:var(--navy-2)}
+a{color:var(--cyan)}
+.lead{font-size:18.5px; color:var(--ink-2); line-height:1.68}
+.cap{font-size:14px; color:var(--muted); line-height:1.55}
+.center{text-align:center}
+code,.f{font-family:var(--mono); background:var(--paper-3); padding:1px 5px; border-radius:4px; font-size:.9em; color:var(--navy-2)}
+.eq{font-family:var(--mono); font-size:16px; color:var(--navy-2)}
+sub,sup{font-size:.72em; line-height:0}
+
+/* ============ CHAPTER COVER ============ */
+.cover{
+  background:linear-gradient(150deg,#0B2E4F 0%,#134878 62%,#1A6FA8 100%);
+  color:#fff; padding:52px 46px; max-width:var(--maxw); margin:0 auto;
+}
+.cover .kicker{font-size:13.5px; color:#8FD0EC; font-weight:650; margin-bottom:14px}
+.cover h1{color:#fff; font-size:40px; line-height:1.16; margin-bottom:14px}
+.cover .sub{font-size:19px; color:#C9E4F4; line-height:1.55; max-width:62ch; margin:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+.chip{
+  background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22);
+  border-radius:999px; padding:5px 13px; font-size:13px; color:#E3F1FA;
+}
+.chip.pri{background:rgba(232,154,28,.22); border-color:rgba(232,154,28,.55); color:#FFD79A}
+@media (max-width:980px){ .cover{padding:34px 20px} .cover h1{font-size:29px} .cover .sub{font-size:17px} }
+
+/* ============ BOX SISTEM ============ */
+.box{border-radius:var(--radius); padding:18px 20px; margin:22px 0; border:1px solid var(--line)}
+.box .bt{font-weight:750; font-size:15px; margin-bottom:9px; display:flex; align-items:center; gap:8px}
+.box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+
+.obj{background:var(--cyan-bg); border:1px solid #BFDFEF; border-left:5px solid var(--cyan)}
+.obj ul{list-style:none; padding-left:0}
+.obj li{padding-left:26px; position:relative}
+.obj li::before{content:"✓"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+
+.why{background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet)}
+.why .bt{color:var(--violet)}
+
+.formula{
+  background:linear-gradient(180deg,#0B2E4F,#123E67); color:#fff;
+  border:0; border-radius:var(--radius); padding:20px 22px; margin:24px 0;
+}
+.formula .bt{color:#8FD0EC; font-size:12.5px; letter-spacing:.09em; font-weight:700}
+.formula .main-eq{
+  font-family:var(--mono); font-size:24px; font-weight:600; color:#fff;
+  text-align:center; padding:14px 6px; background:rgba(255,255,255,.07);
+  border-radius:8px; margin:10px 0 14px; overflow-x:auto;
+}
+.formula table{width:100%; border-collapse:collapse; font-size:14.5px; color:#D5E7F4}
+.formula td{padding:5px 8px 5px 0; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.1)}
+.formula td:first-child{font-family:var(--mono); color:#8FD0EC; white-space:nowrap; width:74px; font-weight:600}
+.formula tr:last-child td{border-bottom:0}
+.formula .note{font-size:13.5px; color:#9FC4DC; margin-top:12px; line-height:1.55}
+
+.exam{background:var(--amber-bg); border:1px solid #F0D8A8; border-left:5px solid var(--amber-2)}
+.exam .bt{color:var(--amber); font-size:16px}
+.exam .trap{
+  background:#fff; border:1px dashed var(--amber-2); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:15.5px;
+}
+.exam .trap b{color:var(--amber)}
+
+.mistake{background:var(--red-bg); border:1px solid #F1C9C2; border-left:5px solid var(--red)}
+.mistake .bt{color:var(--red)}
+.mistake .vs{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;
+}
+.mistake .vs>div{background:#fff; border-radius:8px; padding:11px 13px; font-size:15px; border:1px solid #F1C9C2}
+.mistake .vs .no{border-color:#E8A99F}
+.mistake .vs .tag{font-size:12px; font-weight:700; display:block; margin-bottom:4px}
+.mistake .vs .no .tag{color:var(--red)}
+.mistake .vs .yes .tag{color:var(--green)}
+@media (max-width:620px){ .mistake .vs{grid-template-columns:1fr} }
+
+.short{background:var(--green-bg); border:1px solid #BEE0CD; border-left:5px solid var(--green)}
+.short .bt{color:var(--green)}
+
+.recall{background:var(--paper-2); border:1px solid var(--line-2); border-left:5px solid var(--navy-3)}
+.recall ol{margin-bottom:0}
+.recall li{margin-bottom:9px}
+.recall .ans{
+  display:block; margin-top:5px; font-size:14.5px; color:var(--green);
+  background:#fff; border-left:3px solid var(--green); padding:6px 10px; border-radius:0 6px 6px 0;
+}
+
+.think{background:#fff; border:2px solid var(--navy-3); border-radius:var(--radius); padding:20px 22px; margin:24px 0}
+.think .bt{color:var(--navy); font-size:16px; font-weight:750; margin-bottom:10px}
+.think .tq{font-size:17.5px; color:var(--navy-2); font-weight:600; margin-bottom:12px; line-height:1.5}
+.think .chain{
+  font-family:var(--mono); font-size:14px; color:var(--cyan); background:var(--cyan-bg);
+  padding:10px 13px; border-radius:8px; margin:12px 0; line-height:1.7; overflow-x:auto;
+}
+
+/* ============ WORKED EXAMPLE ============ */
+.we{border:1px solid var(--line-2); border-radius:var(--radius); margin:24px 0; overflow:hidden; background:#fff}
+.we-head{
+  background:var(--navy); color:#fff; padding:11px 18px; font-weight:700; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.we-head .lvl{font-size:12px; font-weight:650; background:rgba(255,255,255,.16); padding:3px 10px; border-radius:999px; white-space:nowrap}
+.we-head .lvl.d{background:rgba(63,176,220,.3)}
+.we-head .lvl.m{background:rgba(232,154,28,.35)}
+.we-head .lvl.h{background:rgba(210,90,70,.4)}
+.we-body{padding:18px}
+.we-body .stem{font-size:16.5px; margin-bottom:14px}
+.we-row{display:grid; grid-template-columns:104px 1fr; gap:10px; padding:7px 0; border-top:1px solid var(--paper-3); font-size:16px}
+.we-row .k{font-weight:700; color:var(--navy-3); font-size:14.5px; padding-top:2px}
+.step{margin:12px 0; padding-left:16px; border-left:3px solid var(--cyan-2)}
+.step b{display:block; color:var(--cyan); font-size:14px; margin-bottom:3px}
+.ansbar{
+  background:var(--green-bg); border:1px solid #BEE0CD; border-radius:8px;
+  padding:11px 15px; margin-top:14px; font-size:17px; font-weight:700; color:var(--green);
+}
+.whythis{
+  margin-top:13px; background:var(--paper-2); border-radius:8px; padding:12px 15px;
+  font-size:15px; color:var(--ink-2); border:1px solid var(--line);
+}
+.whythis b{color:var(--navy-2); display:block; margin-bottom:3px; font-size:14px}
+
+/* ============ TABEL ============ */
+.tw{overflow-x:auto; margin:20px 0; -webkit-overflow-scrolling:touch}
+table.d{width:100%; border-collapse:collapse; font-size:15px; min-width:520px; background:#fff}
+table.d th{
+  background:var(--navy); color:#fff; text-align:left; padding:10px 12px;
+  font-weight:650; font-size:14px; border:1px solid var(--navy-2);
+}
+table.d td{padding:9px 12px; border:1px solid var(--line-2); vertical-align:top}
+table.d tbody tr:nth-child(even){background:var(--paper-2)}
+table.d td.c,table.d th.c{text-align:center}
+table.d .hi{background:var(--amber-bg)!important; font-weight:600}
+
+/* ============ LATIHAN SOAL ============ */
+.lvl-head{
+  display:flex; align-items:center; gap:12px; margin:34px 0 6px;
+  padding:12px 16px; border-radius:8px; color:#fff;
+}
+.lvl-head .n{font-size:12px; font-weight:700; opacity:.85; letter-spacing:.06em}
+.lvl-head .t{font-size:19px; font-weight:750; line-height:1.25}
+.lvl-head .c{margin-left:auto; font-size:13px; background:rgba(255,255,255,.2); padding:4px 11px; border-radius:999px; white-space:nowrap}
+.L1{background:var(--cyan)} .L2{background:var(--navy-3)} .L3{background:var(--amber)} .L4{background:var(--red)}
+.lvl-desc{font-size:14.5px; color:var(--muted); margin:0 0 16px; padding-left:2px}
+
+.q{border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px; margin:14px 0; background:#fff}
+.q .qn{font-weight:750; color:var(--navy); font-size:14px; margin-bottom:7px}
+.q .qs{font-size:16.5px; margin-bottom:11px}
+.q ol.opt{list-style:none; padding-left:0; margin:0}
+.q ol.opt li{
+  padding:6px 10px 6px 34px; position:relative; border-radius:6px; font-size:16px; margin-bottom:2px;
+}
+.q ol.opt li .l{position:absolute; left:10px; font-weight:700; color:var(--navy-3)}
+.q ol.opt li:hover{background:var(--paper-2)}
+details.sol{margin-top:12px; border-top:1px dashed var(--line-2); padding-top:11px}
+details.sol summary{
+  cursor:pointer; font-size:14.5px; font-weight:650; color:var(--cyan);
+  list-style:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 13px; background:var(--cyan-bg); border-radius:999px; border:1px solid #BFDFEF;
+}
+details.sol summary::-webkit-details-marker{display:none}
+details.sol summary::before{content:"▸"; font-size:12px}
+details.sol[open] summary::before{content:"▾"}
+details.sol summary:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px}
+.sol-body{padding:14px 2px 2px; font-size:16px}
+.sol-body .key{
+  font-weight:750; color:var(--green); font-size:16.5px; background:var(--green-bg);
+  display:inline-block; padding:4px 13px; border-radius:6px; margin-bottom:11px;
+}
+.sol-body h5{margin:14px 0 5px; font-size:14px; color:var(--navy-3); font-weight:700}
+.sol-body .distract{list-style:none; padding-left:0; font-size:15px}
+.sol-body .distract li{display:flex; gap:8px; color:var(--ink-2); margin-bottom:6px}
+.sol-body .distract li b{color:var(--red); font-weight:700; flex:0 0 auto; min-width:28px}
+.insight{
+  background:var(--amber-bg); border-left:4px solid var(--amber-2); border-radius:0 8px 8px 0;
+  padding:10px 14px; margin-top:13px; font-size:15px; color:#6B4A08;
+}
+.insight b{color:var(--amber)}
+
+/* ============ SUMMARY & FORMULA SHEET ============ */
+.summary{background:linear-gradient(160deg,#F6F8FA,#E9F1F7); border:2px solid var(--navy-3); border-radius:12px; padding:26px 26px; margin:26px 0}
+.summary h3{margin-top:0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px}
+.scard{background:#fff; border-radius:9px; padding:14px 16px; border:1px solid var(--line-2)}
+.scard .h{font-size:13px; font-weight:750; color:var(--cyan); margin-bottom:7px}
+.scard ul{padding-left:18px; margin-bottom:0; font-size:15px}
+.scard li{margin-bottom:4px}
+@media (max-width:620px){ .sgrid{grid-template-columns:1fr} .summary{padding:20px 17px} }
+
+/* ============ MISC ============ */
+.fig{margin:26px 0; text-align:center}
+.fig svg{max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+.fig figcaption{font-size:14px; color:var(--muted); margin-top:9px; line-height:1.55; text-align:left}
+.fig figcaption b{color:var(--navy-2)}
+.star{color:var(--amber-2); letter-spacing:1px}
+.divider{height:1px; background:var(--line-2); margin:38px 0; border:0}
+.pill{display:inline-block; font-size:12.5px; font-weight:650; padding:3px 10px; border-radius:999px; background:var(--paper-3); color:var(--ink-2)}
+.roadmap{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; margin:20px 0}
+.rm{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:12px 14px; font-size:14.5px}
+.rm .n{font-size:11.5px; color:var(--muted); font-weight:700}
+.rm .t{font-weight:650; color:var(--navy); line-height:1.35; margin-top:2px}
+.rm .s{font-size:12.5px; color:var(--muted); margin-top:5px}
+.rm.done{border-color:var(--green); background:var(--green-bg)}
+.rm.done .s{color:var(--green); font-weight:650}
+footer.hb{max-width:var(--maxw); margin:0 auto; padding:26px 46px 50px; color:var(--muted); font-size:14px; text-align:center}
+:focus-visible{outline:3px solid var(--amber-2); outline-offset:2px; border-radius:4px}
+
+/* ============ TIMELINE MODEL ATOM ============ */
+.tl{margin:24px 0}
+.tl-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line)}
+.tl-item:first-child{border-top:0; padding-top:4px}
+.tl-ic{width:100px; height:100px}
+.tl-y{font-size:12.5px; font-weight:700; color:var(--cyan)}
+.tl-n{font-size:18px; font-weight:750; color:var(--navy); margin:2px 0 7px; line-height:1.3}
+.tl-d{font-size:15.5px; color:var(--ink-2); margin-bottom:9px; line-height:1.62}
+.tl-w{font-size:14.5px; background:var(--red-bg); border-left:3px solid var(--red); padding:8px 13px; border-radius:0 7px 7px 0; color:#7A2A1E; line-height:1.55}
+.tl-w b{color:var(--red)}
+@media (max-width:620px){ .tl-item{grid-template-columns:62px 1fr; gap:13px} .tl-ic{width:62px; height:62px} }
+
+/* ============ DIAGRAM ORBITAL / KOTAK ============ */
+.orb{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; margin:16px 0; font-family:var(--mono); font-size:13px}
+.orb .grp{text-align:center}
+.orb .cells{display:flex}
+.orb .cell{
+  width:34px; height:30px; border:1.6px solid var(--navy-3); background:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--navy);
+  margin-left:-1.6px; letter-spacing:1px;
+}
+.orb .cell.full{background:var(--cyan-bg)}
+.orb .lbl{font-size:13px; color:var(--muted); margin-top:5px}
+
+@media print{
+  .sidebar,.topbar,.scrim{display:none!important}
+  body{background:#fff; font-size:11pt}
+  .page{max-width:none; padding:0 0 18pt; border:0}
+  details.sol[open] .sol-body{display:block}
+  .we,.q,.box,.summary{break-inside:avoid}
+}
+/* ============ TAMBAHAN BAB 2 ============ */
+.phen{
+  background:var(--violet-bg); border:1px solid #D6CEF0; border-left:5px solid var(--violet);
+  border-radius:var(--radius); padding:18px 20px; margin:22px 0;
+}
+.phen .pt{font-size:12px; letter-spacing:.1em; font-weight:750; color:var(--violet); margin-bottom:9px}
+.phen p:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0}
+.card{background:#fff; border:1px solid var(--line-2); border-radius:var(--radius); padding:16px 18px}
+.card .ct{font-size:14px; font-weight:750; color:var(--navy); margin-bottom:8px; padding-bottom:7px; border-bottom:2px solid var(--cyan-bg)}
+.card p{font-size:15px; margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.card .ex{font-family:var(--mono); font-size:13.5px; background:var(--paper-2); border-radius:6px; padding:6px 9px; color:var(--navy-2)}
+.tick{list-style:none; padding-left:0; font-size:15px; margin-bottom:0}
+.tick li{padding-left:20px; position:relative; margin-bottom:7px; color:var(--ink-2)}
+.tick li::before{content:"▸"; position:absolute; left:0; color:var(--cyan); font-weight:800}
+.tick li:last-child{margin-bottom:0}
+
+.fx{
+  font-family:var(--mono); font-size:16px; text-align:center; margin-top:12px;
+  background:rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:#EAF4FA;
+}
+.box.short .fx, .box.exam .fx, .box.recall .fx{
+  background:#fff; color:var(--navy-2); border:1px solid var(--line-2);
+}
+table.mini{width:100%; border-collapse:collapse; font-size:13.5px; margin:6px 0 10px; background:#fff}
+table.mini th{background:var(--paper-3); color:var(--navy); text-align:left; padding:6px 9px; border:1px solid var(--line-2); white-space:nowrap; font-weight:700}
+table.mini td{padding:6px 9px; border:1px solid var(--line-2); text-align:center; color:var(--ink-2)}
+
+.shape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin:20px 0}
+.shape{background:#fff; border:1px solid var(--line-2); border-radius:9px; padding:10px 10px 12px; text-align:center}
+.shape svg{width:100%; height:auto; display:block; margin-bottom:4px; border:0; background:transparent}
+.shape .sn{font-size:12px; font-weight:750; color:var(--cyan); letter-spacing:.05em}
+.shape .sb{font-size:14.5px; font-weight:700; color:var(--navy); margin:4px 0 2px}
+.shape .sa{font-size:12.5px; color:var(--muted)}
+
+@media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+
+/* ==== Pembaca materi (auditori) ==== */
+.pb-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--nav,#0B2E4F);
+  color:#fff;box-shadow:0 -3px 14px rgba(11,46,79,.24);
+  font-family:inherit;transform:translateY(calc(100% - 42px));transition:transform .2s ease}
+.pb-bar.buka{transform:translateY(0)}
+.pb-pegang{height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.pb-pegang .pb-ikon{font-size:15px}
+.pb-pegang .pb-judul{font-size:13.5px;font-weight:700;letter-spacing:.01em}
+.pb-pegang .pb-status{font-size:12px;color:#BBD4E8;margin-left:auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+.pb-pegang .pb-panah{font-size:11px;color:#7FA8C9;transition:transform .2s}
+.pb-bar.buka .pb-pegang .pb-panah{transform:rotate(180deg)}
+.pb-isi{padding:13px 14px 15px;max-width:1000px;margin:0 auto}
+.pb-tombol{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
+.pb-tombol button{background:rgba(255,255,255,.12);border:1.4px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;line-height:1}
+.pb-tombol button:hover:not(:disabled){background:rgba(255,255,255,.22)}
+.pb-tombol button:disabled{opacity:.4;cursor:default}
+.pb-tombol button.utama{background:#1A8FBF;border-color:#1A8FBF;min-width:104px}
+.pb-tombol button.utama:hover{background:#3FB0DC}
+.pb-atur{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#BBD4E8}
+.pb-atur label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.pb-atur select{background:rgba(255,255,255,.12);border:1.3px solid rgba(255,255,255,.24);
+  color:#fff;border-radius:6px;padding:5px 7px;font-size:12.5px;font-family:inherit;max-width:190px}
+.pb-atur select option{background:#0B2E4F;color:#fff}
+.pb-atur input[type=checkbox]{accent-color:#3FB0DC;width:15px;height:15px}
+.pb-maju{height:4px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden;margin-top:11px}
+.pb-maju i{display:block;height:100%;width:0;background:#3FB0DC;transition:width .25s}
+.pb-pesan{font-size:12px;color:#FFD79A;margin-top:9px;display:none}
+.pb-sorot{background:#FFF1B8;box-shadow:0 0 0 5px #FFF1B8;border-radius:3px;
+  scroll-margin-top:120px;scroll-margin-bottom:160px}
+.pb-bagian{background:none;border:1.4px solid var(--garis,#DCE4EB);color:var(--biru,#1A8FBF);
+  border-radius:7px;font-size:11.5px;font-weight:700;padding:4px 9px;margin-left:10px;
+  cursor:pointer;font-family:inherit;vertical-align:middle;white-space:nowrap}
+.pb-bagian:hover{background:var(--biru,#1A8FBF);border-color:var(--biru,#1A8FBF);color:#fff}
+@media print{.pb-bar,.pb-bagian{display:none!important}}
+@media(max-width:620px){
+  .pb-pegang .pb-status{max-width:34%}
+  .pb-tombol button{padding:9px 11px;font-size:13.5px}
+  .pb-tombol button.utama{min-width:92px}
+  .pb-atur{gap:10px;font-size:12px}
+  .pb-atur select{max-width:132px}
+  .pb-bagian{display:block;margin:8px 0 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="burger" id="burger" aria-label="Buka daftar isi">☰</button>
+  <b>Handbook Kimia SMA</b>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+<nav class="sidebar" id="sidebar" aria-label="Daftar isi">
+  <div class="sb-brand">
+    <div class="t">Handbook Kimia SMA</div>
+    <div class="s">Visual Study Guide &amp; UTBK/SNBT Preparation</div>
+  </div>
+
+  <div class="sb-sec">BAB 18 — SENYAWA KARBON</div>
+  <a href="#cover" class="on"><span class="num">18.0</span>Sampul Bab</a>
+  <a href="#objectives"><span class="num">18.1</span>Learning Objectives</a>
+  <a href="#map"><span class="num">18.2</span>Concept Map</a>
+  <a href="#why"><span class="num">18.3</span>Why This Matters</a>
+  <a href="#gugus"><span class="num">18.4</span>Gugus Fungsi</a>
+  <a href="#alkohol"><span class="num">18.5</span>Alkohol dan Eter</a>
+  <a href="#aldehid"><span class="num">18.6</span>Aldehid dan Keton</a>
+  <a href="#asam"><span class="num">18.7</span>Asam Karboksilat &amp; Ester</a>
+  <a href="#isomer"><span class="num">18.8</span>Keisomeran</a>
+  <a href="#identifikasi"><span class="num">18.9</span>Reaksi Identifikasi</a>
+  <a href="#kegunaan"><span class="num">18.10</span>Kegunaan Senyawa Karbon</a>
+  <a href="#focus"><span class="num">18.11</span>★ UTBK / Exam Focus</a>
+  <a href="#master"><span class="num">18.12</span>How to Master This Chapter</a>
+
+  <div class="sb-sec">LATIHAN BAB 18</div>
+  <a href="#lv1"><span class="num">L1</span>Concept Check</a>
+  <a href="#lv2"><span class="num">L2</span>Application</a>
+  <a href="#lv3"><span class="num">L3</span>UTBK Style</a>
+  <a href="#lv4"><span class="num">L4</span>Advanced / HOTS</a>
+
+  <div class="sb-sec">PENUTUP BAB</div>
+  <a href="#summary"><span class="num">18.13</span>One Page Summary</a>
+  <a href="#sheet"><span class="num">18.14</span>Formula Sheet</a>
+  <a href="#test"><span class="num">18.15</span>Final Chapter Test</a>
+
+  <div class="sb-sec">PETA JALAN</div>
+  <a href="#roadmap"><span class="num">→</span>81 Topik Kimia SMA</a>
+</nav>
+
+<main class="main">
+
+<!-- ==================== COVER ==================== -->
+<section class="cover" id="cover">
+  <div class="kicker">BAB 18 &nbsp;·&nbsp; KELAS XII &nbsp;·&nbsp; LANJUTAN BAB 6</div>
+  <h1>Senyawa Karbon</h1>
+  <p class="sub">Mengapa alkohol dan eter berumus sama persis tetapi sifatnya bertolak belakang? Dan bagaimana membedakan aldehid dari keton hanya dengan satu pereaksi?</p>
+  <div class="meta">
+    <span class="chip">Gugus fungsi</span>
+    <span class="chip">Alkohol &amp; eter</span>
+    <span class="chip">Aldehid &amp; keton</span>
+    <span class="chip">Asam karboksilat &amp; ester</span>
+    <span class="chip">Keisomeran</span>
+    <span class="chip">Reaksi identifikasi</span>
+    <span class="chip pri">61 soal &amp; contoh berpembahasan</span>
+  </div>
+</section>
+
+<!-- ==================== LEARNING OBJECTIVES ==================== -->
+<section class="page" id="objectives">
+  <h2>18.1&nbsp; Learning Objectives</h2>
+  <p class="lead">Di Bab 6 Anda mempelajari hidrokarbon — senyawa yang hanya berisi C dan H. Bab ini menambahkan <b>gugus fungsi</b>, dan gugus itulah yang menentukan seluruh sifat kimianya.</p>
+  <div class="box obj"><div class="bt">Target penguasaan Bab 18</div>
+  <ul>
+    <li>Mengenali enam gugus fungsi utama beserta rumus umumnya.</li>
+    <li>Menuliskan nama IUPAC alkohol, eter, aldehid, keton, asam karboksilat, dan ester.</li>
+    <li>Menuliskan nama lazim (trivial) yang masih sering dipakai.</li>
+    <li>Menggolongkan alkohol menjadi primer, sekunder, dan tersier.</li>
+    <li>Menentukan jumlah isomer kerangka dan posisi untuk tiap gugus fungsi.</li>
+    <li>Menjelaskan keisomeran fungsi dan tiga pasangannya.</li>
+    <li>Meramalkan hasil oksidasi alkohol menurut golongannya.</li>
+    <li>Membedakan aldehid dari keton lewat pereaksi Tollens dan Fehling.</li>
+    <li>Membedakan alkohol dari eter lewat reaksi dengan logam natrium.</li>
+    <li>Menuliskan reaksi esterifikasi dan hidrolisis ester.</li>
+    <li>Menjelaskan hubungan gugus fungsi dengan titik didih senyawanya.</li>
+    <li>Menyebutkan kegunaan senyawa karbon dalam kehidupan sehari-hari.</li>
+  </ul>
+  </div>
+  <div class="box short">
+    <div class="bt">⚡ Satu gagasan yang menjelaskan seluruh bab</div>
+    <p><b>Yang menentukan sifat senyawa karbon adalah gugus fungsinya, bukan panjang rantainya.</b> Etanol dan dimetil eter berumus sama persis — C<sub>2</sub>H<sub>6</sub>O — tetapi yang satu cairan yang diminum orang dan yang lain gas.</p>
+    <p><b>Seluruh jumlah isomer di bab ini dihitung</b> dengan enumerasi graf pohon, bukan disalin dari daftar. Hasilnya diuji terhadap nilai yang sudah pasti: gugus alkil berkarbon 1 sampai 6 berjumlah 1, 1, 2, 4, 8, dan 17 — cocok seluruhnya.</p>
+  </div>
+</section>
+
+<!-- ==================== WHY THIS MATTERS ==================== -->
+<section class="page" id="why">
+  <h2>18.3&nbsp; Why This Matters</h2>
+  <div class="phen">
+    <div class="pt">FENOMENA</div>
+    <p>Cuka dapur berbau tajam dan terasa asam. Balsem dan minyak gosok berbau harum. Padahal keduanya sama-sama senyawa karbon berumus C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub> — hanya berbeda susunan gugusnya.</p>
+    <p>Metanol dan etanol hanya berbeda satu atom karbon. Etanol dipakai sebagai minuman dan pembersih tangan; metanol dapat membutakan bahkan membunuh orang yang meminumnya.</p>
+    <p>Dan aroma buah-buahan — pisang, nanas, apel — hampir seluruhnya berasal dari satu golongan senyawa yang sama, yang juga dipakai untuk membuat perisa makanan buatan.</p>
+  </div>
+  <p class="lead">Ketiganya menunjukkan hal yang sama: <b>perbedaan kecil pada gugus fungsi menghasilkan perbedaan besar pada sifatnya</b>. Inilah yang membuat kimia karbon begitu luas — dan begitu penting.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Di kehidupan sehari-hari</div>
+      <ul class="tick">
+        <li><b>Etanol</b> — pembersih tangan, bahan bakar, pelarut.</li>
+        <li><b>Asam asetat</b> — cuka dapur.</li>
+        <li><b>Ester</b> — perisa dan pewangi buatan.</li>
+        <li><b>Formalin</b> — pengawet mayat; <b>berbahaya</b> untuk makanan.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Di soal UTBK</div>
+      <ul class="tick">
+        <li>Soal <b>tata nama</b> hampir pasti muncul setiap tahun.</li>
+        <li>Soal isomer menuntut ketelitian menghitung, bukan menghafal.</li>
+        <li>Soal identifikasi menguji hafalan pereaksi Tollens dan Fehling.</li>
+        <li>Soal oksidasi alkohol menjebak yang lupa menggolongkannya dulu.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONCEPT MAP ==================== -->
+<section class="page" id="map">
+  <h2>18.2&nbsp; Concept Map</h2>
+  <p class="lead">Enam gugus fungsi, tiga pasangan yang berbagi rumus umum yang sama.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 720 448" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta konsep senyawa karbon dan gugus fungsi">
+    <defs>
+      <marker id="cm18Arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+        <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1A8FBF"/>
+      </marker>
+    </defs>
+    <g stroke="#1A8FBF" stroke-width="2" fill="none">
+      <path d="M360,70 L360,94"/>
+      <path d="M128,94 L592,94"/>
+      <path d="M128,94 L128,120" marker-end="url(#cm18Arrow)"/>
+      <path d="M360,94 L360,120" marker-end="url(#cm18Arrow)"/>
+      <path d="M592,94 L592,120" marker-end="url(#cm18Arrow)"/>
+    </g>
+
+    <rect x="176" y="10" width="368" height="60" rx="8" fill="#0B2E4F"/>
+    <text x="360" y="32" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">GUGUS FUNGSI MENENTUKAN SIFAT</text>
+    <text x="360" y="51" text-anchor="middle" fill="#BBD4E8" font-size="10.5">bukan panjang rantainya &#8212; rantai hanya mengubah sifat fisiknya</text>
+    <text x="360" y="65" text-anchor="middle" fill="#7FA8C9" font-size="9.5">tiga pasang gugus berbagi rumus umum yang sama: ISOMER FUNGSI</text>
+
+    <rect x="18" y="120" width="220" height="128" rx="9" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.8"/>
+    <text x="128" y="141" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">C&#8345;H&#8322;&#8345;&#8330;&#8322;O</text>
+    <text x="36" y="163" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">ALKOHOL</tspan> R–OH</text>
+    <text x="36" y="180" font-size="9.5" fill="#69798A">bereaksi dengan Na → gas H₂</text>
+    <text x="36" y="202" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">ETER</tspan> R–O–R′</text>
+    <text x="36" y="219" font-size="9.5" fill="#69798A">TIDAK bereaksi dengan Na</text>
+    <text x="128" y="240" text-anchor="middle" fill="#186F45" font-size="9.5" font-weight="700">C₄H₁₀O → 4 + 3 = 7 isomer</text>
+
+    <rect x="250" y="120" width="220" height="128" rx="9" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.8"/>
+    <text x="360" y="141" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">C&#8345;H&#8322;&#8345;O</text>
+    <text x="268" y="163" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">ALDEHID</tspan> R–CHO</text>
+    <text x="268" y="180" font-size="9.5" fill="#69798A">POSITIF Tollens dan Fehling</text>
+    <text x="268" y="202" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">KETON</tspan> R–CO–R′</text>
+    <text x="268" y="219" font-size="9.5" fill="#69798A">NEGATIF Tollens dan Fehling</text>
+    <text x="360" y="240" text-anchor="middle" fill="#C77400" font-size="9.5" font-weight="700">C₄H₈O → 2 + 1 = 3 isomer</text>
+
+    <rect x="482" y="120" width="220" height="128" rx="9" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+    <text x="592" y="141" text-anchor="middle" fill="#0B2E4F" font-size="11.5" font-weight="700">C&#8345;H&#8322;&#8345;O&#8322;</text>
+    <text x="500" y="163" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">ASAM</tspan> R–COOH</text>
+    <text x="500" y="180" font-size="9.5" fill="#69798A">bersifat asam lemah, memerahkan lakmus</text>
+    <text x="500" y="202" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">ESTER</tspan> R–COO–R′</text>
+    <text x="500" y="219" font-size="9.5" fill="#69798A">berbau harum, netral</text>
+    <text x="592" y="240" text-anchor="middle" fill="#186F45" font-size="9.5" font-weight="700">C₄H₈O₂ → 2 + 4 = 6 isomer</text>
+
+    <rect x="18" y="262" width="684" height="76" rx="9" fill="#fff" stroke="#DCE4EB" stroke-width="1.6"/>
+    <text x="360" y="282" text-anchor="middle" fill="#0B2E4F" font-size="12" font-weight="700">OKSIDASI ALKOHOL BERGANTUNG PADA GOLONGANNYA</text>
+    <text x="360" y="303" text-anchor="middle" fill="#3A4C5C" font-size="10.5">alkohol <tspan font-weight="700">PRIMER</tspan> &#8594; aldehid &#8594; asam karboksilat</text>
+    <text x="360" y="320" text-anchor="middle" fill="#3A4C5C" font-size="10.5">alkohol <tspan font-weight="700">SEKUNDER</tspan> &#8594; keton &#160;·&#160; alkohol <tspan font-weight="700">TERSIER</tspan> &#8594; tidak teroksidasi</text>
+    <text x="360" y="333" text-anchor="middle" fill="#69798A" font-size="9" >golongan ditentukan dari jumlah karbon yang terikat pada karbon pengikat –OH</text>
+
+    <rect x="18" y="348" width="684" height="44" rx="6" fill="#FCEDEB" stroke="#B23A2C"/>
+    <text x="360" y="366" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B23A2C">DUA PEREAKSI PEMBEDA YANG WAJIB DIHAFAL</text>
+    <text x="360" y="384" text-anchor="middle" font-size="10.5" fill="#3A4C5C"><tspan font-weight="700">Tollens</tspan> → cermin perak &#160;·&#160; <tspan font-weight="700">Fehling</tspan> → endapan merah bata Cu₂O &#160;·&#160; keduanya hanya bereaksi dengan ALDEHID</text>
+
+    <rect x="18" y="400" width="684" height="40" rx="6" fill="#E9F5FB" stroke="#3FB0DC"/>
+    <text x="360" y="417" text-anchor="middle" font-size="11" font-weight="700" fill="#0B2E4F">ESTERIFIKASI: asam karboksilat + alkohol ⇌ ester + air</text>
+    <text x="360" y="433" text-anchor="middle" font-size="10" fill="#3A4C5C">reaksi bolak-balik, dikatalis asam kuat &#160;·&#160; kebalikannya disebut hidrolisis ester</text>
+  </svg>
+  <figcaption><b>Gambar 18.1.</b> Peta Konsep Bab 18. Tiga kotak di baris atas dikelompokkan menurut <b>rumus umumnya</b> — dan dua gugus dalam satu kotak selalu berbagi rumus yang sama, itulah yang disebut isomer fungsi. Angka isomer di baris terbawah tiap kotak <b>dihitung dengan enumerasi</b>, bukan dikutip. Baris kuning di bawahnya memuat aturan oksidasi alkohol, dan baris merah memuat satu-satunya bagian bab ini yang benar-benar menuntut hafalan.</figcaption>
+  </figure>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara membaca peta ini</div>
+    <p>Perhatikan bahwa ketiga kotak atas disusun menurut <b>rumus umum</b>, bukan menurut nama gugusnya. Susunan ini sengaja dipilih karena soal UTBK sering memberi rumus molekul lalu menanyakan gugus apa yang mungkin — dan jawabannya selalu <b>dua kemungkinan</b>, bukan satu.</p>
+    <p>Baris kedua setiap gugus memuat <b>cara membedakannya</b>: Na untuk alkohol-eter, Tollens/Fehling untuk aldehid-keton, lakmus untuk asam-ester. Ketiganya adalah isi bagian 18.9.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.4 GUGUS FUNGSI ==================== -->
+<section class="page" id="gugus">
+  <h2>18.4&nbsp; Gugus Fungsi <span class="star">★★★</span></h2>
+  <p class="lead">Gugus fungsi adalah bagian molekul yang <b>menentukan sifat kimianya</b>. Rantai karbonnya hanya mengubah sifat fisik seperti titik didih.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Golongan</th><th>Gugus fungsi</th><th>Rumus umum</th><th>Akhiran IUPAC</th><th>Contoh</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Alkohol</b></td><td>–OH</td><td>C<sub>n</sub>H<sub>2n+2</sub>O</td><td>–<b>ol</b></td><td>etanol</td></tr>
+      <tr><td><b>Eter</b></td><td>–O–</td><td>C<sub>n</sub>H<sub>2n+2</sub>O</td><td>alkoksi alkana</td><td>metoksi metana</td></tr>
+      <tr class="hi"><td><b>Aldehid</b></td><td>–CHO</td><td>C<sub>n</sub>H<sub>2n</sub>O</td><td>–<b>al</b></td><td>etanal</td></tr>
+      <tr><td><b>Keton</b></td><td>–CO–</td><td>C<sub>n</sub>H<sub>2n</sub>O</td><td>–<b>on</b></td><td>propanon</td></tr>
+      <tr class="hi"><td><b>Asam karboksilat</b></td><td>–COOH</td><td>C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></td><td>asam –<b>oat</b></td><td>asam etanoat</td></tr>
+      <tr><td><b>Ester</b></td><td>–COO–</td><td>C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></td><td>alkil –<b>oat</b></td><td>metil etanoat</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Perhatikan kolom rumus umum:</b> ketiga pasangan berbagi rumus yang sama persis. Karena itu, rumus molekul saja <b>tidak pernah cukup</b> untuk menentukan golongannya — selalu ada dua kemungkinan, dan diperlukan uji pembeda.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Chemistry Shortcut — mengenali golongan dari rumus molekul</div>
+    <ol class="step">
+      <li><b>Hitung derajat ketidakjenuhan:</b> DBE = (2C + 2 − H) ÷ 2. Atom O tidak ikut dihitung.</li>
+      <li><b>DBE = 0</b> → tidak ada ikatan rangkap → <b>alkohol atau eter</b>.</li>
+      <li><b>DBE = 1</b> dengan satu O → ada gugus C=O → <b>aldehid atau keton</b>.</li>
+      <li><b>DBE = 1</b> dengan dua O → <b>asam karboksilat atau ester</b>.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Contoh terverifikasi:</b> C<sub>4</sub>H<sub>10</sub>O memberi DBE = (8 + 2 − 10) ÷ 2 = <b>0</b> → alkohol atau eter. C<sub>4</sub>H<sub>8</sub>O memberi DBE = (8 + 2 − 8) ÷ 2 = <b>1</b> → aldehid atau keton. Seluruh enam kasus di bab ini diperiksa secara terprogram dan hasilnya konsisten.</p>
+  </div>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Aturan penomoran IUPAC</div>
+    <ol class="step">
+      <li><b>Cari rantai terpanjang</b> yang <b>memuat gugus fungsinya</b> — ini yang menjadi rantai utama.</li>
+      <li><b>Beri nomor dari ujung terdekat gugus fungsi</b> — bukan dari ujung terdekat cabang.</li>
+      <li>Tuliskan cabang beserta nomornya, lalu nama rantai utama dengan akhiran gugusnya.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Langkah 2 adalah pembeda terpenting dari Bab 6.</b> Pada alkana, penomoran dimulai dari ujung terdekat <b>cabang</b>. Begitu ada gugus fungsi, gugus itulah yang mendapat prioritas — dan nomor terkecil selalu untuk gugus fungsinya.</p>
+    <p><b>Pengecualian yang tidak perlu dinomori:</b> aldehid dan asam karboksilat. Gugusnya <b>selalu</b> di ujung rantai, sehingga selalu bernomor 1 dan nomornya tidak ditulis.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — memberi nomor dari ujung yang salah</div>
+    <p>Ini kesalahan paling sering di bab ini. Pada 2-metil-3-pentanol, nomor 3 diberikan pada gugus –OH meski dari ujung yang lain gugus itu juga bernomor 3 — dan barulah cabang menjadi penentunya.</p>
+    <p><b>Urutan prioritas yang benar:</b> (1) nomor terkecil untuk <b>gugus fungsi</b>; (2) bila seri, nomor terkecil untuk <b>cabang</b>.</p>
+    <p><b>Kesalahan kedua:</b> memilih rantai terpanjang tanpa memastikan gugus fungsinya ikut. Rantai utama <b>wajib memuat gugus fungsi</b>, meski itu berarti memilih rantai yang lebih pendek.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.5 ALKOHOL DAN ETER ==================== -->
+<section class="page" id="alkohol">
+  <h2>18.5&nbsp; Alkohol dan Eter <span class="star">★★★</span></h2>
+  <p class="lead">Keduanya berumus C<sub>n</sub>H<sub>2n+2</sub>O, tetapi sifatnya sangat berbeda — dan penyebabnya satu hal: <b>ikatan hidrogen</b>.</p>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Penggolongan alkohol</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Golongan</th><th>Ciri karbon pengikat –OH</th><th>Contoh</th><th>Hasil oksidasi</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Primer</b></td><td>Mengikat <b>1</b> atom karbon lain</td><td>1-propanol</td><td><b>Aldehid</b>, lalu asam karboksilat</td></tr>
+        <tr><td><b>Sekunder</b></td><td>Mengikat <b>2</b> atom karbon lain</td><td>2-propanol</td><td><b>Keton</b></td></tr>
+        <tr class="hi"><td><b>Tersier</b></td><td>Mengikat <b>3</b> atom karbon lain</td><td>2-metil-2-propanol</td><td><b>Tidak teroksidasi</b></td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Cara menentukannya:</b> lihat atom karbon yang mengikat gugus –OH, lalu hitung ada berapa <b>atom karbon lain</b> yang terikat padanya. Jangan menghitung atom H maupun gugus –OH-nya sendiri.</p>
+    <p><b>Mengapa alkohol tersier tidak teroksidasi:</b> karbon pengikat –OH sudah tidak punya atom H yang tersisa untuk dilepaskan. Oksidasi menuntut pelepasan H dari karbon itu, dan pada alkohol tersier tidak ada yang bisa dilepas.</p>
+  </div>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pembeda</th><th>Alkohol</th><th>Eter</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Gugus</td><td>R–OH</td><td>R–O–R′</td></tr>
+      <tr><td>Ikatan hidrogen</td><td><b>Ada</b></td><td><b>Tidak ada</b></td></tr>
+      <tr class="hi"><td>Titik didih</td><td><b>Jauh lebih tinggi</b></td><td>Rendah</td></tr>
+      <tr><td>Kelarutan dalam air</td><td>Rantai pendek <b>larut</b></td><td>Sukar larut</td></tr>
+      <tr class="hi"><td>Reaksi dengan logam Na</td><td><b>Bereaksi</b>, menghasilkan gas H<sub>2</sub></td><td><b>Tidak bereaksi</b></td></tr>
+      <tr><td>Dapat dioksidasi</td><td><b>Ya</b> (primer dan sekunder)</td><td>Tidak</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa etanol cair sedangkan dimetil eter gas</div>
+    <p>Keduanya berumus <b>C<sub>2</sub>H<sub>6</sub>O</b> — sama persis, dengan massa molekul yang sama pula. Tetapi titik didih etanol 78 °C sedangkan dimetil eter −24 °C. Selisihnya lebih dari <b>100 derajat</b>.</p>
+    <p><b>Sebabnya ikatan hidrogen.</b> Etanol punya gugus –OH dengan atom H yang terikat langsung pada O, sehingga molekulnya dapat saling menarik lewat ikatan hidrogen. Eter tidak punya H semacam itu — atom H-nya semua terikat pada karbon.</p>
+    <p>Inilah contoh paling tajam dari gagasan pembuka bab ini: <b>gugus fungsi, bukan rumus molekul, yang menentukan sifatnya</b>.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Reaksi penting alkohol</div>
+    <p><b>Dengan logam natrium</b> — pembeda utama dari eter:</p>
+    <p class="eq">2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂</p>
+    <p style="margin-top:12px"><b>Oksidasi</b> — bergantung golongannya:</p>
+    <p class="eq">CH₃CH₂OH &#8594; CH₃CHO &#8594; CH₃COOH &nbsp;(primer)<br>
+    CH₃CHOHCH₃ &#8594; CH₃COCH₃ &nbsp;(sekunder, berhenti di keton)</p>
+    <p style="margin-top:12px"><b>Esterifikasi</b> — dengan asam karboksilat, dibahas di bagian 18.7.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.6 ALDEHID DAN KETON ==================== -->
+<section class="page" id="aldehid">
+  <h2>18.6&nbsp; Aldehid dan Keton <span class="star">★★★</span></h2>
+  <p class="lead">Keduanya memuat gugus karbonil C=O. Bedanya <b>letak</b> gugus itu: di ujung rantai untuk aldehid, di tengah untuk keton.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pembeda</th><th>Aldehid</th><th>Keton</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Gugus</td><td>R–CHO (di <b>ujung</b>)</td><td>R–CO–R′ (di <b>tengah</b>)</td></tr>
+      <tr><td>Akhiran IUPAC</td><td>–<b>al</b></td><td>–<b>on</b></td></tr>
+      <tr class="hi"><td>Penomoran gugus</td><td>Selalu nomor 1, <b>tidak ditulis</b></td><td><b>Perlu</b> ditulis</td></tr>
+      <tr><td>Uji Tollens</td><td><b>Positif</b> — cermin perak</td><td><b>Negatif</b></td></tr>
+      <tr class="hi"><td>Uji Fehling</td><td><b>Positif</b> — endapan merah bata Cu<sub>2</sub>O</td><td><b>Negatif</b></td></tr>
+      <tr><td>Dapat dioksidasi</td><td><b>Ya</b> → asam karboksilat</td><td><b>Tidak</b></td></tr>
+      <tr class="hi"><td>Jumlah karbon minimum</td><td><b>1</b> (metanal)</td><td><b>3</b> (propanon)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:14.5px"><b>Baris terakhir layak diperhatikan.</b> Keton memerlukan sedikitnya <b>tiga</b> atom karbon, karena gugus C=O harus diapit dua gugus alkil. Inilah sebabnya C<sub>2</sub>H<sub>4</sub>O hanya punya aldehid (etanal) tanpa pasangan keton.</p>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa aldehid dapat dioksidasi tetapi keton tidak</div>
+    <p>Perhatikan gugusnya. Karbon karbonil pada <b>aldehid</b> masih mengikat satu atom <b>H</b>, dan atom H itulah yang dilepaskan saat oksidasi menjadi gugus –OH, sehingga terbentuk asam karboksilat.</p>
+    <p>Karbon karbonil pada <b>keton</b> sudah mengikat <b>dua gugus alkil</b> — tidak ada atom H yang tersisa untuk dilepas. Oksidasi lebih lanjut hanya mungkin bila rantainya diputus, dan itu memerlukan keadaan yang jauh lebih keras.</p>
+    <p><b>Pola yang sama dengan alkohol tersier.</b> Baik alkohol tersier maupun keton tidak teroksidasi karena alasan yang sama: <b>tidak ada atom H pada karbon yang bersangkutan</b>.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Dua pereaksi pembeda yang wajib dihafal</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Pereaksi <b>Tollens</b></th><td>Larutan perak amoniakal. Dengan aldehid memberi endapan <b>perak</b> yang melapisi dinding tabung seperti cermin.</td></tr>
+      <tr><th>Pereaksi <b>Fehling</b></th><td>Larutan tembaga(II) dalam suasana basa. Dengan aldehid memberi endapan <b>merah bata</b> Cu<sub>2</sub>O.</td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Keduanya bekerja karena aldehid bersifat reduktor</b> — ia mereduksi Ag<sup>+</sup> menjadi logam perak dan Cu<sup>2+</sup> menjadi Cu<sub>2</sub>O, sambil dirinya teroksidasi menjadi asam karboksilat. Keton yang tidak dapat teroksidasi <b>tidak memberi hasil apa pun</b> pada kedua uji ini.</p>
+    <p><b>Ingat warnanya:</b> Tollens memberi <b>cermin perak</b>, Fehling memberi <b>merah bata</b>. Soal sering menukar keduanya.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — menulis nomor gugus pada aldehid</div>
+    <p>Nama yang benar adalah <b>propanal</b>, bukan "1-propanal". Gugus –CHO <b>selalu</b> berada di ujung rantai sehingga nomornya pasti 1, dan penulisannya berlebihan.</p>
+    <p>Hal yang sama berlaku untuk asam karboksilat: <b>asam propanoat</b>, bukan "asam 1-propanoat".</p>
+    <p><b>Sebaliknya untuk keton</b> — nomornya <b>wajib</b> ditulis bila rantainya lima karbon atau lebih, karena gugus C=O dapat berada di beberapa tempat. Pada butanon nomornya boleh dihilangkan karena hanya ada satu kemungkinan.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.7 ASAM KARBOKSILAT DAN ESTER ==================== -->
+<section class="page" id="asam">
+  <h2>18.7&nbsp; Asam Karboksilat dan Ester <span class="star">★★★</span></h2>
+  <p class="lead">Pasangan ketiga yang berbagi rumus umum C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub>. Yang satu asam yang tajam baunya, yang lain netral dan harum.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Pembeda</th><th>Asam karboksilat</th><th>Ester</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Gugus</td><td>R–COOH</td><td>R–COO–R′</td></tr>
+      <tr><td>Sifat</td><td>Asam <b>lemah</b></td><td><b>Netral</b></td></tr>
+      <tr class="hi"><td>Lakmus biru</td><td>Menjadi <b>merah</b></td><td><b>Tetap biru</b></td></tr>
+      <tr><td>Bau</td><td>Tajam, menusuk</td><td><b>Harum</b> seperti buah</td></tr>
+      <tr class="hi"><td>Ikatan hidrogen</td><td><b>Ada</b> — titik didih tinggi</td><td>Tidak ada — titik didih rendah</td></tr>
+      <tr><td>Tata nama</td><td>asam …oat</td><td>alkil …oat</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Tata nama ester</div>
+    <p>Nama ester terdiri atas <b>dua bagian</b>, dan urutannya kebalikan dari cara menulisnya:</p>
+    <div class="fx">R–COO–R′ &nbsp;→&nbsp; <b>(R′)il</b> &nbsp;+&nbsp; <b>(R + 1 karbon)oat</b></div>
+    <p style="margin-top:12px"><b>Bagian pertama</b> adalah gugus alkil yang terikat pada <b>oksigen</b> (sisi R′). <b>Bagian kedua</b> adalah gugus asilnya, dihitung <b>termasuk</b> karbon karbonilnya.</p>
+    <p><b>Contoh:</b> CH<sub>3</sub>–COO–C<sub>2</sub>H<sub>5</sub> → gugus pada oksigen adalah etil, gugus asilnya CH<sub>3</sub>CO– yang berkarbon dua → <b>etil etanoat</b> (nama lazimnya etil asetat).</p>
+    <p><b>Kesalahan yang sering terjadi:</b> membalik kedua bagian, sehingga menulis "etanil etoat". Ingat bahwa <b>bagian "il" selalu yang menempel pada oksigen</b>, yaitu gugus di sebelah kanan tanda –COO–.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Esterifikasi dan hidrolisis</div>
+    <p><b>Esterifikasi</b> — asam karboksilat bereaksi dengan alkohol menghasilkan ester dan air:</p>
+    <p class="eq">CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</p>
+    <p style="margin-top:12px">Reaksinya <b>bolak-balik</b> dan dikatalis asam kuat seperti H<sub>2</sub>SO<sub>4</sub> pekat. Karena bolak-balik, hasilnya tidak pernah 100 % — dan untuk menggesernya ke kanan, air biasanya disingkirkan. Inilah penerapan langsung asas Le Chatelier dari Bab 9.</p>
+    <p style="margin-top:12px"><b>Hidrolisis ester</b> adalah kebalikannya. Bila dilakukan dengan basa kuat, hasilnya adalah <b>garam</b> asam karboksilat dan alkohol — dan reaksi itu disebut <b>penyabunan</b>, karena itulah cara sabun dibuat dari lemak.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa asam karboksilat bertitik didih paling tinggi</div>
+    <p>Di antara seluruh golongan di bab ini pada jumlah karbon yang sama, asam karboksilat selalu bertitik didih <b>tertinggi</b>. Sebabnya ia membentuk ikatan hidrogen <b>ganda</b> — dua molekul saling berpasangan lewat dua ikatan hidrogen sekaligus, membentuk pasangan yang sangat sukar dipisahkan.</p>
+    <p><b>Urutan titik didih pada jumlah karbon yang sama:</b></p>
+    <p class="eq">asam karboksilat &gt; alkohol &gt; keton ≈ aldehid &gt; ester &gt; eter</p>
+    <p style="margin-top:12px">Urutan ini mengikuti kekuatan gaya antarmolekulnya: ikatan hidrogen ganda, ikatan hidrogen tunggal, gaya dipol-dipol dari gugus C=O, lalu gaya London saja.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.8 KEISOMERAN ==================== -->
+<section class="page" id="isomer">
+  <h2>18.8&nbsp; Keisomeran <span class="star">★★★</span></h2>
+  <p class="lead">Satu rumus molekul dapat memberi banyak senyawa berbeda. Menghitungnya dengan tepat menuntut <b>cara yang tertib</b>, bukan menebak.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jumlah isomer tiap gugus fungsi hasil enumerasi">
+<rect x="1" y="1" width="718" height="418" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="25" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">JUMLAH ISOMER TIAP GUGUS FUNGSI — HASIL ENUMERASI</text>
+<rect x="12" y="36" width="696" height="280" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<rect x="200" y="52" width="12" height="12" rx="2" fill="#1A8FBF"/>
+<text x="217" y="62" font-size="10" font-weight="700" fill="#1A8FBF">alkohol</text>
+<rect x="287.4" y="52" width="12" height="12" rx="2" fill="#3FB0DC"/>
+<text x="304.4" y="62" font-size="10" font-weight="700" fill="#3FB0DC">eter</text>
+<rect x="356.2" y="52" width="12" height="12" rx="2" fill="#E89A1C"/>
+<text x="373.2" y="62" font-size="10" font-weight="700" fill="#E89A1C">aldehid</text>
+<rect x="443.6" y="52" width="12" height="12" rx="2" fill="#B23A2C"/>
+<text x="460.6" y="62" font-size="10" font-weight="700" fill="#B23A2C">keton</text>
+<line x1="66" y1="228.2" x2="666" y2="228.2" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="232.2" text-anchor="end" font-size="9.5" fill="#69798A">2</text>
+<line x1="66" y1="182.4" x2="666" y2="182.4" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="186.4" text-anchor="end" font-size="9.5" fill="#69798A">4</text>
+<line x1="66" y1="136.7" x2="666" y2="136.7" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="140.7" text-anchor="end" font-size="9.5" fill="#69798A">6</text>
+<line x1="66" y1="90.9" x2="666" y2="90.9" stroke="#EDF1F5" stroke-width="1"/>
+<text x="58" y="94.9" text-anchor="end" font-size="9.5" fill="#69798A">8</text>
+<line x1="66" y1="274" x2="666" y2="274" stroke="#69798A" stroke-width="1.6"/>
+<line x1="66" y1="274" x2="66" y2="68" stroke="#69798A" stroke-width="1.6"/>
+<text x="20" y="171" text-anchor="middle" font-size="10" fill="#69798A" transform="rotate(-90 20 171)">jumlah isomer</text>
+<rect x="90.0" y="228.2" width="36.8" height="45.8" rx="3" fill="#1A8FBF"/>
+<text x="108.4" y="223" text-anchor="middle" font-size="10" font-weight="700" fill="#1A8FBF">2</text>
+<rect x="130.8" y="251.1" width="36.8" height="22.9" rx="3" fill="#3FB0DC"/>
+<text x="149.2" y="246" text-anchor="middle" font-size="10" font-weight="700" fill="#3FB0DC">1</text>
+<rect x="171.7" y="251.1" width="36.8" height="22.9" rx="3" fill="#E89A1C"/>
+<text x="190.1" y="246" text-anchor="middle" font-size="10" font-weight="700" fill="#E89A1C">1</text>
+<rect x="212.5" y="251.1" width="36.8" height="22.9" rx="3" fill="#B23A2C"/>
+<text x="230.9" y="246" text-anchor="middle" font-size="10" font-weight="700" fill="#B23A2C">1</text>
+<text x="170" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">3 atom karbon</text>
+<text x="170" y="307" text-anchor="middle" font-size="9" fill="#69798A">C3H8O &#160;·&#160; C3H6O</text>
+<rect x="283.3" y="182.4" width="36.8" height="91.6" rx="3" fill="#1A8FBF"/>
+<text x="301.8" y="177" text-anchor="middle" font-size="10" font-weight="700" fill="#1A8FBF">4</text>
+<rect x="324.2" y="205.3" width="36.8" height="68.7" rx="3" fill="#3FB0DC"/>
+<text x="342.6" y="200" text-anchor="middle" font-size="10" font-weight="700" fill="#3FB0DC">3</text>
+<rect x="365.0" y="228.2" width="36.8" height="45.8" rx="3" fill="#E89A1C"/>
+<text x="383.4" y="223" text-anchor="middle" font-size="10" font-weight="700" fill="#E89A1C">2</text>
+<rect x="405.8" y="251.1" width="36.8" height="22.9" rx="3" fill="#B23A2C"/>
+<text x="424.3" y="246" text-anchor="middle" font-size="10" font-weight="700" fill="#B23A2C">1</text>
+<text x="363" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">4 atom karbon</text>
+<text x="363" y="307" text-anchor="middle" font-size="9" fill="#69798A">C4H10O &#160;·&#160; C4H8O</text>
+<rect x="476.7" y="90.9" width="36.8" height="183.1" rx="3" fill="#1A8FBF"/>
+<text x="495.1" y="86" text-anchor="middle" font-size="10" font-weight="700" fill="#1A8FBF">8</text>
+<rect x="517.5" y="136.7" width="36.8" height="137.3" rx="3" fill="#3FB0DC"/>
+<text x="535.9" y="132" text-anchor="middle" font-size="10" font-weight="700" fill="#3FB0DC">6</text>
+<rect x="558.3" y="182.4" width="36.8" height="91.6" rx="3" fill="#E89A1C"/>
+<text x="576.8" y="177" text-anchor="middle" font-size="10" font-weight="700" fill="#E89A1C">4</text>
+<rect x="599.2" y="205.3" width="36.8" height="68.7" rx="3" fill="#B23A2C"/>
+<text x="617.6" y="200" text-anchor="middle" font-size="10" font-weight="700" fill="#B23A2C">3</text>
+<text x="556" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">5 atom karbon</text>
+<text x="556" y="307" text-anchor="middle" font-size="9" fill="#69798A">C5H12O &#160;·&#160; C5H10O</text>
+<rect x="12" y="326" width="696" height="86" rx="8" fill="#E9F5FB" stroke="#3FB0DC"/>
+<text x="360" y="345" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">Setiap batang dihitung dengan enumerasi graf pohon, bukan disalin dari daftar</text>
+<text x="360" y="364" text-anchor="middle" font-size="10.5" fill="#3A4C5C">C₄H₁₀O memberi <tspan font-weight="700">4 alkohol + 3 eter = 7 isomer</tspan> &#160;·&#160; C₄H₈O memberi <tspan font-weight="700">2 aldehid + 1 keton = 3 isomer</tspan></text>
+<text x="360" y="382" text-anchor="middle" font-size="10.5" fill="#3A4C5C">C₅H₁₂O melonjak menjadi <tspan font-weight="700">8 + 6 = 14 isomer</tspan> — dua kali lipat C₄ hanya dengan menambah satu atom karbon</text>
+<text x="360" y="400" text-anchor="middle" font-size="9.5" fill="#69798A">enumerator diuji lebih dulu: gugus alkil C₁–C₆ berjumlah 1, 1, 2, 4, 8, 17 — cocok literatur</text>
+</svg>  <figcaption><b>Gambar 18.2.</b> Jumlah isomer tiap gugus fungsi. Setiap batang <b>dihitung dengan enumerasi graf pohon</b> — mencacah seluruh susunan rantai yang mungkin lalu membuang yang sebenarnya sama. Enumeratornya diuji lebih dulu terhadap nilai yang sudah pasti: gugus alkil berkarbon 1 sampai 6 berjumlah 1, 1, 2, 4, 8, dan 17. Perhatikan lonjakannya — menambah satu atom karbon dari C<sub>4</sub> ke C<sub>5</sub> melipatduakan jumlah isomernya.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Tiga jenis keisomeran di bab ini</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Jenis</th><th>Yang berbeda</th><th>Contoh</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><b>Isomer kerangka</b></td><td>Susunan rantai karbonnya</td><td>1-butanol dan 2-metil-1-propanol</td></tr>
+        <tr><td><b>Isomer posisi</b></td><td>Letak gugus fungsinya</td><td>1-propanol dan 2-propanol</td></tr>
+        <tr class="hi"><td><b>Isomer fungsi</b></td><td><b>Gugus fungsinya sendiri</b></td><td>Etanol dan dimetil eter</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:12px"><b>Isomer fungsi adalah yang paling sering ditanyakan</b>, dan hanya ada <b>tiga pasangan</b>: alkohol-eter, aldehid-keton, dan asam karboksilat-ester. Ketiganya diperoleh langsung dari rumus umumnya, yang memang sama persis untuk tiap pasangan.</p>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Cara tertib menghitung isomer tanpa ada yang terlewat</div>
+    <ol class="step">
+      <li><b>Tentukan golongannya</b> dari DBE — alkohol/eter, aldehid/keton, atau asam/ester.</li>
+      <li><b>Kerjakan satu golongan sampai tuntas</b> sebelum berpindah ke pasangannya.</li>
+      <li><b>Untuk alkohol:</b> gambar kerangka karbon terpanjang dulu, pindahkan –OH ke tiap posisi yang berbeda, baru persingkat rantainya dan ulangi.</li>
+      <li><b>Untuk eter:</b> bagi jumlah karbonnya menjadi dua sisi, lalu cacah gugus alkil tiap sisi.</li>
+      <li><b>Jumlahkan</b> kedua golongan.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Contoh terverifikasi untuk C<sub>4</sub>H<sub>10</sub>O:</b></p>
+    <div class="tw"><table class="mini">
+      <tr><th>Alkohol rantai 4C</th><td>1-butanol, 2-butanol → <b>2</b></td></tr>
+      <tr><th>Alkohol rantai 3C bercabang</th><td>2-metil-1-propanol, 2-metil-2-propanol → <b>2</b></td></tr>
+      <tr><th>Eter 1C + 3C</th><td>metoksi propana, metoksi isopropana → <b>2</b></td></tr>
+      <tr><th>Eter 2C + 2C</th><td>etoksi etana → <b>1</b></td></tr>
+    </table></div>
+    <p style="margin-top:12px">Totalnya <b>4 alkohol + 3 eter = 7 isomer</b>. Angka yang sama diperoleh secara terprogram lewat enumerasi, sehingga daftar di atas dapat dipastikan lengkap — tidak ada yang terlewat dan tidak ada yang terhitung dua kali.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — menghitung senyawa yang sama dua kali</div>
+    <p>Rantai karbon dapat digambar dengan berbagai bentuk tetapi tetap senyawa yang sama. Menggambar rantai yang ditekuk lalu mengira ia berbeda dari rantai lurus adalah kesalahan yang sangat sering.</p>
+    <p><b>Pemeriksanya:</b> beri nama IUPAC untuk setiap struktur yang Anda gambar. Bila dua struktur memberi <b>nama yang sama</b>, keduanya senyawa yang sama.</p>
+    <p><b>Kesalahan kedua:</b> lupa bahwa eter juga termasuk. Soal yang bertanya "berapa isomer C<sub>4</sub>H<sub>10</sub>O" meminta <b>seluruhnya</b>, yaitu 7 — bukan hanya 4 alkoholnya. Bacalah apakah soal menyebut "alkohol" atau menyebut rumus molekulnya saja.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.9 REAKSI IDENTIFIKASI ==================== -->
+<section class="page" id="identifikasi">
+  <h2>18.9&nbsp; Reaksi Identifikasi <span class="star">★★★</span></h2>
+  <p class="lead">Karena rumus molekul selalu memberi <b>dua</b> kemungkinan, uji pembeda menjadi wajib. Untunglah untuk setiap pasangan hanya ada satu uji yang perlu diingat.</p>
+
+  <figure class="fig">
+<svg viewBox="0 0 720 452" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bagan alur identifikasi gugus fungsi senyawa karbon">
+<defs><marker id="idA" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 z" fill="#69798A"/></marker></defs>
+<rect x="1" y="1" width="718" height="450" rx="10" fill="#F6F8FA" stroke="#DCE4EB"/>
+<text x="360" y="24" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B2E4F">BAGAN ALUR IDENTIFIKASI GUGUS FUNGSI</text>
+<rect x="12" y="34" width="696" height="336" rx="9" fill="#fff" stroke="#DCE4EB"/>
+<rect x="270" y="46" width="180" height="30" rx="6" fill="#0B2E4F"/>
+<text x="360" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">tentukan rumus umumnya</text>
+<path d="M360,76 L360,90 L126,90 L126,104" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="22" y="106" width="208" height="26" rx="6" fill="#E9F5FB" stroke="#3FB0DC" stroke-width="1.6"/>
+<text x="126" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">CnH2n+2O</text>
+<path d="M126,132 L126,150" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="28" y="152" width="196" height="24" rx="6" fill="#fff" stroke="#3FB0DC" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="126" y="168" text-anchor="middle" font-size="10.5" font-weight="700" fill="#3FB0DC">uji dengan logam Na</text>
+
+<path d="M126,176 L126,198" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="134" y="191" font-size="9" fill="#69798A">ada gas H₂</text>
+<rect x="26" y="204" width="200" height="44" rx="7" fill="#E9F5FB" stroke="#1A8FBF" stroke-width="1.8"/>
+<text x="126" y="223" text-anchor="middle" font-size="11" font-weight="700" fill="#1A8FBF">ALKOHOL</text>
+<text x="126" y="239" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–OH</text>
+
+<path d="M126,248 L126,276" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="134" y="269" font-size="9" fill="#69798A">tidak bereaksi</text>
+<rect x="26" y="282" width="200" height="44" rx="7" fill="#F6F8FA" stroke="#69798A" stroke-width="1.8"/>
+<text x="126" y="301" text-anchor="middle" font-size="11" font-weight="700" fill="#69798A">ETER</text>
+<text x="126" y="317" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–O–R′</text>
+<path d="M360,76 L360,90 L360,90 L360,104" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="256" y="106" width="208" height="26" rx="6" fill="#FFF6E6" stroke="#E89A1C" stroke-width="1.6"/>
+<text x="360" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">CnH2nO</text>
+<path d="M360,132 L360,150" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="262" y="152" width="196" height="24" rx="6" fill="#fff" stroke="#E89A1C" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="360" y="168" text-anchor="middle" font-size="10.5" font-weight="700" fill="#E89A1C">uji Tollens / Fehling</text>
+
+<path d="M360,176 L360,198" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="368" y="191" font-size="9" fill="#69798A">positif</text>
+<rect x="260" y="204" width="200" height="44" rx="7" fill="#FFF6E6" stroke="#C77400" stroke-width="1.8"/>
+<text x="360" y="223" text-anchor="middle" font-size="11" font-weight="700" fill="#C77400">ALDEHID</text>
+<text x="360" y="239" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–CHO</text>
+
+<path d="M360,248 L360,276" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="368" y="269" font-size="9" fill="#69798A">negatif</text>
+<rect x="260" y="282" width="200" height="44" rx="7" fill="#F6F8FA" stroke="#69798A" stroke-width="1.8"/>
+<text x="360" y="301" text-anchor="middle" font-size="11" font-weight="700" fill="#69798A">KETON</text>
+<text x="360" y="317" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–CO–R′</text>
+<path d="M360,76 L360,90 L594,90 L594,104" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="490" y="106" width="208" height="26" rx="6" fill="#E8F5EE" stroke="#186F45" stroke-width="1.6"/>
+<text x="594" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0B2E4F">CnH2nO2</text>
+<path d="M594,132 L594,150" fill="none" stroke="#69798A" stroke-width="1.6" marker-end="url(#idA)"/>
+<rect x="496" y="152" width="196" height="24" rx="6" fill="#fff" stroke="#186F45" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="594" y="168" text-anchor="middle" font-size="10.5" font-weight="700" fill="#186F45">uji lakmus biru</text>
+
+<path d="M594,176 L594,198" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="602" y="191" font-size="9" fill="#69798A">jadi merah</text>
+<rect x="494" y="204" width="200" height="44" rx="7" fill="#E8F5EE" stroke="#186F45" stroke-width="1.8"/>
+<text x="594" y="223" text-anchor="middle" font-size="11" font-weight="700" fill="#186F45">ASAM KARBOKSILAT</text>
+<text x="594" y="239" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–COOH</text>
+
+<path d="M594,248 L594,276" fill="none" stroke="#69798A" stroke-width="1.4" marker-end="url(#idA)"/>
+<text x="602" y="269" font-size="9" fill="#69798A">tetap biru, harum</text>
+<rect x="494" y="282" width="200" height="44" rx="7" fill="#F6F8FA" stroke="#69798A" stroke-width="1.8"/>
+<text x="594" y="301" text-anchor="middle" font-size="11" font-weight="700" fill="#69798A">ESTER</text>
+<text x="594" y="317" text-anchor="middle" font-size="10" fill="#3A4C5C" font-family="monospace">R–COO–R′</text>
+<rect x="12" y="380" width="696" height="62" rx="8" fill="#FFF6E6" stroke="#E89A1C"/>
+<text x="360" y="399" text-anchor="middle" font-size="11.5" font-weight="700" fill="#C77400">Setiap rumus umum memberi TEPAT DUA kemungkinan — karena itu uji pembeda selalu diperlukan</text>
+<text x="360" y="418" text-anchor="middle" font-size="10.5" fill="#3A4C5C">Lanjutan untuk alkohol: oksidasi memberi <tspan font-weight="700">aldehid</tspan> bila primer, <tspan font-weight="700">keton</tspan> bila sekunder, dan <tspan font-weight="700">tidak bereaksi</tspan> bila tersier</text>
+<text x="360" y="434" text-anchor="middle" font-size="9.5" fill="#69798A">uji Tollens memberi cermin perak · uji Fehling memberi endapan merah bata Cu₂O</text>
+</svg>  <figcaption><b>Gambar 18.3.</b> Bagan alur identifikasi. Mulailah dari <b>rumus umumnya</b>, bukan dari menebak gugusnya — rumus umum menyempitkan kemungkinan menjadi dua, dan satu uji menyelesaikan sisanya. Perhatikan bahwa ketiga kotak biru di baris paling bawah adalah golongan yang memberi hasil <b>negatif</b>; ketiadaan perubahan adalah jawaban yang sah, bukan percobaan yang gagal.</figcaption>
+  </figure>
+
+  <div class="box formula">
+    <div class="bt">Key Concept — Tiga pasang uji pembeda</div>
+    <div class="tw"><table class="d">
+      <thead><tr><th>Pasangan</th><th>Uji</th><th>Hasil positif</th><th>Hasil negatif</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Alkohol vs eter</td><td>Logam <b>Na</b></td><td>Alkohol — gelembung gas H<sub>2</sub></td><td>Eter — tidak bereaksi</td></tr>
+        <tr><td>Aldehid vs keton</td><td><b>Tollens</b></td><td>Aldehid — <b>cermin perak</b></td><td>Keton — tidak berubah</td></tr>
+        <tr class="hi"><td>Aldehid vs keton</td><td><b>Fehling</b></td><td>Aldehid — endapan <b>merah bata</b></td><td>Keton — tidak berubah</td></tr>
+        <tr><td>Asam vs ester</td><td><b>Lakmus biru</b></td><td>Asam — menjadi merah</td><td>Ester — tetap biru, berbau harum</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Uji lanjutan untuk menggolongkan alkohol</div>
+    <p>Setelah diketahui sebuah senyawa adalah alkohol, golongannya ditentukan lewat <b>oksidasi</b>:</p>
+    <div class="tw"><table class="mini">
+      <tr><th>Hasilnya <b>aldehid</b></th><td>alkohol <b>primer</b> — dapat dilanjutkan menjadi asam karboksilat</td></tr>
+      <tr><th>Hasilnya <b>keton</b></th><td>alkohol <b>sekunder</b> — berhenti di situ</td></tr>
+      <tr><th><b>Tidak bereaksi</b></th><td>alkohol <b>tersier</b></td></tr>
+    </table></div>
+    <p style="margin-top:12px"><b>Alur lengkapnya di soal:</b> rumus molekul → DBE → dua kemungkinan → uji Na → bila alkohol, oksidasi → golongannya. Empat langkah yang berurutan, dan setiap langkah menyempitkan jawabannya.</p>
+  </div>
+
+  <div class="box mistake">
+    <div class="bt">⚠ Common Mistake — mengira uji negatif berarti percobaan gagal</div>
+    <p>Bila keton diuji dengan Fehling dan tidak terjadi apa-apa, itu <b>bukan kegagalan</b> — justru itulah hasilnya, dan hasil itu membuktikan senyawanya bukan aldehid.</p>
+    <p><b>Kesalahan kedua:</b> tertukar antara hasil Tollens dan Fehling. Ingat pasangan warnanya: <b>Tollens → perak</b> (memang mengandung perak), <b>Fehling → merah bata</b> (dari tembaga). Menghubungkan warna dengan logamnya membuat keduanya sukar tertukar.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.10 KEGUNAAN ==================== -->
+<section class="page" id="kegunaan">
+  <h2>18.10&nbsp; Kegunaan Senyawa Karbon</h2>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Senyawa</th><th>Golongan</th><th>Kegunaan</th><th>Catatan</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><b>Metanol</b></td><td>Alkohol</td><td>Pelarut, bahan baku industri</td><td><b>Sangat beracun</b> — dapat membutakan</td></tr>
+      <tr><td><b>Etanol</b></td><td>Alkohol</td><td>Pembersih tangan, bahan bakar, pelarut</td><td>Dapat dibuat dari peragian</td></tr>
+      <tr class="hi"><td><b>Etilena glikol</b></td><td>Alkohol</td><td>Cairan antibeku radiator</td><td>Lihat juga Bab 14</td></tr>
+      <tr><td><b>Gliserol</b></td><td>Alkohol</td><td>Pelembap kulit, bahan kosmetik</td><td>Hasil samping pembuatan sabun</td></tr>
+      <tr class="hi"><td><b>Dietil eter</b></td><td>Eter</td><td>Pelarut, dahulu obat bius</td><td>Sangat mudah terbakar</td></tr>
+      <tr><td><b>Metanal (formalin)</b></td><td>Aldehid</td><td>Pengawet mayat, desinfektan</td><td><b>Dilarang</b> untuk mengawetkan makanan</td></tr>
+      <tr class="hi"><td><b>Propanon (aseton)</b></td><td>Keton</td><td>Pembersih kuteks, pelarut</td><td>Keton paling sederhana</td></tr>
+      <tr><td><b>Asam etanoat</b></td><td>Asam</td><td>Cuka dapur</td><td>Kadar cuka dapur sekitar 25 %</td></tr>
+      <tr class="hi"><td><b>Asam format</b></td><td>Asam</td><td>Penggumpal getah karet</td><td>Terdapat pada sengat semut</td></tr>
+      <tr><td><b>Ester rantai pendek</b></td><td>Ester</td><td>Perisa dan pewangi buatan</td><td>Aroma pisang, nanas, apel</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Mengapa metanol jauh lebih berbahaya daripada etanol</div>
+    <p>Keduanya alkohol dan hanya berbeda satu atom karbon, tetapi tubuh memperlakukannya berbeda karena <b>hasil oksidasinya berbeda</b>.</p>
+    <p><b>Etanol</b> teroksidasi menjadi etanal lalu asam etanoat — keduanya masih dapat diuraikan tubuh.</p>
+    <p><b>Metanol</b> teroksidasi menjadi <b>metanal</b> lalu <b>asam metanoat</b>, dan keduanya sangat merusak. Asam metanoat menyerang saraf mata, sehingga keracunan metanol sering berakhir dengan kebutaan permanen atau kematian.</p>
+    <p>Inilah alasan mengapa minuman oplosan berbahan metanol memakan korban setiap tahun — rasanya hampir tidak dapat dibedakan dari etanol.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 1-7 ==================== -->
+<section class="page">
+  <h2>Worked Example — Gugus Fungsi, Tata Nama, dan Penggolongan</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 1 — Mengenali golongan dari rumus molekul</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan golongan yang mungkin untuk (a) C<sub>3</sub>H<sub>8</sub>O; (b) C<sub>5</sub>H<sub>10</sub>O; (c) C<sub>5</sub>H<sub>10</sub>O<sub>2</sub>.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Golongan yang mungkin</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung derajat ketidakjenuhan, lalu perhatikan jumlah atom O.</div></div>
+      <div class="step"><b>(a) C₃H₈O</b>DBE = (6 + 2 − 8) ÷ 2 = <span class="eq">0</span> → tanpa C=O → <b>alkohol atau eter</b></div>
+      <div class="step"><b>(b) C₅H₁₀O</b>DBE = (10 + 2 − 10) ÷ 2 = <span class="eq">1</span>, satu atom O → <b>aldehid atau keton</b></div>
+      <div class="step"><b>(c) C₅H₁₀O₂</b>DBE = <span class="eq">1</span>, dua atom O → <b>asam karboksilat atau ester</b></div>
+      <div class="ansbar">Jawaban: (a) alkohol/eter; (b) aldehid/keton; (c) asam/ester</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan bahwa jawabannya <b>selalu dua kemungkinan</b>, tidak pernah satu — dan itu bukan kekurangan melainkan sifat dari rumus molekul itu sendiri. Bagian (b) dan (c) punya DBE sama; yang membedakannya hanya <b>jumlah atom O</b>. Atom O sendiri tidak ikut dihitung dalam rumus DBE, karena ia bervalensi dua dan tidak mengubah jumlah ikatan rangkap yang diperlukan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 2 — Tata nama alkohol</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Berilah nama IUPAC untuk CH<sub>3</sub>–CH(CH<sub>3</sub>)–CH<sub>2</sub>–OH.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nama IUPAC</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Rantai utama wajib memuat gugus –OH; penomoran dimulai dari ujung terdekat gugus itu.</div></div>
+      <div class="step"><b>Langkah 1 — Rantai utama</b>Rantai terpanjang yang memuat –OH berisi <span class="eq">3 karbon</span> → propanol</div>
+      <div class="step"><b>Langkah 2 — Penomoran</b>Dari ujung terdekat –OH → gugus –OH bernomor <span class="eq">1</span></div>
+      <div class="step"><b>Langkah 3 — Cabang</b>Gugus metil berada di karbon nomor <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 4 — Gabungkan</b><span class="eq">2-metil-1-propanol</span></div>
+      <div class="ansbar">Jawaban: 2-metil-1-propanol</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 2 adalah pembeda utama dari tata nama alkana di Bab 6. Pada alkana, penomoran dimulai dari ujung terdekat <b>cabang</b>; begitu ada gugus fungsi, <b>gugus itulah</b> yang mendapat nomor terkecil. Memberi nomor dari ujung yang lain menghasilkan "2-metil-3-propanol" yang tidak sah — dan lagi pula rantainya hanya tiga karbon, sehingga nomor 3 mustahil untuk –OH dari arah itu.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 3 — Menggolongkan alkohol</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Golongkan menjadi primer, sekunder, atau tersier: (a) 1-butanol; (b) 2-butanol; (c) 2-metil-2-propanol.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Golongan ketiganya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hitung berapa <b>atom karbon lain</b> yang terikat pada karbon pengikat –OH.</div></div>
+      <div class="step"><b>(a) 1-butanol</b>CH₃CH₂CH₂–<b>CH₂</b>–OH → karbon itu mengikat <span class="eq">1 karbon lain</span> → <b>primer</b></div>
+      <div class="step"><b>(b) 2-butanol</b>CH₃–<b>CH(OH)</b>–CH₂CH₃ → mengikat <span class="eq">2 karbon lain</span> → <b>sekunder</b></div>
+      <div class="step"><b>(c) 2-metil-2-propanol</b>(CH₃)₃<b>C</b>–OH → mengikat <span class="eq">3 karbon lain</span> → <b>tersier</b></div>
+      <div class="ansbar">Jawaban: (a) primer; (b) sekunder; (c) tersier</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Yang dihitung hanya <b>atom karbon lain</b> — bukan atom H, dan bukan gugus –OH-nya sendiri. Kesalahan yang sering terjadi adalah menghitung nomor posisi gugus –OH sebagai golongannya; padahal 1-butanol dan 1-pentanol sama-sama primer meski nomornya sama, dan 2-butanol sekunder sedangkan 2-metil-2-propanol tersier meski nomornya juga sama-sama 2.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 4 — Meramalkan hasil oksidasi</span><span class="lvl d">DASAR</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan hasil oksidasi ketiga alkohol pada Contoh 3.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>(a) primer; (b) sekunder; (c) tersier</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Hasil oksidasinya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Golongkan dulu, baru terapkan aturannya.</div></div>
+      <div class="step"><b>(a) Primer</b>→ <span class="eq">butanal</span> (aldehid), dapat dilanjutkan menjadi <b>asam butanoat</b></div>
+      <div class="step"><b>(b) Sekunder</b>→ <span class="eq">butanon</span> (keton), berhenti di situ</div>
+      <div class="step"><b>(c) Tersier</b>→ <span class="eq">tidak teroksidasi</span></div>
+      <div class="ansbar">Jawaban: (a) butanal lalu asam butanoat; (b) butanon; (c) tidak bereaksi</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Alasan bagian (c) layak dipahami, bukan dihafal: karbon pengikat –OH pada alkohol tersier sudah mengikat tiga karbon lain sehingga <b>tidak ada atom H yang tersisa</b> untuk dilepas. Oksidasi menuntut pelepasan H dari karbon itu. Alasan yang sama menjelaskan mengapa <b>keton juga tidak dapat dioksidasi</b> — satu penalaran untuk dua kenyataan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 5 — Tata nama eter dan keton</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Berilah nama untuk (a) CH<sub>3</sub>–O–C<sub>2</sub>H<sub>5</sub>; (b) CH<sub>3</sub>–CO–CH<sub>2</sub>CH<sub>3</sub>.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nama IUPAC keduanya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Eter memakai pola "alkoksi alkana"; keton memakai akhiran –on.</div></div>
+      <div class="step"><b>(a) Tentukan gugus yang lebih pendek</b>CH₃ (metil) lebih pendek → menjadi bagian <span class="eq">metoksi</span></div>
+      <div class="step"><b>(a) Gugus yang lebih panjang</b>C₂H₅ → menjadi rantai utamanya: <span class="eq">metoksi etana</span></div>
+      <div class="step"><b>(b) Rantai utama keton</b>Empat karbon seluruhnya → <span class="eq">butanon</span></div>
+      <div class="step"><b>(b) Nomor gugus C=O</b>Nomor 2; karena hanya ada satu kemungkinan pada rantai empat karbon, nomornya boleh dihilangkan → <span class="eq">butanon</span></div>
+      <div class="ansbar">Jawaban: (a) metoksi etana; (b) butanon (atau 2-butanon)</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Pada eter, gugus yang <b>lebih pendek</b> menjadi bagian "alkoksi" dan yang lebih panjang menjadi rantai utamanya. Menukarnya menghasilkan "etoksi metana" yang tidak sah. Pada keton, gugus C=O <b>tidak mungkin</b> berada di ujung — bila di ujung, senyawanya menjadi aldehid. Karena itu pada butanon posisinya hanya bisa nomor 2, dan penulisan nomornya menjadi tidak wajib.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 6 — Tata nama ester</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Berilah nama untuk CH<sub>3</sub>CH<sub>2</sub>–COO–CH<sub>3</sub>.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Nama IUPAC</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bagian "il" adalah gugus yang menempel pada oksigen.</div></div>
+      <div class="step"><b>Langkah 1 — Tandai gugus –COO–</b>Kiri: CH₃CH₂– · Kanan (pada oksigen): –CH₃</div>
+      <div class="step"><b>Langkah 2 — Bagian "il"</b>Gugus pada oksigen adalah CH₃ → <span class="eq">metil</span></div>
+      <div class="step"><b>Langkah 3 — Bagian "oat"</b>Gugus asil CH₃CH₂CO– berkarbon <b>3</b> (termasuk karbon karbonil) → <span class="eq">propanoat</span></div>
+      <div class="step"><b>Langkah 4 — Gabungkan</b><span class="eq">metil propanoat</span></div>
+      <div class="ansbar">Jawaban: metil propanoat</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memuat jebakan yang paling sering: karbon <b>karbonil ikut dihitung</b> pada bagian "oat". Gugus CH₃CH₂CO– terlihat seperti etil, tetapi berkarbon tiga sehingga namanya propanoat, bukan etanoat. Perhatikan pula bahwa urutan penamaannya <b>kebalikan</b> dari urutan penulisan rumusnya — yang ditulis belakangan justru disebut duluan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 7 — Membedakan alkohol dari eter</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Dua senyawa berumus C<sub>2</sub>H<sub>6</sub>O diuji dengan logam natrium. Senyawa A mengeluarkan gelembung gas, senyawa B tidak. Tentukan keduanya beserta alasannya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Keduanya C<sub>2</sub>H<sub>6</sub>O; A bereaksi dengan Na, B tidak</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Identitas A dan B</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>DBE dulu, lalu terapkan hasil ujinya.</div></div>
+      <div class="step"><b>Langkah 1 — DBE</b>(4 + 2 − 6) ÷ 2 = <span class="eq">0</span> → alkohol atau eter</div>
+      <div class="step"><b>Langkah 2 — Senyawa A</b>Bereaksi dengan Na → punya gugus <b>–OH</b> → <span class="eq">etanol, C₂H₅OH</span></div>
+      <div class="step"><b>Langkah 3 — Persamaannya</b><span class="eq">2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂</span></div>
+      <div class="step"><b>Langkah 4 — Senyawa B</b>Tidak bereaksi → tidak punya –OH → <span class="eq">dimetil eter, CH₃–O–CH₃</span></div>
+      <div class="ansbar">Jawaban: A adalah etanol, B adalah dimetil eter</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Uji natrium bekerja karena atom H pada gugus –OH bersifat <b>sedikit asam</b> dan dapat digantikan logam. Atom H pada eter semuanya terikat pada karbon dan tidak dapat digantikan. Perhatikan bahwa kedua senyawa ini berumus <b>sama persis</b> namun titik didihnya berselisih lebih dari seratus derajat — etanol 78 °C, dimetil eter −24 °C — karena hanya etanol yang dapat membentuk ikatan hidrogen.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa DBE untuk C<sub>4</sub>H<sub>10</sub>O, dan golongan apa yang mungkin?</li>
+      <li>Pada senyawa bergugus fungsi, penomoran dimulai dari ujung terdekat apa?</li>
+      <li>Bagaimana cara menggolongkan alkohol menjadi primer, sekunder, atau tersier?</li>
+      <li>Apa hasil oksidasi alkohol sekunder?</li>
+      <li>Pada nama ester, bagian "il" merujuk pada gugus di sisi mana?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) DBE = <b>0</b> → alkohol atau eter; (2) ujung terdekat <b>gugus fungsi</b>, bukan cabang; (3) hitung jumlah <b>atom karbon lain</b> yang terikat pada karbon pengikat –OH; (4) <b>keton</b>, dan berhenti di situ; (5) gugus yang menempel pada <b>oksigen</b>, yaitu sisi kanan tanda –COO–.</p>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 8-14 ==================== -->
+<section class="page">
+  <h2>Worked Example — Keisomeran dan Reaksi Identifikasi</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 8 — Menghitung isomer C₄H₁₀O</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan seluruh isomer C<sub>4</sub>H<sub>10</sub>O beserta jumlahnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Daftar lengkap dan jumlahnya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Kerjakan alkohol sampai tuntas, baru eter.</div></div>
+      <div class="step"><b>Langkah 1 — Golongannya</b>DBE = 0 → <span class="eq">alkohol atau eter</span></div>
+      <div class="step"><b>Langkah 2 — Alkohol rantai lurus 4C</b>1-butanol, 2-butanol → <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 3 — Alkohol rantai 3C bercabang</b>2-metil-1-propanol, 2-metil-2-propanol → <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 4 — Eter</b>1C+3C: metoksi propana, metoksi isopropana. 2C+2C: etoksi etana → <span class="eq">3</span></div>
+      <div class="step"><b>Langkah 5 — Jumlahkan</b>4 + 3 = <span class="eq">7 isomer</span></div>
+      <div class="ansbar">Jawaban: 4 alkohol + 3 eter = 7 isomer</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 2 dan 3 dipisahkan berdasarkan <b>kerangka karbonnya</b>, bukan digabung — memisahkan seperti ini mencegah ada yang terlewat. Hasilnya diperiksa dengan enumerasi graf pohon: gugus alkil berkarbon 4 memang berjumlah <b>4</b>, sehingga alkoholnya juga 4. Angka 7 itu terverifikasi, artinya daftar di atas dapat dipastikan lengkap.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 9 — Menghitung isomer C₄H₈O</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan seluruh isomer C<sub>4</sub>H<sub>8</sub>O yang bergugus karbonil.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Daftar aldehid dan keton</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Aldehid: gugus di ujung. Keton: gugus di tengah.</div></div>
+      <div class="step"><b>Langkah 1 — DBE</b>(8 + 2 − 8) ÷ 2 = <span class="eq">1</span> → aldehid atau keton</div>
+      <div class="step"><b>Langkah 2 — Aldehid</b>Gugus –CHO di ujung; sisa 3 karbon dapat lurus atau bercabang → <b>butanal</b> dan <b>2-metilpropanal</b> = <span class="eq">2</span></div>
+      <div class="step"><b>Langkah 3 — Keton</b>Gugus C=O harus diapit dua gugus alkil; dengan 4 karbon hanya ada satu cara → <b>butanon</b> = <span class="eq">1</span></div>
+      <div class="step"><b>Langkah 4 — Jumlahkan</b>2 + 1 = <span class="eq">3 isomer</span></div>
+      <div class="ansbar">Jawaban: butanal, 2-metilpropanal, dan butanon — 3 isomer</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Langkah 3 memperlihatkan mengapa keton selalu lebih sedikit daripada aldehid pada jumlah karbon yang sama: gugus C=O keton menuntut <b>dua sisi terisi</b>, sehingga pilihannya lebih sempit. Terverifikasi dengan enumerasi — untuk C<sub>4</sub> hasilnya 2 aldehid dan 1 keton, dan untuk C<sub>5</sub> menjadi 4 aldehid dan 3 keton.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 10 — Isomer fungsi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Apa yang dimaksud isomer fungsi, dan sebutkan tiga pasangannya beserta rumus umumnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Pengertian dan tiga pasangan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Cari golongan yang berbagi rumus umum sama.</div></div>
+      <div class="step"><b>Pengertian</b>Senyawa dengan rumus molekul sama tetapi <b>gugus fungsi berbeda</b></div>
+      <div class="step"><b>Pasangan 1</b><span class="eq">Alkohol dan eter</span> — keduanya C<sub>n</sub>H<sub>2n+2</sub>O</div>
+      <div class="step"><b>Pasangan 2</b><span class="eq">Aldehid dan keton</span> — keduanya C<sub>n</sub>H<sub>2n</sub>O</div>
+      <div class="step"><b>Pasangan 3</b><span class="eq">Asam karboksilat dan ester</span> — keduanya C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></div>
+      <div class="ansbar">Jawaban: tiga pasangan di atas</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Ketiga pasangan ini <b>tidak perlu dihafal</b> — keduanya muncul sendiri begitu Anda menuliskan rumus umum setiap golongan dan mencari yang sama. Inilah pula sebabnya rumus molekul saja tidak pernah cukup untuk menentukan golongan: setiap rumus umum selalu dimiliki <b>tepat dua</b> golongan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 11 — Membedakan aldehid dari keton</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Dua senyawa berumus C<sub>3</sub>H<sub>6</sub>O diuji dengan pereaksi Fehling. Senyawa P memberi endapan merah bata, senyawa Q tidak berubah. Tentukan keduanya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>Keduanya C<sub>3</sub>H<sub>6</sub>O; P positif Fehling, Q negatif</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Identitas P dan Q</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>DBE dulu, lalu terapkan hasil ujinya.</div></div>
+      <div class="step"><b>Langkah 1 — DBE</b>(6 + 2 − 6) ÷ 2 = <span class="eq">1</span>, satu O → aldehid atau keton</div>
+      <div class="step"><b>Langkah 2 — Senyawa P</b>Positif Fehling → <b>aldehid</b> → <span class="eq">propanal, CH₃CH₂CHO</span></div>
+      <div class="step"><b>Langkah 3 — Senyawa Q</b>Negatif → <b>keton</b> → <span class="eq">propanon, CH₃COCH₃</span></div>
+      <div class="step"><b>Langkah 4 — Sebabnya</b>Aldehid bersifat <b>reduktor</b>, mereduksi Cu²⁺ menjadi Cu₂O yang berwarna merah bata</div>
+      <div class="ansbar">Jawaban: P adalah propanal, Q adalah propanon</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Propanon adalah keton <b>paling sederhana</b> yang mungkin — dengan tiga karbon, gugus C=O baru dapat diapit dua gugus alkil. Itulah sebabnya C<sub>3</sub>H<sub>6</sub>O adalah rumus terkecil yang memberi pasangan aldehid-keton lengkap. Perhatikan bahwa hasil negatif pada Q <b>bukan kegagalan percobaan</b> — ketiadaan perubahan justru membuktikan senyawanya keton.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 12 — Esterifikasi</span><span class="lvl m">MENENGAH</span></div>
+    <div class="we-body">
+      <p class="stem">Tuliskan reaksi antara asam etanoat dan metanol, lalu berilah nama hasilnya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>CH<sub>3</sub>COOH dan CH<sub>3</sub>OH</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan dan nama hasilnya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Gugus –OH asam bergabung dengan H alkohol menjadi air.</div></div>
+      <div class="step"><b>Langkah 1 — Persamaan</b><span class="eq">CH₃COOH + CH₃OH ⇌ CH₃COOCH₃ + H₂O</span></div>
+      <div class="step"><b>Langkah 2 — Bagian "il"</b>Gugus pada oksigen berasal dari metanol → <span class="eq">metil</span></div>
+      <div class="step"><b>Langkah 3 — Bagian "oat"</b>Gugus asil dari asam etanoat, berkarbon 2 → <span class="eq">etanoat</span></div>
+      <div class="step"><b>Langkah 4 — Nama hasilnya</b><span class="eq">metil etanoat</span></div>
+      <div class="ansbar">Jawaban: CH<sub>3</sub>COOH + CH<sub>3</sub>OH ⇌ CH<sub>3</sub>COOCH<sub>3</sub> + H<sub>2</sub>O, menghasilkan metil etanoat</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan tanda panah bolak-balik — esterifikasi adalah reaksi <b>kesetimbangan</b>, sehingga hasilnya tidak pernah 100 %. Untuk menggesernya ke kanan, air biasanya disingkirkan dari campuran; ini penerapan langsung asas Le Chatelier dari Bab 9. Perhatikan pula asal kedua bagian namanya: "metil" dari <b>alkoholnya</b>, "etanoat" dari <b>asamnya</b>.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 13 — Mengurutkan titik didih</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Urutkan dari titik didih tertinggi: asam propanoat, 1-propanol, metoksi etana, dan propanal. Keempatnya berkarbon tiga.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Urutan titik didih</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Bandingkan kekuatan gaya antarmolekulnya.</div></div>
+      <div class="step"><b>Asam propanoat</b>Ikatan hidrogen <b>ganda</b> — dua molekul berpasangan lewat dua ikatan sekaligus → <span class="eq">tertinggi</span></div>
+      <div class="step"><b>1-propanol</b>Ikatan hidrogen <b>tunggal</b> → <span class="eq">kedua</span></div>
+      <div class="step"><b>Propanal</b>Tidak ada ikatan hidrogen, tetapi gugus C=O memberi <b>gaya dipol-dipol</b> → <span class="eq">ketiga</span></div>
+      <div class="step"><b>Metoksi etana</b>Hanya <b>gaya London</b> → <span class="eq">terendah</span></div>
+      <div class="ansbar">Jawaban: asam propanoat &gt; 1-propanol &gt; propanal &gt; metoksi etana</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Keempatnya berkarbon sama, sehingga <b>panjang rantai tidak berperan</b> sama sekali — seluruh perbedaannya bersumber pada gugus fungsinya. Inilah bukti langsung gagasan pembuka bab ini. Perhatikan urutan penalaran gaya antarmolekulnya: ikatan hidrogen ganda, ikatan hidrogen tunggal, dipol-dipol, lalu London — persis urutan kekuatan yang sudah Anda pelajari di Bab 2.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 14 — Menghitung isomer C₄H₈O₂</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Tentukan jumlah isomer C<sub>4</sub>H<sub>8</sub>O<sub>2</sub> yang berupa asam karboksilat dan ester.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah masing-masing dan totalnya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Untuk ester, bagi empat karbonnya antara sisi asil dan sisi alkil.</div></div>
+      <div class="step"><b>Asam karboksilat</b>Gugus –COOH di ujung; sisa 3 karbon lurus atau bercabang → asam butanoat, asam 2-metilpropanoat = <span class="eq">2</span></div>
+      <div class="step"><b>Ester, asil 1C (format)</b>HCOO– dengan sisa 3C → propil format, isopropil format = <span class="eq">2</span></div>
+      <div class="step"><b>Ester, asil 2C (etanoat)</b>CH₃COO– dengan sisa 2C → etil etanoat = <span class="eq">1</span></div>
+      <div class="step"><b>Ester, asil 3C (propanoat)</b>C₂H₅COO– dengan sisa 1C → metil propanoat = <span class="eq">1</span></div>
+      <div class="step"><b>Jumlahkan</b>2 asam + 4 ester = <span class="eq">6 isomer</span></div>
+      <div class="ansbar">Jawaban: 2 asam karboksilat + 4 ester = 6 isomer</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Membagi ester menurut <b>jumlah karbon sisi asilnya</b> — bukan mencoba menggambar acak — memastikan tidak ada yang terlewat maupun terhitung dua kali. Terverifikasi dengan enumerasi: C<sub>4</sub>H<sub>8</sub>O<sub>2</sub> memang memberi tepat <b>6</b> isomer. Perhatikan bahwa sisi asil dapat berkarbon <b>satu saja</b> — itulah format HCOO–, yang sering terlewat karena bentuknya tidak seperti gugus alkil biasa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORKED EXAMPLES 15-20 ==================== -->
+<section class="page">
+  <h2>Worked Example — Penalaran Gabungan dan Analisis Senyawa</h2>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 15 — Menentukan senyawa dari rangkaian uji</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Senyawa X berumus C<sub>3</sub>H<sub>8</sub>O. X bereaksi dengan logam Na menghasilkan gas. Bila dioksidasi, X menghasilkan senyawa yang <b>negatif</b> terhadap Fehling. Tentukan X.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>C<sub>3</sub>H<sub>8</sub>O; positif Na; hasil oksidasinya negatif Fehling</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Identitas X</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Setiap petunjuk menyempitkan kemungkinan satu langkah.</div></div>
+      <div class="step"><b>Langkah 1 — DBE</b>0 → <span class="eq">alkohol atau eter</span></div>
+      <div class="step"><b>Langkah 2 — Uji Na positif</b>Punya gugus –OH → <b>alkohol</b>; kemungkinannya 1-propanol atau 2-propanol</div>
+      <div class="step"><b>Langkah 3 — Hasil oksidasi negatif Fehling</b>Berarti hasilnya <b>bukan aldehid</b> → melainkan <span class="eq">keton</span></div>
+      <div class="step"><b>Langkah 4 — Simpulkan</b>Yang menghasilkan keton adalah alkohol <b>sekunder</b> → <span class="eq">2-propanol</span></div>
+      <div class="step"><b>Periksa</b>2-propanol → dioksidasi menjadi propanon (keton) → negatif Fehling ✔</div>
+      <div class="ansbar">Jawaban: X adalah 2-propanol, CH<sub>3</sub>CHOHCH<sub>3</sub></div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Inilah bentuk soal yang paling sering muncul di UTBK — beberapa petunjuk berantai yang harus dipakai berurutan. Langkah 3 menuntut penalaran <b>dua tingkat</b>: hasil negatif Fehling berarti hasil oksidasinya keton, dan keton hanya berasal dari alkohol sekunder. Menjawab 1-propanol adalah kesalahan yang sering terjadi karena petunjuk terakhir diabaikan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 16 — Hidrolisis ester</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Etil etanoat dihidrolisis dengan NaOH. Tuliskan persamaannya dan sebutkan nama reaksinya.</p>
+      <div class="we-row"><div class="k">Diketahui</div><div>CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + NaOH</div></div>
+      <div class="we-row"><div class="k">Ditanya</div><div>Persamaan dan nama reaksinya</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Ester terputus di ikatan C–O; sisi asil menjadi garam, sisi alkil menjadi alkohol.</div></div>
+      <div class="step"><b>Langkah 1 — Tandai putusnya</b>CH₃CO– | –OC₂H₅</div>
+      <div class="step"><b>Langkah 2 — Sisi asil dengan basa</b>Menjadi garam: <span class="eq">CH₃COONa</span> (natrium etanoat)</div>
+      <div class="step"><b>Langkah 3 — Sisi alkil</b>Menjadi alkohol: <span class="eq">C₂H₅OH</span> (etanol)</div>
+      <div class="step"><b>Langkah 4 — Persamaan</b><span class="eq">CH₃COOC₂H₅ + NaOH → CH₃COONa + C₂H₅OH</span></div>
+      <div class="step"><b>Langkah 5 — Nama reaksinya</b><span class="eq">Penyabunan</span> (saponifikasi)</div>
+      <div class="ansbar">Jawaban: menghasilkan natrium etanoat dan etanol; reaksinya disebut penyabunan</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan perbedaan dengan hidrolisis biasa: bila memakai <b>air</b> saja, hasilnya asam etanoat dan etanol, dan reaksinya <b>bolak-balik</b>. Dengan <b>basa kuat</b>, asamnya langsung berubah menjadi garam sehingga tidak dapat kembali — reaksinya menjadi <b>searah</b> dan tuntas. Inilah cara sabun dibuat dari lemak, dan itulah asal nama reaksinya.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 17 — Menghitung isomer C₅H₁₂O</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Berapa isomer C<sub>5</sub>H<sub>12</sub>O seluruhnya? Uraikan cara menghitungnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Jumlah isomer</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Alkohol dihitung dari kerangka; eter dari pembagian karbonnya.</div></div>
+      <div class="step"><b>Alkohol rantai 5C</b>1-pentanol, 2-pentanol, 3-pentanol → <span class="eq">3</span></div>
+      <div class="step"><b>Alkohol rantai 4C bercabang</b>2-metil-1-butanol, 2-metil-2-butanol, 3-metil-1-butanol, 3-metil-2-butanol → <span class="eq">4</span></div>
+      <div class="step"><b>Alkohol rantai 3C bercabang dua</b>2,2-dimetil-1-propanol → <span class="eq">1</span></div>
+      <div class="step"><b>Eter 1C + 4C</b>Gugus butil ada 4 macam → <span class="eq">4</span></div>
+      <div class="step"><b>Eter 2C + 3C</b>Gugus propil ada 2 macam → <span class="eq">2</span></div>
+      <div class="step"><b>Jumlahkan</b>8 alkohol + 6 eter = <span class="eq">14 isomer</span></div>
+      <div class="ansbar">Jawaban: 8 alkohol + 6 eter = 14 isomer</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Perhatikan lonjakannya dari C<sub>4</sub>: dari 7 menjadi 14, <b>berlipat dua</b> hanya dengan menambah satu atom karbon. Terverifikasi dengan enumerasi graf pohon, dan enumerator itu sendiri sudah diuji terhadap nilai yang pasti sebelum dipakai. Langkah 4 memakai kenyataan bahwa <b>gugus butil ada empat macam</b> — angka yang sama dengan jumlah alkohol C<sub>4</sub>, karena keduanya sama-sama mencacah gugus alkil berkarbon empat.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 18 — Menelusuri rangkaian reaksi</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Etanol dioksidasi menjadi P, lalu P dioksidasi lagi menjadi Q. Q direaksikan dengan etanol menghasilkan R. Tentukan P, Q, dan R.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Ketiga senyawa</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Etanol adalah alkohol primer — oksidasinya berlangsung dua tahap.</div></div>
+      <div class="step"><b>Langkah 1 — P</b>Etanol alkohol <b>primer</b> → oksidasi pertama memberi aldehid → <span class="eq">etanal, CH₃CHO</span></div>
+      <div class="step"><b>Langkah 2 — Q</b>Aldehid dioksidasi lagi → <span class="eq">asam etanoat, CH₃COOH</span></div>
+      <div class="step"><b>Langkah 3 — R</b>Asam + alkohol → <b>esterifikasi</b> → <span class="eq">etil etanoat, CH₃COOC₂H₅</span></div>
+      <div class="step"><b>Persamaan tahap 3</b><span class="eq">CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</span></div>
+      <div class="ansbar">Jawaban: P etanal, Q asam etanoat, R etil etanoat</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Rangkaian ini menyentuh tiga golongan sekaligus dan sering dipakai sebagai soal penutup. Kuncinya di langkah 1: etanol harus <b>digolongkan dulu</b> sebagai primer, karena hanya alkohol primer yang oksidasinya dua tahap. Bila yang dipakai 2-propanol, rangkaiannya <b>berhenti di tahap pertama</b> — hasilnya keton yang tidak dapat dioksidasi lagi.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 19 — Membedakan tiga senyawa sekaligus</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Tiga cairan tak berlabel berumus C<sub>3</sub>H<sub>6</sub>O<sub>2</sub>, C<sub>3</sub>H<sub>6</sub>O, dan C<sub>3</sub>H<sub>8</sub>O. Rancang percobaan untuk mengenali ketiganya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Rancangan percobaan</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Mulai dari uji yang memisahkan paling banyak sekaligus.</div></div>
+      <div class="step"><b>Uji 1 — Lakmus biru</b>Yang memerahkan lakmus adalah <b>asam karboksilat</b> → mengenali <span class="eq">C₃H₆O₂ sebagai asam propanoat</span></div>
+      <div class="step"><b>Uji 2 — Logam Na pada dua sisanya</b>Yang mengeluarkan gas H₂ punya gugus –OH → <span class="eq">C₃H₈O adalah alkohol</span></div>
+      <div class="step"><b>Uji 3 — Sisanya</b>C₃H₆O bergugus karbonil; uji Fehling menentukan aldehid atau keton</div>
+      <div class="step"><b>Catatan</b>C₃H₆O₂ juga bisa ester; bila lakmus <b>tetap biru</b> dan baunya harum, itu esternya</div>
+      <div class="ansbar">Jawaban: lakmus untuk asam, logam Na untuk alkohol, Fehling untuk membedakan aldehid dari keton</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Urutan ujinya dipilih agar <b>setiap langkah memisahkan sebanyak mungkin</b>. Lakmus dipakai lebih dulu karena hasilnya paling tegas dan langsung menyisihkan satu cairan. Perhatikan catatan di langkah terakhir: rumus C<sub>3</sub>H<sub>6</sub>O<sub>2</sub> sendiri belum memastikan asam — ia bisa juga ester, dan hanya ujilah yang memastikan.</div>
+    </div>
+  </div>
+
+  <div class="we">
+    <div class="we-head"><span>Contoh 20 — Analisis lengkap satu senyawa</span><span class="lvl h">ADVANCED / HOTS</span></div>
+    <div class="we-body">
+      <p class="stem">Untuk senyawa 2-butanol, tentukan (a) golongannya; (b) hasil oksidasinya; (c) hasil uji Fehling terhadap hasil oksidasi itu; (d) jumlah isomer seluruhnya untuk rumus molekulnya.</p>
+      <div class="we-row"><div class="k">Ditanya</div><div>Empat hal berantai</div></div>
+      <div class="we-row"><div class="k">Strategi</div><div>Hasil (a) menentukan (b), dan (b) menentukan (c).</div></div>
+      <div class="step"><b>(a) Golongan</b>Karbon pengikat –OH mengikat <b>2</b> karbon lain → <span class="eq">alkohol sekunder</span></div>
+      <div class="step"><b>(b) Hasil oksidasi</b>Alkohol sekunder → <span class="eq">butanon</span> (keton), berhenti di situ</div>
+      <div class="step"><b>(c) Uji Fehling pada butanon</b>Keton tidak dapat dioksidasi → <span class="eq">negatif</span>, tidak ada endapan</div>
+      <div class="step"><b>(d) Isomer C₄H₁₀O</b>4 alkohol + 3 eter = <span class="eq">7 isomer</span></div>
+      <div class="ansbar">Jawaban: (a) sekunder; (b) butanon; (c) negatif; (d) 7 isomer</div>
+      <div class="whythis"><b>Mengapa menggunakan cara ini?</b>Bagian (d) menjebak yang membaca sekilas — soal menanyakan isomer untuk <b>rumus molekulnya</b>, yaitu C<sub>4</sub>H<sub>10</sub>O, sehingga eter <b>ikut dihitung</b>. Menjawab 4 berarti hanya menghitung alkoholnya. Perhatikan pula rantai penalaran (a)→(b)→(c): satu penggolongan di awal menentukan dua jawaban berikutnya, dan salah menggolongkan di langkah pertama membuat ketiganya salah.</div>
+    </div>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">Quick Recall — tutup buku, jawab dalam hati</div>
+    <ol class="step">
+      <li>Berapa isomer C<sub>5</sub>H<sub>12</sub>O seluruhnya?</li>
+      <li>Apa hasil hidrolisis ester dengan basa kuat, dan apa nama reaksinya?</li>
+      <li>Alkohol golongan apa yang oksidasinya berlangsung dua tahap?</li>
+      <li>Mengapa esterifikasi tidak pernah menghasilkan 100 % ester?</li>
+      <li>Senyawa berkarbon sama manakah yang bertitik didih tertinggi?</li>
+    </ol>
+    <p style="margin-top:10px"><b>Kunci:</b> (1) <b>14</b> — yaitu 8 alkohol dan 6 eter; (2) <b>garam</b> asam karboksilat dan alkohol; reaksinya <b>penyabunan</b>; (3) alkohol <b>primer</b>, menjadi aldehid lalu asam karboksilat; (4) karena reaksinya <b>bolak-balik</b>; (5) <b>asam karboksilat</b>, karena ikatan hidrogennya ganda.</p>
+  </div>
+</section>
+
+<!-- ==================== 18.11 EXAM FOCUS ==================== -->
+<section class="page" id="focus">
+  <h2>18.11&nbsp; ★ UTBK / Exam Focus — Ringkasan Bab</h2>
+  <p class="lead">Langkah pertama pada hampir setiap soal bab ini sama: <b>hitung derajat ketidakjenuhannya</b>. Dari situ kemungkinannya menyempit menjadi dua.</p>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 1 — "Tentukan golongan dari rumus molekul"</div>
+    <div class="fx">DBE = (2C + 2 − H) ÷ 2 &nbsp;&nbsp;(atom O tidak dihitung)</div>
+    <div class="tw" style="margin-top:12px"><table class="mini">
+      <tr><th>DBE 0, satu O</th><td>alkohol atau eter</td></tr>
+      <tr><th>DBE 1, satu O</th><td>aldehid atau keton</td></tr>
+      <tr><th>DBE 1, dua O</th><td>asam karboksilat atau ester</td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 2 — "Berilah nama IUPAC"</div>
+    <p>Rantai utama wajib <b>memuat gugus fungsi</b>; penomoran dimulai dari ujung <b>terdekat gugus fungsi</b>, bukan cabang.</p>
+    <p><b>Tidak perlu dinomori:</b> aldehid dan asam karboksilat, karena gugusnya selalu di ujung.</p>
+    <p><b>Ester:</b> bagian "il" adalah gugus pada <b>oksigen</b>; bagian "oat" menghitung <b>termasuk</b> karbon karbonilnya.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 3 — "Meramalkan hasil oksidasi"</div>
+    <p>Golongkan alkoholnya lebih dulu: <b>primer</b> → aldehid → asam; <b>sekunder</b> → keton; <b>tersier</b> → tidak bereaksi.</p>
+    <p>Caranya: hitung berapa <b>atom karbon lain</b> yang terikat pada karbon pengikat –OH.</p>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 4 — "Hitung jumlah isomer"</div>
+    <p>Kerjakan satu golongan sampai tuntas, baru pasangannya. Untuk alkohol, mulai dari rantai terpanjang lalu persingkat. Untuk eter, bagi jumlah karbonnya menjadi dua sisi.</p>
+    <div class="tw" style="margin-top:10px"><table class="mini">
+      <tr><th>C₄H₁₀O</th><td>4 alkohol + 3 eter = <b>7</b></td></tr>
+      <tr><th>C₅H₁₂O</th><td>8 alkohol + 6 eter = <b>14</b></td></tr>
+      <tr><th>C₄H₈O</th><td>2 aldehid + 1 keton = <b>3</b></td></tr>
+      <tr><th>C₅H₁₀O</th><td>4 aldehid + 3 keton = <b>7</b></td></tr>
+      <tr><th>C₄H₈O₂</th><td>2 asam + 4 ester = <b>6</b></td></tr>
+    </table></div>
+  </div>
+
+  <div class="box exam">
+    <div class="bt">★ Pola 5 — "Identifikasi lewat percobaan"</div>
+    <div class="tw"><table class="mini">
+      <tr><th>Logam Na</th><td>bereaksi → <b>alkohol</b> · tidak → eter</td></tr>
+      <tr><th>Tollens</th><td>cermin perak → <b>aldehid</b> · tidak → keton</td></tr>
+      <tr><th>Fehling</th><td>endapan merah bata → <b>aldehid</b> · tidak → keton</td></tr>
+      <tr><th>Lakmus biru</th><td>memerah → <b>asam</b> · tetap biru dan harum → ester</td></tr>
+    </table></div>
+  </div>
+
+  <div class="box trap">
+    <div class="bt">⚠ Delapan jebakan paling sering dipakai penyusun soal</div>
+    <ol class="step">
+      <li><b>Memberi nomor dari ujung terdekat cabang</b>, bukan gugus fungsi.</li>
+      <li><b>Memilih rantai terpanjang</b> yang ternyata tidak memuat gugus fungsinya.</li>
+      <li><b>Menulis nomor pada aldehid</b> — cukup "propanal", bukan "1-propanal".</li>
+      <li><b>Membalik kedua bagian nama ester</b>.</li>
+      <li><b>Lupa menghitung karbon karbonil</b> pada bagian "oat".</li>
+      <li><b>Hanya menghitung alkoholnya</b> pada soal isomer C<sub>n</sub>H<sub>2n+2</sub>O.</li>
+      <li><b>Menghitung struktur yang sama dua kali</b> karena digambar berbeda bentuk.</li>
+      <li><b>Tertukar hasil Tollens dan Fehling</b> — perak vs merah bata.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 18.12 HOW TO MASTER ==================== -->
+<section class="page" id="master">
+  <h2>18.12&nbsp; How to Master This Chapter</h2>
+  <p class="lead">Bab ini menuntut dua keterampilan yang berbeda: <b>tata nama</b> yang perlu latihan berulang, dan <b>menghitung isomer</b> yang perlu cara yang tertib.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ct">Tahap 1 · Gugus fungsi (1 hari)</div>
+      <ul class="tick">
+        <li>Hafalkan enam gugus beserta rumus umum dan akhirannya.</li>
+        <li>Latih menghitung DBE untuk 20 rumus molekul.</li>
+        <li>Pastikan Anda tahu tiga pasangan isomer fungsi.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 2 · Tata nama (2 hari)</div>
+      <ul class="tick">
+        <li>Latih 30 soal penamaan, lima untuk tiap golongan.</li>
+        <li>Latih khusus ester — bagian yang paling sering keliru.</li>
+        <li>Latih arah sebaliknya: dari nama ke struktur.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 3 · Isomer (1 hari)</div>
+      <ul class="tick">
+        <li>Kerjakan C<sub>4</sub>H<sub>10</sub>O dan C<sub>5</sub>H<sub>12</sub>O sampai lengkap tanpa melihat.</li>
+        <li>Biasakan memberi nama tiap struktur untuk memeriksa pengulangan.</li>
+        <li>Latih C<sub>4</sub>H<sub>8</sub>O dan C<sub>4</sub>H<sub>8</sub>O<sub>2</sub>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct">Tahap 4 · Reaksi dan identifikasi (1 hari)</div>
+      <ul class="tick">
+        <li>Hafalkan empat uji pembeda beserta hasilnya.</li>
+        <li>Latih 15 soal oksidasi alkohol dan esterifikasi.</li>
+        <li>Kerjakan soal berantai yang memakai beberapa petunjuk sekaligus.</li>
+        <li>Kerjakan Final Chapter Test dengan batas waktu 40 menit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Kebiasaan yang paling menyelamatkan nilai di bab ini</div>
+    <p><b>Hitung DBE sebelum apa pun.</b> Satu perhitungan sepuluh detik menyempitkan jawaban dari enam golongan menjadi dua, dan langkah itu berlaku pada hampir setiap soal bab ini.</p>
+    <p><b>Beri nama setiap struktur yang Anda gambar saat menghitung isomer.</b> Dua struktur dengan nama sama adalah senyawa yang sama — ini pemeriksa paling andal untuk menghindari pengulangan, dan jauh lebih cepat daripada membandingkan gambar.</p>
+    <p><b>Golongkan alkoholnya sebelum meramalkan hasil oksidasi.</b> Satu kata di sisi kertas — "primer", "sekunder", atau "tersier" — menutup jebakan terbesar bagian oksidasi. Dan ingat bahwa alasan alkohol tersier dan keton sama-sama tak teroksidasi itu identik: <b>tidak ada atom H yang tersisa untuk dilepas</b>.</p>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 1 ==================== -->
+<section class="page" id="lv1">
+  <h2>Soal Latihan Bab 18</h2>
+  <p>Kerjakan tanpa membuka pembahasan terlebih dahulu. Pada setiap soal, <b>hitung DBE lebih dulu</b> sebelum menentukan golongannya.</p>
+
+  <div class="lvl-head L1"><div><div class="n">LEVEL 1</div><div class="t">Concept Check</div></div><div class="c">5 soal</div></div>
+  <p class="lvl-desc">Menguji pengenalan gugus fungsi, rumus umum, dan istilah dasar.</p>
+
+  <div class="q">
+    <div class="qn">Soal 1</div>
+    <div class="qs">Gugus fungsi –COOH dimiliki oleh golongan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> alkohol</li><li><span class="l">B.</span> aldehid</li><li><span class="l">C.</span> ester</li><li><span class="l">D.</span> asam karboksilat</li><li><span class="l">E.</span> keton</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Gugus <b>–COOH</b> (karboksil) adalah ciri asam karboksilat. Ia sebenarnya gabungan gugus karbonil (C=O) dan hidroksil (–OH) pada atom karbon yang sama.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Alkohol bergugus –OH saja.</li>
+        <li><b>B.</b> Aldehid bergugus –CHO.</li>
+        <li><b>C.</b> Ester bergugus –COO– dengan gugus alkil di kedua sisi.</li>
+        <li><b>E.</b> Keton bergugus –CO– di tengah rantai.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> perhatikan kemiripan –COOH dan –COO–. Yang membedakan hanya atom di ujungnya: <b>H</b> untuk asam, <b>gugus alkil</b> untuk ester.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 2</div>
+    <div class="qs">Pasangan senyawa yang merupakan <b>isomer fungsi</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 1-propanol dan 2-propanol</li>
+      <li><span class="l">B.</span> etanol dan dimetil eter</li>
+      <li><span class="l">C.</span> butanal dan 2-metilpropanal</li>
+      <li><span class="l">D.</span> etanol dan propanol</li>
+      <li><span class="l">E.</span> propanon dan butanon</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Isomer fungsi berarti <b>rumus molekul sama, gugus fungsi berbeda</b>. Etanol dan dimetil eter sama-sama C<sub>2</sub>H<sub>6</sub>O tetapi yang satu alkohol dan yang lain eter.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Keduanya alkohol; ini isomer <b>posisi</b>.</li>
+        <li><b>C.</b> Keduanya aldehid; ini isomer <b>kerangka</b>.</li>
+        <li><b>D, E.</b> Rumus molekulnya <b>berbeda</b>, jadi bukan isomer sama sekali.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> hanya ada <b>tiga pasangan</b> isomer fungsi — alkohol-eter, aldehid-keton, dan asam-ester. Bila pasangannya di luar ketiga itu, jawabannya bukan isomer fungsi.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 3</div>
+    <div class="qs">Rumus umum aldehid dan keton adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> C<sub>n</sub>H<sub>2n</sub>O</li><li><span class="l">B.</span> C<sub>n</sub>H<sub>2n+2</sub>O</li><li><span class="l">C.</span> C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></li><li><span class="l">D.</span> C<sub>n</sub>H<sub>2n+2</sub></li><li><span class="l">E.</span> C<sub>n</sub>H<sub>2n</sub></li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Aldehid dan keton sama-sama berumus <b>C<sub>n</sub>H<sub>2n</sub>O</b>. Gugus C=O mengurangi dua atom H dibandingkan alkohol, sehingga DBE-nya menjadi 1.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Rumus <b>alkohol dan eter</b>.</li>
+        <li><b>C.</b> Rumus <b>asam karboksilat dan ester</b>.</li>
+        <li><b>D, E.</b> Rumus alkana dan alkena — tanpa atom O sama sekali.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ketiga rumus umum bergugus O ini layak dihafal berurutan — C<sub>n</sub>H<sub>2n+2</sub>O, C<sub>n</sub>H<sub>2n</sub>O, C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub>. Perbedaan jumlah H dan O langsung menunjuk golongannya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 4</div>
+    <div class="qs">Senyawa yang <b>tidak</b> bereaksi dengan logam natrium adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etanol</li><li><span class="l">B.</span> 1-propanol</li><li><span class="l">C.</span> asam etanoat</li><li><span class="l">D.</span> 2-butanol</li><li><span class="l">E.</span> dimetil eter</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Logam natrium bereaksi dengan atom H yang terikat pada <b>oksigen</b>, yaitu gugus –OH. Eter tidak punya gugus itu — seluruh atom H-nya terikat pada karbon.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B, D.</b> Ketiganya alkohol, bergugus –OH.</li>
+        <li><b>C.</b> Asam karboksilat juga bergugus –OH pada –COOH, bahkan bereaksi lebih cepat.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> uji natrium membedakan alkohol dari eter, tetapi <b>tidak</b> membedakan alkohol dari asam karboksilat — keduanya sama-sama bereaksi. Untuk itu diperlukan lakmus.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 5</div>
+    <div class="qs">Hasil oksidasi alkohol sekunder adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> aldehid</li><li><span class="l">B.</span> asam karboksilat</li><li><span class="l">C.</span> keton</li><li><span class="l">D.</span> ester</li><li><span class="l">E.</span> eter</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Konsep yang diuji</h5>
+      <p>Aturan oksidasi alkohol: <b>primer</b> → aldehid lalu asam karboksilat; <b>sekunder</b> → keton; <b>tersier</b> → tidak teroksidasi.</p>
+      <p>Alkohol sekunder berhenti di keton karena karbon karbonilnya sudah tidak punya atom H tersisa.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A, B.</b> Keduanya hasil oksidasi alkohol <b>primer</b>.</li>
+        <li><b>D, E.</b> Ester dan eter tidak dihasilkan lewat oksidasi.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> golongkan alkoholnya <b>sebelum</b> menjawab. Menghitung jumlah atom karbon lain pada karbon pengikat –OH memakan lima detik dan menutup jebakan ini.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 2 ==================== -->
+<section class="page" id="lv2">
+  <div class="lvl-head L2"><div><div class="n">LEVEL 2</div><div class="t">Application</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menerapkan tata nama, menggolongkan alkohol, dan menghitung isomer sederhana.</p>
+
+  <div class="q">
+    <div class="qn">Soal 6</div>
+    <div class="qs">Nama IUPAC untuk CH<sub>3</sub>–CH(OH)–CH<sub>2</sub>–CH<sub>3</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 1-butanol</li><li><span class="l">B.</span> 2-butanol</li><li><span class="l">C.</span> 3-butanol</li><li><span class="l">D.</span> 2-metil-1-propanol</li><li><span class="l">E.</span> butanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Rantai terpanjang berisi <b>4</b> karbon → butanol</p>
+      <p><b>Langkah 2.</b> Penomoran dari ujung terdekat –OH → gugus –OH di karbon nomor <b>2</b></p>
+      <p><b>Langkah 3.</b> Tidak ada cabang → <b>2-butanol</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>C.</b> Memberi nomor dari ujung yang salah — aturannya nomor <b>terkecil</b> untuk gugus fungsi.</li>
+        <li><b>A.</b> Gugus –OH tidak berada di ujung.</li>
+        <li><b>D.</b> Strukturnya tidak bercabang.</li>
+        <li><b>E.</b> Butanal adalah aldehid, bukan alkohol.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C menampung kesalahan penomoran yang paling sering. Nomor 2 dan 3 sama-sama mungkin secara hitungan, dan yang dipilih selalu yang <b>lebih kecil</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 7</div>
+    <div class="qs">Senyawa CH<sub>3</sub>–CH(CH<sub>3</sub>)–CH<sub>2</sub>–OH tergolong alkohol ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> tersier</li><li><span class="l">B.</span> sekunder</li><li><span class="l">C.</span> kuartener</li><li><span class="l">D.</span> primer</li><li><span class="l">E.</span> bukan alkohol</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Karbon pengikat –OH adalah <b>CH<sub>2</sub></b> di ujung. Karbon itu mengikat: dua atom H, satu gugus –OH, dan <b>satu atom karbon lain</b>.</p>
+      <p>Karena hanya mengikat <b>1</b> atom karbon lain → <b>alkohol primer</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Sekunder berarti mengikat 2 karbon lain.</li>
+        <li><b>A.</b> Tersier berarti mengikat 3 karbon lain.</li>
+        <li><b>C.</b> Tidak ada golongan alkohol kuartener — karbon yang mengikat 4 karbon lain tidak punya tempat untuk –OH.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> adanya <b>cabang</b> pada rantai tidak membuat alkoholnya menjadi sekunder atau tersier. Yang dilihat hanya karbon <b>pengikat –OH</b>, bukan seluruh rantainya.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 8</div>
+    <div class="qs">Nama untuk CH<sub>3</sub>–COO–C<sub>2</sub>H<sub>5</sub> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etil etanoat</li><li><span class="l">B.</span> etanil etoat</li><li><span class="l">C.</span> metil propanoat</li><li><span class="l">D.</span> etil metanoat</li><li><span class="l">E.</span> asam butanoat</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Bagian "il".</b> Gugus pada oksigen adalah C<sub>2</sub>H<sub>5</sub> → <b>etil</b></p>
+      <p><b>Langkah 2 — Bagian "oat".</b> Gugus asil CH<sub>3</sub>CO– berkarbon <b>2</b> (termasuk karbon karbonil) → <b>etanoat</b></p>
+      <p><b>Langkah 3.</b> Gabungkan → <b>etil etanoat</b> (nama lazimnya etil asetat)</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Membalik kedua bagiannya.</li>
+        <li><b>D.</b> Lupa menghitung karbon karbonil pada bagian "oat".</li>
+        <li><b>C.</b> Menukar sisi asil dengan sisi alkil.</li>
+        <li><b>E.</b> Ini asam karboksilat, bukan ester.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ingat aturannya — <b>bagian "il" selalu gugus yang menempel pada oksigen</b>, yaitu yang berada di kanan tanda –COO–.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 9</div>
+    <div class="qs">Jumlah isomer alkohol dengan rumus C<sub>4</sub>H<sub>10</sub>O adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 7</li><li><span class="l">E.</span> 8</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Rantai lurus 4C:</b> 1-butanol, 2-butanol → <b>2</b></p>
+      <p><b>Rantai 3C bercabang:</b> 2-metil-1-propanol, 2-metil-2-propanol → <b>2</b></p>
+      <p>Totalnya <b>4 alkohol</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>D.</b> Ini jumlah <b>seluruh</b> isomer C<sub>4</sub>H<sub>10</sub>O termasuk 3 eternya.</li>
+        <li><b>A, B.</b> Melewatkan isomer bercabang.</li>
+        <li><b>E.</b> Ini jumlah alkohol untuk C<sub>5</sub>H<sub>12</sub>O.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> soal ini menyebut kata "<b>alkohol</b>" secara tegas, sehingga eter <b>tidak</b> dihitung. Bila soal hanya menyebut rumus molekulnya, jawabannya 7.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 10</div>
+    <div class="qs">Senyawa yang memberi endapan merah bata dengan pereaksi Fehling adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> propanon</li><li><span class="l">B.</span> 2-propanol</li><li><span class="l">C.</span> dimetil eter</li><li><span class="l">D.</span> etil etanoat</li><li><span class="l">E.</span> propanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Pereaksi Fehling hanya bereaksi dengan <b>aldehid</b>, karena aldehid bersifat reduktor dan mereduksi Cu<sup>2+</sup> menjadi Cu<sub>2</sub>O yang berwarna merah bata.</p>
+      <p>Dari kelima pilihan, hanya <b>propanal</b> yang merupakan aldehid.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Propanon adalah keton — tidak dapat dioksidasi, hasilnya negatif.</li>
+        <li><b>B.</b> Alkohol tidak bereaksi dengan Fehling.</li>
+        <li><b>C, D.</b> Eter dan ester juga tidak bereaksi.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan utamanya — propanal dan propanon berumus sama persis (C<sub>3</sub>H<sub>6</sub>O) dan namanya hanya berbeda satu huruf, tetapi hasil ujinya bertolak belakang.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 11</div>
+    <div class="qs">Reaksi antara asam karboksilat dan alkohol disebut ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> hidrolisis</li><li><span class="l">B.</span> esterifikasi</li><li><span class="l">C.</span> oksidasi</li><li><span class="l">D.</span> penyabunan</li><li><span class="l">E.</span> adisi</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Konsep yang diuji</h5>
+      <p><b>Esterifikasi</b> menghasilkan ester dan air, dan reaksinya <b>bolak-balik</b>:</p>
+      <p class="eq">CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Hidrolisis adalah <b>kebalikannya</b> — ester diuraikan oleh air.</li>
+        <li><b>D.</b> Penyabunan adalah hidrolisis ester dengan <b>basa kuat</b>.</li>
+        <li><b>C, E.</b> Tidak berhubungan dengan pembentukan ester.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A dan D keduanya menggambarkan arah <b>sebaliknya</b>. Perhatikan arah reaksinya di soal: dari asam + alkohol berarti esterifikasi; dari ester berarti hidrolisis.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 3 ==================== -->
+<section class="page" id="lv3">
+  <div class="lvl-head L3"><div><div class="n">LEVEL 3</div><div class="t">UTBK Style</div></div><div class="c">6 soal</div></div>
+  <p class="lvl-desc">Menghitung isomer, menelusuri rangkaian reaksi, dan menggabungkan beberapa petunjuk.</p>
+
+  <div class="q">
+    <div class="qn">Soal 12</div>
+    <div class="qs">Jumlah seluruh isomer dengan rumus C<sub>4</sub>H<sub>10</sub>O adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 3</li><li><span class="l">C.</span> 7</li><li><span class="l">D.</span> 5</li><li><span class="l">E.</span> 14</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>DBE</b> = (8 + 2 − 10) ÷ 2 = 0 → alkohol <b>atau</b> eter, keduanya dihitung.</p>
+      <p><b>Alkohol:</b> 1-butanol, 2-butanol, 2-metil-1-propanol, 2-metil-2-propanol → <b>4</b></p>
+      <p><b>Eter:</b> metoksi propana, metoksi isopropana, etoksi etana → <b>3</b></p>
+      <p>Total <b>7 isomer</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Hanya menghitung alkoholnya.</li>
+        <li><b>B.</b> Hanya menghitung eternya.</li>
+        <li><b>E.</b> Ini jumlah untuk C<sub>5</sub>H<sub>12</sub>O.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan A adalah jebakan terbesar. Soal menyebut <b>rumus molekul</b> tanpa menyebut golongan, sehingga <b>kedua</b> golongan wajib dihitung. Angka 7 ini terverifikasi lewat enumerasi graf pohon.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 13</div>
+    <div class="qs">Jumlah seluruh isomer dengan rumus C<sub>4</sub>H<sub>8</sub>O yang bergugus karbonil adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 3</li><li><span class="l">B.</span> 2</li><li><span class="l">C.</span> 4</li><li><span class="l">D.</span> 1</li><li><span class="l">E.</span> 7</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>DBE</b> = 1 dengan satu atom O → aldehid atau keton.</p>
+      <p><b>Aldehid:</b> butanal, 2-metilpropanal → <b>2</b></p>
+      <p><b>Keton:</b> butanon → <b>1</b> (hanya satu kemungkinan dengan empat karbon)</p>
+      <p>Total <b>3 isomer</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Hanya menghitung aldehidnya.</li>
+        <li><b>D.</b> Hanya menghitung ketonnya.</li>
+        <li><b>E.</b> Ini jumlah untuk C<sub>5</sub>H<sub>10</sub>O.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> keton selalu <b>lebih sedikit</b> daripada aldehid pada jumlah karbon yang sama, karena gugus C=O keton menuntut dua sisi terisi. Terverifikasi: C<sub>4</sub> memberi 2 dan 1, C<sub>5</sub> memberi 4 dan 3.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 14</div>
+    <div class="qs">Senyawa X berumus C<sub>3</sub>H<sub>8</sub>O, bereaksi dengan Na, dan hasil oksidasinya <b>positif</b> terhadap Tollens. Senyawa X adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2-propanol</li><li><span class="l">B.</span> metoksi etana</li><li><span class="l">C.</span> propanon</li><li><span class="l">D.</span> 1-propanol</li><li><span class="l">E.</span> propanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> DBE = 0 → alkohol atau eter.</p>
+      <p><b>Langkah 2.</b> Bereaksi dengan Na → punya –OH → <b>alkohol</b>. Ini menggugurkan B.</p>
+      <p><b>Langkah 3.</b> Hasil oksidasinya positif Tollens → hasilnya <b>aldehid</b> → X adalah alkohol <b>primer</b>.</p>
+      <p><b>Langkah 4.</b> Alkohol primer berkarbon tiga adalah <b>1-propanol</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> 2-propanol sekunder — hasil oksidasinya keton, yang <b>negatif</b> Tollens.</li>
+        <li><b>C, E.</b> Keduanya berumus C<sub>3</sub>H<sub>6</sub>O, bukan C<sub>3</sub>H<sub>8</sub>O.</li>
+        <li><b>B.</b> Eter tidak bereaksi dengan Na.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> setiap petunjuk menyempitkan satu langkah. Langkah 3 menuntut penalaran dua tingkat — positif Tollens berarti hasilnya aldehid, dan aldehid hanya berasal dari alkohol primer.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 15</div>
+    <div class="qs">Urutan titik didih dari yang <b>tertinggi</b> untuk senyawa berkarbon dua adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etanol &gt; asam etanoat &gt; dimetil eter</li>
+      <li><span class="l">B.</span> dimetil eter &gt; etanol &gt; asam etanoat</li>
+      <li><span class="l">C.</span> asam etanoat &gt; dimetil eter &gt; etanol</li>
+      <li><span class="l">D.</span> ketiganya sama</li>
+      <li><span class="l">E.</span> asam etanoat &gt; etanol &gt; dimetil eter</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Asam etanoat:</b> ikatan hidrogen <b>ganda</b> — dua molekul berpasangan lewat dua ikatan sekaligus → tertinggi</p>
+      <p><b>Etanol:</b> ikatan hidrogen <b>tunggal</b> → kedua</p>
+      <p><b>Dimetil eter:</b> hanya gaya London → terendah</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Menempatkan etanol di atas asam etanoat.</li>
+        <li><b>B, C.</b> Menempatkan eter terlalu tinggi — eter justru tidak punya ikatan hidrogen sama sekali.</li>
+        <li><b>D.</b> Ketiganya berselisih jauh; etanol 78 °C, dimetil eter −24 °C.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> ketiganya berkarbon sama, sehingga panjang rantai tidak berperan — seluruh perbedaannya bersumber pada <b>gugus fungsinya</b>.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 16</div>
+    <div class="qs">Hidrolisis etil propanoat dengan NaOH menghasilkan ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> asam propanoat dan etanol</li>
+      <li><span class="l">B.</span> natrium etanoat dan propanol</li>
+      <li><span class="l">C.</span> natrium propanoat dan etanol</li>
+      <li><span class="l">D.</span> asam etanoat dan propanol</li>
+      <li><span class="l">E.</span> propanal dan etanol</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1 — Uraikan namanya.</b> "Etil" adalah gugus pada oksigen; "propanoat" adalah gugus asil berkarbon 3 → C<sub>2</sub>H<sub>5</sub>COO–C<sub>2</sub>H<sub>5</sub></p>
+      <p><b>Langkah 2 — Sisi asil dengan basa kuat.</b> Menjadi <b>garam</b>: natrium propanoat</p>
+      <p><b>Langkah 3 — Sisi alkil.</b> Menjadi alkohol: <b>etanol</b></p>
+      <p class="eq">C₂H₅COOC₂H₅ + NaOH → C₂H₅COONa + C₂H₅OH</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Ini hasil hidrolisis dengan <b>air</b>, bukan basa kuat.</li>
+        <li><b>B, D.</b> Menukar kedua sisinya saat menguraikan namanya.</li>
+        <li><b>E.</b> Hidrolisis tidak menghasilkan aldehid.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> dengan <b>basa kuat</b>, asamnya langsung menjadi garam sehingga reaksinya <b>searah dan tuntas</b>. Inilah yang disebut penyabunan, dan inilah cara sabun dibuat dari lemak.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 17</div>
+    <div class="qs">Jumlah isomer alkohol dengan rumus C<sub>5</sub>H<sub>12</sub>O adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 8</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 14</li><li><span class="l">E.</span> 3</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: B</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Rantai 5C:</b> 1-pentanol, 2-pentanol, 3-pentanol → <b>3</b></p>
+      <p><b>Rantai 4C bercabang:</b> 2-metil-1-butanol, 2-metil-2-butanol, 3-metil-1-butanol, 3-metil-2-butanol → <b>4</b></p>
+      <p><b>Rantai 3C bercabang dua:</b> 2,2-dimetil-1-propanol → <b>1</b></p>
+      <p>Total <b>8 alkohol</b>.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>D.</b> Ini jumlah <b>seluruh</b> isomer C<sub>5</sub>H<sub>12</sub>O termasuk 6 eternya.</li>
+        <li><b>C.</b> Ini jumlah eternya saja.</li>
+        <li><b>A, E.</b> Melewatkan sebagian isomer bercabang.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> jumlah alkohol selalu <b>sama dengan jumlah gugus alkil</b> berkarbon sama — untuk C<sub>5</sub> keduanya 8. Hubungan ini dapat dipakai sebagai pemeriksa cepat.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== LATIHAN LEVEL 4 ==================== -->
+<section class="page" id="lv4">
+  <div class="lvl-head L4"><div><div class="n">LEVEL 4</div><div class="t">Advanced / HOTS</div></div><div class="c">4 soal</div></div>
+  <p class="lvl-desc">Rangkaian reaksi, penalaran terbalik, dan penggabungan beberapa bab.</p>
+
+  <div class="q">
+    <div class="qn">Soal 18</div>
+    <div class="qs">Etanol dioksidasi bertahap menjadi P lalu Q. Q direaksikan dengan metanol menghasilkan R. Senyawa R adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> etil metanoat</li><li><span class="l">B.</span> metil propanoat</li><li><span class="l">C.</span> asam etanoat</li><li><span class="l">D.</span> metil etanoat</li><li><span class="l">E.</span> etanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: D</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>P:</b> etanol adalah alkohol <b>primer</b> → oksidasi pertama memberi <b>etanal</b></p>
+      <p><b>Q:</b> aldehid dioksidasi lagi → <b>asam etanoat</b></p>
+      <p><b>R:</b> asam etanoat + metanol → esterifikasi → bagian "il" dari metanol (<b>metil</b>), bagian "oat" dari asam etanoat (<b>etanoat</b>) → <b>metil etanoat</b></p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>A.</b> Membalik kedua bagian namanya.</li>
+        <li><b>C, E.</b> Keduanya adalah Q dan P, bukan R.</li>
+        <li><b>B.</b> Salah menghitung jumlah karbon sisi asilnya.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan C dan E menjebak yang berhenti di tengah rangkaian. Bacalah sampai akhir — yang ditanyakan adalah <b>R</b>, hasil ketiga.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 19</div>
+    <div class="qs">Senyawa Y berumus C<sub>4</sub>H<sub>10</sub>O. Y bereaksi dengan Na, tetapi <b>tidak dapat dioksidasi</b>. Senyawa Y adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> 2-metil-2-propanol</li><li><span class="l">B.</span> 1-butanol</li><li><span class="l">C.</span> 2-butanol</li><li><span class="l">D.</span> etoksi etana</li><li><span class="l">E.</span> butanal</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: A</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Langkah 1.</b> Bereaksi dengan Na → punya gugus –OH → <b>alkohol</b>, bukan eter. Ini menggugurkan D.</p>
+      <p><b>Langkah 2.</b> Tidak dapat dioksidasi → alkohol <b>tersier</b>.</p>
+      <p><b>Langkah 3.</b> Satu-satunya alkohol tersier berkarbon empat adalah <b>2-metil-2-propanol</b>, (CH<sub>3</sub>)<sub>3</sub>C–OH.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Primer — dapat dioksidasi menjadi butanal.</li>
+        <li><b>C.</b> Sekunder — dapat dioksidasi menjadi butanon.</li>
+        <li><b>D.</b> Eter tidak bereaksi dengan Na.</li>
+        <li><b>E.</b> Butanal berumus C<sub>4</sub>H<sub>8</sub>O, bukan C<sub>4</sub>H<sub>10</sub>O.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> dua petunjuk dipakai berurutan — yang pertama memisahkan alkohol dari eter, yang kedua menentukan golongannya. Dari empat alkohol C<sub>4</sub>H<sub>10</sub>O, hanya <b>satu</b> yang tersier.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 20</div>
+    <div class="qs">Esterifikasi tidak pernah menghasilkan ester 100 %. Cara yang <b>paling tepat</b> untuk memperbesar hasilnya adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> menurunkan suhunya</li>
+      <li><span class="l">B.</span> menambahkan ester ke dalam campuran</li>
+      <li><span class="l">C.</span> mengurangi jumlah alkoholnya</li>
+      <li><span class="l">D.</span> menambahkan katalis lebih banyak</li>
+      <li><span class="l">E.</span> menyingkirkan air yang terbentuk</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: E</span>
+      <h5>Langkah penyelesaian</h5>
+      <p>Esterifikasi adalah reaksi <b>kesetimbangan</b>:</p>
+      <p class="eq">asam + alkohol ⇌ ester + air</p>
+      <p>Menurut asas Le Chatelier dari Bab 9, <b>mengurangi hasil</b> menggeser kesetimbangan ke kanan. Air adalah salah satu hasilnya, sehingga menyingkirkannya memperbesar hasil ester.</p>
+      <h5>Mengapa pilihan lain salah</h5>
+      <ul class="distract">
+        <li><b>B.</b> Menambah hasil justru menggeser ke <b>kiri</b>.</li>
+        <li><b>C.</b> Mengurangi pereaksi juga menggeser ke kiri.</li>
+        <li><b>D.</b> Katalis mempercepat pencapaian kesetimbangan tetapi <b>tidak menggeser</b> letaknya.</li>
+        <li><b>A.</b> Suhu memengaruhi tetapan kesetimbangan, tetapi bukan cara yang paling tepat di sini.</li>
+      </ul>
+      <div class="insight"><b>Exam Insight:</b> pilihan D adalah jebakan klasik dari Bab 8 dan 9 — katalis mengubah <b>laju</b>, bukan <b>letak</b> kesetimbangan.</div>
+    </div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Soal 21</div>
+    <div class="qs">Perhatikan senyawa 2-propanol. Pernyataan yang <b>benar</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> tergolong alkohol primer</li>
+      <li><span class="l">B.</span> tidak bereaksi dengan logam Na</li>
+      <li><span class="l">C.</span> tergolong sekunder, hasil oksidasinya propanon yang negatif Fehling</li>
+      <li><span class="l">D.</span> hasil oksidasinya propanal</li>
+      <li><span class="l">E.</span> berumus C<sub>3</sub>H<sub>6</sub>O</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body">
+      <span class="key">Jawaban: C</span>
+      <h5>Langkah penyelesaian</h5>
+      <p><b>Rumusnya.</b> CH<sub>3</sub>CHOHCH<sub>3</sub> berumus <b>C<sub>3</sub>H<sub>8</sub>O</b>, bukan C<sub>3</sub>H<sub>6</sub>O. Ini menggugurkan E.</p>
+      <p><b>Golongan.</b> Karbon pengikat –OH mengikat <b>2</b> karbon lain → <b>sekunder</b>. Ini menggugurkan A.</p>
+      <p><b>Reaksi dengan Na.</b> Punya gugus –OH → <b>bereaksi</b>. Ini menggugurkan B.</p>
+      <p><b>Hasil oksidasi.</b> Alkohol sekunder → <b>propanon</b> (keton), bukan propanal. Ini menggugurkan D.</p>
+      <p><b>Uji Fehling pada propanon.</b> Keton tidak dapat dioksidasi → <b>negatif</b> ✔ Pernyataan C benar seluruhnya.</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab sekaligus — rumus molekul, penggolongan alkohol, uji natrium, aturan oksidasi, dan uji Fehling.</div>
+    </div></details>
+  </div>
+</section>
+
+<!-- ==================== ONE PAGE SUMMARY ==================== -->
+<section class="page" id="summary">
+  <h2>18.13 &nbsp;One Page Summary</h2>
+
+  <div class="summary">
+    <h3 style="margin-top:0">Peta ringkas Bab 18</h3>
+    <p class="eq" style="line-height:2; font-size:14.5px">
+      <b>GUGUS FUNGSI menentukan sifat</b>, bukan panjang rantainya<br>
+      DBE = (2C + 2 − H) ÷ 2 &nbsp;→&nbsp; setiap rumus umum memberi <b>tepat dua</b> golongan
+    </p>
+
+    <div class="sgrid">
+      <div class="scard">
+        <div class="h">ENAM GUGUS FUNGSI</div>
+        <ul>
+          <li><b>Alkohol</b> R–OH · akhiran –ol</li>
+          <li><b>Eter</b> R–O–R′ · alkoksi alkana</li>
+          <li><b>Aldehid</b> R–CHO · akhiran –al</li>
+          <li><b>Keton</b> R–CO–R′ · akhiran –on</li>
+          <li><b>Asam</b> R–COOH · asam …oat</li>
+          <li><b>Ester</b> R–COO–R′ · alkil …oat</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">TATA NAMA</div>
+        <ul>
+          <li>Rantai utama <b>wajib memuat</b> gugus fungsi</li>
+          <li>Nomor terkecil untuk <b>gugus fungsi</b>, bukan cabang</li>
+          <li>Aldehid dan asam <b>tidak dinomori</b></li>
+          <li>Eter: gugus <b>pendek</b> jadi "alkoksi"</li>
+          <li>Ester: "il" = gugus pada <b>oksigen</b></li>
+          <li>Ester: "oat" menghitung <b>karbon karbonil</b></li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">OKSIDASI &amp; IDENTIFIKASI</div>
+        <ul>
+          <li><b>Primer</b> → aldehid → asam karboksilat</li>
+          <li><b>Sekunder</b> → keton</li>
+          <li><b>Tersier</b> → tidak teroksidasi</li>
+          <li><b>Na</b>: bereaksi → alkohol · tidak → eter</li>
+          <li><b>Tollens</b>: cermin perak → aldehid</li>
+          <li><b>Fehling</b>: merah bata Cu₂O → aldehid</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="h">JUMLAH ISOMER (TERVERIFIKASI)</div>
+        <ul>
+          <li>C₄H₁₀O → 4 alkohol + 3 eter = <b>7</b></li>
+          <li>C₅H₁₂O → 8 alkohol + 6 eter = <b>14</b></li>
+          <li>C₄H₈O → 2 aldehid + 1 keton = <b>3</b></li>
+          <li>C₅H₁₀O → 4 aldehid + 3 keton = <b>7</b></li>
+          <li>C₄H₈O₂ → 2 asam + 4 ester = <b>6</b></li>
+          <li>Jumlah alkohol = jumlah <b>gugus alkil</b> berkarbon sama</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">⚡ Satu kalimat untuk seluruh Bab 18</div>
+    <p><b>Rumus molekul tidak pernah cukup untuk menentukan golongan senyawa karbon</b> — ia selalu memberi tepat dua kemungkinan, dan hanya uji pembeda yang menyelesaikannya.</p>
+  </div>
+</section>
+
+<!-- ==================== FORMULA SHEET ==================== -->
+<section class="page" id="sheet">
+  <h2>18.14 &nbsp;Formula Sheet Bab 18</h2>
+  <p>Halaman ini dirancang untuk dibaca ulang lima menit sebelum ujian.</p>
+
+  <div class="tw">
+  <table class="d">
+    <thead><tr><th>Rumus / Aturan</th><th>Fungsi</th><th>Digunakan saat</th><th>Catatan penting</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="eq">DBE = (2C + 2 − H) ÷ 2</td><td>Menentukan golongan</td><td><b>Langkah pertama</b> setiap soal</td><td>Atom O <b>tidak</b> dihitung</td></tr>
+      <tr><td class="eq">DBE 0, 1 O → alkohol/eter</td><td>Menyempitkan kemungkinan</td><td>Setelah menghitung DBE</td><td>Selalu dua kemungkinan</td></tr>
+      <tr class="hi"><td class="eq">DBE 1, 1 O → aldehid/keton</td><td>Menyempitkan kemungkinan</td><td>Setelah menghitung DBE</td><td>Gugus C=O</td></tr>
+      <tr class="hi"><td class="eq">DBE 1, 2 O → asam/ester</td><td>Menyempitkan kemungkinan</td><td>Setelah menghitung DBE</td><td>Dibedakan dengan lakmus</td></tr>
+      <tr><td class="eq">nomor terkecil untuk gugus fungsi</td><td>Penomoran IUPAC</td><td>Setiap soal tata nama</td><td>Berbeda dari aturan alkana</td></tr>
+      <tr><td class="eq">ester: (R′)il + (R+1C)oat</td><td>Menamai ester</td><td>Soal ester</td><td>"il" = gugus pada <b>oksigen</b></td></tr>
+      <tr class="hi"><td class="eq">hitung karbon lain pada C pengikat –OH</td><td>Menggolongkan alkohol</td><td>Sebelum meramalkan oksidasi</td><td>1 primer · 2 sekunder · 3 tersier</td></tr>
+      <tr><td class="eq">primer → aldehid → asam</td><td>Hasil oksidasi</td><td>Soal oksidasi alkohol</td><td>Dua tahap</td></tr>
+      <tr><td class="eq">sekunder → keton · tersier → tidak</td><td>Hasil oksidasi</td><td>Soal oksidasi alkohol</td><td>Sebabnya: tidak ada H tersisa</td></tr>
+      <tr class="hi"><td class="eq">asam + alkohol ⇌ ester + air</td><td>Esterifikasi</td><td>Soal pembuatan ester</td><td>Bolak-balik, katalis asam kuat</td></tr>
+      <tr><td class="eq">ester + NaOH → garam + alkohol</td><td>Penyabunan</td><td>Hidrolisis dengan basa kuat</td><td>Searah dan tuntas</td></tr>
+      <tr class="hi"><td class="eq">asam &gt; alkohol &gt; keton ≈ aldehid &gt; ester &gt; eter</td><td>Urutan titik didih</td><td>Karbon sama</td><td>Ikatan hidrogen ganda tertinggi</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="formula">
+    <div class="bt">ALUR EMPAT LANGKAH SETIAP SOAL IDENTIFIKASI</div>
+    <div class="main-eq" style="font-size:15px; line-height:2">
+      1. Hitung <b>DBE</b> → dapat dua kemungkinan golongan<br>
+      2. Terapkan <b>uji pembeda</b> → tinggal satu golongan<br>
+      3. Bila alkohol, <b>golongkan</b> primer/sekunder/tersier<br>
+      4. Baru ramalkan hasil reaksinya
+    </div>
+    <div class="note">Alur ini menyelesaikan hampir semua soal identifikasi bab ini, dan setiap langkahnya menyempitkan jawaban tepat satu tingkat. Langkah 1 memakan sepuluh detik dan menghemat jauh lebih banyak. Langkah 3 sering dilewati padahal ia penentu: tiga golongan alkohol memberi tiga hasil oksidasi yang berbeda, dan salah menggolongkan di sini membuat seluruh jawaban berikutnya keliru. Ingat pula bahwa alkohol tersier dan keton sama-sama tidak teroksidasi karena alasan yang identik — <b>tidak ada atom H yang tersisa untuk dilepas</b>.</div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CHAPTER TEST ==================== -->
+<section class="page" id="test">
+  <h2>18.15 &nbsp;Final Chapter Test</h2>
+  <p>20 soal evaluasi akhir bab. Komposisi: 4 soal konsep fundamental, 6 soal aplikasi, 6 soal gaya UTBK, dan 4 soal advanced/HOTS. <strong>Waktu yang disarankan: 40 menit.</strong> Hitung DBE lebih dulu pada setiap soal yang memberi rumus molekul.</p>
+
+  <div class="q">
+    <div class="qn">Tes 1</div>
+    <div class="qs">Gugus fungsi –CHO dimiliki oleh golongan ….</div>
+    <ol class="opt"><li><span class="l">A.</span> alkohol</li><li><span class="l">B.</span> keton</li><li><span class="l">C.</span> ester</li><li><span class="l">D.</span> aldehid</li><li><span class="l">E.</span> eter</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Gugus <b>–CHO</b> adalah ciri aldehid, dan letaknya <b>selalu di ujung</b> rantai — itulah sebabnya nomornya tidak pernah ditulis.</p>
+      <p>Keton bergugus –CO– di tengah rantai, dengan gugus alkil di kedua sisinya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 2</div>
+    <div class="qs">Rumus umum asam karboksilat dan ester adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></li><li><span class="l">B.</span> C<sub>n</sub>H<sub>2n</sub>O</li><li><span class="l">C.</span> C<sub>n</sub>H<sub>2n+2</sub>O</li><li><span class="l">D.</span> C<sub>n</sub>H<sub>2n+2</sub></li><li><span class="l">E.</span> C<sub>n</sub>H<sub>2n</sub></li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Keduanya berumus <b>C<sub>n</sub>H<sub>2n</sub>O<sub>2</sub></b> — DBE 1 dari gugus C=O, dengan dua atom O.</p>
+      <p>Pilihan B adalah rumus aldehid dan keton; pilihan C adalah rumus alkohol dan eter.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 3</div>
+    <div class="qs">Pasangan isomer fungsi yang benar adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1-butanol dan 2-butanol</li><li><span class="l">B.</span> propanal dan butanal</li><li><span class="l">C.</span> etanol dan propanol</li><li><span class="l">D.</span> butanal dan 2-metilpropanal</li><li><span class="l">E.</span> propanal dan propanon</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Propanal (aldehid) dan propanon (keton) sama-sama berumus <b>C<sub>3</sub>H<sub>6</sub>O</b> tetapi gugus fungsinya berbeda.</p>
+      <p>Pilihan A adalah isomer <b>posisi</b>; D adalah isomer <b>kerangka</b>; B dan C bukan isomer sama sekali karena rumusnya berbeda.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 4</div>
+    <div class="qs">Hasil oksidasi alkohol primer secara bertahap adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> keton lalu asam</li><li><span class="l">B.</span> eter lalu ester</li><li><span class="l">C.</span> tidak bereaksi</li><li><span class="l">D.</span> keton saja</li><li><span class="l">E.</span> aldehid lalu asam karboksilat</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Alkohol primer teroksidasi <b>dua tahap</b>: mula-mula menjadi aldehid, lalu aldehid itu teroksidasi lagi menjadi asam karboksilat.</p>
+      <p>Pilihan A dan D menggambarkan alkohol <b>sekunder</b>; pilihan C menggambarkan alkohol <b>tersier</b>.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 5</div>
+    <div class="qs">Nama IUPAC untuk CH<sub>3</sub>–CH<sub>2</sub>–CH<sub>2</sub>–OH adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2-propanol</li><li><span class="l">B.</span> propanal</li><li><span class="l">C.</span> 3-propanol</li><li><span class="l">D.</span> 1-propanol</li><li><span class="l">E.</span> propanon</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Rantai tiga karbon, gugus –OH di ujung. Penomoran dari ujung <b>terdekat gugus fungsi</b> memberi nomor <b>1</b> → <b>1-propanol</b>.</p>
+      <p>Pilihan C memberi nomor dari ujung yang salah. Pilihan B dan E adalah golongan lain.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 6</div>
+    <div class="qs">Senyawa (CH<sub>3</sub>)<sub>3</sub>C–OH tergolong alkohol ….</div>
+    <ol class="opt"><li><span class="l">A.</span> tersier</li><li><span class="l">B.</span> primer</li><li><span class="l">C.</span> sekunder</li><li><span class="l">D.</span> kuartener</li><li><span class="l">E.</span> bukan alkohol</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Karbon pengikat –OH mengikat <b>tiga</b> gugus metil, yaitu tiga atom karbon lain → alkohol <b>tersier</b>.</p>
+      <p>Akibatnya senyawa ini <b>tidak dapat dioksidasi</b> — karbon itu sudah tidak punya atom H yang tersisa untuk dilepas.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 7</div>
+    <div class="qs">Nama untuk CH<sub>3</sub>–CO–CH<sub>2</sub>–CH<sub>3</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> butanal</li><li><span class="l">B.</span> asam butanoat</li><li><span class="l">C.</span> butanon</li><li><span class="l">D.</span> 1-butanol</li><li><span class="l">E.</span> metil etanoat</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p>Gugus C=O berada di <b>tengah</b> rantai empat karbon → <b>keton</b> dengan akhiran –on → <b>butanon</b>.</p>
+      <p>Nomornya boleh dihilangkan karena pada rantai empat karbon gugus C=O hanya mungkin di posisi 2 — bila di posisi 1, senyawanya menjadi aldehid.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 8</div>
+    <div class="qs">Senyawa yang bereaksi dengan logam Na menghasilkan gas H<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> metoksi etana</li><li><span class="l">B.</span> 2-butanol</li><li><span class="l">C.</span> propanon</li><li><span class="l">D.</span> etil etanoat</li><li><span class="l">E.</span> butanal</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p>Logam Na bereaksi dengan atom H yang terikat pada <b>oksigen</b>, yaitu gugus –OH. Dari kelima pilihan, hanya 2-butanol yang bergugus –OH.</p>
+      <p>Eter, keton, ester, dan aldehid semuanya tidak punya gugus –OH.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 9</div>
+    <div class="qs">Nama untuk HCOO–CH<sub>3</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> metil etanoat</li><li><span class="l">B.</span> asam metanoat</li><li><span class="l">C.</span> metil metanoat</li><li><span class="l">D.</span> etil metanoat</li><li><span class="l">E.</span> metanal</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Bagian "il":</b> gugus pada oksigen adalah CH<sub>3</sub> → <b>metil</b></p>
+      <p><b>Bagian "oat":</b> gugus asil HCO– berkarbon <b>1</b> → <b>metanoat</b></p>
+      <p>Hasilnya <b>metil metanoat</b> — ester paling sederhana yang mungkin. Pilihan B adalah asamnya, bukan esternya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 10</div>
+    <div class="qs">Pereaksi yang memberi <b>cermin perak</b> dengan aldehid adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> Fehling</li><li><span class="l">B.</span> Tollens</li><li><span class="l">C.</span> lakmus</li><li><span class="l">D.</span> logam natrium</li><li><span class="l">E.</span> NaOH</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Tollens</b> adalah larutan perak amoniakal; aldehid mereduksi Ag<sup>+</sup> menjadi logam perak yang melapisi dinding tabung seperti cermin.</p>
+      <p><b>Fehling</b> juga positif terhadap aldehid, tetapi hasilnya <b>endapan merah bata</b> Cu<sub>2</sub>O — bukan cermin perak.</p>
+      <div class="insight"><b>Exam Insight:</b> hubungkan warna dengan logamnya — Tollens mengandung <b>perak</b>, Fehling mengandung <b>tembaga</b>.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 11 — gaya UTBK</div>
+    <div class="qs">Jumlah seluruh isomer dengan rumus C<sub>4</sub>H<sub>8</sub>O<sub>2</sub> adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 2</li><li><span class="l">B.</span> 4</li><li><span class="l">C.</span> 6</li><li><span class="l">D.</span> 3</li><li><span class="l">E.</span> 7</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Asam karboksilat:</b> asam butanoat, asam 2-metilpropanoat → <b>2</b></p>
+      <p><b>Ester:</b> propil format, isopropil format, etil etanoat, metil propanoat → <b>4</b></p>
+      <p>Total <b>6 isomer</b>. Pilihan A menghitung asamnya saja; pilihan B menghitung esternya saja.</p>
+      <div class="insight"><b>Exam Insight:</b> ester dihitung dengan membagi empat karbonnya antara sisi asil dan sisi alkil. Jangan lupa sisi asil boleh berkarbon <b>satu</b> — itulah format HCOO–.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 12 — gaya UTBK</div>
+    <div class="qs">Senyawa Z berumus C<sub>3</sub>H<sub>8</sub>O, tidak bereaksi dengan logam Na. Senyawa Z adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1-propanol</li><li><span class="l">B.</span> 2-propanol</li><li><span class="l">C.</span> propanal</li><li><span class="l">D.</span> propanon</li><li><span class="l">E.</span> metoksi etana</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p><b>DBE</b> = (6 + 2 − 8) ÷ 2 = 0 → alkohol atau eter.</p>
+      <p><b>Tidak bereaksi dengan Na</b> → tidak punya gugus –OH → <b>eter</b>. Satu-satunya eter berkarbon tiga adalah metoksi etana, CH<sub>3</sub>–O–C<sub>2</sub>H<sub>5</sub>.</p>
+      <p>Pilihan A dan B keduanya alkohol yang <b>bereaksi</b> dengan Na. Pilihan C dan D berumus C<sub>3</sub>H<sub>6</sub>O.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 13 — gaya UTBK</div>
+    <div class="qs">Jumlah isomer alkohol dengan rumus C<sub>5</sub>H<sub>12</sub>O adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 4</li><li><span class="l">B.</span> 6</li><li><span class="l">C.</span> 14</li><li><span class="l">D.</span> 3</li><li><span class="l">E.</span> 8</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: E</span>
+      <p>Rantai 5C: 1-, 2-, 3-pentanol → 3 · Rantai 4C bercabang: 4 · Rantai 3C bercabang dua: 1</p>
+      <p>Total <b>8 alkohol</b>. Pilihan C adalah jumlah <b>seluruh</b> isomer termasuk 6 eternya; pilihan B adalah eternya saja.</p>
+      <div class="insight"><b>Exam Insight:</b> jumlah alkohol selalu sama dengan jumlah <b>gugus alkil</b> berkarbon sama — untuk C<sub>5</sub> keduanya 8.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 14 — gaya UTBK</div>
+    <div class="qs">Senyawa yang bertitik didih <b>paling tinggi</b> di antara senyawa berkarbon dua adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> asam etanoat</li><li><span class="l">B.</span> etanol</li><li><span class="l">C.</span> etanal</li><li><span class="l">D.</span> dimetil eter</li><li><span class="l">E.</span> semuanya sama</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Asam karboksilat membentuk ikatan hidrogen <b>ganda</b> — dua molekul saling berpasangan lewat dua ikatan sekaligus, sehingga paling sukar dipisahkan.</p>
+      <p>Urutannya: asam etanoat &gt; etanol (ikatan hidrogen tunggal) &gt; etanal (dipol-dipol) &gt; dimetil eter (gaya London saja).</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 15 — gaya UTBK</div>
+    <div class="qs">Reaksi CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH ⇌ X + H<sub>2</sub>O. Senyawa X adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> etil metanoat</li><li><span class="l">B.</span> metil etanoat</li><li><span class="l">C.</span> asam propanoat</li><li><span class="l">D.</span> etil etanoat</li><li><span class="l">E.</span> dietil eter</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Ini reaksi <b>esterifikasi</b>. Bagian "il" berasal dari alkoholnya (C<sub>2</sub>H<sub>5</sub>OH → <b>etil</b>); bagian "oat" berasal dari asamnya (CH<sub>3</sub>COOH → <b>etanoat</b>).</p>
+      <p>Hasilnya <b>etil etanoat</b>, CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub>. Pilihan B membalik kedua bagiannya.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 16 — HOTS</div>
+    <div class="qs">Senyawa W berumus C<sub>4</sub>H<sub>10</sub>O, bereaksi dengan Na, dan hasil oksidasinya <b>negatif</b> terhadap Fehling. Kemungkinan W adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> 1-butanol</li><li><span class="l">B.</span> etoksi etana</li><li><span class="l">C.</span> 2-butanol</li><li><span class="l">D.</span> butanal</li><li><span class="l">E.</span> asam butanoat</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: C</span>
+      <p><b>Bereaksi dengan Na</b> → alkohol, bukan eter. Ini menggugurkan B.</p>
+      <p><b>Hasil oksidasi negatif Fehling</b> → hasilnya bukan aldehid, melainkan <b>keton</b> → W adalah alkohol <b>sekunder</b>.</p>
+      <p>Satu-satunya alkohol sekunder di antara pilihan adalah <b>2-butanol</b>, yang teroksidasi menjadi butanon.</p>
+      <p>Pilihan A primer — hasilnya butanal yang <b>positif</b> Fehling. Pilihan D dan E bukan C<sub>4</sub>H<sub>10</sub>O.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 17 — HOTS</div>
+    <div class="qs">Hidrolisis metil etanoat dengan NaOH menghasilkan ….</div>
+    <ol class="opt"><li><span class="l">A.</span> natrium etanoat dan metanol</li><li><span class="l">B.</span> asam etanoat dan metanol</li><li><span class="l">C.</span> natrium metanoat dan etanol</li><li><span class="l">D.</span> etanal dan metanol</li><li><span class="l">E.</span> asam metanoat dan etanol</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: A</span>
+      <p>Metil etanoat adalah CH<sub>3</sub>COO–CH<sub>3</sub>. Dengan basa kuat, sisi asil menjadi <b>garam</b> dan sisi alkil menjadi <b>alkohol</b>:</p>
+      <p class="eq">CH₃COOCH₃ + NaOH → CH₃COONa + CH₃OH</p>
+      <p>Pilihan B adalah hasil hidrolisis dengan <b>air</b>, bukan basa. Pilihan C dan E menukar kedua sisinya.</p>
+      <div class="insight"><b>Exam Insight:</b> dengan basa kuat reaksinya <b>searah dan tuntas</b>, karena asamnya langsung berubah menjadi garam dan tidak dapat kembali.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 18 — HOTS</div>
+    <div class="qs">Etanol dioksidasi bertahap menjadi P lalu Q; Q direaksikan dengan 1-propanol menghasilkan R. Senyawa R adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> etil propanoat</li><li><span class="l">B.</span> propil etanoat</li><li><span class="l">C.</span> asam etanoat</li><li><span class="l">D.</span> propanal</li><li><span class="l">E.</span> metil etanoat</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>P</b> = etanal (etanol primer, oksidasi tahap pertama) · <b>Q</b> = asam etanoat (tahap kedua)</p>
+      <p><b>R</b>: asam etanoat + 1-propanol → bagian "il" dari alkoholnya (<b>propil</b>), bagian "oat" dari asamnya (<b>etanoat</b>) → <b>propil etanoat</b></p>
+      <p>Pilihan A membalik kedua bagiannya. Pilihan C berhenti di Q.</p></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 19 — HOTS</div>
+    <div class="qs">Alasan alkohol tersier tidak dapat dioksidasi adalah ….</div>
+    <ol class="opt"><li><span class="l">A.</span> gugus –OH-nya terlalu besar</li><li><span class="l">B.</span> ikatannya terlalu kuat</li><li><span class="l">C.</span> titik didihnya terlalu tinggi</li><li><span class="l">D.</span> karbon pengikat –OH sudah tidak punya atom H yang dapat dilepas</li><li><span class="l">E.</span> tidak larut dalam air</li></ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: D</span>
+      <p>Oksidasi alkohol menuntut pelepasan atom H dari karbon pengikat –OH. Pada alkohol tersier, karbon itu sudah mengikat <b>tiga gugus alkil</b> sehingga tidak ada atom H yang tersisa.</p>
+      <p>Alasan yang <b>sama persis</b> menjelaskan mengapa keton juga tidak dapat dioksidasi — karbon karbonilnya sudah mengikat dua gugus alkil.</p>
+      <div class="insight"><b>Exam Insight:</b> satu penalaran menjelaskan dua kenyataan sekaligus. Memahaminya jauh lebih berguna daripada menghafal keduanya terpisah.</div></div></details>
+  </div>
+
+  <div class="q">
+    <div class="qn">Tes 20 — HOTS &amp; integrasi</div>
+    <div class="qs">Perhatikan senyawa 1-propanol. Pernyataan yang <b>paling tepat</b> adalah ….</div>
+    <ol class="opt">
+      <li><span class="l">A.</span> tergolong alkohol sekunder</li>
+      <li><span class="l">B.</span> tergolong primer, dan hasil oksidasi tahap pertamanya positif terhadap Tollens</li>
+      <li><span class="l">C.</span> tidak bereaksi dengan logam Na</li>
+      <li><span class="l">D.</span> hasil oksidasinya propanon</li>
+      <li><span class="l">E.</span> rumus molekulnya C<sub>3</sub>H<sub>6</sub>O</li>
+    </ol>
+    <details class="sol"><summary>Lihat pembahasan</summary><div class="sol-body"><span class="key">Jawaban: B</span>
+      <p><b>Rumusnya.</b> CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>OH berumus <b>C<sub>3</sub>H<sub>8</sub>O</b>. Ini menggugurkan E.</p>
+      <p><b>Golongan.</b> Karbon pengikat –OH mengikat <b>1</b> karbon lain → <b>primer</b>. Ini menggugurkan A.</p>
+      <p><b>Reaksi dengan Na.</b> Punya gugus –OH → <b>bereaksi</b>. Ini menggugurkan C.</p>
+      <p><b>Hasil oksidasi.</b> Alkohol primer → <b>propanal</b>, bukan propanon. Ini menggugurkan D.</p>
+      <p><b>Uji Tollens pada propanal.</b> Aldehid → <b>positif</b>, memberi cermin perak ✔ Pernyataan B benar seluruhnya.</p>
+      <div class="insight"><b>Exam Insight:</b> soal penutup ini menguji seluruh bab — rumus molekul, penggolongan alkohol, uji natrium, aturan oksidasi, dan uji Tollens.</div></div></details>
+  </div>
+
+  <div class="box recall">
+    <div class="bt">KUNCI JAWABAN RINGKAS</div>
+    <p class="eq" style="line-height:2.1; margin-bottom:6px">
+      1. D &nbsp; 2. A &nbsp; 3. E &nbsp; 4. E &nbsp; 5. D &nbsp; 6. A &nbsp; 7. C &nbsp; 8. B &nbsp; 9. C &nbsp; 10. B<br>
+      11. C &nbsp; 12. E &nbsp; 13. E &nbsp; 14. A &nbsp; 15. D &nbsp; 16. C &nbsp; 17. A &nbsp; 18. B &nbsp; 19. D &nbsp; 20. B
+    </p>
+    <p style="font-size:15px; margin-bottom:0"><strong>Penilaian mandiri:</strong> 18–20 benar berarti Bab 18 sudah tuntas dan Anda siap melanjutkan ke Benzena; 14–17 benar berarti ulangi tata nama ester dan cara menghitung isomer; di bawah 14 berarti kerjakan ulang seluruh Worked Example sambil menghitung DBE pada setiap soal.</p>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="roadmap">
+  <h2>Peta Jalan Handbook — 81 Topik Kimia SMA</h2>
+  <p>Bab 18 tersedia lengkap dalam berkas ini; Bab 1 sampai Bab 17 tersedia dalam berkas terpisah. Setiap bab berikutnya akan disusun dengan struktur yang sama persis: sampul, learning objectives, concept map, why this matters, konsep dasar bervisual, key formula, worked example bertingkat, UTBK/Exam Focus, common mistake, chemistry shortcut, quick recall, latihan Level 1–4 berpembahasan, one page summary, formula sheet, dan final chapter test.</p>
+
+  <h3>Kelas X</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 1 · TOPIK 3–8</div><div class="t">Struktur Atom &amp; Sistem Periodik <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 2 · TOPIK 9–15</div><div class="t">Ikatan Kimia &amp; Bentuk Molekul <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 3 · TOPIK 1–2</div><div class="t">Hakikat Ilmu Kimia &amp; Metode Ilmiah</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 4 · TOPIK 16–17</div><div class="t">Tata Nama Senyawa &amp; Persamaan Reaksi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 5 · TOPIK 18–20</div><div class="t">Hukum Dasar Kimia &amp; Stoikiometri <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XI</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 6 · TOPIK 21–26</div><div class="t">Hidrokarbon &amp; Minyak Bumi</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 7 · TOPIK 27–30</div><div class="t">Termokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 8 · TOPIK 31–34</div><div class="t">Laju Reaksi <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 9 · TOPIK 35–39</div><div class="t">Kesetimbangan Kimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 10 · TOPIK 40–45</div><div class="t">Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 11 · TOPIK 46–47</div><div class="t">Hidrolisis &amp; Larutan Penyangga <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 12 · TOPIK 48</div><div class="t">Titrasi Asam Basa <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 13 · TOPIK 49–50</div><div class="t">Kelarutan &amp; Ksp <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+  </div>
+
+  <h3>Kelas XII</h3>
+  <div class="roadmap">
+    <div class="rm done"><div class="n">BAB 14 · TOPIK 51–56</div><div class="t">Sifat Koligatif Larutan <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 15 · TOPIK 57–59</div><div class="t">Reaksi Redoks <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 16 · TOPIK 60–64</div><div class="t">Elektrokimia <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 17 · TOPIK 65–67</div><div class="t">Kimia Unsur</div><div class="s">✓ Tersedia lengkap — berkas terpisah</div></div>
+    <div class="rm done"><div class="n">BAB 18 · TOPIK 68–74</div><div class="t">Senyawa Karbon <span class="star">★★★</span></div><div class="s">✓ Tersedia lengkap — berkas ini</div></div>
+    <div class="rm"><div class="n">BAB 19 · TOPIK 75–76</div><div class="t">Benzena &amp; Turunannya</div><div class="s">Resonansi, substitusi, tata nama, kegunaan</div></div>
+    <div class="rm"><div class="n">BAB 20 · TOPIK 77–81</div><div class="t">Polimer &amp; Makromolekul</div><div class="s">Adisi, kondensasi, karbohidrat, protein, lemak</div></div>
+  </div>
+
+  <div class="box short">
+    <div class="bt">Catatan penyusunan</div>
+    <p>Handbook ini disusun bertahap satu bab per rilis agar setiap bab benar-benar tuntas — bukan ringkasan tipis. Sesuai prinsip pada brief, satu bab tidak akan ditutup sebelum konsep utamanya lengkap, ilustrasinya tersedia, contoh soalnya diberikan, area UTBK/Exam Focus dibuat, latihan menengah hingga advanced tersedia, pembahasannya lengkap, dan ringkasannya siap.</p>
+    <p style="margin-bottom:0">Tanda <span class="star">★★★</span> menandai bab prioritas yang perlu porsi latihan soal lebih besar untuk persiapan UTBK/SNBT.</p>
+  </div>
+</section>
+
+<footer class="hb">
+  <p><strong>Handbook Kimia SMA</strong> — Visual Study Guide &amp; UTBK/SNBT Preparation<br>
+  Bab 18: Senyawa Karbon · 20 worked example · 21 soal latihan · 20 soal tes akhir bab</p>
+  <p style="font-size:13px">Berkas tunggal, dapat dibuka luring di komputer, tablet, maupun ponsel. Gunakan Ctrl/Cmd + P untuk mencetak; seluruh pembahasan yang terbuka akan ikut tercetak.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var sb = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  var burger = document.getElementById('burger');
+
+  function close(){ sb.classList.remove('open'); scrim.classList.remove('on'); }
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = sb.classList.toggle('open');
+      scrim.classList.toggle('on', open);
+      burger.setAttribute('aria-label', open ? 'Tutup daftar isi' : 'Buka daftar isi');
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', close); }
+
+  var links = Array.prototype.slice.call(sb.querySelectorAll('a[href^="#"]'));
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 980){ close(); } });
+  });
+
+  // Sorot bagian yang sedang dibaca
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function highlight(){
+    var best = null, bestTop = -Infinity;
+    for(var i=0;i<targets.length;i++){
+      var t = targets[i].getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = targets[i]; }
+    }
+    if(!best) best = targets[0];
+    links.forEach(function(a){
+      a.classList.toggle('on', best && a.getAttribute('href') === '#' + best.id);
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function(){ highlight(); ticking = false; });
+  }, {passive:true});
+  highlight();
+})();
+</script>
+<div class="pb-bar" id="pbBar" hidden>
+  <div class="pb-pegang" id="pbPegang" role="button" tabindex="0" aria-expanded="false" aria-controls="pbIsi">
+    <span class="pb-ikon" aria-hidden="true">&#128266;</span>
+    <span class="pb-judul">Pembaca Materi</span>
+    <span class="pb-status" id="pbStatus">siap</span>
+    <span class="pb-panah" aria-hidden="true">&#9650;</span>
+  </div>
+  <div class="pb-isi" id="pbIsi">
+    <div class="pb-tombol">
+      <button id="pbMain" class="utama">&#9654;&nbsp; Putar</button>
+      <button id="pbHenti" disabled>&#9632;&nbsp; Henti</button>
+      <button id="pbMundur" title="Paragraf sebelumnya">&#9198;</button>
+      <button id="pbMaju" title="Paragraf berikutnya">&#9197;</button>
+    </div>
+    <div class="pb-atur">
+      <label>Kecepatan
+        <select id="pbLaju">
+          <option value="0.8">0,8&times;</option>
+          <option value="0.9">0,9&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.15">1,15&times;</option>
+          <option value="1.3">1,3&times;</option>
+          <option value="1.5">1,5&times;</option>
+        </select>
+      </label>
+      <label>Suara <select id="pbSuara"></select></label>
+      <label><input type="checkbox" id="pbTabel"> Baca tabel</label>
+      <label><input type="checkbox" id="pbBahas"> Baca pembahasan soal</label>
+    </div>
+    <div class="pb-maju"><i id="pbGaris"></i></div>
+    <div class="pb-pesan" id="pbPesan"></div>
+  </div>
+</div>
+<script>
+/* ==== Pembaca Materi (auditori) — memakai Web Speech API bawaan peramban ==== */
+(function(){
+  var synth = window.speechSynthesis;
+  var bar = document.getElementById('pbBar');
+  if (!bar) return;
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function'){
+    return; // peramban tidak mendukung; kendali tetap tersembunyi
+  }
+  bar.hidden = false;
+
+  /* ---------- 1. Penormal teks kimia ---------- */
+  var SUB = '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089';
+  var SUP = '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079';
+
+  function angkaIndeks(s, peta){
+    var out = '';
+    for (var i = 0; i < s.length; i++){
+      var j = peta.indexOf(s[i]);
+      out += (j >= 0) ? String(j) : s[i];
+    }
+    return out;
+  }
+  function miripRumus(kata){
+    if (kata.length < 2) return false;
+    if (!/^[A-Z]/.test(kata)) return false;
+    if (!/^[A-Za-z0-9()\u2080-\u2089\u2070\u00b9\u00b2\u00b3\u2074-\u2079\u207a\u207b\u00b7]+$/.test(kata)) return false;
+    var hurufBesar = (kata.match(/[A-Z]/g) || []).length;
+    var adaAngka = /[0-9\u2080-\u2089]/.test(kata);
+    if (/[\u207a\u207b]/.test(kata)) return true;
+    if (hurufBesar >= 2) return true;
+    if (hurufBesar === 1 && adaAngka && /^[A-Z][a-z]?[0-9\u2080-\u2089]/.test(kata)) return true;
+    return false;
+  }
+  function bacaRumus(kata){
+    var muatan = '';
+    kata = kata.replace(/([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]*)([\u207a\u207b])$/, function(m, ang, tanda){
+      var n = angkaIndeks(ang, SUP);
+      muatan = ' ' + (n ? n + ' ' : '') + (tanda === '\u207a' ? 'plus' : 'minus');
+      return '';
+    });
+    kata = angkaIndeks(kata, SUB);
+    var bagian = [], re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)|(\u00b7)/g, m, cocok = false;
+    while ((m = re.exec(kata)) !== null){
+      cocok = true;
+      if (m[1]) bagian.push(m[1] + (m[2] ? ' ' + m[2] : ''));
+      else if (m[3]) bagian.push('kurung buka');
+      else if (m[4]) bagian.push('kurung tutup' + (m[5] ? ' ' + m[5] : ''));
+      else if (m[6]) bagian.push('titik');
+    }
+    return cocok ? bagian.join(' ') + muatan : kata;
+  }
+  var GANTI = [
+    [/\u2192|\u2794|\u21d2/g, ' menjadi '],
+    [/\u21cc|\u21c4|\u21cb/g, ' bolak-balik dengan '],
+    [/\u2264/g, ' kurang dari atau sama dengan '],
+    [/\u2265/g, ' lebih dari atau sama dengan '],
+    [/\u2248/g, ' kira-kira '], [/\u00d7/g, ' kali '], [/\u00f7/g, ' dibagi '],
+    [/\u00b1/g, ' kurang lebih '], [/\u00b0C/g, ' derajat Celsius '], [/\u00b0/g, ' derajat '],
+    [/%/g, ' persen '], [/>/g, ' lebih besar dari '], [/</g, ' lebih kecil dari '],
+    [/[\u2605\u2606\u26a1\u26a0\u2714\u2718\u2713\u2717\u25b6\u2b50\u2192]/g, ' '],
+    [/\s[\u2014\u2013]\s/g, ', '], [/[\u2014\u2013](?=[A-Za-z])/g, ''], [/[\u2014\u2013]/g, ', '],
+    [/\u2026/g, ' '], [/\u00a0/g, ' ']
+  ];
+  function normalkan(teks){
+    if (!teks) return '';
+    for (var i = 0; i < GANTI.length; i++) teks = teks.replace(GANTI[i][0], GANTI[i][1]);
+    teks = teks.split(/(\s+)/).map(function(k){
+      if (!k || /^\s+$/.test(k)) return k;
+      var m = k.match(/^([("']*)(.*?)([)"'.,;:!?]*)$/), depan = '', belakang = '';
+      if (m){ depan = m[1]; k = m[2]; belakang = m[3]; }
+      if (miripRumus(k)) k = bacaRumus(k);
+      return depan + k + belakang;
+    }).join('');
+    return teks.replace(/\s+/g, ' ').replace(/\s+([,.;:!?])/g, '$1').trim();
+  }
+
+  /* ---------- 2. Mengambil teks sebuah blok, menghormati sub dan sup ---------- */
+  function teksBlok(el){
+    var out = '';
+    (function walk(n){
+      for (var i = 0; i < n.childNodes.length; i++){
+        var c = n.childNodes[i];
+        if (c.nodeType === 3){ out += c.data; continue; }
+        if (c.nodeType !== 1) continue;
+        var tag = c.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style') continue;
+        if (c.classList && c.classList.contains('pb-bagian')) continue;
+        if (tag === 'br'){ out += '. '; continue; }
+        if (tag === 'sub'){ out += ' ' + c.textContent + ' '; continue; }
+        if (tag === 'sup'){
+          var t = c.textContent.trim();
+          if (/^\d*[+\u207a]$/.test(t)) out += ' ' + t.replace(/[+\u207a]/, '') + ' plus';
+          else if (/^\d*[-\u207b]$/.test(t)) out += ' ' + t.replace(/[-\u207b]/, '') + ' minus';
+          else out += ' pangkat ' + t + ' ';
+          continue;
+        }
+        walk(c);
+      }
+    })(el);
+    return normalkan(out);
+  }
+
+  /* ---------- 3. Menyusun daftar blok yang akan dibacakan ---------- */
+  var SEL_BLOK = 'h1,h2,h3,h4,h5,p,li,figcaption,.step,.ansbar,.whythis,.we-row,.qs,.bt,.main-eq,.note,tr';
+  var utama = document.querySelector('.main') || document.body;
+  var daftar = [];
+
+  function susun(){
+    daftar = [];
+    var opsiTabel = document.getElementById('pbTabel').checked;
+    var opsiBahas = document.getElementById('pbBahas').checked;
+    (function walk(n){
+      for (var i = 0; i < n.children.length; i++){
+        var el = n.children[i], tag = el.tagName.toLowerCase();
+        if (tag === 'svg' || tag === 'script' || tag === 'style' || tag === 'summary') continue;
+        if (el.id === 'roadmap') continue;
+        if (el.classList.contains('pb-bagian')) continue;
+        if ((tag === 'table' || el.classList.contains('tw')) && !opsiTabel) continue;
+        if (tag === 'details' && !el.open && !opsiBahas) continue;
+        if (el.matches(SEL_BLOK) && !el.querySelector(SEL_BLOK)){
+          var t = (tag === 'tr')
+            ? normalkan(Array.prototype.map.call(el.cells, function(c){ return teksBlok(c); })
+                .filter(Boolean).join(', '))
+            : teksBlok(el);
+          if (t && t.replace(/[^A-Za-z0-9]/g, '').length >= 2) daftar.push({el: el, teks: t});
+          continue;
+        }
+        walk(el);
+      }
+    })(utama);
+    return daftar;
+  }
+
+  /* ---------- 4. Pemutar ---------- */
+  var idx = -1, jalan = false, jeda = false, timerBangun = null;
+  var elMain = document.getElementById('pbMain'), elHenti = document.getElementById('pbHenti'),
+      elMundur = document.getElementById('pbMundur'), elMaju = document.getElementById('pbMaju'),
+      elLaju = document.getElementById('pbLaju'), elSuara = document.getElementById('pbSuara'),
+      elStatus = document.getElementById('pbStatus'), elGaris = document.getElementById('pbGaris'),
+      elPesan = document.getElementById('pbPesan');
+
+  function pesan(t){ elPesan.textContent = t || ''; elPesan.style.display = t ? 'block' : 'none'; }
+  function status(t){ elStatus.textContent = t; }
+
+  function bersihkanSorot(){
+    var s = utama.querySelectorAll('.pb-sorot');
+    for (var i = 0; i < s.length; i++) s[i].classList.remove('pb-sorot');
+  }
+  function sorot(el){
+    bersihkanSorot();
+    el.classList.add('pb-sorot');
+    var r = el.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight - 120){
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  }
+  function majuGaris(){
+    elGaris.style.width = daftar.length ? ((idx + 1) / daftar.length * 100) + '%' : '0';
+  }
+
+  function suaraTerpilih(){
+    var v = synth.getVoices();
+    var nama = elSuara.value;
+    for (var i = 0; i < v.length; i++) if (v[i].name === nama) return v[i];
+    return null;
+  }
+
+  function ucap(i){
+    if (i < 0 || i >= daftar.length){ henti(); status('selesai'); return; }
+    idx = i;
+    var item = daftar[idx];
+    sorot(item.el);
+    majuGaris();
+    status((idx + 1) + ' / ' + daftar.length);
+    var u = new SpeechSynthesisUtterance(item.teks);
+    u.lang = 'id-ID';
+    u.rate = parseFloat(elLaju.value) || 1;
+    var s = suaraTerpilih();
+    if (s) u.voice = s;
+    u.onend = function(){ if (jalan && !jeda) ucap(idx + 1); };
+    u.onerror = function(e){
+      if (e && e.error === 'interrupted') return;
+      pesan('Suara terhenti. Coba tekan Putar kembali.');
+      henti();
+    };
+    synth.cancel();
+    synth.speak(u);
+  }
+
+  function mulai(dari){
+    susun();
+    if (!daftar.length){ pesan('Tidak ada teks yang dapat dibacakan.'); return; }
+    pesan('');
+    jalan = true; jeda = false;
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    elHenti.disabled = false;
+    bangunkan();
+    ucap(typeof dari === 'number' ? dari : (idx < 0 ? 0 : idx));
+  }
+  function jedakan(){
+    jeda = true; synth.pause();
+    elMain.innerHTML = '\u25b6&nbsp; Lanjut';
+    status('dijeda');
+  }
+  function lanjut(){
+    jeda = false; synth.resume();
+    elMain.innerHTML = '\u23f8&nbsp; Jeda';
+    status((idx + 1) + ' / ' + daftar.length);
+  }
+  function henti(){
+    jalan = false; jeda = false;
+    synth.cancel();
+    clearInterval(timerBangun); timerBangun = null;
+    elMain.innerHTML = '\u25b6&nbsp; Putar';
+    elHenti.disabled = true;
+    bersihkanSorot();
+    status('siap');
+  }
+  // Sebagian peramban menghentikan suara sendiri setelah belasan detik;
+  // memanggil resume berkala membuatnya tetap berjalan.
+  function bangunkan(){
+    clearInterval(timerBangun);
+    timerBangun = setInterval(function(){
+      if (jalan && !jeda && synth.speaking) synth.resume();
+    }, 9000);
+  }
+
+  elMain.addEventListener('click', function(){
+    if (!jalan) mulai();
+    else if (jeda) lanjut();
+    else jedakan();
+  });
+  elHenti.addEventListener('click', henti);
+  elMundur.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.max(0, idx - 1));
+  });
+  elMaju.addEventListener('click', function(){
+    if (!daftar.length) susun();
+    mulai(Math.min(daftar.length - 1, idx + 1));
+  });
+  elLaju.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  elSuara.addEventListener('change', function(){
+    simpan(); if (jalan && !jeda) mulai(idx);
+  });
+  ['pbTabel','pbBahas'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', function(){
+      simpan();
+      var lagi = jalan;
+      susun();
+      if (lagi) mulai(0);
+    });
+  });
+
+  /* ---------- 5. Daftar suara ---------- */
+  function isiSuara(){
+    var v = synth.getVoices();
+    if (!v.length) return;
+    var id = v.filter(function(x){ return /^id/i.test(x.lang); });
+    var lain = v.filter(function(x){ return !/^id/i.test(x.lang); });
+    elSuara.innerHTML = '';
+    function tambah(list, label){
+      if (!list.length) return;
+      var g = document.createElement('optgroup'); g.label = label;
+      list.forEach(function(x){
+        var o = document.createElement('option');
+        o.value = x.name; o.textContent = x.name + ' (' + x.lang + ')';
+        g.appendChild(o);
+      });
+      elSuara.appendChild(g);
+    }
+    tambah(id, 'Bahasa Indonesia');
+    tambah(lain, 'Bahasa lain');
+    if (!id.length){
+      pesan('Suara Bahasa Indonesia belum terpasang di perangkat ini. Pembacaan tetap berjalan, tetapi pelafalannya mungkin kurang tepat.');
+    }
+    muat();
+  }
+  isiSuara();
+  if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = isiSuara;
+
+  /* ---------- 6. Menyimpan pilihan ---------- */
+  var KUNCI = 'pembacaKimia';
+  function simpan(){
+    try{
+      localStorage.setItem(KUNCI, JSON.stringify({
+        laju: elLaju.value, suara: elSuara.value,
+        tabel: document.getElementById('pbTabel').checked,
+        bahas: document.getElementById('pbBahas').checked
+      }));
+    }catch(e){}
+  }
+  function muat(){
+    try{
+      var d = JSON.parse(localStorage.getItem(KUNCI) || '{}');
+      if (d.laju) elLaju.value = d.laju;
+      if (d.suara){
+        for (var i = 0; i < elSuara.options.length; i++){
+          if (elSuara.options[i].value === d.suara){ elSuara.value = d.suara; break; }
+        }
+      }
+      if (typeof d.tabel === 'boolean') document.getElementById('pbTabel').checked = d.tabel;
+      if (typeof d.bahas === 'boolean') document.getElementById('pbBahas').checked = d.bahas;
+    }catch(e){}
+  }
+
+  /* ---------- 7. Buka tutup panel ---------- */
+  var pegang = document.getElementById('pbPegang');
+  function toggle(){
+    var buka = bar.classList.toggle('buka');
+    pegang.setAttribute('aria-expanded', buka ? 'true' : 'false');
+  }
+  pegang.addEventListener('click', toggle);
+  pegang.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+
+  /* ---------- 8. Tombol "dengarkan bagian ini" pada tiap judul ---------- */
+  Array.prototype.forEach.call(utama.querySelectorAll('section[id] > h2'), function(h){
+    var b = document.createElement('button');
+    b.className = 'pb-bagian';
+    b.type = 'button';
+    b.innerHTML = '\u25b6 Dengarkan bagian ini';
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      susun();
+      var mulaiDari = -1;
+      for (var i = 0; i < daftar.length; i++){
+        if (daftar[i].el === h || h.contains(daftar[i].el)){ mulaiDari = i; break; }
+      }
+      if (mulaiDari < 0){
+        var sec = h.parentElement;
+        for (var j = 0; j < daftar.length; j++){
+          if (sec.contains(daftar[j].el)){ mulaiDari = j; break; }
+        }
+      }
+      if (mulaiDari < 0) return;
+      bar.classList.add('buka');
+      pegang.setAttribute('aria-expanded', 'true');
+      mulai(mulaiDari);
+    });
+    h.appendChild(b);
+  });
+
+  /* ---------- 9. Hentikan suara saat halaman ditinggalkan ---------- */
+  window.addEventListener('beforeunload', function(){ synth.cancel(); });
+  window.addEventListener('pagehide', function(){ synth.cancel(); });
+
+  /* ---------- 10. Sarana pengujian ---------- */
+  window.__pembaca = {
+    normalkan: normalkan, teksBlok: teksBlok, susun: susun,
+    daftar: function(){ return daftar; }, mulai: mulai, henti: henti,
+    posisi: function(){ return idx; }
+  };
+})();
+</script>
+</body>
+</html>
