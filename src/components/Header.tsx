@@ -267,45 +267,45 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </div>
         </div>
-
-        {/* Mobile Bottom Navigation Bar (Thumb friendly for Smartphone / HP) */}
-        <nav 
-          aria-label="Navigasi Bawah Mobile"
-          className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 shadow-lg px-2 pt-1.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex items-center justify-around"
-        >
-          {navItems.map(item => {
-            const Icon = item.icon;
-            const isActive = activeView === item.id;
-            let shortLabel = item.label;
-            if (item.id === 'dashboard') shortLabel = 'Dashboard';
-            if (item.id === 'home') shortLabel = 'Materi';
-            if (item.id === 'mastery-map') shortLabel = 'Mastery';
-            if (item.id === 'history') shortLabel = 'Riwayat';
-            if (item.id === 'admin') shortLabel = 'Admin';
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => onNavigateView(item.id)}
-                className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all min-h-[44px] ${
-                  isActive
-                    ? 'text-blue-600 font-bold'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                <div className={`p-1 rounded-lg transition-all ${
-                  isActive ? 'bg-blue-50 text-blue-600 ring-1 ring-blue-200' : ''
-                }`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] mt-0.5 tracking-tight font-medium leading-none">
-                  {shortLabel}
-                </span>
-              </button>
-            );
-          })}
-        </nav>
       </header>
+
+      {/* Mobile Bottom Navigation Bar (Thumb friendly for Smartphone / HP) */}
+      <nav 
+        aria-label="Navigasi Bawah Mobile"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 pt-1.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] flex items-center justify-around"
+      >
+        {navItems.map(item => {
+          const Icon = item.icon;
+          const isActive = activeView === item.id;
+          let shortLabel = item.label;
+          if (item.id === 'dashboard') shortLabel = 'Dashboard';
+          if (item.id === 'home') shortLabel = 'Materi';
+          if (item.id === 'mastery-map') shortLabel = 'Mastery';
+          if (item.id === 'history') shortLabel = 'Riwayat';
+          if (item.id === 'admin') shortLabel = 'Admin';
+
+          return (
+            <button
+              key={item.id}
+              onClick={() => onNavigateView(item.id)}
+              className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all min-h-[46px] ${
+                isActive
+                  ? 'text-blue-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <div className={`p-1 rounded-lg transition-all ${
+                isActive ? 'bg-blue-50 text-blue-600 ring-1 ring-blue-200' : ''
+              }`}>
+                <Icon className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] mt-0.5 tracking-tight font-medium leading-none">
+                {shortLabel}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
 
       {/* Accessibility & Audio Floating Modal */}
       {showSettingsModal && (
