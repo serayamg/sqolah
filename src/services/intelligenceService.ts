@@ -16,12 +16,12 @@ import {
 import { MASTER_CURRICULUM } from '../data/curriculumMaster';
 import { AuthService } from './authService';
 
-const KEY_MASTERIES = 'sqolah_masteries_v1';
-const KEY_EVENTS = 'sqolah_events_v1';
-const KEY_STREAKS = 'sqolah_streaks_v1';
-const KEY_STUDY_STATS = 'sqolah_study_stats_v1';
-const KEY_GOALS = 'sqolah_goals_v1';
-const KEY_PREFERENCES = 'sqolah_preferences_v1';
+const KEY_MASTERIES = 'sqolah_masteries_v4';
+const KEY_EVENTS = 'sqolah_events_v4';
+const KEY_STREAKS = 'sqolah_streaks_v4';
+const KEY_STUDY_STATS = 'sqolah_study_stats_v4';
+const KEY_GOALS = 'sqolah_goals_v4';
+const KEY_PREFERENCES = 'sqolah_preferences_v4';
 
 export class IntelligenceService {
   // -------------------------------------------------------------

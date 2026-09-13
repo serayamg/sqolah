@@ -1,11 +1,11 @@
 import { User, StudentProfile, AuditLog } from '../types/intelligence';
 
-const STORAGE_KEY_USERS = 'sqolah_users_v1';
-const STORAGE_KEY_CURRENT_USER = 'sqolah_current_user_v1';
-const STORAGE_KEY_STUDENTS = 'sqolah_students_v1';
-const STORAGE_KEY_AUDIT_LOGS = 'sqolah_audit_logs_v1';
+const STORAGE_KEY_USERS = 'sqolah_users_v4';
+const STORAGE_KEY_CURRENT_USER = 'sqolah_current_user_v4';
+const STORAGE_KEY_STUDENTS = 'sqolah_students_v4';
+const STORAGE_KEY_AUDIT_LOGS = 'sqolah_audit_logs_v4';
 
-// Seed Initial Users
+// Seed Users: Only 1 Student (M Elang El Haqeem) and 1 Super Admin
 const SEED_USERS: User[] = [
   {
     id: 'usr-admin-1',
@@ -18,20 +18,10 @@ const SEED_USERS: User[] = [
     lastLoginAt: new Date().toISOString()
   },
   {
-    id: 'usr-student-new',
-    username: 'siswabaru',
-    fullName: 'Ahmad Fauzi (Siswa Baru)',
-    email: 'siswa.baru@sqolah.id',
-    role: 'student',
-    status: 'active',
-    createdAt: '2026-09-01T08:00:00Z',
-    lastLoginAt: new Date().toISOString()
-  },
-  {
-    id: 'usr-student-budi',
-    username: 'budisantoso',
-    fullName: 'Budi Santoso',
-    email: 'budi.santoso@sqolah.id',
+    id: 'usr-student-elang',
+    username: 'elangelhaqeem',
+    fullName: 'M Elang El Haqeem',
+    email: 'elang.elhaqeem@sqolah.id',
     role: 'student',
     status: 'active',
     createdAt: '2026-07-15T09:30:00Z',
@@ -39,51 +29,27 @@ const SEED_USERS: User[] = [
   }
 ];
 
-// Seed Initial Student Profiles
+// Seed Student Profile: Only 1 Student (M Elang El Haqeem, Kelas XI SMA)
 const SEED_PROFILES: StudentProfile[] = [
   {
-    id: 'prof-student-new',
-    userId: 'usr-student-new',
-    studentId: 'SQ-2026-0099',
-    fullName: 'Ahmad Fauzi',
-    nickname: 'Fauzi',
+    id: 'prof-student-elang',
+    userId: 'usr-student-elang',
+    studentId: 'SQ-2026-0001',
+    fullName: 'M Elang El Haqeem',
+    nickname: 'Elang',
     phone: '0812-3456-7890',
-    email: 'siswa.baru@sqolah.id',
-    school: 'SMA Negeri 1 Jakarta',
-    grade: 10,
+    email: 'elang.elhaqeem@sqolah.id',
+    school: 'SMA Negeri 1',
+    grade: 11,
     level: 'SMA',
     curriculum: 'Kurikulum Merdeka',
     academicYear: '2026/2027',
-    city: 'Jakarta Selatan',
-    program: 'Reguler Bimbel SMA',
-    batch: 'Gelombang 2 - 2026',
-    startDate: '2026-09-01',
-    parentName: 'Bambang Sudiro',
-    parentPhone: '0811-9876-5432',
-    assignedSubjectIds: ['sma-kimia-10'],
-    onboardingCompleted: false,
-    currentOnboardingStep: 1,
-    diagnosticCompleted: false
-  },
-  {
-    id: 'prof-student-budi',
-    userId: 'usr-student-budi',
-    studentId: 'SQ-2026-0042',
-    fullName: 'Budi Santoso',
-    nickname: 'Budi',
-    phone: '0813-8899-1122',
-    email: 'budi.santoso@sqolah.id',
-    school: 'SMA Negeri 8 Jakarta',
-    grade: 10,
-    level: 'SMA',
-    curriculum: 'Kurikulum Merdeka',
-    academicYear: '2026/2027',
-    city: 'Jakarta Pusat',
-    program: 'Intensif UTBK / SNBT & Prestasi',
+    city: 'Jakarta',
+    program: 'Intensif UTBK / SNBT & Prestasi SMA',
     batch: 'Gelombang 1 - 2026',
     startDate: '2026-07-15',
-    parentName: 'Hendra Santoso',
-    parentPhone: '0812-7766-5544',
+    parentName: 'Wali Murid',
+    parentPhone: '0811-2233-4455',
     assignedSubjectIds: ['sma-kimia-10'],
     onboardingCompleted: true,
     currentOnboardingStep: 5,
@@ -91,42 +57,40 @@ const SEED_PROFILES: StudentProfile[] = [
   }
 ];
 
-// Seed Audit Logs
+// Seed Audit Logs referencing M Elang El Haqeem
 const SEED_AUDIT_LOGS: AuditLog[] = [
   {
     id: 'audit-1',
     who: 'admin@sqolah.id',
     what: 'Student Registration & Subject Assignment',
-    targetUserId: 'usr-student-budi',
-    targetUserName: 'Budi Santoso',
+    targetUserId: 'usr-student-elang',
+    targetUserName: 'M Elang El Haqeem',
     when: '2026-07-15T09:30:00Z',
     oldValue: 'Unregistered',
-    newValue: 'SQ-2026-0042 | Kurikulum Merdeka | Kimia SMA'
+    newValue: 'SQ-2026-0001 | Kelas XI SMA | Kurikulum Merdeka | Kimia SMA'
   },
   {
     id: 'audit-2',
     who: 'admin@sqolah.id',
     what: 'Program Assignment',
-    targetUserId: 'usr-student-budi',
-    targetUserName: 'Budi Santoso',
+    targetUserId: 'usr-student-elang',
+    targetUserName: 'M Elang El Haqeem',
     when: '2026-08-01T14:15:00Z',
     oldValue: 'Reguler Bimbel SMA',
-    newValue: 'Intensif UTBK / SNBT & Prestasi'
-  },
-  {
-    id: 'audit-3',
-    who: 'admin@sqolah.id',
-    what: 'New Student Registration',
-    targetUserId: 'usr-student-new',
-    targetUserName: 'Ahmad Fauzi',
-    when: '2026-09-01T08:00:00Z',
-    oldValue: 'None',
-    newValue: 'SQ-2026-0099 | Reguler Bimbel SMA | Kimia SMA'
+    newValue: 'Intensif UTBK / SNBT & Prestasi SMA'
   }
 ];
 
 export class AuthService {
   private static initStorage(): void {
+    // Clean up older version keys if present
+    ['sqolah_users_v1', 'sqolah_users_v2', 'sqolah_users_v3',
+     'sqolah_students_v1', 'sqolah_students_v2', 'sqolah_students_v3',
+     'sqolah_audit_logs_v1', 'sqolah_audit_logs_v2', 'sqolah_audit_logs_v3',
+     'sqolah_current_user_v1', 'sqolah_current_user_v2', 'sqolah_current_user_v3'].forEach(k => {
+      try { localStorage.removeItem(k); } catch {}
+    });
+
     if (!localStorage.getItem(STORAGE_KEY_USERS)) {
       localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(SEED_USERS));
     }
@@ -137,9 +101,8 @@ export class AuthService {
       localStorage.setItem(STORAGE_KEY_AUDIT_LOGS, JSON.stringify(SEED_AUDIT_LOGS));
     }
     if (!localStorage.getItem(STORAGE_KEY_CURRENT_USER)) {
-      // Default to Budi Santoso so user can immediately see rich intelligent dashboard,
-      // or switch to Ahmad Fauzi (New Student) / Admin with the top switcher
-      localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(SEED_USERS[2]));
+      // Default to M Elang El Haqeem (Student, Kelas XI SMA)
+      localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(SEED_USERS[1]));
     }
   }
 
@@ -156,9 +119,9 @@ export class AuthService {
     this.initStorage();
     try {
       const user = JSON.parse(localStorage.getItem(STORAGE_KEY_CURRENT_USER) || 'null');
-      return user || SEED_USERS[2];
+      return user || SEED_USERS[1];
     } catch {
-      return SEED_USERS[2];
+      return SEED_USERS[1];
     }
   }
 
