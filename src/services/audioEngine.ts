@@ -50,7 +50,9 @@ class AudioEngine {
 
   public subscribe(cb: (state: { isSpeaking: boolean; isPaused: boolean; currentText?: string }) => void) {
     this.listeners.add(cb);
-    return () => this.listeners.delete(cb);
+    return () => {
+      this.listeners.delete(cb);
+    };
   }
 
   private notify(currentText?: string) {

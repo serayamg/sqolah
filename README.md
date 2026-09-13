@@ -6,18 +6,26 @@
 
 ## 🚀 Fitur Unggulan
 
+- **🧠 Student Learning Intelligence & Mastery Platform**:
+  - **Onboarding Wizard ("Kenali Kondisi Belajarmu")**: Pendaftaran dan penugasan profil akademik (terkunci oleh Admin), penetapan target nilai & kampus impian, self-assessment skala Likert, dan preferensi gaya belajar.
+  - **Asesmen Diagnostik Adaptif & Auditori**: Uji awal bertingkat (*Easy*, *Medium*, *Hard*) dengan tombol suara narasi (*Text-to-Speech*) untuk mengukur *baseline mastery* siswa.
+  - **Mastery Dashboard (10 Area)**: Circular score penguasaan, *Continue Learning*, target harian *Today's Learning Plan*, ringkasan materi, deteksi kekuatan & *Learning Gaps*, *Next Best Action* beralasan pedagogis, grafik progres mingguan, statistik waktu belajar & streak 🔥, riwayat aktivitas, dan *Personal Insights*.
+  - **Deteksi Akar Masalah Prasyarat**: Diagnosis keterkaitan konsep prasyarat (contoh: kelemahan pada *Ikatan Kimia* dilacak ke belum mantapnya *Konfigurasi Elektron*).
+  - **Mastery Map Interaktif**: Peta silabus 20 Bab Kimia SMA berjenjang (Level 0–5) dengan filter status dan modal *drilldown* detail konsep.
+  - **Super Admin Control & Student 360° Profile**: Monitoring analitik platform, daftar *Students Need Attention*, manajemen penugasan, ekspor JSON konteks memori belajar AI (*student_context*), serta tabel *Audit Trail* operasional lengkap.
 - **♿ Aksesibilitas & Inklusivitas**:
   - **Mode Disleksia**: Opsi tampilan jenis huruf khusus (*dyslexic font*) untuk kenyamanan membaca peserta didik dengan disleksia.
   - **Kontras Tinggi (*High Contrast*)**: Memudahkan keterbacaan teks dan antarmuka.
-  - **Dukungan Auditori**: *Audio engine* bawaan dengan efek suara interaktif dan panduan audio untuk materi serta kuis.
+  - **Dukungan Auditori**: *Audio engine* bawaan dengan Text-to-Speech bahasa Indonesia, efek suara interaktif, dan panduan audio untuk materi serta kuis.
 - **📚 Materi Kurikulum Terstruktur**:
   - Pilihan jenjang pendidikan: **SD**, **SMP**, dan **SMA**.
   - Pilihan kelas (contoh: SMA Kelas 10, 11, dan 12).
   - Dilengkapi modul **Handbook Kimia SMA (Bab 1 - 20)** beserta indeks lengkap yang siap diakses langsung.
 - **🎯 Kuis Interaktif**:
   - Pemain kuis interaktif dengan timer, skor langsung, feedback seketika, dan perayaan (*confetti*).
-  - Evaluasi pemahaman langsung per materi atau per mata pelajaran.
-- **🛠️ Admin Panel**:
+  - Evaluasi pemahaman langsung per materi atau per mata pelajaran yang otomatis memperbarui data mastery dan riwayat belajar.
+- **🛠️ Admin Panel & Persona Switcher**:
+  - Penggantian sesi cepat di header antara **Budi Santoso (10 SMA)**, **Ahmad Fauzi (Siswa Baru)**, dan **Super Admin**.
   - Antarmuka manajemen untuk menambah, memperbarui, dan mengelola materi serta bank soal.
   - Penyimpanan data lokal (*local storage*) yang persisten dan cepat.
 

@@ -7,16 +7,30 @@ import {
   AuditorySettings, 
   AccessibilitySettings 
 } from './types';
+import { User, StudentProfile } from './types/intelligence';
 import { StorageService } from './services/storageService';
+import { AuthService } from './services/authService';
+import { IntelligenceService } from './services/intelligenceService';
+
 import { Header } from './components/Header';
 import { AudioBar } from './components/AudioBar';
 import { LevelClassPicker } from './components/LevelClassPicker';
 import { StudentHome } from './components/StudentHome';
 import { MateriView } from './components/MateriView';
 import { QuizPlayer } from './components/QuizPlayer';
-import { AdminPanel } from './components/AdminPanel';
+import { StudentDashboard } from './components/dashboard/StudentDashboard';
+import { MasteryMapView } from './components/dashboard/MasteryMapView';
+import { LearningHistoryView } from './components/dashboard/LearningHistoryView';
+import { OnboardingWizard } from './components/onboarding/OnboardingWizard';
+import { AdminAnalyticsView } from './components/admin/AdminAnalyticsView';
 
 export const App: React.FC = () => {
+  // State: Auth & Student Intelligence
+  const [currentUser, setCurrentUser] = useState<User>(() => AuthService.getCurrentUser());
+  const [studentProfile, setStudentProfile] = useState<StudentProfile | null>(() =>
+    AuthService.getStudentProfileByUserId(AuthService.getCurrentUser().id)
+  );
+
   // State: Curriculum data
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [materiList, setMateriList] = useState<Materi[]>([]);
@@ -25,7 +39,13 @@ export const App: React.FC = () => {
   // State: Navigation & Filters
   const [currentLevel, setCurrentLevel] = useState<EducationLevel>('SMA');
   const [selectedKelas, setSelectedKelas] = useState<number | null>(null);
-  const [activeView, setActiveView] = useState<'home' | 'materi' | 'quiz' | 'admin'>('home');
+  const [activeView, setActiveView] = useState<string>(() => {
+    const user = AuthService.getCurrentUser();
+    if (user.role === 'superadmin') return 'admin';
+    const profile = AuthService.getStudentProfileByUserId(user.id);
+    if (profile && !profile.onboardingCompleted) return 'onboarding';
+    return 'dashboard';
+  });
   const [selectedMateriId, setSelectedMateriId] = useState<string | null>(null);
   const [quizFilter, setQuizFilter] = useState<{ materiId?: string; subjectId?: string } | null>(null);
 
@@ -42,16 +62,8 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     refreshData();
+    IntelligenceService.initSeedData();
   }, []);
-
-  // Reset kelas filter when changing level if selected kelas doesn't belong
-  const handleSelectLevel = (level: EducationLevel) => {
-    setCurrentLevel(level);
-    setSelectedKelas(null);
-    if (activeView === 'materi' || activeView === 'quiz') {
-      setActiveView('home');
-    }
-  };
 
   // Sync accessibility classes with document body
   useEffect(() => {
@@ -67,6 +79,31 @@ export const App: React.FC = () => {
       document.body.classList.remove('high-contrast-mode');
     }
   }, [accessibility]);
+
+  // Handle switching persona / user
+  const handleSwitchUser = (userId: string) => {
+    const newUser = AuthService.switchUser(userId);
+    setCurrentUser(newUser);
+    const newProfile = AuthService.getStudentProfileByUserId(newUser.id);
+    setStudentProfile(newProfile);
+
+    if (newUser.role === 'superadmin') {
+      setActiveView('admin');
+    } else if (newProfile && !newProfile.onboardingCompleted) {
+      setActiveView('onboarding');
+    } else {
+      setActiveView('dashboard');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectLevel = (level: EducationLevel) => {
+    setCurrentLevel(level);
+    setSelectedKelas(null);
+    if (activeView === 'materi' || activeView === 'quiz') {
+      setActiveView('home');
+    }
+  };
 
   const handleUpdateAccessibility = (newSettings: Partial<AccessibilitySettings>) => {
     const updated = { ...accessibility, ...newSettings };
@@ -84,7 +121,27 @@ export const App: React.FC = () => {
   const handleOpenMateri = (materiId: string) => {
     setSelectedMateriId(materiId);
     setActiveView('materi');
+
+    // Track learning event
+    if (studentProfile) {
+      IntelligenceService.trackEvent({
+        studentId: studentProfile.studentId,
+        eventType: 'LESSON_STARTED',
+        subjectId: 'sma-kimia-10',
+        metadata: { materiId }
+      }, 5);
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenMateriByBab = (babNumber: number) => {
+    const found = materiList.find(m => m.title.toLowerCase().includes(`bab ${babNumber}:`) || m.title.toLowerCase().includes(`bab ${babNumber} `));
+    if (found) {
+      handleOpenMateri(found.id);
+    } else if (materiList.length > 0) {
+      handleOpenMateri(materiList[0].id);
+    }
   };
 
   const handleOpenQuiz = (materiId?: string, subjectId?: string) => {
@@ -93,13 +150,27 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleToggleAdmin = () => {
-    if (activeView === 'admin') {
-      setActiveView('home');
-    } else {
-      setActiveView('admin');
-    }
+  const handleOpenQuizByBab = (babNumber: number) => {
+    const foundMateri = materiList.find(m => m.title.toLowerCase().includes(`bab ${babNumber}:`) || m.title.toLowerCase().includes(`bab ${babNumber} `));
+    setQuizFilter({ materiId: foundMateri?.id, subjectId: 'sma-kimia-10' });
+    setActiveView('quiz');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleQuizCompleted = (scorePercent: number, correctCount: number, totalCount: number) => {
+    if (studentProfile) {
+      IntelligenceService.trackEvent({
+        studentId: studentProfile.studentId,
+        eventType: 'QUIZ_COMPLETED',
+        subjectId: 'sma-kimia-10',
+        metadata: {
+          score: scorePercent,
+          correctCount,
+          totalCount,
+          durationMinutes: 15
+        }
+      }, 15);
+    }
   };
 
   // Determine current active item for MateriView or QuizPlayer
@@ -109,7 +180,6 @@ export const App: React.FC = () => {
   // Filter questions for QuizPlayer
   const getQuestionsForQuiz = (): Question[] => {
     if (!quizFilter) {
-      // General quiz for current level
       return questions.filter(q => {
         const sub = subjects.find(s => s.id === q.subjectId);
         if (sub?.level !== currentLevel) return false;
@@ -121,7 +191,6 @@ export const App: React.FC = () => {
     if (quizFilter.materiId) {
       const linked = questions.filter(q => q.materiId === quizFilter.materiId);
       if (linked.length > 0) return linked;
-      // Fallback to same subject and kelas if no direct link
       if (activeMateri) {
         return questions.filter(q => q.subjectId === activeMateri.subjectId && q.kelas === activeMateri.kelas);
       }
@@ -131,61 +200,109 @@ export const App: React.FC = () => {
       return questions.filter(q => q.subjectId === quizFilter.subjectId);
     }
 
-    return questions.filter(q => {
-      const sub = subjects.find(s => s.id === q.subjectId);
-      return sub?.level === currentLevel;
-    });
+    return questions;
   };
+
+  const effectiveStudentProfile = studentProfile || AuthService.getStudentProfiles()[0];
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 transition-colors duration-200">
-      {/* Header */}
+      {/* Universal Header with Navigation Pills & Persona Switcher */}
       <Header
         currentLevel={currentLevel}
         onSelectLevel={handleSelectLevel}
-        isAdmin={activeView === 'admin'}
-        onToggleAdmin={handleToggleAdmin}
+        isAdmin={currentUser.role === 'superadmin'}
+        onToggleAdmin={() => {
+          if (currentUser.role === 'superadmin') {
+            handleSwitchUser('usr-student-budi');
+          } else {
+            handleSwitchUser('usr-admin-1');
+          }
+        }}
         activeView={activeView}
+        onNavigateView={(view) => {
+          setActiveView(view);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         onNavigateHome={() => {
-          setActiveView('home');
+          setActiveView('dashboard');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         accessibility={accessibility}
         onUpdateAccessibility={handleUpdateAccessibility}
         auditory={auditory}
         onUpdateAuditory={handleUpdateAuditory}
+        currentUser={currentUser}
+        onSwitchUser={handleSwitchUser}
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
         
-        {/* If in Student Mode, show Level & Class Picker */}
-        {activeView !== 'admin' && (
-          <LevelClassPicker
-            currentLevel={currentLevel}
-            selectedKelas={selectedKelas}
-            onSelectKelas={setSelectedKelas}
-            auditory={auditory}
+        {/* Onboarding View (First-login Experience for New Students) */}
+        {activeView === 'onboarding' && (
+          <OnboardingWizard
+            currentProfile={effectiveStudentProfile}
+            onFinishOnboarding={() => {
+              const refreshed = AuthService.getStudentProfileByUserId(currentUser.id);
+              setStudentProfile(refreshed);
+              setActiveView('dashboard');
+            }}
           />
         )}
 
-        {/* View 1: Student Catalog & Home */}
+        {/* View: Student Learning Dashboard (Areas 1 - 10) */}
+        {activeView === 'dashboard' && (
+          <StudentDashboard
+            studentProfile={effectiveStudentProfile}
+            onNavigateToMateri={handleOpenMateriByBab}
+            onNavigateToQuiz={handleOpenQuizByBab}
+            onNavigateToMasteryMap={() => setActiveView('mastery-map')}
+            onNavigateToDiagnostic={() => setActiveView('onboarding')}
+          />
+        )}
+
+        {/* View: Mastery Map Hierarchy */}
+        {activeView === 'mastery-map' && (
+          <MasteryMapView
+            studentId={effectiveStudentProfile.studentId}
+            onNavigateToMateri={handleOpenMateriByBab}
+            onNavigateToQuiz={handleOpenQuizByBab}
+          />
+        )}
+
+        {/* View: Learning History Timeline */}
+        {activeView === 'history' && (
+          <LearningHistoryView
+            studentId={effectiveStudentProfile.studentId}
+          />
+        )}
+
+        {/* View: Materi Catalog (Home) */}
         {activeView === 'home' && (
-          <StudentHome
-            currentLevel={currentLevel}
-            selectedKelas={selectedKelas}
-            subjects={subjects}
-            materiList={materiList}
-            questions={questions}
-            onOpenMateri={handleOpenMateri}
-            onOpenQuiz={handleOpenQuiz}
-            onSelectLevel={handleSelectLevel}
-            onOpenAdmin={() => setActiveView('admin')}
-            auditory={auditory}
-          />
+          <>
+            <LevelClassPicker
+              currentLevel={currentLevel}
+              selectedKelas={selectedKelas}
+              onSelectKelas={setSelectedKelas}
+              auditory={auditory}
+            />
+            <StudentHome
+              currentLevel={currentLevel}
+              selectedKelas={selectedKelas}
+              subjects={subjects}
+              materiList={materiList}
+              questions={questions}
+              onOpenMateri={handleOpenMateri}
+              onOpenQuiz={handleOpenQuiz}
+              onSelectLevel={handleSelectLevel}
+              onOpenAdmin={() => setActiveView('admin')}
+              auditory={auditory}
+            />
+          </>
         )}
 
-        {/* View 2: Materi Detail with Auditory Highlight */}
+        {/* View: Single Materi Viewer with Auditory Highlight */}
         {activeView === 'materi' && activeMateri && (
           <MateriView
             materi={activeMateri}
@@ -198,7 +315,7 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* View 3: Inclusive Quiz Player */}
+        {/* View: Interactive Quiz Player */}
         {activeView === 'quiz' && (
           <QuizPlayer
             questions={getQuestionsForQuiz()}
@@ -208,22 +325,19 @@ export const App: React.FC = () => {
               if (selectedMateriId) {
                 setActiveView('materi');
               } else {
-                setActiveView('home');
+                setActiveView('dashboard');
               }
             }}
             auditory={auditory}
             accessibility={accessibility}
+            onQuizCompleted={handleQuizCompleted}
           />
         )}
 
-        {/* View 4: Admin Panel */}
+        {/* View: Super Admin Analytics & Student 360 */}
         {activeView === 'admin' && (
-          <AdminPanel
-            subjects={subjects}
-            materiList={materiList}
-            questions={questions}
-            onDataChanged={refreshData}
-            onExitAdmin={() => setActiveView('home')}
+          <AdminAnalyticsView
+            onSwitchUser={handleSwitchUser}
           />
         )}
       </main>
@@ -235,12 +349,12 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200/80 py-6 text-center text-xs text-slate-700">
+      <footer className="bg-white border-t border-slate-200/80 py-6 text-center text-xs text-slate-600">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="font-semibold text-slate-700">
-            © 2026 Sqolah — Platform Bimbingan Belajar Inklusif SD, SMP, SMA
+            © 2026 Sqolah — Student Learning Profile & Mastery Intelligence Platform
           </p>
-          <p className="text-slate-700">
+          <p className="text-slate-500">
             Didukung Fitur Belajar Auditori Web Speech & Web Audio Synthesizer
           </p>
         </div>

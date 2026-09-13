@@ -30,6 +30,7 @@ interface QuizPlayerProps {
   onBack: () => void;
   auditory: AuditorySettings;
   accessibility: AccessibilitySettings;
+  onQuizCompleted?: (scorePercent: number, correctCount: number, totalCount: number) => void;
 }
 
 export const QuizPlayer: React.FC<QuizPlayerProps> = ({
@@ -38,7 +39,8 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
   materiTitle,
   onBack,
   auditory,
-  accessibility
+  accessibility,
+  onQuizCompleted
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -235,8 +237,10 @@ export const QuizPlayer: React.FC<QuizPlayerProps> = ({
       }
 
       const finalScore = score + (selectedOptionId === currentQuestion.correctOptionId ? 0 : 0);
+      const scorePct = Math.round((score / questions.length) * 100);
+      onQuizCompleted?.(scorePct, score, questions.length);
       audioEngine.speak(
-        `Selamat! Kamu telah menyelesaikan seluruh soal latihan. Nilai kamu adalah ${Math.round((score / questions.length) * 100)} dari total ${questions.length} soal. Kerja yang sangat bagus!`,
+        `Selamat! Kamu telah menyelesaikan seluruh soal latihan. Nilai kamu adalah ${scorePct} dari total ${questions.length} soal. Kerja yang sangat bagus!`,
         { rate: auditory.rate }
       );
     }
