@@ -214,7 +214,7 @@ export const App: React.FC = () => {
         isAdmin={currentUser.role === 'superadmin'}
         onToggleAdmin={() => {
           if (currentUser.role === 'superadmin') {
-            handleSwitchUser('usr-student-budi');
+            handleSwitchUser('usr-student-elang');
           } else {
             handleSwitchUser('usr-admin-1');
           }

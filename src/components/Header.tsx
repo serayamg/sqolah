@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200">
                 <span className="text-xs text-slate-500 px-1.5 hidden md:inline font-medium">Akun:</span>
                 <select
-                  value={currentUser?.id || 'usr-student-budi'}
+                  value={currentUser?.id || 'usr-student-elang'}
                   onChange={e => onSwitchUser(e.target.value)}
                   className="bg-white text-slate-800 font-semibold text-xs py-1.5 px-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer max-w-[150px] sm:max-w-[200px] truncate"
                   title="Ganti akun untuk simulasi persona"

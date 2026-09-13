@@ -63,13 +63,23 @@ export class IntelligenceService {
   // INITIAL DEMO DATA SEEDING
   // -------------------------------------------------------------
   public static initSeedData(): void {
+    // Clear old versions if present
+    ['sqolah_masteries_v1', 'sqolah_masteries_v2', 'sqolah_masteries_v3',
+     'sqolah_events_v1', 'sqolah_events_v2', 'sqolah_events_v3',
+     'sqolah_streaks_v1', 'sqolah_streaks_v2', 'sqolah_streaks_v3',
+     'sqolah_study_stats_v1', 'sqolah_study_stats_v2', 'sqolah_study_stats_v3',
+     'sqolah_goals_v1', 'sqolah_goals_v2', 'sqolah_goals_v3',
+     'sqolah_preferences_v1', 'sqolah_preferences_v2', 'sqolah_preferences_v3'].forEach(k => {
+      try { localStorage.removeItem(k); } catch {}
+    });
+
     if (localStorage.getItem(KEY_MASTERIES)) return;
 
-    // Seed Budi Santoso's Mastery (demonstrating realistic learning path with an Ikatan Kimia gap)
-    const budiMasteries: ConceptMastery[] = [
+    // Seed M Elang El Haqeem's Mastery (demonstrating realistic learning path with an Ikatan Kimia gap)
+    const elangMasteries: ConceptMastery[] = [
       {
         id: 'mas-1',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-1',
         topicId: 'top-1-1',
@@ -88,7 +98,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-2',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-1',
         topicId: 'top-1-1',
@@ -107,7 +117,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-3',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-1',
         topicId: 'top-1-2',
@@ -126,7 +136,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-4',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-1',
         topicId: 'top-1-2',
@@ -145,7 +155,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-5',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-2',
         topicId: 'top-2-1',
@@ -164,7 +174,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-6',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-2',
         topicId: 'top-2-1',
@@ -183,7 +193,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-7',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-4',
         topicId: 'top-4-2',
@@ -202,7 +212,7 @@ export class IntelligenceService {
       },
       {
         id: 'mas-8',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-5',
         topicId: 'top-5-1',
@@ -221,11 +231,11 @@ export class IntelligenceService {
       }
     ];
 
-    localStorage.setItem(KEY_MASTERIES, JSON.stringify(budiMasteries));
+    localStorage.setItem(KEY_MASTERIES, JSON.stringify(elangMasteries));
 
-    // Seed Budi Santoso's Streaks & Stats
-    const budiStreak: LearningStreak = {
-      studentId: 'SQ-2026-0042',
+    // Seed M Elang El Haqeem's Streaks & Stats
+    const elangStreak: LearningStreak = {
+      studentId: 'SQ-2026-0001',
       currentStreakDays: 5,
       bestStreakDays: 12,
       lastActivityDate: new Date().toISOString().split('T')[0],
@@ -238,10 +248,10 @@ export class IntelligenceService {
         '2026-09-13'
       ]
     };
-    localStorage.setItem(KEY_STREAKS, JSON.stringify([budiStreak]));
+    localStorage.setItem(KEY_STREAKS, JSON.stringify([elangStreak]));
 
-    const budiStats: StudyTimeStats = {
-      studentId: 'SQ-2026-0042',
+    const elangStats: StudyTimeStats = {
+      studentId: 'SQ-2026-0001',
       todayMinutes: 48,
       thisWeekMinutes: 340,
       thisMonthMinutes: 870,
@@ -252,26 +262,26 @@ export class IntelligenceService {
       totalQuestionsCompleted: 86,
       totalTopicsMastered: 4
     };
-    localStorage.setItem(KEY_STUDY_STATS, JSON.stringify([budiStats]));
+    localStorage.setItem(KEY_STUDY_STATS, JSON.stringify([elangStats]));
 
-    // Seed Budi Santoso's Learning Goals & Preferences
-    const budiGoals: StudentGoals = {
-      studentId: 'SQ-2026-0042',
+    // Seed M Elang El Haqeem's Learning Goals & Preferences
+    const elangGoals: StudentGoals = {
+      studentId: 'SQ-2026-0001',
       primaryGoals: [
         'Persiapan UTBK / SNBT 2027',
-        'Meningkatkan nilai rapor Kimia di atas 90',
+        'Meningkatkan nilai rapor Kimia Kelas XI di atas 90',
         'Lolos PTN Kedokteran / Teknik Kimia'
       ],
       targetGrades: {
-        'sma-kimia-10': { currentGrade: 78, targetGrade: 92 }
+        'sma-kimia-10': { currentGrade: 80, targetGrade: 95 }
       },
       targetCampusOrSchool: 'Institut Teknologi Bandung (Teknik Kimia)',
       updatedAt: '2026-08-01T00:00:00Z'
     };
-    localStorage.setItem(KEY_GOALS, JSON.stringify([budiGoals]));
+    localStorage.setItem(KEY_GOALS, JSON.stringify([elangGoals]));
 
-    const budiPreferences: StudentPreferences = {
-      studentId: 'SQ-2026-0042',
+    const elangPreferences: StudentPreferences = {
+      studentId: 'SQ-2026-0001',
       selfAssessmentUnderstanding: {
         'sma-kimia-10': 4
       },
@@ -283,13 +293,13 @@ export class IntelligenceService {
       learningStylePreference: 'auditory',
       updatedAt: '2026-08-01T00:00:00Z'
     };
-    localStorage.setItem(KEY_PREFERENCES, JSON.stringify([budiPreferences]));
+    localStorage.setItem(KEY_PREFERENCES, JSON.stringify([elangPreferences]));
 
     // Seed Events
-    const budiEvents: LearningEvent[] = [
+    const elangEvents: LearningEvent[] = [
       {
         id: 'evt-1',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         eventType: 'QUIZ_COMPLETED',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-5',
@@ -299,7 +309,7 @@ export class IntelligenceService {
       },
       {
         id: 'evt-2',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         eventType: 'AUDIO_LISTENED',
         subjectId: 'sma-kimia-10',
         chapterId: 'chap-kim-5',
@@ -309,14 +319,14 @@ export class IntelligenceService {
       },
       {
         id: 'evt-3',
-        studentId: 'SQ-2026-0042',
+        studentId: 'SQ-2026-0001',
         eventType: 'DIAGNOSTIC_COMPLETED',
         subjectId: 'sma-kimia-10',
         metadata: { baselineScore: 74, level: 'Kompeten', durationMinutes: 30 },
         timestamp: '2026-09-02T10:30:00Z'
       }
     ];
-    localStorage.setItem(KEY_EVENTS, JSON.stringify(budiEvents));
+    localStorage.setItem(KEY_EVENTS, JSON.stringify(elangEvents));
   }
 
   // -------------------------------------------------------------
