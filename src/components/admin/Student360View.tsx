@@ -149,7 +149,7 @@ export const Student360View: React.FC<Student360ViewProps> = ({
               />
             ) : (
               <div className="p-2.5 bg-slate-50 rounded-xl font-semibold text-slate-800 border border-slate-200">
-                Kelas {profile.grade} ({profile.level})
+                Kelas {profile.grade === 11 ? 'XI' : profile.grade} ({profile.level})
               </div>
             )}
           </div>
